@@ -715,12 +715,46 @@ In overall results, those 20 candidate biomarkers, clinical T stage, and surgica
 %Text of the proof. Note that the phrase ``of Theorem 1'' is optional if it is clear which theorem is being referred to.
 %\end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 
-Authors should discuss the results and how they can be interpreted from the perspective of previous studies and of the working hypotheses. The findings and their implications should be discussed in the broadest context possible. Future research directions may also be highlighted.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TCGAbiolinks
+%alcohol consumption
+Besides ethnicity, age, gender, the \acrshort{tnm} stage, radiation therapy, chemotherapy, and targeted therapy, the comprehensive adverse features of prognosis in \acrshort{hnscc} should include tobacco exposure, \acrshort{egfr} amplification, \acrfull{hpv} status, positive/close surgical margin ($<5 mm$), \acrfull{ene}, \acrfull{lvsi}, \acrfull{pni}, \acrfull{doi} ($>5 mm$), as well as metastatic \acrfull{lnd}\cite{Cheraghlou2018}, and \acrfull{wpoi5}, which was defined as tumor dispersion $>= 1 mm$ between tumor satellites or positive \acrshort{pni}/\acrshort{lvsi}\cite{Amin2017}.
+The features of \acrshort{doi}, \acrshort{lnd}, and tumor dispersion were not available on the \acrshort{tcga} dataset. The Brandwein-Gensler's risk model (lymphocytic host response, \acrshort{wpoi5}, and \acrshort{pni})\cite{Brandwein-Gensler2010}\cite{Sinha2018} was suggested to be routinely performed on pathological examination. In previous reports of \acrshort{hnscc}, the loco-regional failure will be high when the initial frozen section has a positive/close surgical margin, and even the final margin revision revealed negative\cite{Bulbul2019b}.
+According to Table \ref{table:table2} and Table \ref{table:table4} in our study, the positive surgical margin yielded a hazard ratio greater than 1.6 to influence on patient's \acrshort{os}.
+It was suggested by authors \cite{Scholl1986}\cite{Sutton2003}\cite{Shaw2004}\cite{Guillemaud2010a}\cite{Patel2010}\cite{Kuriakose2017}\cite{Shapiro2017}\cite{Saidak2018}\cite{Miguelanez-Medran2019}\cite{Saidak2019} that the reason of positive/close surgical margin is possibly due to tumor aggressiveness or dispersion (WPOI-5) instead of iatrogenic reason of surgery. The surgical margin status is suggested as an independent surrogate for tumor dispersion, and important in the \acrshort{hnscc} study. Thus, in the current study, we selected the common clinicopathological features, including gender, age, clinical T, clinical N, clinical M, surgical margin status, and tobacco exposure in the biomarker discovery for adjustment of confounders (details description at Materials and Methods section).
+
+In our previous work, altered glucose metabolism (e.k.a. the Warburg effect\cite{Warburg1956}) promotes the progression of \acrshort{hnscc}, which is partially attributed to the \acrfull{slc2a4} (or \acrfull{glut4}) and \acrfull{trim24} pathway\cite{Chang2017b}. In this study, LOC148709 (a \acrfull{lncrna}) was suggested as a biomarker of \acrshort{hnscc} (see Table \ref{table:table3}).
+%on page \pageref{table:table3}). I
+It was also found to has a contribution to the Warburg effect on esophagus cancer\cite{Liu2019}. 
+
+There is a trend toward cancer type-agnostic study. The success of pembrolizumab and nivolumab was based on a common biomarker (e.g., \acrshort{pd1}) crossing several types of cancer.
+It showed a precedent of tumor type-agnostic therapy\cite{Yan2018}.
+%*** PD-L1/PD-L2 is a biomarker; Keynote-012
+Currently, there are several common biomarkers of \acrshort{ici} under evaluation, which include \acrfull{til}, \acrfull{ifng}, and \acrfull{tmb}\cite{Gavrielatou2020}.
+The other  \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evaluated under the phase I/IIA\cite{Cristina2019}\linebreak
+(ClinicalTrials.gov Identifier: NCT01968109) and II-IVA\cite{Neal2019} (ClinicalTrials.gov Identifier: NCT04080804) studies.
+
+Although we combined the power of genome-wide scanning and an optimal cutoff finder for Kaplan-Meier survival analysis, the study has some limitations. We are aware of the importance of direct assessment of protein products comprising the basic functional units in cancer cells' biological processes. The announcement of the Cancer Proteome Atlas (\acrshort{tcpa}, http://tcpaportal.org) excited the cancer research community\cite{Li2013c}\cite{Li2017b}. By the utility of the \acrfull{rppa} or \acrfull{rpma}, a microarray of "Western blots" in the \acrshort{tcpa} could help to test our hypotheses.
+However, there are only 237 antibodies available so far. We found our 20 candidates are not included in the \acrshort{tcpa} database (v3.0\cite{Chen2019}).
+%> semi_join(pvalueTex_bad, HPA_bad, by=c("V1"="Gene"))
+%validation at protein level:
+At the same time, we found our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa}
+(available at https://www.proteinatlas.org/humanproteome/\newline
+pathology/head+and+neck+cancer, accessed 28 September 2020). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+% > semi_join(pvalueTex_good, HPA_good, by=c("V1"="Gene"))
+%There are 628 genes that consensus of pvalue005KM (6429 genes) and HPA (bad+good in HNSCC)
+Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
+% second limitation:
+In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials and Methods} % 4
+
+
+%%%%%
 \section{Conclusions}
 
 
