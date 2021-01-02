@@ -3,6 +3,7 @@
 
 %=================================================================
 \documentclass[cancers,article,submit,moreauthors,pdftex]{Definitions/mdpi}
+\maxdeadcycles=300 % Output loop---200 consecutive dead cycles.
 
 % For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal and change "submit" to "accept". The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
 
@@ -753,7 +754,7 @@ In line with tumor-agnostic research, we plan to explore more TCGA diseases to f
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods} % 4
 
-\subsection*{Patient Cohort} 
+\subsection{Patient Cohort} 
 
 The Cancer Genome Atlas (\acrshort{tcga}) profiled 528 \acrshort{hnscc} clinical and genomic data, which has been standardized and available on a unified data portal, \acrfull{gdc} of the \acrfull{nci}.
 %\cite{SeanDavis;MartinMorgan2020}
@@ -764,7 +765,7 @@ The 528 \acrshort{tcga} \acrshort{hnscc} patients' clinical information and \acr
 FirebrowseR)\cite{Deng2017}. 
 We utilized FirebrowseR with our analysis workflow (see Figure \ref{fig:figure1}, step 1) to receive standardized data frames while avoiding data re-formatting, often causing some errors.
 
-\subsubsection*{RNA Sequencing Data} 
+\subsubsection{RNA Sequencing Data} 
 
 The number of protein-coding genes was suggested as 20,500\cite{Clamp2007}. The \acrshort{gdc} Data Portal provided \acrshort{tcga} data has been harmonized and re-aligned \acrlong{rnaseq} data against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}). \acrshort{rnaseq} expression level read counts produced by Illumina HiSeq have been normalized using the \acrfull{fpkm} method, as described in reference\cite{FPKM2017}.
 The \acrshort{rnaseq} preprocessor of Broad \acrshort{gdac} picked the \acrfull{rsem} value from Illumina HiSeq/GA2 messenger \acrshort{rnaseq} level\_3 (v2) dataset of \acrshort{nci} \acrshort{gdc}. It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.
@@ -772,7 +773,7 @@ We utilized FirebrowseR's function call, Samples.mRNASeq(cohort = "HNSC", gene=G
 Fire.Rda".
 After careful investigation of the genomics dataset, the \acrshort{rnaseq} values of "\acrfull{slca}" and "\acrfull{slcb}" should be considered two distinct expression entities. We concluded that the number of protein-coding genes in the \acrshort{tcga} dataset is 20,500. We removed null expressed genes, which over 50\% of the cohort, to avoid the useless result.
 
-\subsubsection*{Clinical Data} 
+\subsubsection{Clinical Data} 
 
 We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patients, which saved as one data frame file: "HNSCC.clinical.\linebreak
 Fire.Rda" (accessed November 2019).
@@ -786,14 +787,31 @@ The tumor size (T), cervical lymph node metastases (N), and distal metastasis st
 We made data clean by removing duplicated rows and columns.
 
 
-\subsection*{Cutoff Finder Core Engine}
+\subsection{Cutoff Finder Core Engine}
+
+%\label{key:cutoff}
+To evaluate the effect of gene expression on the patient's survival, we introduced the stratifying of patients with Kaplan-Meier survival analysis according to each gene's low/high expression.
+Our cutofFinder\_func subroutine employs the minimum P-value approach to recognizing cutoff points in continuous gene expression measurement for patients sub-population.
+First, patients were ordered by \acrshort{rnaseq} value (RSEM) of a given gene. Next, patients were stratified at a serial cut (counted by person ranked in 30\% to 70\% percentile of the cohort; please see Figure \ref{fig:figure1} "HNSCC cohort"). The survival risk differences of the two groups were estimated by log-rank test to yield around 165 Kaplan-Meier P-values for each gene.
+Then, the optimal cutoff of \acrshort{rnaseq}, giving the minimum P-value, was selected by the cutofFinder\_func subroutine.
+This iteration method could calculate all possible cutoff of each gene expression in this cohort. At each run of cutofFinder\_func function call for an individual gene, it returned an optimal cutoff value (e.x. 0.027 for gene \acrlong{CAMK2N1}, \acrshort{CAMK2N1}). The optimal cutoff value and its correlated patient grouping size (e.x. low-expression in 262 persons vs. high-expression in 152 persons with gene \acrshort{CAMK2N1}) would be returned to the main program to allow downstream Cox survival analysis. The percentile range we applied as 30\% to 70\% was used to avoid a small grouping effect\cite{Miller1982}\cite{Mizuno2009a}.
+In case there was no significant P-value, a median expression of this gene was set as its cutpoint as usual.
+
+\subsection{Statistical Consideration}
+
+Our workflow has loops to call function survival\_marginSFP(GeneName) with given GeneName to process the survival analysis gene by gene.
+We dichotomized the clinicopathological features, which includes gender (male/ female), age at diagnosed (below/beyond 65 year-old), clinical tumor size (T1-2/T3-4), clinical nodal status (negative/positive), clinical distant metastasis (negative/positive), TNM staging (early/late), surgical margin status (negative/positive) and tobacco exposure (low/high). The patients were grouped by an \acrshort{rnaseq} value of each gene, cut at low- or high-expression on an optimal P-value obtained from the cutofFinder\_func subroutine (see the section of "Cutoff Finder Core Engine"). Pearson's chi-square test was used for these binary variables. Kaplan-Meier survival was analyzed using the log-rank test for two groups OS comparison.
+The Cox proportional hazards regression is the widely accepted approach for modeling survival while accounting for confounding factors\cite{Magen2019}. Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the OS.
+Results were considered statistically significant when a two-sided P-value $<$ 0.05, or a lower threshold if indicated.
+The \acrfull{fdr} ($< 0.05$) could be used to pick up the optimal P-value to ensure the control for type I error of the Kaplan-Meier survival test during the cutoff finding procedure.
+%statistical inference problems in biomedical and genomic data analysis routinely involve the simultaneous test of thousands, or even millions, of null hypotheses. Examples
+There were also multiple correlated tests of null hypotheses in the Kaplan-Meier family during our global scanning of protein-coding genes. The stringent Bonferroni correction could result in an adjusted P-value to ensure the control for type I error. 
+%There were multiple correlated tests in the family of Kaplan-Meier survival hypotheses during our global scanning of protein-coding genes. The stringent Bonferroni correction could result in an adjusted P-value to ensure the control for type I error. 
+
+The resulting data, including Kaplan-Meier curves, cumulative P-value plots, and Cox regression tables, were exported to ".xlsx" and ".Rda" files (by R package "r2excel") for subsequent biomarker selection.
 
 
-\subsection*{Statistical Consideration}
-
-
-
-\subsection*{Biomarker Selection}
+\subsection{Biomarker Selection}
 
 Those genes with prognostic impact, whose hazard ratio $>=1.5$ or $<=0.5$ in both Cox's univariate/multivariate model, were assigned as provisional candidates.
 Bonferroni adjusted (Kaplan-Meier) P-value was used to make a ranking of candidates for the final decision (see Figure \ref{fig:figure1}, step 2).
