@@ -30,6 +30,88 @@ a). mRNA study: in drug discovery, the gene expression (overexpression) is much 
 b). => it needs deep learning (DNA+RNA omics study)
 \cite{Lawrence2015a} TCGA 的第一篇文章
 [see 01/24 google calendar: DNA mutation
+Epigenetics in cancer: CpG islands
+Lawrence, M. S., Sougnez, C., Lichtenstein, L., Cibulskis, K., Lander, E., Gabriel, S. B., … Pham, M. (2015). Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature, 517(7536), 576–582. https://doi.org/10.1038/nature14129
+
+The presence of widespread genomic instability in HNSCC, such as cytogenetic aberrations, allelic imbalance/loss of heterozygosity, and microsatellite instability, suggests that there is an imperfection in the host DNA repair machinery. Genomic instability with progressive accumulation of detrimental genetic alterations appears to be dependent upon a circuitous interaction between the environmental genotoxic insults and the host DNA repair machinery, the functional integrity of which is governed by the proper cell cycle control and host DNA repair capacity.
+https://www.nature.com/articles/nature14129 Comprehensive genomic characterization of head and neck squamous cell carcinomas
+Genomics allows the identification of possibly relevant variants, such as single nucleotide polymorphisms (SNPs), copy number variation (CNV), mutations and translocations => https://cancersheadneck.biomedcentral.com/articles/10.1186/s41199-020-0047-y
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7080958/#SM8 The Landscape of Somatic Copy Number Alterations in Head and Neck Squamous Cell Carcinoma, 2020.
+18 GSE dataset + TCGA: chromothripsis 6%
+
+TMB: To calculate TMB, you need to know the total size of the region sequenced. If data is from exome sequencing, you would find the size of the exome capture, and divide total mutations (or non-synonymous only depending on strategy), by that size (e.g. ~45MB) to get SNV/MB ratio.
+
+ICIs <- TMB <- DDR DNA repair gene
+Identification of Genomic Predictors for Treatment Response to Cancer Immunotherapy Using Omics Data Analysis
+Yu��Chao Wang
+
+tumor mutational burden-high (TMB-H) [≥10 mutations/megabase (mut/Mb)] solid tumors (for pembrolizumab)
+
+===================
+epigenetic trinity:
+http://www.biomedicine.org.tw/Upload/07_DNA甲基化程度在大腸直腸癌扮演的角色.pdf
+脊椎動物之基因體中約20%之序列為5'-GC-3' (簡稱CpG)之雙核苷酸(dinucleotide)。然而有 些長約1至2kb之序列段，其CpG含量高達60% (CpG islands)
+
+60% protein-coding genes with CpG islands on their promoter region
+
+(
+
+
+
+
+McGough JM, Yang D, Huang S, et al. DNA methylation represses IFN-gamma-induced and signal transducer and activator of transcription 1-mediated IFN regulatory factor 8 activation in colon carcinoma cells. Mol Cancer Res 2008;6:1841-1851.
+
+)
+
+methyl CpG-binding domain protein; MBD 阻止 TF binding on the promoter of gene
+
+=> causing impairment of mismatch repair; MMR => microsatellite instable; MSI
+
+
+
+
+環境因子的致癌機轉=>CpG hypermethylation
+關閉 tumor suppressor genes
+and
+Hypomethylation 打開 oncogene
+DKK1
+...
+hypomethylation ->
+loss of gene imprinting
+alleles 
+..
+histone methylation
+http://webcache.googleusercontent.com/search?q=cache:z8zvnjS-C3AJ:sites.mc.ntu.edu.tw/board.php?courseID%3D83%26f%3Ddoc%26folderID%3D581%26cid%3D3060&client=safari&hl=en&gl=tw&strip=1&vwsrc=0
+雖然以上我們討論的是癌症的基因體，但癌症的厲害就是它本來就利用人體原有的生物機制來生存（co-opting），因此，以上在癌症觀察到的基因體複雜性，其實也存在於正常人體.
+
+從最早，很單純的基因之exon序列，轉錄成mRNA，再轉譯成polypeptide，形成protein，到現在還要考慮epigenetics、mi RNA、TUF (ENCODE將之名為transcripts of unknown function (TUF)=> non-coding RNA 後來很紅)、chromosome environment，基因體的複雜性真是增加了不知多少倍，這也提醒我們在了解基因功能方面，必需更有全面性的關照。這也是「基因體醫學」必需以「基因體科學」為基礎的道理。
+
+...........=====
+
+DNA mutation, copy number 增加
+造成 overexpression of gene
+
+Answer:
+所以 DNA vs mRNA 分析不是獨立變數，彼此有 confunding
+放入分析需要使用不同的方法 omics analysis
+
+It may be beneficial to include these different data types in models predicting outcomes, such as the survival time of patients. Until recently, only data from a single omics type were used to build such prediction models, with or without the inclusion of standard clinical data [2]. In recent years, however, the increasing availability of different types of omics data measured for the same patients (called multi-omics data from now on) has led to their combined use for building outcome prediction models. An important characteristic of multi-omics data is the high-dimensionality of the datasets, which frequently have more than 10 000 or even 100 000 variables. This places particular demands on the methods used to build prediction models: they must be able to handle data where the number of variables by far exceeds the number of observations. Moreover, practitioners often prefer sparse and interpretable models containing only a few variables [3]. Last but not the least, multi-omics data are structured: the variables are partitioned into (nonoverlapping) groups. This structure may be taken into account when building prediction models.
+Citation:
+https://academic.oup.com/bib/advance-article/doi/10.1093/bib/bbaa167/5895463
+特別的 algorithm 
+..
+Or
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6419526/
+
+Deep learning
+
+SALMON (Survival Analysis Learning with Multi-Omics Neural Networks)
+
+DNA mutation:
+copy number burden (CNB) and tumor mutation burden (TMB) are important for predicting tumor progression (Marshall et al., 2017; Thomas et al., 2018)
+
 
 %======
 \subsection{2-1}
@@ -63,6 +145,7 @@ cohort n=28 in the following probes of genes with survival significance:
 FCGBP (P-value 0.005658 of KM plot)
 FOXA2 (0.001587)
 
+there is survival feature:
 A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631
 GSE52793: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52793
 GSE75537: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE75537
@@ -80,7 +163,7 @@ the elements of the workflow: ...
 \subsection{2-4}
 2-4) Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use.
 Answer
-We modified the introduction ...
+*** We modified the introduction according to reviewer's comment...
 https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications
 
 
@@ -142,8 +225,8 @@ Dataset: HNSC - TCGA Head and Neck squamous cell carcinoma June 2016 (dup=all, d
 因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
  (TCGA)(***please see Figure \label{fig_SurvExpress})
 
-x c) CCLE_RNAseq_rsem_genes_tpm_20180929.txt.gz
-We could provide more evidence to support the prognostic impact of these candidate genes.
+%x c) CCLE_RNAseq_rsem_genes_tpm_20180929.txt.gz
+We provide more evidences mentioned above to support the prognostic impact of these candidate genes. It needs to be further validated.
 
 
 % the end of response letter
