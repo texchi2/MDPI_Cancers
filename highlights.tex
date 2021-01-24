@@ -1,13 +1,170 @@
 \documentclass[preprint,12pt]{elsarticle}
-
+% major revision and answer question (3 reviewers)
+%Sunday, January 24⋅22:30 – 22:55
+%Daily, until Jan 29, 2021
 \begin{document}
-  
+\section{Responses to Reviewers' comments}
+%***Response to reviewer's comments: [藍色字]
+\subsection{1-1}
+Comments from the reviewer #1:
+
+Comments and Suggestions for Authors
+The authors have described the effectiveness of RNA sequencing as a tool for exploring prognostic factors; they have also performed a large-scale analysis using the TCGA cohort, which is a very attractive analysis method. I have a few minor questions.
+This is an attractive analysis method and I would like to know more details.
+
+1-1) it is generally known that high expression of EGFR is a poor prognostic factor in head and neck cancers, however, why is it that RNA sequencing does not identify RNA coding for EGFR as a poor prognostic factor?
+[我的 candidate 中為什麼沒有 EGFR]
+
+[Answer]
+[我的 candidate 中為什麼沒有 EGFR]
+removed by literature review
+
+\subsection{1-2}
+1-2)
+ DNA alteration (mutation/amplification) is also an influential prognostic factor, but I would like to know if DNA alteration is considered in this analysis.
+[如果加入 DNA alteration 又會如何? 選擇 mRNA 的原因是?]
+
+Answer
+a). mRNA study: in drug discovery, the gene expression (overexpression) is much easier to find a candidate for an inhibitory lead (pro-drug?) 比較容易研發
+
+b). => it needs deep learning (DNA+RNA omics study)
+\cite{Lawrence2015a} TCGA 的第一篇文章
+[see 01/24 google calendar: DNA mutation
+
+%======
+\subsection{2-1}
+reviewer #2
+
+Can be improved
+Does the introduction provide sufficient background and include all relevant references? [Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use.] 1) 4)
+
+[找出其他 database cohort 的比較]
+2-1) How representative is the TCGA database for HNSCC?
+Answer
+有文章為證1. Lawrence, M. S. et al. Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature 517, 576–582 (2015).
+\cite{Lawrence2015a}
+until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).
+\cite{Tang2019}\cite{Wei2020a}
+(ok)
+
+\subsection{2-2}
+2-2) Can be the found positive and negative prognostic genes underlined by comparable studies using other databases than TCGA?
+Answer
+GSE2837 (GEO) from PrognoScan: http://dna00.bio.kyutech.ac.jp/PrognoScan-cgi/PrognoScan.cgi \cite{Mizuno2009a}
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
+DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
+ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB
+Relapse Free Survival (RFS) in GSE2837 (not available in the TCGA dataset)
+microarray gene expression experiments (Affymetrix X3P chips U133_X3P)
+cohort: VUMC, VAMC, UTMDACC (1992-2005), published on 2006
+40 HNSCC samples
+cohort n=28 in the following probes of genes with survival significance:
+17 out of 20 candidates => 10 genes achieve similar positive and negative prognostic effect comparable with our candidate genes, however, its group separation was be cut by 偏激 a skewed manner
+FCGBP (P-value 0.005658 of KM plot)
+FOXA2 (0.001587)
+
+A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631
+GSE52793: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52793
+GSE75537: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE75537
+...
+
+\subsection{2-3}
+2-3) Could the authors summarize the elements of the workflow that could be used on any database independently from TCGA?
+Answer
+Currently, less HNSCC dataset is available worldwide (Indian?) => GEO
+generalized use is fine for this workflow, it needs to modify the R code to adapt 
+能否套用在別的 database，可以，但需要 d/l raw microarray or RNA-seq 而且需要標準化(fpkm or  It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.?)
+Moreover, we are planning to expand this workflow for pan-cancer studies (other cancer types in the TCGA database).
+the elements of the workflow: ...
+
+\subsection{2-4}
+2-4) Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use.
+Answer
+We modified the introduction ...
+https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications
+
+
+
+=========
+\subsection{3-1}
+reviewer #3
+
+Must be improved:
+Is the research design appropriate?
+Are the results clearly presented?
+Are the conclusions supported by the results?
+
+3-1) Only computer computing in this research to support 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are all heavily associated with the prognosis of OS.
+  There is little information provided. The authors should provide more evidence to support this article.
+
+[Answer]
+a) Embase searching; https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
+\cite{Wei2019}
+through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
+
+% bad guy
+http://gepia2.cancer-pku.cn/detail.php?gene=DKK1
+DKK1: 13 results of HNSCC \cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}
+CAMK2N1: 26 results of cancer: ; 1 HNSCC cell line (CAL-27)\cite{Li2018b}
+STC2: \cite{Ma2020}
+PGK1: glycolysis enzyme is responsive in cisplatin-resistant oral squamous cell carcinoma cell line\cite{Nakamura2005}
+SURF4: patients with tumors (not HNSCC) exhibiting high SURF4 expression had significantly shorter overall survival than low SURF4 expression.\cite{Kim2018a}
+USP10: one of autophagy related genes for HNSCC prognosis prediction.\cite{Ren2020}
+% 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
+NDFIP1, was reported as candidate biomarker for hepatocellular carcinoma\cite{Zhang2019a} and breast cancer\cite{Tian2020}.
+%  the adaptor protein Nedd4-family interacting protein 1 (NDFIP1) plays a key role in the ubiquitination and nuclear translocation of PTEN. It represses cell proliferation of melanoma and thus acts as a tumor suppressor.(PMID: 29333944)
+FOXA2: hihger expression is significantly associated with the poor prognosis of HNSCC\cite{Shen2017a}.
+%  + 0.0256 × cg03774514 FOXA2 => "+" coefficients; higher prognostic score was significantly associated with shorter survival in the training set; 
+STIP1, increased expression of STIP1, detectable auto-antibody in serum sample, may indicate poor survival outcome in ovarian cancer patients\cite{Chao2013}\cite{Cho2014}. The auto-antibody against STIP1 could be a useful biomarker for esophageal squamous cell carcinoma\cite{Xu2017}.
+DKC1, DKC1 (dyskeratin) is related with HNSCC\cite{Smith2010}.
+%is the tumor suppressor gene in HNSCC
+
+% good guy
+ZNF557, oncogenic human herpesviruses, EBV and KSHV are silenced by SZF1 and ZNF557, two members of the KRAB-ZFP repressor family\cite{Li2018c}.
+ZNF266, % or ZNF16, HZF1?
+those genes were reported at following, 
+IL19 in esophageal squamous cell carcinoma\cite{Hsing2013},
+MYO1H associated mandibular prognathism\cite{Sun2018}, 
+FCGBP in thyroid cancer\cite{Griffith2006}, 
+?LOC148709?, 
+EVPLL in cDNA project,
+PNMA5 promotes apoptosis signaling in HeLa and MCF-7 cells\cite{Lee2016}, 
+IQCN (previous name as KIAA1683), and 
+NPB (Neuropeptide B) is endogenous ligand of the G protein-coupled receptors, named GPR7\cite{Andreis2005}, which is associated with prostate cancer prognosis\cite{Cottrell2007}. 
+
+
+
+b) (ok) SurvExpress
+試試利用手動找到類似的結果 Web resource for Biomarker comparison and validation of Survival gene expression data. 
+Dataset: HNSC - TCGA Head and Neck squamous cell carcinoma June 2016 (dup=all, data=raw)，(only TCGA June 2016, n=502) \cite{Aguirre-Gamboa2013}
+有  DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1,ZNF557, ZNF266, FCGBP,  類似的結果;
+沒有，FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB
+因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
+ (TCGA)(***please see Figure \label{fig_SurvExpress})
+
+x c) CCLE_RNAseq_rsem_genes_tpm_20180929.txt.gz
+We could provide more evidence to support the prognostic impact of these candidate genes.
+
+
+% the end of response letter
+
+\section{Highlights}
 Highlights
 \begin{itemize}
     \item The R script program could automatically scan protein-coding genes and generate the Kaplan-Meier plots and Cox's univariate/multivariate tables.
     \item Using a serial cut from 30\% to 70\% percentile of the cohort, it could find the least P-value cutoff of the Kaplan-Meier analysis for each gene expression.
     \item Our analysis could discover the pronounced biomarkers, which impact HNSCC's survival under the stringent Bonferroni adjustment.
 \end{itemize}
+
+%\reftitle{References}
+
+% Please provide either the correct journal abbreviation (e.g. according to the “List of Title Word Abbreviations” http://www.issn.org/services/online-services/access-to-the-ltwa/) or the full name of the journal.
+% Citations and References in Supplementary files are permitted provided that they also appear in the reference list here. 
+
+%\externalbibliography{yes}
+%\bibliography{your_external_BibTeX_file}
+\bibliographystyle{unsrt} %model1-num-names}
+\bibliography{TCGA_margin_cutoff.bib}
 
 \end{document}
 
