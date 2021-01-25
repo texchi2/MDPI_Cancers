@@ -2,6 +2,15 @@
 % major revision and answer question (3 reviewers)
 %Sunday, January 24⋅22:30 – 22:55
 %Daily, until Jan 29, 2021
+
+% mark in blue or red
+\usepackage{xcolor}
+
+\newenvironment{MyColorPar}[1]{%
+    \leavevmode\color{#1}\ignorespaces%
+}{%
+}%
+
 \begin{document}
 
 \section{Revision cover letter (cancers-1082127)} % 2021/01/25
@@ -12,27 +21,38 @@
 %Assistant Editor
 %E-Mail: aubree.zhu@mdpi.com
 %MDPI Branch Office, Tianjin
-Assistant Editor of Cancers
+Assistant Editor of Cancers%\newline
+
 Jan 29, 2021
 
 Dear Dr. Aubree Zhu:
+
 Enclosed, please find our revised manuscript (cancers-1082127) entitled "A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma" by Chi et al., which we wish to be considered for publishing as a research article in Cancers. We greatly appreciate your time in serving as the editor handling this manuscript and also thank the reviewers for their critical comments and suggestions on our manuscript.
 
 We have since performed additional analysis, experiment and revised the manuscript accordingly to address their critical comments and suggestions in a point-by-point manner, 
-{%
+%{%
 1) the description of the rationale that how to pick up the Thymosin Beta-4 X-Linked (TMSB4X) in details, 2) the statistical analysis of MALDI imaging mass spectrometry and 3) the IHC staining with positive and negative control images and further analysis of nuclear TMSB4X staining. 
-We re-wrote the introduction in detail and re-examined the tissue microarray slides according to the suggestion by reviewer #1.
-}
+We re-wrote the introduction in detail and re-examined the tissue microarray slides according to the suggestion by reviewer \#1.
+%}
+
 According to the editor's comments, we have the manuscript checked for English grammar and reformat Table 1 by rotating 90 degrees to portrait mode. %（Table 1 轉正)
-{%
+
+%{%
 According to the reviewers' comments, we added new Figure 1C, 2, S2, S3, and Table S2. We also replaced Figure 3D and 4A with high magnitude images from the same slides. We transferred the original Figure 2 into supplementary Figure S1 to enhance the rationale and removed the old supplementary Table S1.
-}
+%}
 
 We wish our revised manuscript could be satisfied and accepted for publication in Cancers. Thanks very much for the kind helps and the reviewers' critical comments.
 
 Kind regards,
+
 Yu-Chuan (Jack) Li, M.D., Ph.D.
-Graduate Institute of Biomedical Informatics, College of Medical Science and Technology, Taipei Medical University,
+
+Graduate Institute of Biomedical Informatics, 
+
+College of Medical Science and Technology,
+
+Taipei Medical University,
+
 Taipei, Taiwan
 
 %2) [cancers-1082127_main_redMarked] 自動化 by latex:
@@ -48,92 +68,85 @@ Taipei, Taiwan
 
 
 \section{rebuttal} % Response2Referees
-We greatly appreciate the reviewers for their helpful suggestions and critical comments on our manuscript. The detailed point-by-point reply to the reviewer’s comments are as follows (marked as blue). 
-And the revised portions in the manuscript are indicated in red.
+We greatly appreciate the reviewers for their helpful suggestions and critical comments on our manuscript. The detailed point-by-point reply to the reviewer’s comments are as follows (marked as \textcolor{blue}{blue}). 
+And the revised portions in the manuscript are indicated in \textcolor{red}{red}.
 
 Reviewer comments:
 %Reviewer #1(Technical Comments to the Author):
 %   The ms investigates an interesting and timely topic. However, the discovery cohort involves a small sample size and throughout the analysis, the issue of correcting the obtained p-values for multiple comparisons is not addressed. Hence, the evidence for zooming into TMSB4X is not convincing.
 
-citing the line number and exact change =>
-marked in Red from page 6 (line 16) to page 7 (line 17)
-
-
 %\section{Responses to Reviewers' comments}
 % our responses to the reviewers' comments.
 %***Response to reviewer's comments: [藍色字]
-\subsection{1-1}
-Comments from the reviewer #1:
+\subsection*{1-1}
+Comments from the reviewer \#1:
 
 Comments and Suggestions for Authors
 The authors have described the effectiveness of RNA sequencing as a tool for exploring prognostic factors; they have also performed a large-scale analysis using the TCGA cohort, which is a very attractive analysis method. I have a few minor questions.
 This is an attractive analysis method and I would like to know more details.
 
 1-1) it is generally known that high expression of EGFR is a poor prognostic factor in head and neck cancers, however, why is it that RNA sequencing does not identify RNA coding for EGFR as a poor prognostic factor?
-[我的 candidate 中為什麼沒有 EGFR]
+%[我的 candidate 中為什麼沒有 EGFR]
 
+\begin{MyColorPar}{blue}
 Answer
+
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
-[我的 candidate 中為什麼沒有 EGFR]
+%[我的 candidate 中為什麼沒有 EGFR]
 removed by literature review
+citing the line number and exact change, marked in \textcolor{red}{Red from page 6 (line 16) to page 7 (line 17)}
+\end{MyColorPar}
 
-\subsection{1-2}
-1-2)
+\subsection*{1-2}
  DNA alteration (mutation/amplification) is also an influential prognostic factor, but I would like to know if DNA alteration is considered in this analysis.
-[如果加入 DNA alteration 又會如何? 選擇 mRNA 的原因是?]
+%[如果加入 DNA alteration 又會如何? 選擇 mRNA 的原因是?]
 
+\begin{MyColorPar}{blue}
 Answer
+
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
-a). mRNA study: in drug discovery, the gene expression (overexpression) is much easier to find a candidate for an inhibitory lead (pro-drug?) 比較容易研發
+a). mRNA study: in drug discovery, the gene expression (overexpression) is much easier to find a candidate for an inhibitory lead (pro-drug?) %比較容易研發
 
 b). => it needs deep learning (DNA+RNA omics study)
-\cite{Lawrence2015a} TCGA 的第一篇文章
+\cite{Lawrence2015a} TCGA %的第一篇文章
 [see 01/24 google calendar: DNA mutation
 Epigenetics in cancer: CpG islands
 Lawrence, M. S., Sougnez, C., Lichtenstein, L., Cibulskis, K., Lander, E., Gabriel, S. B., … Pham, M. (2015). Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature, 517(7536), 576–582. https://doi.org/10.1038/nature14129
 
 The presence of widespread genomic instability in HNSCC, such as cytogenetic aberrations, allelic imbalance/loss of heterozygosity, and microsatellite instability, suggests that there is an imperfection in the host DNA repair machinery. Genomic instability with progressive accumulation of detrimental genetic alterations appears to be dependent upon a circuitous interaction between the environmental genotoxic insults and the host DNA repair machinery, the functional integrity of which is governed by the proper cell cycle control and host DNA repair capacity.
 https://www.nature.com/articles/nature14129 Comprehensive genomic characterization of head and neck squamous cell carcinomas
-Genomics allows the identification of possibly relevant variants, such as single nucleotide polymorphisms (SNPs), copy number variation (CNV), mutations and translocations => https://cancersheadneck.biomedcentral.com/articles/10.1186/s41199-020-0047-y
+Genomics allows the identification of possibly relevant variants, such as single nucleotide polymorphisms (SNPs), copy number variation (CNV), mutations and translocations => %https://cancersheadneck.biomedcentral.com/articles/10.1186/s41199-020-0047-y
 
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7080958/#SM8 The Landscape of Somatic Copy Number Alterations in Head and Neck Squamous Cell Carcinoma, 2020.
-18 GSE dataset + TCGA: chromothripsis 6%
+%https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7080958/#SM8 The Landscape of Somatic Copy Number Alterations in Head and Neck Squamous Cell Carcinoma, 2020.
+18 GSE dataset + TCGA: chromothripsis 6\%
 
 TMB: To calculate TMB, you need to know the total size of the region sequenced. If data is from exome sequencing, you would find the size of the exome capture, and divide total mutations (or non-synonymous only depending on strategy), by that size (e.g. ~45MB) to get SNV/MB ratio.
 
 ICIs <- TMB <- DDR DNA repair gene
 Identification of Genomic Predictors for Treatment Response to Cancer Immunotherapy Using Omics Data Analysis
-Yu��Chao Wang
+Yu-Chao Wang
 
 tumor mutational burden-high (TMB-H) [≥10 mutations/megabase (mut/Mb)] solid tumors (for pembrolizumab)
 
-===================
+%===================
 epigenetic trinity:
-http://www.biomedicine.org.tw/Upload/07_DNA甲基化程度在大腸直腸癌扮演的角色.pdf
-脊椎動物之基因體中約20%之序列為5'-GC-3' (簡稱CpG)之雙核苷酸(dinucleotide)。然而有 些長約1至2kb之序列段，其CpG含量高達60% (CpG islands)
+%http://www.biomedicine.org.tw/Upload/07_DNA甲基化程度在大腸直腸癌扮演的角色.pdf
+%脊椎動物之基因體中約20\%之序列為5'-GC-3' (簡稱CpG)之雙核苷酸(dinucleotide)。然而有 些長約1至2kb之序列段，其CpG含量高達60% (CpG islands)
 
-60% protein-coding genes with CpG islands on their promoter region
+60\% protein-coding genes with CpG islands on their promoter region
 
 (
-
-
-
-
 McGough JM, Yang D, Huang S, et al. DNA methylation represses IFN-gamma-induced and signal transducer and activator of transcription 1-mediated IFN regulatory factor 8 activation in colon carcinoma cells. Mol Cancer Res 2008;6:1841-1851.
-
 )
 
-methyl CpG-binding domain protein; MBD 阻止 TF binding on the promoter of gene
-
+methyl CpG-binding domain protein; MBD prevents TF binding on the promoter of gene
 => causing impairment of mismatch repair; MMR => microsatellite instable; MSI
 
-
-
-
-環境因子的致癌機轉=>CpG hypermethylation
-關閉 tumor suppressor genes
+%環境因子的致癌機轉
+=>CpG hypermethylation
+turn off tumor suppressor genes
 and
-Hypomethylation 打開 oncogene
+Hypomethylation turn on oncogene
 DKK1
 ...
 hypomethylation ->
@@ -141,24 +154,23 @@ loss of gene imprinting
 alleles 
 ..
 histone methylation
-http://webcache.googleusercontent.com/search?q=cache:z8zvnjS-C3AJ:sites.mc.ntu.edu.tw/board.php?courseID%3D83%26f%3Ddoc%26folderID%3D581%26cid%3D3060&client=safari&hl=en&gl=tw&strip=1&vwsrc=0
-雖然以上我們討論的是癌症的基因體，但癌症的厲害就是它本來就利用人體原有的生物機制來生存（co-opting），因此，以上在癌症觀察到的基因體複雜性，其實也存在於正常人體.
+%http://webcache.googleusercontent.com/search?q=cache:z8zvnjS-C3AJ:sites.mc.ntu.edu.tw/board.php?courseID%3D83%26f%3Ddoc%26folderID%3D581%26cid%3D3060&client=safari&hl=en&gl=tw&strip=1&vwsrc=0
+%雖然以上我們討論的是癌症的基因體，但癌症的厲害就是它本來就利用人體原有的生物機制來生存（co-opting），因此，以上在癌症觀察到的基因體複雜性，其實也存在於正常人體.
 
-從最早，很單純的基因之exon序列，轉錄成mRNA，再轉譯成polypeptide，形成protein，到現在還要考慮epigenetics、mi RNA、TUF (ENCODE將之名為transcripts of unknown function (TUF)=> non-coding RNA 後來很紅)、chromosome environment，基因體的複雜性真是增加了不知多少倍，這也提醒我們在了解基因功能方面，必需更有全面性的關照。這也是「基因體醫學」必需以「基因體科學」為基礎的道理。
+%從最早，很單純的基因之exon序列，轉錄成mRNA，再轉譯成polypeptide，形成protein，到現在還要考慮epigenetics、mi RNA、TUF (ENCODE將之名為transcripts of unknown function (TUF)=> non-coding RNA 後來很紅)、chromosome environment，基因體的複雜性真是增加了不知多少倍，這也提醒我們在了解基因功能方面，必需更有全面性的關照。這也是「基因體醫學」必需以「基因體科學」為基礎的道理。
 
-...........=====
+%...
 
-DNA mutation, copy number 增加
-造成 overexpression of gene
+%DNA mutation, copy number 增加造成 overexpression of gene
 
-Answer:
-所以 DNA vs mRNA 分析不是獨立變數，彼此有 confunding
-放入分析需要使用不同的方法 omics analysis
+???Answer:
+%所以 DNA vs mRNA
+high dimensional multi-omics analysis by CNN 
+%分析不是獨立變數，彼此有 confounding 放入分析需要使用不同的方法 
 
 It may be beneficial to include these different data types in models predicting outcomes, such as the survival time of patients. Until recently, only data from a single omics type were used to build such prediction models, with or without the inclusion of standard clinical data [2]. In recent years, however, the increasing availability of different types of omics data measured for the same patients (called multi-omics data from now on) has led to their combined use for building outcome prediction models. An important characteristic of multi-omics data is the high-dimensionality of the datasets, which frequently have more than 10 000 or even 100 000 variables. This places particular demands on the methods used to build prediction models: they must be able to handle data where the number of variables by far exceeds the number of observations. Moreover, practitioners often prefer sparse and interpretable models containing only a few variables [3]. Last but not the least, multi-omics data are structured: the variables are partitioned into (nonoverlapping) groups. This structure may be taken into account when building prediction models.
-Citation:
-https://academic.oup.com/bib/advance-article/doi/10.1093/bib/bbaa167/5895463
-特別的 algorithm 
+%Citation: https://academic.oup.com/bib/advance-article/doi/10.1093/bib/bbaa167/5895463
+%特別的 algorithm 
 ..
 Or
 
@@ -170,41 +182,46 @@ SALMON (Survival Analysis Learning with Multi-Omics Neural Networks)
 
 DNA mutation:
 copy number burden (CNB) and tumor mutation burden (TMB) are important for predicting tumor progression (Marshall et al., 2017; Thomas et al., 2018)
-
+\end{MyColorPar}
 
 %======
-\subsection{2-1}
-reviewer #2
+\subsection*{2-1}
+reviewer \#2
 
 Can be improved
 Does the introduction provide sufficient background and include all relevant references? [Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use.] 1) 4)
 
-[找出其他 database cohort 的比較]
+%[找出其他 database cohort 的比較]
 2-1) How representative is the TCGA database for HNSCC?
 
+\begin{MyColorPar}{blue}
 Answer
+
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
-有文章為證1. Lawrence, M. S. et al. Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature 517, 576–582 (2015).
+%有文章為證1. Lawrence, M. S. et al. Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature 517, 576–582 (2015).
 \cite{Lawrence2015a}
 until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).
 \cite{Tang2019}\cite{Wei2020a}
 (ok)
+\end{MyColorPar}
 
-\subsection{2-2}
-2-2) Can be the found positive and negative prognostic genes underlined by comparable studies using other databases than TCGA?
+\subsection*{2-2}
+Can be the found positive and negative prognostic genes underlined by comparable studies using other databases than TCGA?
 
+\begin{MyColorPar}{blue}
 Answer
+
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
 GSE2837 (GEO) from PrognoScan: http://dna00.bio.kyutech.ac.jp/PrognoScan-cgi/PrognoScan.cgi \cite{Mizuno2009a}
 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
 DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
 ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB
 Relapse Free Survival (RFS) in GSE2837 (not available in the TCGA dataset)
-microarray gene expression experiments (Affymetrix X3P chips U133_X3P)
+microarray gene expression experiments (Affymetrix X3P chips U133\_X3P)
 cohort: VUMC, VAMC, UTMDACC (1992-2005), published on 2006
 40 HNSCC samples
 cohort n=28 in the following probes of genes with survival significance:
-17 out of 20 candidates => 10 genes achieve similar positive and negative prognostic effect comparable with our candidate genes, however, its group separation was be cut by 偏激 a skewed manner
+17 out of 20 candidates => 10 genes achieve similar positive and negative prognostic effect comparable with our candidate genes, however, its group separation was be cut by a skewed manner
 FCGBP (P-value 0.005658 of KM plot)
 FOXA2 (0.001587)
 
@@ -212,33 +229,40 @@ there is survival feature:
 A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631
 GSE52793: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52793
 GSE75537: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE75537
-...
+\end{MyColorPar}
 
-\subsection{2-3}
-2-3) Could the authors summarize the elements of the workflow that could be used on any database independently from TCGA?
+\subsection*{2-3}
+Could the authors summarize the elements of the workflow that could be used on any database independently from TCGA?
 
 
+\begin{MyColorPar}{blue}
 Answer
+
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
 Currently, less HNSCC dataset is available worldwide (Indian?) => GEO
 generalized use is fine for this workflow, it needs to modify the R code to adapt 
-能否套用在別的 database，可以，但需要 d/l raw microarray or RNA-seq 而且需要標準化(fpkm or  It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.?)
+%能否套用在別的 database，可以，但需要 d/l raw microarray or RNA-seq 而且需要標準化(fpkm or RSEM)
+It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.?)
 Moreover, we are planning to expand this workflow for pan-cancer studies (other cancer types in the TCGA database).
 the elements of the workflow: ...
+\end{MyColorPar}
 
-\subsection{2-4}
-2-4) Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use.
 
+\subsection*{2-4}
+Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use.
+
+\begin{MyColorPar}{blue}
 Answer
+
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
 *** We modified the introduction according to reviewer's comment...
 https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications
+\end{MyColorPar}
 
 
 
-=========
-\subsection{3-1}
-reviewer #3
+\subsection*{3-1}
+reviewer \#3
 
 Must be improved:
 Is the research design appropriate?
@@ -246,12 +270,15 @@ Are the results clearly presented?
 Are the conclusions supported by the results?
 
 3-1) Only computer computing in this research to support 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are all heavily associated with the prognosis of OS.
-  There is little information provided. The authors should provide more evidence to support this article.
+
+There is little information provided. The authors should provide more evidence to support this article.
 %  Once the authors identify TMSB4X as a target, the rest of the analysis seems fine, but their rationale for looking into TMSB4X is not strongly supported by the available data.
 
+\begin{MyColorPar}{blue}
 Answer
+
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
-a) Embase searching; https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
+a) Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
 \cite{Wei2019}
 through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
 
@@ -288,16 +315,20 @@ NPB (Neuropeptide B) is endogenous ligand of the G protein-coupled receptors, na
 
 
 b) (ok) SurvExpress
-試試利用手動找到類似的結果 Web resource for Biomarker comparison and validation of Survival gene expression data. 
+%試試利用手動找到類似的結果 
+Web resource for Biomarker comparison and validation of Survival gene expression data. 
 Dataset: HNSC - TCGA Head and Neck squamous cell carcinoma June 2016 (dup=all, data=raw)，(only TCGA June 2016, n=502) \cite{Aguirre-Gamboa2013}
-有  DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1,ZNF557, ZNF266, FCGBP,  類似的結果;
-沒有，FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB
-因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
+%有類似的結果:
+DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1,ZNF557, ZNF266, FCGBP;
+%沒有
+FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB
+it supposed that ...
+%因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
  (TCGA)(***please see Figure \label{fig_SurvExpress})
 
 %x c) CCLE_RNAseq_rsem_genes_tpm_20180929.txt.gz
 We provide more evidences mentioned above to support the prognostic impact of these candidate genes. It needs to be further validated.
-
+\end{MyColorPar}
 
 % the end of response letter
 
