@@ -297,11 +297,12 @@ Answer
 We appreciate the reviewer for the question giving an opportunity to discuss TCGA in detail.
 To the best of our knowledge, TCGA "HNSC"(they coded) is the only single and largest collection of whole-genome sequencing and clinical survival dataset in the field of HNSCC research so far.
 When we queried from the Embase database using the MESH words "HNSCC AND TCGA", a simple statistics shows total 12,636 research articles/conference abstracts for HNSCC from 2008 to 2021, since the first TCGA article was published on 2008\cite{McLendon2008} by TCGA research network.
-Thereafter, there are 18,082 cross-cancer type articles which were produced using TCGA database. The 778 publications among them were focused on HNSCC research. Those occupied about 18\% of HNSCC research articles with genetic-related topics during the same time period. Thus, about 60 TCGA HNSCC articles were published worldwide per year since 2008. (see Figure below) %\ref{figure:fig_embase}
+Thereafter, there are 18,082 cross-cancer type articles which were produced using TCGA database. The 778 publications (Figure \ref{figure:fig_embase}, b. 778) among them were focused on HNSCC research. Those occupied about 18\% of HNSCC research articles with genetic-related topics during the same time period. Thus, about 60 TCGA HNSCC articles were published worldwide per year since 2008. %\ref{figure:fig_embase}
 \begin{figure}
 \raggedleft
 \includegraphics[width=14cm]{Answer_2-1.pdf}
-%\label{figure:fig_embase}
+\caption{Cancer research articles published from 2008 to 2021. Total: 2.4 million; genetic related: 0.6 million; HNSCC research: 12,636.}
+\label{figure:fig_embase}
 \end{figure}
 \clearpage
 %778/4350 = 17.9\% using TCGA data
@@ -310,7 +311,7 @@ Thereafter, there are 18,082 cross-cancer type articles which were produced usin
 
 Despite of other databases carrying HNSCC genomics and clinical data we found, such as MSKCC (151 cases), Broad (74 cases), Johns Hopkins (32 cases), MD Anderson (40 cases), and NCBI GEO datasets (e.x. GSE2837, 40 cases; GSE6631, 22 cases; GSE31056, 23 cases)\cite{Cerami2012b}\cite{Gao2013a}. However,  MSKCC, Broad and Johns Hopkins databases were processed the whole-exome sequencing instead of whole-genome sequencing in TCGA database.
 
-There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010}, and SurvExpress\cite{Aguirre-Gamboa2013}. According to the citing articles\cite{Wu2020} and their online documents, the back-end database was collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO (available at https://www.ncbi.nlm.nih.gov/gds) datasets. Furthermore, almost all of their survival data came from TCGA database.
+There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010}, and SurvExpress\cite{Aguirre-Gamboa2013}. According to the citing articles\cite{Wu2020} and their online documents, the back-end database was collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO datasets (available at https://www.ncbi.nlm.nih.gov/gds). Furthermore, almost all of their survival data came from TCGA database.
 %GEO (few survival features, less than 100 participate in each GSE dataset)
 %GSE31056, GSE2837 (Prognoscan)
 %there is survival feature: A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631
@@ -327,21 +328,36 @@ Can be the found positive and negative prognostic genes underlined by comparable
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
-GSE2837 (GEO) from PrognoScan: http://dna00.bio.kyutech.ac.jp/PrognoScan-cgi/PrognoScan.cgi \cite{Mizuno2009a}
-https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
-DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
-ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB
-Relapse Free Survival (RFS) in GSE2837 (not available on the TCGA dataset)
-microarray gene expression experiments (Affymetrix X3P chips U133\_X3P)
-cohort: VUMC, VAMC, UTMDACC (1992-2005), published on 2006
-40 HNSCC samples
-cohort n=28 in the following probes of genes with survival significance:
-17 out of 20 candidates => 10 genes achieve similar positive and negative prognostic effect comparable with our candidate genes, however, its group separation was be cut by a skewed manner
+We appreciate the reviewer for the critical comment.
+We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort 40 cases) from online tools: PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/PrognoScan-cgi/PrognoScan.cgi)\cite{Mizuno2009a}.
+MD Anderson (40 cases)
+%https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
+The GSE2837 has data from HNSCC cohort,
+% VUMC, VAMC, UTMDACC (1992-2005)
+which recruited 28 participants with 
+relapse free survival (RFS) data, 
+%(TCGA dataset: overall survival)
+and microarray gene expression (Affymetrix X3P chips U133\_X3P).
+The result shows the survival significance is in the following probes of genes:
+%17 out of 20 candidates
+11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes, however, PrognoScan has group separation cut by a skewed manner.
+poor prognosis: DKK1, CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2
+better prognosis: IL19, FCGBP, KIAA1683 (IQCN), NPB
+
+%DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
+%ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
+
 FCGBP (P-value 0.005658 of KM plot)
 FOXA2 (0.001587)
+(please see Figure \ref{figure:fig_GSE2837}
 
-
+\begin{figure}
+\raggedleft
+\includegraphics[width=14cm]{Answer_2-2.pdf}
+\caption{GSE2837 query results from PrognoScan}
+\label{figure:fig_GSE2837}
+\end{figure}
+\clearpage
 \end{MyColorPar}
 
 \subsection*{2-3}
