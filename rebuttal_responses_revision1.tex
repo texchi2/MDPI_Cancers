@@ -182,7 +182,7 @@ And the revised portions in the manuscript are indicated in \textcolor{red}{red}
 %\section{Responses to Reviewers' comments}
 % our responses to the reviewers' comments.
 %***Response to reviewer's comments: [藍色字]
-\subsection*{1-1}
+
 Comments from the reviewer \#1:
 
 Comments and Suggestions for Authors
@@ -190,7 +190,8 @@ The authors have described the effectiveness of RNA sequencing as a tool for exp
 
 This is an attractive analysis method and I would like to know more details.
 
-1-1) it is generally known that high expression of EGFR is a poor prognostic factor in head and neck cancers, however, why is it that RNA sequencing does not identify RNA coding for EGFR as a poor prognostic factor?
+\subsection*{1-1}
+It is generally known that high expression of EGFR is a poor prognostic factor in head and neck cancers, however, why is it that RNA sequencing does not identify RNA coding for EGFR as a poor prognostic factor?
 
 \begin{MyColorPar}{blue}
 Answer
@@ -199,15 +200,16 @@ We appreciate the reviewer for the critical comments and thank for his/her agree
 %[我的 candidate 中為什麼沒有 EGFR];  
 In our analysis, the \acrshort{egfr} is ranked at 5707 from 20500 protein-coding genes %5708-1
 by Kaplan-Meier estimate with the log-rank test P-value as 0.0495. The \acrshort{egfr} is identified as one of those poor prognostic factors as well. %However, it is far from the top 20 candidates.
-(please see https://github.com/texchi2/pvalueTex/blob/master/HNSCC_OS_marginS_6429.csv for reference, the table was ranked by FDR P-value)
+(please see https://github.com/texchi2/\linebreak
+pvalueTex/blob/master/HNSCC\_OS\_marginS\_6429.csv for reference, the table was ranked by FDR P-value)
 
 % transforming growth factor- (TGF-α) 
 % epidermal growth factor receptor (EGFR)
 As in our manuscript mentioned, 
 In a multivariate analysis, tumor site, tumor level of \acrshort{egfr}, and tumor level of TGF-$\alpha$ (\acrshort{egfr} ligand) were statistically significant predictors of disease-free survival of \acrshort{hnscc} patients\cite{Rusch1996}\cite{Grandis1998}.
-Since that breakthrough discovery and validation, the \acrshort{egfr} monoclonal antibody (cetuximab) and \acrshort{egfr} \acrshort{tki} (such as gefitinib, erlotinib, osimertinib) were developed to treat advanced \acrshort{hnscc}. Although 90\% of \acrshort{hnscc} has overexpression of \acrshort{egfr}, cetuximab has only 10\% to 20\% response rate on those patients\cite{Johnson2020}. So far, cetuximab is still the only drug of choice with proven efficacy, which targeted the selected \acrshort{hnscc} patients\cite{Taberna2019}.
+Since that breakthrough discovery and validation, the \acrshort{egfr} monoclonal antibody (cetuximab)\cite{Bonner2006a} and \acrshort{egfr} \acrshort{tki} (such as gefitinib, erlotinib, osimertinib) were developed to treat advanced \acrshort{hnscc}. Although 90\% of \acrshort{hnscc} has overexpression of \acrshort{egfr}, cetuximab has only 10\% to 20\% response rate on those patients\cite{Johnson2020}. So far, cetuximab is still the only drug of choice with proven efficacy, which targeted the selected \acrshort{hnscc} patients\cite{Taberna2019}.
 %citing the line number and exact change, marked in \textcolor{red}{Red from page 6 (line 16) to page 7 (line 17)}
-Thus, we wish the further validations of our candidate genes to explore more useful drug of choice in the treatment of \acrshort{hnscc} patients.
+Thus, we wish the further validations of our meaningful hypotheses of candidate to explore more useful drug of choice in the treatment of \acrshort{hnscc} patients.
 % a list from literature review, 留 下少於  50 articles mentioned candidates
 %HNSCC_survivalAnalysis_marginS_EGFR.Rda
 %HNSCC_survivalAnalysis_marginS_EGFR.xlsx
@@ -218,111 +220,105 @@ Thus, we wish the further validations of our candidate genes to explore more use
 
 \subsection*{1-2}
  DNA alteration (mutation/amplification) is also an influential prognostic factor, but I would like to know if DNA alteration is considered in this analysis.
-%[如果加入 DNA alteration 又會如何? 選擇 mRNA 的原因是?]
+%[如果加入 DNA alteration 又會如何? 不佳; 選擇 mRNA 的原因是? interpretability and drugable: EGFR]
 
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the question.
-a). mRNA study: in drug discovery, the gene expression (overexpression) is much easier to find a candidate for an inhibitory lead (pro-drug?) %比較容易研發
+We appreciate the reviewer for reminding the importance of DNA alteration in survival analysis.
+Those different types of omics data measured for the same patients (called multi-omics data) are currently under investigation across several disciplines such as genomics (i.e. DNA mutation/amplification, single nucleotide polymorphisms), %copy number variation), 
+epigenomics, transcriptomics (i.e. RNA expression), proteomics, metabolomics and microbiomics.
+The usefulness of multi-omics data for the prediction of HNSCC outcome is expected.
+%such as the (censored) survival time.
+Moritz Herrmann et al.(2020) observed that using multi-omics and survival data can slightly improve the performance of prediction methods for particular datasets, such as TCGA HNSCC\cite{Herrmann2020}.
+%It is limited that the utility of multi-omics data for prediction purposes in the considered TCGA studies\cite{Herrmann2020}.
+%18 cancer datasets from The Cancer Genome Atlas (TCGA) 
+According to their study, %the multi-omics structure have a slightly better prediction performance than naive (0.562 vs.	0.557 ) with favoring clinical variables leads to better prediction results for HNSCC. %likelihood-based boosting (CoxBoost and CoxBoost favoring)
+% Exemplary t-tests comparing blockForest with CoxBoost favoring and the Clinical only model showed no significant differences in performance. 
+% blockForest also offers the possibility of favoring clinical covariates using the argument always.select.block of the blockfor function
+%Last but not the least, multi-omics data are structured: the variables are partitioned into (non overlapping) groups. 
+% ***
+the survival analysis of TCGA HNSCC dataset by blockForest method (with multi-omics and clinical variables) has a similar prediction performance than that by Cox's model (with clinical variables alone). %from The Cancer Genome Atlas (TCGA) 
+They also reported the performance C-index as 0.582 [CI: 0.554, 0.610] in blockForest method and 0.554 [CI: 0.519, 0.588] in Cox's model\cite{Herrmann2020}.
 
-b). => it needs deep learning (DNA+RNA omics study)
-\cite{Lawrence2015a} TCGA %的第一篇文章
-[see 01/24 google calendar: DNA mutation
-Epigenetics in cancer: CpG islands
-Lawrence, M. S., Sougnez, C., Lichtenstein, L., Cibulskis, K., Lander, E., Gabriel, S. B., … Pham, M. (2015). Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature, 517(7536), 576–582. https://doi.org/10.1038/nature14129
+% 小心光茫太甚  Well-established prognostic clinical variables: prioritize
+% the number of variables in the group of variables of TCGA HNSCC dataset:
+% 11 clinical variables, 57964 CNV variables, 17248 mutation variables and 21520 RNA expression variables.
+%*** Taking this structure into account can protect the predictive information that transcriptomics (e.x. RNA-Seq) or low-dimensional clinical variables might get lost within the huge amount of genomics (e.x. DNA mutation/amplification, copy number variation) data\cite{Boulesteix2011}\cite{Herrmann2020}.
+DNA amplification will usually be one of the causes to overexpress the gene.
+Moreover, transcriptomics study is helpful in drug discovery. For example, the overexpressed gene is possible to be a drug-targetable candidate\cite{Park2015}. After thoughtful validation in vitro/in vivo then pathway study, the EGFR inhibitory leads were constructed by antibody design or chemical compound screening\cite{Mahajan2016}. %比較容易研發 clinical and transcriptomics by ssurvival::survfit and urvival::coxph
+% the selection of clinicalfeatures by domain knowledge and studies where HNSCC was under investigation.
+The discovery of EGFR inhibitors\cite{Bonner2006a} for HNSCC therapy will encourage research community to conduct the survival analysis under abnormality in gene expression.
 
-The presence of widespread genomic instability in HNSCC, such as cytogenetic aberrations, allelic imbalance/loss of heterozygosity, and microsatellite instability, suggests that there is an imperfection in the host DNA repair machinery. Genomic instability with progressive accumulation of detrimental genetic alterations appears to be dependent upon a circuitous interaction between the environmental genotoxic insults and the host DNA repair machinery, the functional integrity of which is governed by the proper cell cycle control and host DNA repair capacity.
-https://www.nature.com/articles/nature14129 Comprehensive genomic characterization of head and neck squamous cell carcinomas
-Genomics allows the identification of possibly relevant variants, such as single nucleotide polymorphisms (SNPs), copy number variation (CNV), mutations and translocations => %https://cancersheadneck.biomedcentral.com/articles/10.1186/s41199-020-0047-y
-
-%https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7080958/#SM8 The Landscape of Somatic Copy Number Alterations in Head and Neck Squamous Cell Carcinoma, 2020.
-18 GSE dataset + TCGA: chromothripsis 6\%
-
-TMB: To calculate TMB, you need to know the total size of the region sequenced. If data is from exome sequencing, you would find the size of the exome capture, and divide total mutations (or non-synonymous only depending on strategy), by that size (e.g. ~45MB) to get SNV/MB ratio.
-
-ICIs <- TMB <- DDR DNA repair gene
-Identification of Genomic Predictors for Treatment Response to Cancer Immunotherapy Using Omics Data Analysis
-Yu-Chao Wang
-
-tumor mutational burden-high (TMB-H) [≥10 mutations/megabase (mut/Mb)] solid tumors (for pembrolizumab)
-
-\acrshort{egfr} amplification, mutation
-%===================
-epigenetic trinity:
-%http://www.biomedicine.org.tw/Upload/07_DNA甲基化程度在大腸直腸癌扮演的角色.pdf
-%脊椎動物之基因體中約20\%之序列為5'-GC-3' (簡稱CpG)之雙核苷酸(dinucleotide)。然而有 些長約1至2kb之序列段，其CpG含量高達60% (CpG islands)
-
-60\% protein-coding genes with CpG islands on their promoter region
-
-(
-McGough JM, Yang D, Huang S, et al. DNA methylation represses IFN-gamma-induced and signal transducer and activator of transcription 1-mediated IFN regulatory factor 8 activation in colon carcinoma cells. Mol Cancer Res 2008;6:1841-1851.
-)
-
-methyl CpG-binding domain protein; MBD prevents TF binding on the promoter of gene
-=> causing impairment of mismatch repair; MMR => microsatellite instable; MSI
-
-%環境因子的致癌機轉
-=>CpG hypermethylation
-turn off tumor suppressor genes
-and
-Hypomethylation turn on oncogene
-DKK1
-...
-hypomethylation ->
-loss of gene imprinting
-alleles 
-..
-histone methylation
-%http://webcache.googleusercontent.com/search?q=cache:z8zvnjS-C3AJ:sites.mc.ntu.edu.tw/board.php?courseID%3D83%26f%3Ddoc%26folderID%3D581%26cid%3D3060&client=safari&hl=en&gl=tw&strip=1&vwsrc=0
-%雖然以上我們討論的是癌症的基因體，但癌症的厲害就是它本來就利用人體原有的生物機制來生存（co-opting），因此，以上在癌症觀察到的基因體複雜性，其實也存在於正常人體.
-
-%從最早，很單純的基因之exon序列，轉錄成mRNA，再轉譯成polypeptide，形成protein，到現在還要考慮epigenetics、mi RNA、TUF (ENCODE將之名為transcripts of unknown function (TUF)=> non-coding RNA 後來很紅)、chromosome environment，基因體的複雜性真是增加了不知多少倍，這也提醒我們在了解基因功能方面，必需更有全面性的關照。這也是「基因體醫學」必需以「基因體科學」為基礎的道理。
-
-%...
-
-%DNA mutation, copy number 增加造成 overexpression of gene
-
-???Answer:
-%所以 DNA vs mRNA
-high dimensional multi-omics analysis by CNN 
-%分析不是獨立變數，彼此有 confounding 放入分析需要使用不同的方法 
-
-It may be beneficial to include these different data types in models predicting outcomes, such as the survival time of patients. Until recently, only data from a single omics type were used to build such prediction models, with or without the inclusion of standard clinical data [2]. In recent years, however, the increasing availability of different types of omics data measured for the same patients (called multi-omics data from now on) has led to their combined use for building outcome prediction models. An important characteristic of multi-omics data is the high-dimensionality of the datasets, which frequently have more than 10 000 or even 100 000 variables. This places particular demands on the methods used to build prediction models: they must be able to handle data where the number of variables by far exceeds the number of observations. Moreover, practitioners often prefer sparse and interpretable models containing only a few variables [3]. Last but not the least, multi-omics data are structured: the variables are partitioned into (nonoverlapping) groups. This structure may be taken into account when building prediction models.
+% *** it needs deep learning, but less interpretability (yet under development\cite{Chaudhary2018}) (DNA+RNA and clinical dataset => multi-omics cancer study)
+%high dimensional multi-omics analysis by deep learning 
+%It may be beneficial to include these different data types in models predicting outcomes, such as the survival time of patients. Until recently, only data from a single omics type were used to build such prediction models, with or without the inclusion of standard clinical data [2]. In recent years, however, the increasing availability of different types of omics data measured for the same patients (called multi-omics data from now on) has led to their combined use for building outcome prediction models. An important characteristic of multi-omics data is the high-dimensionality of the datasets, which frequently have more than 10 000 or even 100 000 variables. This places particular demands on the methods used to build prediction models: they must be able to handle data where the number of variables by far exceeds the number of observations. Moreover, practitioners often prefer sparse and interpretable models containing only a few variables [3]. Last but not the least, multi-omics data are structured: the variables are partitioned into (nonoverlapping) groups. This structure may be taken into account when building prediction models.
 %Citation: https://academic.oup.com/bib/advance-article/doi/10.1093/bib/bbaa167/5895463
 %特別的 algorithm 
-..
-Or
+%however, interpretation and practical application of the model to the prediction of independent data are easier with regression-based methods yielding coefficients that reflect the effects of variables on the outcome than with machine learning algorithms [8].
+%Multi-omics data, that is, datasets containing different types of high-dimensional molecular variables; they must be able to handle data where the number of variables by far exceeds the number of observations.
+%https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6419526/
+%Deep learning
+%SALMON (Survival Analysis Learning with Multi-Omics Neural Networks)
 
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6419526/
+%\cite{Lawrence2015a} TCGA %的第一篇文章已經分析過 DNA mutation of HNSCC
+%Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature, 517(7536), 576–582. 
 
-Deep learning
+%The presence of widespread genomic instability in HNSCC, such as cytogenetic aberrations, allelic imbalance/loss of heterozygosity, and microsatellite instability (MSI), suggests that there is an imperfection in the host DNA repair machinery. Genomic instability with progressive accumulation of detrimental genetic alterations appears to be dependent upon a circuitous interaction between the environmental genotoxic insults and the host DNA repair machinery, the functional integrity of which is governed by the proper cell cycle control and host DNA repair capacity. Genomics allows the identification of possibly relevant variants, such as single nucleotide polymorphisms (SNPs), copy number variation (CNV), mutations and translocations => %https://cancersheadneck.biomedcentral.com/articles/10.1186/s41199-020-0047-y
+%DNA mutation: copy number burden (CNB) and tumor mutation burden (TMB) are important for predicting tumor progression (Marshall et al., 2017; Thomas et al., 2018)
+% *** The Landscape of Somatic Copy Number Alterations in Head and Neck Squamous Cell Carcinoma, 2020. => 18 GEO dataset (873 patients from GEO) + TCGA: chromothripsis 6\%\cite{Yang2020}
+%metaanalysis of NCBI GEO database (https://www.ncbi.nlm.nih.gov/geo/). We integrated the following datasets: TCGA-HNSCC, GSE11938, GSE20306, GSE20939, GSE23831, GSE25103, GSE31984, GSE33229, GSE33983, GSE34507, GSE36790, GSE39367, GSE40777,GSE47443, GSE51265, GSE57201, GSE66136, GSE68717, and GSE85514.
 
-SALMON (Survival Analysis Learning with Multi-Omics Neural Networks)
-
-DNA mutation:
-copy number burden (CNB) and tumor mutation burden (TMB) are important for predicting tumor progression (Marshall et al., 2017; Thomas et al., 2018)
+%TMB: To calculate TMB, you need to know the total size of the region sequenced. If data is from exome sequencing, you would find the size of the exome capture, and divide total mutations (or non-synonymous only depending on strategy), by that size (e.g. ~45MB) to get SNV/MB ratio.
+%tumor mutational burden-high (TMB-H) [≥10 mutations/megabase (mut/Mb)] in solid tumors (criteria for pembrolizumab)
+%Identification of Genomic Predictors for Treatment Response to Cancer Immunotherapy Using Omics Data Analysis (Yu-Chao Wang)
+%=> ICIs criteria <- TMB <- DDR DNA repair gene
 \end{MyColorPar}
-
+\pagebreak
 %======
-\subsection*{2-1}
-reviewer \#2
 
-Can be improved
-Does the introduction provide sufficient background and include all relevant references? [Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use.] 1) 4)
+Comments from the reviewer \#2
+
+How representative is the TCGA database for HNSCC?
+
+Can be the found positive and negative prognostic genes underlined by comparable studies using other databases than TCGA?
+
+Could the authors summarize the elements of the workflow that could be used on any database independently from TCGA?
+
+Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use.
 
 %[找出其他 database cohort 的比較]
-2-1) How representative is the TCGA database for HNSCC?
+\subsection*{2-1}
+How representative is the TCGA database for HNSCC?
 
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
-%有文章為證1. Lawrence, M. S. et al. Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature 517, 576–582 (2015).
-\cite{Lawrence2015a}
-until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).
-\cite{Tang2019}\cite{Wei2020a}
-(ok)
+We appreciate the reviewer for the question giving an opportunity to discuss TCGA in detail.
+To the best of our knowledge, TCGA "HNSC"(they coded) is the only single and largest collection of whole-genome sequencing and clinical survival dataset in the field of HNSCC research so far.
+When we queried from the Embase database using the MESH words "HNSCC AND TCGA", a simple statistics shows total 12,636 research articles/conference abstracts for HNSCC from 2008 to 2021, since the first TCGA article was published on 2008\cite{McLendon2008} by TCGA research network.
+Thereafter, there are 18,082 cross-cancer type articles which were produced using TCGA database. The 778 publications among them were focused on HNSCC research. Those occupied about 18\% of HNSCC research articles with genetic-related topics during the same time period. Thus, about 60 TCGA HNSCC articles were published worldwide per year since 2008. (see Figure below) %\ref{figure:fig_embase}
+\begin{figure}
+\raggedleft
+\includegraphics[width=14cm]{Answer_2-1.pdf}
+%\label{figure:fig_embase}
+\end{figure}
+\clearpage
+%778/4350 = 17.9\% using TCGA data
+%There is 374 genes in the oral cancer gene database of Indian HNSCC; http://www.bioinformation.net/006/97320630006169.pdf
+%http://www.actrec.gov.in/OCDB/index.htm
+
+Despite of other databases carrying HNSCC genomics and clinical data we found, such as MSKCC (151 cases), Broad (74 cases), Johns Hopkins (32 cases), MD Anderson (40 cases), and NCBI GEO datasets (e.x. GSE2837, 40 cases; GSE6631, 22 cases; GSE31056, 23 cases)\cite{Cerami2012b}\cite{Gao2013a}. However,  MSKCC, Broad and Johns Hopkins databases were processed the whole-exome sequencing instead of whole-genome sequencing in TCGA database.
+
+There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010}, and SurvExpress\cite{Aguirre-Gamboa2013}. According to the citing articles\cite{Wu2020} and their online documents, the back-end database was collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO (available at https://www.ncbi.nlm.nih.gov/gds) datasets. Furthermore, almost all of their survival data came from TCGA database.
+%GEO (few survival features, less than 100 participate in each GSE dataset)
+%GSE31056, GSE2837 (Prognoscan)
+%there is survival feature: A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631
+%有文章為證1. Lawrence, M. S. et al. Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature 517, 576–582 (2015).\cite{Lawrence2015a}
+%datasets for each cancer type that include exactly the same prediction and outcome variables and consider comparable target populations. Currently, such data is simply not available.
+
+Conclusion: TCGA database is representative for HNSCC.
+
 \end{MyColorPar}
 
 \subsection*{2-2}
@@ -336,7 +332,7 @@ GSE2837 (GEO) from PrognoScan: http://dna00.bio.kyutech.ac.jp/PrognoScan-cgi/Pro
 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
 DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
 ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB
-Relapse Free Survival (RFS) in GSE2837 (not available in the TCGA dataset)
+Relapse Free Survival (RFS) in GSE2837 (not available on the TCGA dataset)
 microarray gene expression experiments (Affymetrix X3P chips U133\_X3P)
 cohort: VUMC, VAMC, UTMDACC (1992-2005), published on 2006
 40 HNSCC samples
@@ -345,10 +341,7 @@ cohort n=28 in the following probes of genes with survival significance:
 FCGBP (P-value 0.005658 of KM plot)
 FOXA2 (0.001587)
 
-there is survival feature:
-A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631
-GSE52793: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52793
-GSE75537: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE75537
+
 \end{MyColorPar}
 
 \subsection*{2-3}
@@ -377,12 +370,15 @@ Answer
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
 *** We modified the introduction according to reviewer's comment...
 https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications
+The Cancer Genome Atlas (TCGA): The TCGA consortium, which is a National Institute of Health (NIH) initiative, makes publicly available molecular and clinical information for more than 30 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome. Sample types available at TCGA are: primary solid tumors, recurrent solid tumors, blood derived normal and tumor, metastatic, and solid tissue normal.
+
+
 \end{MyColorPar}
 
 
 
 \subsection*{3-1}
-reviewer \#3
+Comments from the reviewer \#3
 
 Must be improved:
 Is the research design appropriate?
@@ -398,11 +394,21 @@ There is little information provided. The authors should provide more evidence t
 Answer
 
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
+
+DKK1 has the P-value 1.99328e-07 of multivariable Cox proportional hazards regression model, which was reported by network-based biomarkers research tools (SurvNet, accessed at http://bioinformatics.mdanderson.org/main/SurvNet; saved as supplementary file SurvNet_HNSCC_result.tsv)\cite{Li2012a}. %gene regulatory or protein interaction network
+% cited by 10 articles
+% he P-values pi from a univariable Cox proportional hazards regression model, which quantifies how significantly the molecular profiling data of the gene correlate with the patient survival data. 
+% SurvNet also calculates the mutivariable Cox P-values for each subnetwork (a group of genes) to validate their clinical utility.
+The network files are in a '.dot' format that can be visualized by GraphViz (http://www.graphviz.org)
+
 a) Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
 \cite{Wei2019}
 through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
 
 % bad guy
+until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).
+\cite{Tang2019}\cite{Wei2020a}
+https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications
 http://gepia2.cancer-pku.cn/detail.php?gene=DKK1
 DKK1: 13 results of HNSCC \cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}
 CAMK2N1: 26 results of cancer: ; 1 HNSCC cell line (CAL-27)\cite{Li2018b}
