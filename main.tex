@@ -364,6 +364,7 @@ We made a volcano plot for 9416 genes by Kaplan-Meier P-value (less than 0.05, o
 %%% tables
 % Table1
 % wide table \usepackage{tabularx}
+% makecell{}
 
 \begin{table}
 %\begin{sidewaystable}[hp]
@@ -372,14 +373,14 @@ We made a volcano plot for 9416 genes by Kaplan-Meier P-value (less than 0.05, o
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
 \resizebox{\linewidth}{!}{
 %\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
-\begin{tabularx}{\textwidth}{|l|x|l|l|l|l|l|l|c|}
+\begin{tabularx}{\textwidth}{|l|p{3.5cm}|l|l|l|l|l|l|c|} % *** capital X or p{2cm}
 % p{2cm}
 \hline
 \multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}}     & \multicolumn{2}{c|}{Kaplan-Meier survival}                                                                                   & \multicolumn{2}{c|}{Univariate~}                                                        & \multicolumn{2}{c|}{Multivariate}                                                       & \multirow{2}{*}{Remark}                     \\ 
 \cline{3-8}
 \multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                      & \multicolumn{1}{c|}{P-value}               & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Adjusted \\P-value\end{tabular}} & \multicolumn{1}{c|}{HR*}                   & 95\% CI                                    & HR*                                        & 95\% CI                                    &                                             \\ 
 \hline
-DKK1                                           & makecell{dickkopf WNT signaling pathway inhibitor 1}                 & \num{8.9e-8}                               & 0.001                                                                           & 2.266                                      & 1.666-3.082                                & 2.135                                      & 1.559-2.924                                & **                                          \\ 
+DKK1                                           & dickkopf WNT signaling pathway inhibitor 1                 & \num{8.9e-8}                               & 0.001                                                                           & 2.266                                      & 1.666-3.082                                & 2.135                                      & 1.559-2.924                                & **                                          \\ 
 \hline
 CAMK2N1                                        & calcium/calmodulin-dependent protein kinase II inhibitor 1 & \num{2.9e-7}                               & 0.002                                                                           & 2.101                                      & 1.572-2.809                                & 2.007                                      & 1.490-2.704                                & **                                          \\ 
 \hline
