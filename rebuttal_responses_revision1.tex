@@ -366,7 +366,16 @@ Answer
 
 We appreciate the reviewer for the critical comments and thank for your agreement of our workflow in cancer research.
 
+to generalize the purpose of our workflow:
+TCGA HNSCC -> TCGA CRC -> TCGA LUAD -> TCGA BRCA -> GEO or other uploaded cancer cohort
+how to apply or modify the R scripts to use other datasets
 the elements of the workflow:
+raw data cleaning
+Description:table transformation and merge
+data structure (dataset schema): GDAC format
+clinical features: dichotomization
+R scripts could not be applied to start the analysis of any dataset without re-coding.
+%R 的特色 邊分析解讀，一邊 coding
 \begin{itemize} %summarize the elements of the workflow
     \item The R script program could automatically scan protein-coding genes and generate the Kaplan-Meier plots and Cox's univariate/multivariate tables.
     \item Using a serial cut from 30\% to 70\% percentile of the cohort, it could find the least P-value cutoff of the Kaplan-Meier analysis for each gene expression.
