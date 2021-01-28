@@ -329,32 +329,29 @@ Can be the found positive and negative prognostic genes underlined by comparable
 Answer
 
 We appreciate the reviewer for the critical comment.
-We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort 40 cases) from online tools: PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/PrognoScan-cgi/PrognoScan.cgi)\cite{Mizuno2009a}.
-MD Anderson (40 cases)
+We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from online tools: PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/PrognoScan/)\cite{Mizuno2009a}.
+%??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
 %https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
-The GSE2837 has data from HNSCC cohort,
+The GSE2837 carries
 % VUMC, VAMC, UTMDACC (1992-2005)
-which recruited 28 participants with 
-relapse free survival (RFS) data, 
-%(TCGA dataset: overall survival)
-and microarray gene expression (Affymetrix X3P chips U133\_X3P).
-The result shows the survival significance is in the following probes of genes:
+relapse free survival (RFS) data, instead of overall survival in TCGA dataset,
+and microarray gene expression (by Affymetrix X3P chips U133\_X3P).
+The survival significance (Kaplan Meier P-value) is in the following probes of 10 genes:\\
+1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
+2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
 %17 out of 20 candidates
-11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes, however, PrognoScan has group separation cut by a skewed manner.
-poor prognosis: DKK1, CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2
-better prognosis: IL19, FCGBP, KIAA1683 (IQCN), NPB
-
+%?DKK1 (0.253635), 
+Please see Figure \ref{figure:fig_GSE2837}.
+Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far less participants than TCGA cohort.
 %DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
 %ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
-
-FCGBP (P-value 0.005658 of KM plot)
-FOXA2 (0.001587)
-(please see Figure \ref{figure:fig_GSE2837}
+%Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
+The 10 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using GSE2837 dataset other than TCGA cohort.
 
 \begin{figure}
 \raggedleft
 \includegraphics[width=14cm]{Answer_2-2.pdf}
-\caption{GSE2837 query results from PrognoScan}
+\caption{GSE2837 query results from PrognoScan: Kaplan-Meier plots of 10 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{blue}{low risk} groups, which is derived from cumulative P-value plots). The poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{green}{green}.}
 \label{figure:fig_GSE2837}
 \end{figure}
 \clearpage
@@ -367,18 +364,75 @@ Could the authors summarize the elements of the workflow that could be used on a
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
-Currently, less HNSCC dataset is available worldwide (Indian?) => GEO
-generalized use is fine for this workflow, it needs to modify the R code to adapt 
+We appreciate the reviewer for the critical comments and thank for your agreement of our workflow in cancer research.
+
+the elements of the workflow:
+\begin{itemize} %summarize the elements of the workflow
+    \item The R script program could automatically scan protein-coding genes and generate the Kaplan-Meier plots and Cox's univariate/multivariate tables.
+    \item Using a serial cut from 30\% to 70\% percentile of the cohort, it could find the least P-value cutoff of the Kaplan-Meier analysis for each gene expression.
+    \item Our analysis could discover the pronounced biomarkers, which impact HNSCC's survival under the stringent Bonferroni adjustment.
+\end{itemize}
+Currently, less HNSCC dataset is available worldwide (Indian?) => 
+GEO database could be generalized applied by this workflow, since modification of the R script is necessary.
 %能否套用在別的 database，可以，但需要 d/l raw microarray or RNA-seq 而且需要標準化(fpkm or RSEM)
 It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.?)
 Moreover, we are planning to expand this workflow for pan-cancer studies (other cancer types in the TCGA database).
-the elements of the workflow: ...
+
+% workflow
+The number of protein-coding genes was suggested as 20,500\cite{Clamp2007}. The \acrshort{gdc} Data Portal provided \acrshort{tcga} data has been harmonized and re-aligned \acrlong{rnaseq} data against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}). \acrshort{rnaseq} expression level read counts produced by Illumina HiSeq have been normalized using the \acrfull{fpkm} method, as described in reference\cite{FPKM2017}.
+The \acrshort{rnaseq} preprocessor of Broad \acrshort{gdac} picked the \acrfull{rsem} value from Illumina HiSeq/GA2 messenger \acrshort{rnaseq} level\_3 (v2) dataset of \acrshort{nci} \acrshort{gdc}. It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.
+We utilized FirebrowseR's function call, Samples.mRNASeq(cohort = "HNSC", gene=GeneName, format="csv"), to download each \acrshort{rnaseq} data of all \acrshort{hnscc} patients and to save as 20,499 data frame files, named as "HNSCC.mRNA.Exp.[GeneName].\newline
+Fire.Rda".
+After careful investigation of the genomics dataset, the \acrshort{rnaseq} values of "\acrfull{slca}" and "\acrfull{slcb}" should be considered two distinct expression entities. We concluded that the number of protein-coding genes in the \acrshort{tcga} dataset is 20,500. We removed null expressed genes, which over 50\% of the cohort, to avoid the useless result.
+
+We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patients, which saved as one data frame file: "HNSCC.clinical.\linebreak
+Fire.Rda" (accessed November 2019).
+
+One "HNSCC.clinical.Fire.Rda" tables and 20,500 "HNSCC.mRNA.Exp.\newline
+[GeneName].Fire.Rda" tables were transposed and merged by their \newline
+\_participant\_barcode (unique patient \acrlong{id}, \acrshort{id}) to yield a data frame with 528 rows (participants) against 20,581 columns (81 clinical features as well as 20,500 protein-coding \acrshort{rnaseq} of cancer specimen).
+The clinicopathological features selected for our workflow included gender, age, clinical tumor size, clinical cervical lymph node metastases, clinical distant metastasis assessment, pathological surgical margin, and tobacco exposure with their corresponding survival data.
+The tumor size (T), cervical lymph node metastases (N), and distal metastasis status (M) were classified according to \acrfull{ajcc}\cite{Amin2017} along with \acrfull{uicc}\cite{Brierley2016} \acrshort{tnm} system for clinical staging of \acrshort{hnscc}.
+% In the Eighth Edition, the AJCC has expanded the use of non-anatomic prognostic factors and biomarkers in assigning prognostic stage groups.
+We made data clean by removing duplicated rows and columns.
+
+
+%\subsection{Cutoff Finder Core Engine}
+To evaluate the effect of gene expression on the patient's survival, we introduced the stratifying of patients with Kaplan-Meier survival analysis according to each gene's low/high expression.
+Our cutofFinder\_func subroutine employs the minimum P-value approach to recognizing cutoff points in continuous gene expression measurement for patients sub-population.
+First, patients were ordered by \acrshort{rnaseq} value (RSEM) of a given gene. Next, patients were stratified at a serial cut (counted by person ranked in 30\% to 70\% percentile of the cohort; please see Figure \ref{fig:figure1} "HNSCC cohort"). The survival risk differences of the two groups were estimated by log-rank test to yield around 165 Kaplan-Meier P-values for each gene.
+Then, the optimal cutoff of \acrshort{rnaseq}, giving the minimum P-value, was selected by the cutofFinder\_func subroutine.
+This iteration method could calculate all possible cutoff of each gene expression in this cohort. At each run of cutofFinder\_func function call for an individual gene, it returned an optimal cutoff value (e.x. 0.027 for gene \acrlong{CAMK2N1}, \acrshort{CAMK2N1}). The optimal cutoff value and its correlated patient grouping size (e.x. low-expression in 262 persons vs. high-expression in 152 persons with gene \acrshort{CAMK2N1}) would be returned to the main program to allow downstream Cox survival analysis. The percentile range we applied as 30\% to 70\% was used to avoid a small grouping effect\cite{Miller1982}\cite{Mizuno2009a}.
+In case there was no significant P-value, a median expression of this gene was set as its cutpoint as usual.
+
+
+%\subsection{Biomarker Selection}
+
+Those genes with prognostic impact, whose hazard ratio $>=1.5$ or $<=0.5$ in both Cox's univariate/multivariate model, were assigned as provisional candidates.
+Bonferroni adjusted (Kaplan-Meier) P-value was used to make a ranking of candidates for the final decision (see Figure \ref{fig:figure1}, step 2).
+
+
+
+% we plan to extend this workflow on other TCGA cancer types
+Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
+% second limitation:
+In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
 \end{MyColorPar}
 
 
 \subsection*{2-4}
 Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use.
+
+
+% from materials and methods
+The Cancer Genome Atlas (\acrshort{tcga}) profiled 528 \acrshort{hnscc} clinical and genomic data, which has been standardized and available at a unified data portal, \acrfull{gdc} of the \acrfull{nci}.
+%\cite{SeanDavis;MartinMorgan2020}
+GDC is available at https://portal.gdc.cancer.gov/projects/TCGA-HNSC.
+\acrshort{tcga} offers several computational tools to the public for facilitating cancer research.
+Broad \acrfull{gdac} Firebrowse (firebrowse.org, version 1.1.35, 2016\_09\_27) is one of those tools to provide data access to each \acrshort{tcga} disease through a \acrfull{rest} \acrfull{api}.
+The 528 \acrshort{tcga} \acrshort{hnscc} patients' clinical information and \acrshort{rnaseq} data were obtained from the Firebrowse \acrshort{rest}ful \acrshort{api} with an R package, FirebrowseR (available at https://github.com/mariodeng/\linebreak
+FirebrowseR)\cite{Deng2017}. 
+We utilized FirebrowseR with our analysis workflow (see Figure \ref{fig:figure1}, step 1) to receive standardized data frames while avoiding data re-formatting, often causing some errors.
 
 \begin{MyColorPar}{blue}
 Answer
@@ -399,7 +453,7 @@ Comments from the reviewer \#3
 Must be improved:
 Is the research design appropriate?
 Are the results clearly presented?
-Are the conclusions supported by the results?
+*** Are the conclusions supported by the results?
 
 3-1) Only computer computing in this research to support 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are all heavily associated with the prognosis of OS.
 
@@ -411,7 +465,11 @@ Answer
 
 We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
 
-DKK1 has the P-value 1.99328e-07 of multivariable Cox proportional hazards regression model, which was reported by network-based biomarkers research tools (SurvNet, accessed at http://bioinformatics.mdanderson.org/main/SurvNet; saved as supplementary file SurvNet_HNSCC_result.tsv)\cite{Li2012a}. %gene regulatory or protein interaction network
+by GEO 2387? (PrognoScan)
+by Embase/Pubmed articles
+by HPA
+
+DKK1 has the P-value 1.99328e-07 of multivariable Cox proportional hazards regression model, which was reported by network-based biomarkers research tools (SurvNet, accessed at http://bioinformatics.mdanderson.org/main/SurvNet; saved as supplementary file SurvNet\_HNSCC\_result.tsv)\cite{Li2012a}. %gene regulatory or protein interaction network
 % cited by 10 articles
 % he P-values pi from a univariable Cox proportional hazards regression model, which quantifies how significantly the molecular profiling data of the gene correlate with the patient survival data. 
 % SurvNet also calculates the mutivariable Cox P-values for each subnetwork (a group of genes) to validate their clinical utility.
@@ -456,7 +514,7 @@ NPB (Neuropeptide B) is endogenous ligand of the G protein-coupled receptors, na
 
 
 
-b) (ok) SurvExpress
+b) (ok) SurvExpress (TCGA)
 %試試利用手動找到類似的結果 
 Web resource for Biomarker comparison and validation of Survival gene expression data. 
 Dataset: HNSC - TCGA Head and Neck squamous cell carcinoma June 2016 (dup=all, data=raw)，(only TCGA June 2016, n=502) \cite{Aguirre-Gamboa2013}
@@ -469,18 +527,18 @@ it supposed that ...
  (TCGA)(***please see Figure \label{fig_SurvExpress})
 
 %x c) CCLE_RNAseq_rsem_genes_tpm_20180929.txt.gz
+c) At the same time, we found our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa}
+(available at https://www.proteinatlas.org/humanproteome/\newline
+pathology/head+and+neck+cancer, accessed 28 September 2020). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+
 We provide more evidences mentioned above to support the prognostic impact of these candidate genes. It needs to be further validated.
 \end{MyColorPar}
 
 % the end of response letter
 
-\section{Highlights}
-Highlights
-\begin{itemize}
-    \item The R script program could automatically scan protein-coding genes and generate the Kaplan-Meier plots and Cox's univariate/multivariate tables.
-    \item Using a serial cut from 30\% to 70\% percentile of the cohort, it could find the least P-value cutoff of the Kaplan-Meier analysis for each gene expression.
-    \item Our analysis could discover the pronounced biomarkers, which impact HNSCC's survival under the stringent Bonferroni adjustment.
-\end{itemize}
+%\section{Highlights}
+%Highlights
+
 
 %\reftitle{References}
 
