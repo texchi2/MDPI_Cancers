@@ -263,8 +263,10 @@ The discovery of EGFR inhibitors\cite{Bonner2006a} for HNSCC therapy will encour
 %Deep learning
 %SALMON (Survival Analysis Learning with Multi-Omics Neural Networks)
 
-%\cite{Lawrence2015a} TCGA %的第一篇文章已經分析過 DNA mutation of HNSCC
+%\cite{Lawrence2015a} TCGA HNSCC %的第一篇文章已經分析過 DNA mutation of HNSCC
 %Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature, 517(7536), 576–582. 
+%https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications
+%=> HNSCC marker paper\cite{Lawrence2015a}
 
 %The presence of widespread genomic instability in HNSCC, such as cytogenetic aberrations, allelic imbalance/loss of heterozygosity, and microsatellite instability (MSI), suggests that there is an imperfection in the host DNA repair machinery. Genomic instability with progressive accumulation of detrimental genetic alterations appears to be dependent upon a circuitous interaction between the environmental genotoxic insults and the host DNA repair machinery, the functional integrity of which is governed by the proper cell cycle control and host DNA repair capacity. Genomics allows the identification of possibly relevant variants, such as single nucleotide polymorphisms (SNPs), copy number variation (CNV), mutations and translocations => %https://cancersheadneck.biomedcentral.com/articles/10.1186/s41199-020-0047-y
 %DNA mutation: copy number burden (CNB) and tumor mutation burden (TMB) are important for predicting tumor progression (Marshall et al., 2017; Thomas et al., 2018)
@@ -555,23 +557,24 @@ According to the reviewer's comment, the Discussion was modified accordingly (ma
 
 \subsubsection*{SurvExpress} % TCGA
 SurvExpress\cite{Aguirre-Gamboa2013} is
-%試試利用手動找到類似的結果 2021/01/23 pdf from SurvExpress
+% 2021/01/23 pdf x 12 from SurvExpress
 web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier P-value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
-1) poor prognosis: DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1;
+1) poor prognosis: DKK1 (0.00005), CAMK2N1 (0.000006), STC2 (0.001), PGK1 (0.01), SURF4 (0.002), USP10 (0.002), NDFIP1 (0.000008), STIP1 (0.001), DKC1 (0.01);
 %CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
-2) better prognosis: ZNF557, ZNF266, FCGBP.
+2) better prognosis: ZNF557 (0.0007), ZNF266 (0.00008), FCGBP (0.001).
 %IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
 %17 out of 20 candidates
 %?DKK1 (0.253635),
-The 12 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using SurvExpress with TCGA cohort. Please see Figure \label{fig_SurvExpress}
+The 12 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using SurvExpress with TCGA cohort. Please see Figure \ref{fig:fig_SurvExpress}.
 
 % red or green is NOT by expression level
 \begin{figure}
 \raggedleft
 \includegraphics[width=14cm]{Answer_3-1.pdf}
 \caption{The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{green}{low risk} groups, which is derived from risk groups optimization. %cumulative P-value plots).
-The poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{yellow}{yellow}.}
-\label{figure:fig_SurvExpress}
+Inset color scale shows risk groups (\textcolor{red}{high}/\textcolor{green}{low}) and corresponded RNA expression in \textcolor{red}{high}/\textcolor{green}{low}.
+Thus, the poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{orange}{orange}.}
+\label{fig:fig_SurvExpress}
 \end{figure}
 \clearpage
 
@@ -619,21 +622,28 @@ The 10 out of 20 positive and negative prognostic genes underlined is confirmed 
 
 
 \subsubsection*{Review articles}
-by Embase/Pubmed articles
-Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
-\cite{Wei2019}
-through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
+After discovery by our workflow, we performed the literature review by Embase/Pubmed  to find the evidence of suggested biomarker in cancer research.
+%Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
+%through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
+%PubTator Central\cite{Wei2019} is a useful Pubmed text miner
 
-% bad guy
-until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).
-\cite{Tang2019}\cite{Wei2020a}
-https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications
-http://gepia2.cancer-pku.cn/detail.php?gene=DKK1
-DKK1: 13 results of HNSCC \cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}
+%%%%%% bad guy
+DKK1: 13 results of HNSCC
+The Dickkopf1 (DKK1) gene encodes a protein that was mainly involved in Wnt and other signaling pathways. Overexpression of DKK1 indicated adverse OS in bladder urothelial carcinoma (BLCA), HNSCC, and PADD.\cite{Wei2020}
+\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}
+%until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).\cite{Wei2020}
+%using http://gepia2.cancer-pku.cn/detail.php?gene=DKK1 => \cite{Tang2019}
+%GEPIA is a commonly used interactive website that plots expression profiles of given genes (from TCGA database)
+%The analysis of prognosis was conducted by using the UALCAN, Gene Expression Profiling Interactive Analysis (GEPIA2)\cite{Tang2019}, and DriverDBv3 databases.
+
 CAMK2N1: 26 results of cancer: ; 1 HNSCC cell line (CAL-27)\cite{Li2018b}
+
 STC2: \cite{Ma2020}
+
 PGK1: glycolysis enzyme is responsive in cisplatin-resistant oral squamous cell carcinoma cell line\cite{Nakamura2005}
+
 SURF4: patients with tumors (not HNSCC) exhibiting high SURF4 expression had significantly shorter overall survival than low SURF4 expression.\cite{Kim2018a}
+
 USP10: one of autophagy related genes for HNSCC prognosis prediction.\cite{Ren2020}
 % 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
 NDFIP1, was reported as candidate biomarker for hepatocellular carcinoma\cite{Zhang2019a} and breast cancer\cite{Tian2020}.
@@ -641,17 +651,20 @@ NDFIP1, was reported as candidate biomarker for hepatocellular carcinoma\cite{Zh
 FOXA2: hihger expression is significantly associated with the poor prognosis of HNSCC\cite{Shen2017a}.
 %  + 0.0256 × cg03774514 FOXA2 => "+" coefficients; higher prognostic score was significantly associated with shorter survival in the training set; 
 STIP1, increased expression of STIP1, detectable auto-antibody in serum sample, may indicate poor survival outcome in ovarian cancer patients\cite{Chao2013}\cite{Cho2014}. The auto-antibody against STIP1 could be a useful biomarker for esophageal squamous cell carcinoma\cite{Xu2017}.
-DKC1, DKC1 (dyskeratin) is related with HNSCC\cite{Smith2010}.
+
+DKC1 (dyskeratin) is related with HNSCC\cite{Smith2010}.
 %is the tumor suppressor gene in HNSCC
 
-% good guy
+%%%%%% good guy
 ZNF557, oncogenic human herpesviruses, EBV and KSHV are silenced by SZF1 and ZNF557, two members of the KRAB-ZFP repressor family\cite{Li2018c}.
+
 ZNF266, % or ZNF16, HZF1?
+
 those genes were reported at following, 
 IL19 in esophageal squamous cell carcinoma\cite{Hsing2013},
 MYO1H associated mandibular prognathism\cite{Sun2018}, 
 FCGBP in thyroid cancer\cite{Griffith2006}, 
-?LOC148709?, 
+%?LOC148709?, 
 EVPLL in cDNA project,
 PNMA5 promotes apoptosis signaling in HeLa and MCF-7 cells\cite{Lee2016}, 
 IQCN (previous name as KIAA1683), and 
