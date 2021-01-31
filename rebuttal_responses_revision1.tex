@@ -221,7 +221,7 @@ Thus, we wish the further validations of our meaningful hypotheses of candidate 
 
 
 \subsection*{1-2}
- DNA alteration (mutation/amplification) is also an influential prognostic factor, but I would like to know if DNA alteration is considered in this analysis.
+DNA alteration (mutation/amplification) is also an influential prognostic factor, but I would like to know if DNA alteration is considered in this analysis.
 %[如果加入 DNA alteration 又會如何? 不佳; 選擇 mRNA 的原因是? interpretability and drugable: EGFR]
 
 \begin{MyColorPar}{blue}
@@ -553,18 +553,74 @@ According to the reviewer's comment, the Discussion was modified accordingly (ma
 
 \begin{MyColorPar}{red}
 
+\subsubsection*{SurvExpress} % TCGA
+SurvExpress\cite{Aguirre-Gamboa2013} is
+%試試利用手動找到類似的結果 2021/01/23 pdf from SurvExpress
+web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier P-value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
+1) poor prognosis: DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1;
+%CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
+2) better prognosis: ZNF557, ZNF266, FCGBP.
+%IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
+%17 out of 20 candidates
+%?DKK1 (0.253635),
+The 12 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using SurvExpress with TCGA cohort. Please see Figure \label{fig_SurvExpress}
 
-by GEO 2387? (PrognoScan)
-by Embase/Pubmed articles
-by HPA
+% red or green is NOT by expression level
+\begin{figure}
+\raggedleft
+\includegraphics[width=14cm]{Answer_3-1.pdf}
+\caption{The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{green}{low risk} groups, which is derived from risk groups optimization. %cumulative P-value plots).
+The poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{yellow}{yellow}.}
+\label{figure:fig_SurvExpress}
+\end{figure}
+\clearpage
 
-DKK1 has the P-value 1.99328e-07 of multivariable Cox proportional hazards regression model, which was reported by network-based biomarkers research tools (SurvNet, accessed at http://bioinformatics.mdanderson.org/main/SurvNet; saved as supplementary file SurvNet\_HNSCC\_result.tsv)\cite{Li2012a}. %gene regulatory or protein interaction network
+% % SurvExpress 沒有類似的結果是因為:
+Nevertheless, the survival prediction could not be found in FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB using SurvExpress. 
+Our workflow has advantage to find an optimal cutpoint of those \acrshort{rna} expression data to maximize candidate mining coverage.
+%因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
+
+ 
+%\subsubsection{HPA} still TCGA's RNA-Seq
+%The Human Protein Atlas project (HPA) Proteome analysis is based on26941 antibodies targeting 17165 unique proteins. The HPA's Pathology Atlas makes analysis of each protein in patients, using immunohistochemistry (IHC) analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
+ %All transcriptomics data has been retrieved from the Cancer Genome Atlas and all proteomics data has been generated in-house using the same antibodies
+%Our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020\-11\-19). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+
+% Version: 3.0.2 Date: 2015/06/11 SurvNet
+%Preloaded TCGA  data is also available for analysis.
+%DKK1 has the P-value 1.99328e-07 of multivariable Cox proportional hazards regression model, which was reported by network-based biomarkers research tools (SurvNet, accessed at http://bioinformatics.mdanderson.org/main/SurvNet; saved as supplementary file SurvNet\_HNSCC\_result.tsv)\cite{Li2012a}. %gene regulatory or protein interaction network
 % cited by 10 articles
 % he P-values pi from a univariable Cox proportional hazards regression model, which quantifies how significantly the molecular profiling data of the gene correlate with the patient survival data. 
 % SurvNet also calculates the mutivariable Cox P-values for each subnetwork (a group of genes) to validate their clinical utility.
-The network files are in a '.dot' format that can be visualized by GraphViz (http://www.graphviz.org)
+%The network files are in a '.dot' format that can be visualized by GraphViz (http://www.graphviz.org)
 
-a) Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
+\subsubsection*{GSE2837} % non-TCGA
+% from Anwser2-2
+%by GEO GSE2837 HNSCC dataset (PrognoScan)
+We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from online tools: PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/PrognoScan/)\cite{Mizuno2009a}.
+%??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
+%https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
+The GSE2837 carries
+% VUMC, VAMC, UTMDACC (1992-2005)
+relapse free survival (RFS) data, instead of overall survival in TCGA dataset,
+and microarray gene expression (by Affymetrix X3P chips U133\_X3P).
+The survival significance (Kaplan Meier P-value) is in the following probes of 10 genes:\\
+1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
+2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
+%17 out of 20 candidates
+%?DKK1 (0.253635), 
+Please see Figure \ref{figure:fig_GSE2837}.
+Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far less participants than TCGA cohort.
+%DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
+%ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
+%Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
+The 10 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using GSE2837 dataset other than TCGA cohort.
+
+
+
+\subsubsection*{Review articles}
+by Embase/Pubmed articles
+Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
 \cite{Wei2019}
 through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
 
@@ -602,23 +658,8 @@ IQCN (previous name as KIAA1683), and
 NPB (Neuropeptide B) is endogenous ligand of the G protein-coupled receptors, named GPR7\cite{Andreis2005}, which is associated with prostate cancer prognosis\cite{Cottrell2007}. 
 
 
-
-b) (ok) SurvExpress (TCGA)
-%試試利用手動找到類似的結果 
-Web resource for Biomarker comparison and validation of Survival gene expression data. 
-Dataset: HNSC - TCGA Head and Neck squamous cell carcinoma June 2016 (dup=all, data=raw)，(only TCGA June 2016, n=502) \cite{Aguirre-Gamboa2013}
-%有類似的結果:
-DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1,ZNF557, ZNF266, FCGBP;
-%沒有
-FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB
-it supposed that ...
-%因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
- (TCGA)(***please see Figure \label{fig_SurvExpress})
-
 %x c) CCLE_RNAseq_rsem_genes_tpm_20180929.txt.gz
-c) At the same time, we found our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa}
-(available at https://www.proteinatlas.org/humanproteome/\newline
-pathology/head+and+neck+cancer, accessed 28 September 2020). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+
 
 \end{MyColorPar} % marked as red
 
