@@ -296,7 +296,7 @@ How representative is the TCGA database for HNSCC?
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the question giving an opportunity to discuss TCGA in detail.
+We appreciate the reviewer for the question giving an opportunity to discuss TCGA in detail.\\
 To the best of our knowledge, TCGA "HNSC"(they coded) is the only single and largest collection of whole-genome sequencing and clinical survival dataset in the field of HNSCC research so far.
 When we queried from the Embase database using the MESH words "HNSCC AND TCGA", a simple statistics shows total 12,636 research articles/conference abstracts for HNSCC from 2008 to 2021, since the first TCGA article was published on 2008\cite{McLendon2008} by TCGA research network.
 Thereafter, there are 18,082 cross-cancer type articles which were produced using TCGA database. The 778 publications (Figure \ref{figure:fig_embase}, b. 778) among them were focused on HNSCC research. Those occupied about 18\% of HNSCC research articles with genetic-related topics during the same time period. Thus, about 60 TCGA HNSCC articles were published worldwide per year since 2008. %\ref{figure:fig_embase}
@@ -313,7 +313,7 @@ Thereafter, there are 18,082 cross-cancer type articles which were produced usin
 
 Despite of other databases carrying HNSCC genomics and clinical data we found, such as MSKCC (151 cases), Broad (74 cases), Johns Hopkins (32 cases), MD Anderson (40 cases), and NCBI Gene Expression Omnibus (GEO) datasets (e.x. GSE2837, 40 cases; GSE6631, 22 cases; GSE31056, 23 cases)\cite{Cerami2012b}\cite{Gao2013a}. However,  MSKCC, Broad and Johns Hopkins databases were processed the whole-exome sequencing instead of whole-genome sequencing in TCGA database.
 
-There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010},  SurvExpress\cite{Aguirre-Gamboa2013}, and UALCAN (available at http://ualcan\\.path.uab.edu/)\cite{Chandrashekar2017a}. According to the citing articles\cite{Wu2020} and their online documents, the back-end database was collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO datasets (available at https://www.ncbi.nlm.nih.gov/gds). Furthermore, almost all of their survival data came from TCGA database.
+There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010},  SurvExpress\cite{Aguirre-Gamboa2013}, and UALCAN (available at http://ualcan\\.path.uab.edu/)\cite{Chandrashekar2017a}. According to the citing articles\cite{Wu2020} and their online documents, the back-end databases of those web-tools were collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO datasets (available at https://www.ncbi.nlm.nih.gov/gds). Furthermore, almost all of their survival data came from TCGA database.
 %GEO (few survival features, less than 100 participate in each GSE dataset)
 %GSE31056, GSE2837 (Prognoscan)
 %there is survival feature: A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631
@@ -419,7 +419,7 @@ Then it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.co
 \begin{figure}
     \centering
     \includegraphics[width=14cm]{Figure_1_manuscript_workflow_modify.pdf}
-    \caption{A workflow of \acrshort{hnscc} biomarker discovery, step 1 (blue line: main procedure) and step 2 (orange line: analysis export). The portion of "data process/cleaning"(red rectangled) should be modified aggressively according to different databases.}
+    \caption{A workflow of \acrshort{hnscc} biomarker discovery, step 1 (blue line: main procedure) and step 2 (orange line: analysis export). The portion of "data process/cleaning"(red rectangled) should be modified aggressively according to different sources of databases, e.x. The NCI's TCGA Genomic Data Commons (GDC) porting to Broad Firehose, or other databases.}
     \label{fig:workflow}
 \end{figure}
 %(other cancer types in the TCGA database). 
@@ -481,38 +481,46 @@ We appreciate the reviewer for the critical comment and modified the Introductio
 
 %The Cancer Genome Atlas (\acrshort{tcga}) profiled 528 \acrshort{hnscc} clinical and genomic data, which has been standardized and available at a unified data portal, \acrfull{gdc} of the \acrfull{nci}.
 %\cite{SeanDavis;MartinMorgan2020}
-\textcolor{red}{
+
+\begin{MyColorPar}{red}
+
 The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} is developed and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI) funded by the US government since 2005.
 TCGA represents a comprehensive genomics and clinic data from 84,392 patients among 33 major cancer types (data release 27.0 - October 29, 2020, available at https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/studied-cancers).
 %The Cancer Genome Atlas (TCGA): The TCGA consortium, which is a National Institute of Health (NIH) initiative, makes publicly available molecular and clinical information for more than 33 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome.
 
-TCGA and other collaborated \acrfull{gdac} generated and analyzed DNA (mutation, copy number variation, methylation, simple nucleotide polymorphism, SNP), RNA (microarray, RNA-Seq, microRNA) and protein (reverse protein phase array) of the biospecimen. Sample types available at TCGA are: primary solid tumors, recurrent solid tumors, blood derived normal and tumor, metastatic, and solid tissue normal. \acrshort{rnaseq} expression data has been harmonized and re-aligned against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}). 
+TCGA and other collaborated \acrfull{gdac} generated and analyzed DNA (mutation, copy number variation, methylation, simple nucleotide polymorphism, SNP), RNA (microarray, RNA-Seq, microRNA) and protein (reverse protein phase array) data derived from biospecimen. Sample types available at TCGA are: primary solid tumors, recurrent solid tumors, blood derived normal and tumor, metastatic, and solid tissue normal. 
 
-The NCI's Genomic Data Commons (GDC, available at https://portal.gdc.cancer.gov/) receives, processes, and distributes genomic, clinical, and biospecimen data from TCGA database and other cancer research programs.
+The NCI's Genomic Data Commons (GDC, available at https://portal.\\gdc.cancer.gov/) receives, processes, and distributes genomic, clinical, and biospecimen data from TCGA database and other cancer research programs. The clinical features has been defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}. The \acrshort{rnaseq} expression data has been harmonized and re-aligned against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}).
 %The old TCGA data portal (https://tcga-data.nci.nih.gov/docs/publications/tcga/) stops updating and all TCGA data was transferred to the GDC data portal .
-\acrshort{tcga}, GDC and research community offer several computational tools to the public for facilitating cancer research. Thus, TCGA has remarkable advantage for computational and life scientists who study cancer, and many achievements of diagnoses, treatments and prevention with these data have already been published.\cite{Tomczak2015}
-There is three categories of routes to approach the TCGA data from GDC.
+\acrshort{tcga}, GDC and research community offer several computational tools to the public for facilitating cancer research. %There is three categories of tools to approach the TCGA data from GDC.
 
-First, GDC Data Portal (available at https://portal.gdc.cancer.gov) is the official web-based TCGA data analysis tools, and other available web-based tools so far has been reviewed by Zhang et al.\cite{Zhang2019b} and 
-Matthieu Foll (availalbe at https://github.com/IARCbioinfo/awesome-TCGA).
-One of \acrshort{gdac}s, the Broad TCGA Data and Analyses (Broad GDAC Firehose), provides TCGA public-accessible Level 3 data and Level 4 analyses packaged in a form amenable to immediate algorithmic analysis. This is an analytical infrastructure to access analyses algorithms not performed by the GDC (e.g. GISTIC, MutSig2CV, correlation with clinical variables, mRNA clustering etc.). 
+GDC Data Portal (available at https://portal.gdc.cancer.gov) is the official web-based TCGA data analysis tools. Other available web-based tools has been reviewed by Zhang et al.\cite{Zhang2019b} and 
+Matthieu Foll (availalbe at https://\\github.com/IARCbioinfo/awesome-TCGA).
+One of \acrshort{gdac}s, the Broad TCGA Data and Analyses (Broad GDAC), provides Firehose which is a repository of the TCGA public-accessible Level 3 data and Level 4 analyses. Broad GDAC Firehose is an analytical infrastructure to provide analyses algorithms not performed by the GDC (e.x. GISTIC, MutSig2CV, correlation with clinical variables, mRNA clustering etc.). 
 A web-based version of Broad GDAC Firehose is Firebrowse (available at firebrowse.org, Version: 1.1.40 , 2019\-10\-13).
 %Python and UNIX bindings
 %R bindings
-Broad GDAC Firebrowse provides graphical tools like viewGene to explore expression levels and iCoMut to explore a comprehensive mutation analysis of each TCGA disease. 
+Broad GDAC Firebrowse provides graphical tools like viewGene to explore expression levels and iCoMut to explore a mutation analysis of each TCGA disease. 
 
-Second, GDC data transfer tool (available at https://gdc.cancer.gov/access-data/gdc-data-transfer-tool) allows users to access the open or controlled data. %the GDC data model, data formats
+%Second, GDC data transfer tool (available at https://gdc.cancer.gov/access-data/gdc-data-transfer-tool) allows users to access the open or controlled data. %the GDC data model, data formats
 % RESTful API
 
-Third, the GDC \acrfull{api} is designed under the \acrfull{rest} architecture and provides accessibility to external users for programmatic access to the same functionality found through GDC Portals. This includes searching, viewing, submitting and downloading subsets of data files, metadata, and annotations based on specific parameters. Moreover, if restricted data is requested, a token must be provided by the user along with the API call. This token can be downloaded directly from the GDC Portals. (this paragraph was originally published and courtesy of the National Cancer Institute)
+GDC \acrfull{api} is designed under the \acrfull{rest} architecture and provides accessibility to external users for programmatic access to the same functionality found through GDC Portals. This includes searching, viewing, submitting and downloading subsets of data files, metadata, and annotations based on specific parameters. Moreover, if restricted data is requested, a token must be provided by the user along with the API call. This token can be downloaded directly from the GDC Portals. (this paragraph was originally published and courtesy of the National Cancer Institute)
+Broad GDAC Firebrowse \acrshort{rest}ful \acrshort{api} could be accessed using an R package, FirebrowseR (available at https://github.com/mariodeng/FirebrowseR)\cite{Deng2017}.
 
-Broad GDAC Firebrowse \acrshort{rest}ful \acrshort{api} could be accessed using an R package, FirebrowseR (available at https://github.com/mariodeng/\linebreak
-FirebrowseR)\cite{Deng2017}.
-In our workflow, we utilized FirebrowseR in the step 1 to receive standardized data frames while avoiding data re-formatting, often causing some errors. (please also see Figure \ref{fig:workflow})
 % clinical
-We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patient.
-}   % marked in red
+%We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patient.
 
+%In summarize the advantages of its use.
+In summary, the advantages of applying the TCGA data for cancer research includes:
+\begin{outline}
+\1  To the best of our knowledge, TCGA database is the largest collection (cancer types and cohort size) of comprehensive genomics with survival data available in the field of cancer research so far. The whole-genome sequencing data has been harmonized cross all GDACs. The basic demographic data is usually available on many database. However, TCGA data has more comprehensive features, such as exposure of alcohol, asbestos, radioactive radon, tobacco smoking or cigarette, than others.
+\1  TCGA has remarkable advantage for computational and life scientists who study cancer, since useful web-tools and API are ready for analysis and visualization of TCGA data. It might be getting help easily from research community for trouble-shooting.
+\1  Many achievements of diagnoses, treatments and prevention with the TCGA data have already been published and keep growing.\cite{Tomczak2015}
+\end{outline}
+
+\end{MyColorPar}   % marked in red above
+In our workflow, we utilize FirebrowseR in the step 1 to receive standardized genomic and clinical data frames while avoiding data re-formatting, often causing some errors. (please also see Figure \ref{fig:workflow}, different sources of databases)
 %The other GDAC, the MD Anderson GDAC's MBatch (http://bioinformatics.mdanderson.org/tcgabatcheffects) is a website that enables scientists to identify and quantify the batch effects accompanying TCGA data set, currently according to hierarchical clustering and enhanced PCA plots.
 
 % RNA-Seq
@@ -527,12 +535,12 @@ We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", forma
 \subsection*{3-1}
 Comments from the reviewer \#3
 
-Must be improved:
-Is the research design appropriate?
-Are the results clearly presented?
+%Must be improved:
+%Is the research design appropriate?
+%Are the results clearly presented?
 *** Are the conclusions supported by the results?
 
-3-1) Only computer computing in this research to support 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are all heavily associated with the prognosis of OS.
+Only computer computing in this research to support 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are all heavily associated with the prognosis of OS.
 
 There is little information provided. The authors should provide more evidence to support this article.
 %  Once the authors identify TMSB4X as a target, the rest of the analysis seems fine, but their rationale for looking into TMSB4X is not strongly supported by the available data.
@@ -540,7 +548,11 @@ There is little information provided. The authors should provide more evidence t
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comments and thank for your agreement of our experiments in the validation phase.....
+We appreciate the reviewer for the critical comment. We provide more evidences mentioned below, to support the prognostic impact of these candidate genes. It needs to be further validated.
+According to the reviewer's comment, the Discussion was modified accordingly (marked as red).
+
+\begin{MyColorPar}{red}
+
 
 by GEO 2387? (PrognoScan)
 by Embase/Pubmed articles
@@ -608,12 +620,16 @@ c) At the same time, we found our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, 
 (available at https://www.proteinatlas.org/humanproteome/\newline
 pathology/head+and+neck+cancer, accessed 28 September 2020). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
 
-We provide more evidences mentioned above to support the prognostic impact of these candidate genes. It needs to be further validated.
+\end{MyColorPar} % marked as red
+
+
 \end{MyColorPar}
 
 % the end of response letter
 
-%\section{Highlights}
+
+
+\section{linear regression}
 %Highlights
 % https://quicklatex.com
 \begin{flushleft}
