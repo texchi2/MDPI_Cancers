@@ -584,10 +584,14 @@ Our workflow has advantage to find an optimal cutpoint of those \acrshort{rna} e
 %因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
 
  
-%\subsubsection{HPA} still TCGA's RNA-Seq
-%The Human Protein Atlas project (HPA) Proteome analysis is based on26941 antibodies targeting 17165 unique proteins. The HPA's Pathology Atlas makes analysis of each protein in patients, using immunohistochemistry (IHC) analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
- %All transcriptomics data has been retrieved from the Cancer Genome Atlas and all proteomics data has been generated in-house using the same antibodies
-%Our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020\-11\-19). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+\subsubsection{HPA} still TCGA's RNA-Seq
+The Human Protein Atlas project (HPA) Proteome analysis is based on26941 antibodies targeting 17165 unique proteins. The HPA's Pathology Atlas makes analysis of each protein in patients, using immunohistochemistry (IHC) analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
+All transcriptomics data has been retrieved from the Cancer Genome Atlas and all proteomics data has been generated in-house using the same antibodies.
+Our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020\-11\-19). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+Moreover, overexpression of ubiquitin specific peptidase 10 (USP10), one of autophagy related genes, has poor prognostic impact on HNSCC, which has been proved at mRNA and protein level.\cite{Ren2020}
+% 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
+found at Human Protein Atlas dataset (HPA) https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/head+and+neck+cancer
+
 
 % Version: 3.0.2 Date: 2015/06/11 SurvNet
 %Preloaded TCGA  data is also available for analysis.
@@ -622,59 +626,128 @@ The 10 out of 20 positive and negative prognostic genes underlined is confirmed 
 
 
 \subsubsection*{Review articles}
-After discovery by our workflow, we performed the literature review by Embase/Pubmed  to find the evidence of suggested biomarker in cancer research.
+After discovery by our workflow, we performed the literature review by Embase/Pubmed  to find the evidence of suggested 7 biomarkers in cancer research.
 %Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
 %through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
 %PubTator Central\cite{Wei2019} is a useful Pubmed text miner
 
 %%%%%% bad guy
-DKK1: 13 results of HNSCC
-The Dickkopf1 (DKK1) gene encodes a protein that was mainly involved in Wnt and other signaling pathways. Overexpression of DKK1 indicated adverse OS in bladder urothelial carcinoma (BLCA), HNSCC, and PADD.\cite{Wei2020}
-\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}
+The Dickkopf1 (DKK1) gene encodes a protein that was mainly involved in Wnt and other signaling pathways.
+Inhibition of DKK1 in Hep-2 cells reduces their proliferation, colony formation, cell migration, and invasion in vitro\cite{Shi2014}.
+Pang et al\cite{Pang2018} demonstrated that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhanced their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. 
+Increased DKK1 levels in HNSCC tissues correlated with elevated VEGF-C and beta-catenin\cite{Shi2014}.
+DKK1 expression was significantly associated with smoking, alcohol abuse, sex, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}.
+The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Overexpression of DKK1 indicated adverse OS in bladder urothelial carcinoma (BLCA), HNSCC\cite{Chakraborty2020}\cite{Hu2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC leading to the worst prognosis of the patients. 
+%\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}(non-TCGA)\cite{Hu2020}\cite{Wei2020}
 %until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).\cite{Wei2020}
 %using http://gepia2.cancer-pku.cn/detail.php?gene=DKK1 => \cite{Tang2019}
 %GEPIA is a commonly used interactive website that plots expression profiles of given genes (from TCGA database)
 %The analysis of prognosis was conducted by using the UALCAN, Gene Expression Profiling Interactive Analysis (GEPIA2)\cite{Tang2019}, and DriverDBv3 databases.
 
-CAMK2N1: 26 results of cancer: ; 1 HNSCC cell line (CAL-27)\cite{Li2018b}
 
-STC2: \cite{Ma2020}
+%STC2:
+The miR-381 suppresses cell proliferation, migration and invasion in HNSCC SCC-4 cell line through targeting stanniocalcin 2 (STC2), and participates in HNSCC development probably via the FAK/PI3K/Akt/mTOR signaling pathway.\cite{Ma2020}
 
-PGK1: glycolysis enzyme is responsive in cisplatin-resistant oral squamous cell carcinoma cell line\cite{Nakamura2005}
+Phosphoglycerate kinase 1 (PGK1 or PGK-1), one of an glycolysis enzyme, is responsive in cisplatin-resistant HNSCC cell line (H-1R). The resistance is associated with up-regulated expression of ATP-binding cassette transporter genes (MDR1, MRP1, and MRP2), CD55, and PGK1 and down-regulated expression of Caveolin 1\cite{Nakamura2005}.
 
-SURF4: patients with tumors (not HNSCC) exhibiting high SURF4 expression had significantly shorter overall survival than low SURF4 expression.\cite{Kim2018a}
+Surfeit gene 4 (SURF4): patients with tumors (such as glioma, breast cancer, lymphoma , pancreatic cancer, adrenocortical carcinoma, and sarcoma%; not HNSCC
+) exhibiting high SURF4 expression had significantly shorter overall survival than low SURF4 expression. SURF4 has the potential for inducing cellular transformation and cell migration in vitro and has increased tumor growth ability in vivo\cite{Kim2018a}.
+%NIH/3T3 cells (Mus musculus, mouse), 293T cell
+%Loss of contact inhibition leads to phenotypic changes and promotes foci formation in vitro
+%http://www.canevolve.org/AnalysisResults/AnalysisResults.html
+%web-based tools survival (not TCGA?)
 
-USP10: one of autophagy related genes for HNSCC prognosis prediction.\cite{Ren2020}
+Ubiquitin specific peptidase 10 (USP10), one of autophagy-related genes (ARGs) may serve as a prognostic biomarker and target for in various human cancers, including epithelial ovarian cancer, colorectal cancer, and HNSCC\cite{Ren2020}.
+Functional annotation - by gene set variation analysis (GSVA) and gene set enrichment analysis (GSEA) - revealed that USP10 has been significantly enriched in many critical pathways correlated with tumorigenesis of HNSCC, including the p53 pathway, IL2 STAT5 signaling, TGF beta signaling, and PI3K Ak mTOR signaling\cite{Ren2020}.
 % 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
-NDFIP1, was reported as candidate biomarker for hepatocellular carcinoma\cite{Zhang2019a} and breast cancer\cite{Tian2020}.
-%  the adaptor protein Nedd4-family interacting protein 1 (NDFIP1) plays a key role in the ubiquitination and nuclear translocation of PTEN. It represses cell proliferation of melanoma and thus acts as a tumor suppressor.(PMID: 29333944)
-FOXA2: hihger expression is significantly associated with the poor prognosis of HNSCC\cite{Shen2017a}.
-%  + 0.0256 × cg03774514 FOXA2 => "+" coefficients; higher prognostic score was significantly associated with shorter survival in the training set; 
-STIP1, increased expression of STIP1, detectable auto-antibody in serum sample, may indicate poor survival outcome in ovarian cancer patients\cite{Chao2013}\cite{Cho2014}. The auto-antibody against STIP1 could be a useful biomarker for esophageal squamous cell carcinoma\cite{Xu2017}.
+%found at Human Protein Atlas dataset (HPA), TCGA, and (GSE6631): A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631. https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/head+and+neck+cancer
 
-DKC1 (dyskeratin) is related with HNSCC\cite{Smith2010}.
-%is the tumor suppressor gene in HNSCC
+FOXA2:
+Prognostic signature integrated of DNA methylation, gene expression, and clinical information provides a prognostic prediction value for HNSCC patients 
+FOXA2 is significantly associated with the poor prognosis of HNSCC through the studies of CpG-based DNA methylation and RNA expression approach\cite{Shen2017a}.
+%32 HNSCC patients had both tumor and adjacent non-tumor tissue samples in TCGA cohort, which was used as the discovery set to identify differential methylation CpG sites.
+%  + 0.0256 × cg03774514 FOXA2 => "+" coefficients; higher prognostic score was significantly associated with shorter survival in the training set; 
+% https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=28852427
+%A multi-stage screening strategy => univariate Cox regression was used to evaluate their association with overall survival in the training set, which identified 15 CpG sites with P < 0.05. Further, SIS analysis was performed to further screen out a stable probe combination. Seven of the 15 candidate CpGs were identified, including cg13495205, cg07110405, cg03774514, cg09137696, cg19655456, cg03146625, and cg21546671 (Fig. 2c, Additional file 1: Table S1), mapped to AJAP1, SHANK2, FOXA2, MT1A, ZNF570, HOXC4, and HOXB4, respectively. Using coefficients generated from Cox model, we calculated a prognostic score for each patient based on individualized values of the seven genes (Fig. 2d): prognostic score, methylation = 0.0054 × cg13495205 AJAP1  + 0.0318 × cg07110405 SHANK2 + 0.0256 × cg03774514 FOXA2  + 0.0063 × cg09137696 MT1A  + 0.0013 × cg19655456 ZNF570 − 0.0297 × cg03146625 HOXC4  − 0.0157 × cg21546671 HOXB4 .
+%Association between gene expression and methylation. Left panels show correlation of a AJAP1, b SHANK2, c FOXA2, d MT1A, e ZNF570, f HOXC4, and g HOXB4 expression (X-axis) with methylation (Y-axis). Right panels show Kaplan-Meier survival plots of gene expression from the TCGA cohort. 
+
+
+% non-TCGA
+Stress-induced phosphoprotein 1 (STIP1, also known as HOP, P60, STI1), is increased
+in the poor survival patients of ovarian cancer\cite{Chao2013}\cite{Cho2014}. T
+The auto-antibody against STIP1 in serum could be a useful diagnostic biomarker for early-staged esophageal squamous cell carcinoma\cite{Xu2017}.
+%STIP1 could bind to bind Hsp70 and Hsp90.
+
+
+%IL-19 specifically activated an intracellular signal and induced proliferation of the cells, which indicated that IL-19 may act in an autocrine manner in oral cancer.
+%IL19 in esophageal squamous cell carcinoma\cite{Hsing2013}, the effects of IL-19 on the esophageal SCC in vivo and in vitro. CE81T cells
+%IL-19 may be involved in the pathogenesis of systemic inflammatory diseases. IL-19 is also involved in various inflammatory diseases such as psoriasis, asthma, and rheumatoid arthritis.
+% the Chi-Mei Medical Center Institutional Review Board (IRB9705-003). n=60
+
 
 %%%%%% good guy
-ZNF557, oncogenic human herpesviruses, EBV and KSHV are silenced by SZF1 and ZNF557, two members of the KRAB-ZFP repressor family\cite{Li2018c}.
+%ZNF557 is a tumor supressor in HPV-positive HNSCC???
+%Oncogenic human herpesviruses (e.x. EBV and KSHV) 
+%Oncogenic human viruses are silenced through the activities of two members of the Kruppel-associated box (KRAB) domain-zinc finger protein (ZFP) (KRAB-ZFP) epigenetic silencing family, revealing a novel STAT3-KRAB-ZFP axis of virus latency.
+%Epstein-Barr virus (EBV) and Kaposi’s sarcoma-associated herpesvirus (KSHV) are silenced by SZF1 and ZNF557, two members of the KRAB-ZFP repressor family\cite{Li2018c}
 
-ZNF266, % or ZNF16, HZF1?
 
-those genes were reported at following, 
-IL19 in esophageal squamous cell carcinoma\cite{Hsing2013},
-MYO1H associated mandibular prognathism\cite{Sun2018}, 
-FCGBP in thyroid cancer\cite{Griffith2006}, 
+%ZNF266, % or ZNF16, HZF1?
+%MYO1H associated mandibular prognathism\cite{Sun2018}
+
+% IgG Fc binding protein ($Fc\gamma BP$), (Fc Fragment Of IgG Binding Protein) 
+Fc fragment of IgG binding protein (($Fc\gamma BP$, FCGBP) is expressed in normal thyroid and, more significantly, it is down-regulated in papillary and follicular thyroid carcinomas.\cite{ODonovan2002}\cite{Griffith2006}
+%in thyroid biopsies might help to make the difficult distinction between a thyroid follicular adenoma and a follicular carcinoma.\cite{ODonovan2002}\cite{Griffith2006}, 
+%gene ID @gene@8857
+
 %?LOC148709?, 
-EVPLL in cDNA project,
-PNMA5 promotes apoptosis signaling in HeLa and MCF-7 cells\cite{Lee2016}, 
-IQCN (previous name as KIAA1683), and 
-NPB (Neuropeptide B) is endogenous ligand of the G protein-coupled receptors, named GPR7\cite{Andreis2005}, which is associated with prostate cancer prognosis\cite{Cottrell2007}. 
+%EVPLL in cDNA project,
+Paraneoplastic Ma 5 (PNMA5) promotes apoptosis signaling in HeLa (cervical cancer) and MCF-7 (breast cancer) cells\cite{Lee2016}
 
+%The endogenous ligand of G protein-coupled receptors (GPR7) is IQCN (previous name as KIAA1683), and NPB (Neuropeptide B)\cite{Andreis2005}. GPR7 is associated with poor prognosis of prostate cancer\cite{Cottrell2007}. 
 
+%calcium/calmodulin-dependent protein kinase II inhibitor (CAMK2N1) is the endogenous inhibitor of CAMK2, which is activated by an increased intracellular Ca2+ concentration.SYT12 plays a critical role in oral cancer and may be a novel therapeutic target. (PMID31598163)
+%Overall survival times (as determined by Kaplan-Meier analysis) were markedly longer in patients that had elevated CAMK2N1 expression compared with patients with negative or low CAMK2N1 expression. The miR-182-5p plays a vital role in controlling OSCC cell apoptosis and proliferation by regulating CAMK2N1 expression, which was found to be reduced in OSCC. Down-regulation of miR-182-5p expression attenuated tumor growth, cell survival, and proliferation in vivo through the regulation of the AKT/ERK1/2/NF-κB signaling pathways.
+%CAMK2N1 operated as a tumor suppressor gene in patients with HNSCC.
+%: 26 results of cancer: ; 1 HNSCC cell line (CAL-27) all said "good guy"
+%\cite{Li2018b}
+%EMT genes (TCF3, CAMK2N1, EGFR, and IGFBP4) 
 %x c) CCLE_RNAseq_rsem_genes_tpm_20180929.txt.gz
 
+%NDFIP1:
+%The adaptor protein Nedd4-family interacting protein 1 (NDFIP1), was reported as candidate biomarker for breast cancer\cite{Tian2020}. was both better prognosis in the overall survival (OS) and relapse free survival (RFS)
+%MCF7 cells 
+%Howitt et al showed that NDFIP1 knockdown results in the loss of phosphatase and tensin homolog nuclear compartmentalization, promotes cell proliferation, and alters the cell cycle
+%NDFIP1 is a direct target of miR-155; MiR-155 promotes uveal melanoma cell proliferation and invasion by regulating NDFIP1 expression.
+%=> good guy: Zhang et al\cite{Zhang2019a} report that miR-873 promotes Warburg effect in HCC cells by increasing glucose uptake, extracellular acidification rate (ECAR), lactate production, and ATP generation, and decreasing oxygen consumption rate (OCR) in HCC cells. Mechanistically, we show that miR-873 activates the key glycolytic proteins AKT/mTOR via targeting NDFIP1 which triggers metabolic shift. We further demonstrate that enhanced glycolysis is essential for the role of miR-873 to drive HCC progression. hepatocellular carcinoma\cite{Zhang2019a}
+% MiR-873 promotes the proliferation, migration, and invasion of liver cancer cells via NDFIP1 in HEK293T cell.
+%  the adaptor protein Nedd4-family interacting protein 1 (NDFIP1) plays a key role in the ubiquitination and nuclear translocation of PTEN. It represses cell proliferation of melanoma and thus acts as a tumor suppressor.(PMID: 29333944)
+
+%DKC1 (dyskeratin) is related with HNSCC\cite{Smith2010}.
+%DKC1 is the tumor suppressor gene in HNSCC
+% Fanconi anemia (FA) and dyskeratosis congenita (DC) are rare inherited syndromes that cause head and neck squamous cell cancer (HNSCC).
+
+The 9 out of 20 positive and negative prognostic genes underlined has been also suggested by published studies using TCGA cohort, in-house cohort, or experiments in vitro and in vivo.
 
 \end{MyColorPar} % marked as red
+
+
+
+\begin{outline} % still blue
+In conclusion, 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are associated with the prognosis of OS in our study.
+Comparison with previous publications or database analyses, 
+
+\1 The 12 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using SurvExpress with TCGA cohort
+
+\1 The 12 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using TCGA HNSCC cohort from \acrfull{hpa}. Moreover, overexpression of ubiquitin specific peptidase 10 (USP10), one of autophagy related genes, has poor prognostic impact on HNSCC, which has been proved at mRNA and protein level.\cite{Ren2020}
+
+\1 The 10 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using GSE2837 dataset other than TCGA cohort.
+
+\1 The 9 out of 20 positive and negative prognostic genes underlined has been also suggested by published studies using TCGA cohort, in-house cohort, or experiments in vitro and in vivo.
+
+\end{outline}
+
+
 
 
 \end{MyColorPar}
