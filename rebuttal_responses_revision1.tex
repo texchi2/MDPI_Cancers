@@ -322,6 +322,18 @@ There is several useful web-tools for survival analysis, such as cBioportal\cite
 %有文章為證1. Lawrence, M. S. et al. Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature 517, 576–582 (2015).\cite{Lawrence2015a}
 %datasets for each cancer type that include exactly the same prediction and outcome variables and consider comparable target populations. Currently, such data is simply not available.
 
+The Dickkopf1 (DKK1) gene encodes a protein that was mainly involved in Wnt and other signaling pathways.
+Inhibition of DKK1 in Hep-2 cells reduces their proliferation, colony formation, cell migration, and invasion in vitro\cite{Shi2014}.
+Pang et al\cite{Pang2018} demonstrated that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhanced their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. 
+Increased DKK1 levels in HNSCC tissues correlated with elevated VEGF-C and beta-catenin\cite{Shi2014}.
+DKK1 expression was significantly associated with smoking, alcohol abuse, sex, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}.
+The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Overexpression of DKK1 indicated adverse OS in bladder urothelial carcinoma (BLCA), HNSCC\cite{Chakraborty2020}\cite{Hu2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC leading to the worst prognosis of the patients. 
+%\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}(non-TCGA)\cite{Hu2020}\cite{Wei2020}
+%until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).\cite{Wei2020}
+%using http://gepia2.cancer-pku.cn/detail.php?gene=DKK1 => \cite{Tang2019}
+%GEPIA is a commonly used interactive website that plots expression profiles of given genes (from TCGA database)
+%The analysis of prognosis was conducted by using the UALCAN, Gene Expression Profiling Interactive Analysis (GEPIA2)\cite{Tang2019}, and DriverDBv3 databases.
+
 Conclusion: TCGA database is representative for HNSCC.
 
 \end{MyColorPar}
@@ -584,13 +596,23 @@ Our workflow has advantage to find an optimal cutpoint of those \acrshort{rna} e
 %因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
 
  
-\subsubsection{HPA} still TCGA's RNA-Seq
+\subsubsection{HPA} %still TCGA's RNA-Seq
 The Human Protein Atlas project (HPA) Proteome analysis is based on26941 antibodies targeting 17165 unique proteins. The HPA's Pathology Atlas makes analysis of each protein in patients, using immunohistochemistry (IHC) analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
 All transcriptomics data has been retrieved from the Cancer Genome Atlas and all proteomics data has been generated in-house using the same antibodies.
 Our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020\-11\-19). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
 Moreover, overexpression of ubiquitin specific peptidase 10 (USP10), one of autophagy related genes, has poor prognostic impact on HNSCC, which has been proved at mRNA and protein level.\cite{Ren2020}
 % 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
-found at Human Protein Atlas dataset (HPA) https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/head+and+neck+cancer
+found at Human Protein Atlas dataset (HPA, available at https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/\\head+and+neck+cancer).
+(Please see Figure \ref{fig:fig_HPA_USP10})
+
+\begin{figure}
+\raggedleft
+\includegraphics[width=14cm]{Answer_3-1_USP10.pdf}
+\caption{The query results from HPA: Kaplan-Meier plots of  ubiquitin specific peptidase 10 (USP10) with cutoff by mRNA \textcolor{red}{high expression} and \textcolor{blue}{low expression} groups (P-value = 0.0018).
+Overexpression of USP10 has poor prognosis on HNSCC.}
+\label{fig:fig_HPA_USP10}
+\end{figure}
+\clearpage
 
 
 % Version: 3.0.2 Date: 2015/06/11 SurvNet
@@ -756,27 +778,7 @@ Comparison with previous publications or database analyses,
 
 
 
-\section{linear regression}
-%Highlights
-% https://quicklatex.com
-\begin{flushleft}
-% equation
-%\begin{math}
-Linear regression equation (without error term)\par
-\\[1cm]
-ground truth Y:\\[0.5cm]
-predicted $\hat Y$:\\[0.3cm]
-$\hat Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n$
-\linebreak
-\linebreak
-input $X_1...n$
-\\[0.5cm]
-(predicted Y, output)
-intercept
-slope
-independent (input) \Times
-%\end{math}
-\end{flushleft}
+
 
 %\reftitle{References}
 
