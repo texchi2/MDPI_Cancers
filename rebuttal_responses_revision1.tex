@@ -129,24 +129,34 @@
 %MDPI Branch Office, Tianjin
 Assistant Editor of Cancers%\newline
 
-Jan 29, 2021
+Feb 2, 2021
 
 Dear Dr. Aubree Zhu:
 
-Enclosed, please find our revised manuscript (cancers-1082127) entitled "A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma" by Chi et al., which we wish to be considered for publishing as a research article in Cancers. We greatly appreciate your time in serving as the editor handling this manuscript and also thank the reviewers for their critical comments and suggestions on our manuscript.
+Enclosed, please find our revised manuscript (cancers-1082127) entitled "A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma" by Chi et al., which we wish to be considered for publishing as a research article in Cancers. We appreciate your time serving as the editor handling this manuscript and thank the reviewers for their critical comments and suggestions on our manuscript.
 
-We have since performed additional analysis, experiment and revised the manuscript accordingly to address their critical comments and suggestions in a point-by-point manner, 
-%{%
-1) the description of the rationale that how to pick up the Thymosin Beta-4 X-Linked (TMSB4X) in details, 2) the statistical analysis of MALDI imaging mass spectrometry and 3) the IHC staining with positive and negative control images and further analysis of nuclear TMSB4X staining. 
-We re-wrote the introduction in detail and re-examined the tissue microarray slides according to the suggestion by reviewer \#1.
-%}
+We have since performed the additional literature review and revised the manuscript accordingly to address their critical comments and suggestions in a point-by-point manner, 
 
-According to the editor's comments, we have the manuscript checked for English grammar and reformat Table 1 by rotating 90 degrees to portrait mode. %（Table 1 轉正)
 
 %{%
-According to the reviewers' comments, we added new Figure 1C, 2, S2, S3, and Table S2. We also replaced Figure 3D and 4A with high magnitude images from the same slides. We transferred the original Figure 2 into supplementary Figure S1 to enhance the rationale and removed the old supplementary Table S1.
+% {2-4}
+"Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use."\\
+We re-wrote the Introduction in detail according to the suggestion by reviewer \#2 (comment No 4).
 %}
 
+% {3-1}
+"Are the conclusions supported by the results?
+Only computer computing in this research to support 20 candidate biomarkers, ... are all heavily associated with the prognosis of OS.
+There is little information provided. The authors should provide more evidence to support this article."\\
+We provide more evidence by additional analysis of TCGA and GEO databases. Moreover, we reviewed literature that supports the prognostic impact of these candidate genes.
+We re-wrote the Discussion with additional information according to the suggestion by reviewer \#3.
+%}
+%{% Answer_3-1_USP10.pdf, Answer_2-1.pdf
+According to the reviewers' comments, we added new supplementary Figure S1, S2 %, S2, S3, and Table S2. We also replaced Figure 3D and 4A with high magnitude images from the same slides. We transferred the original Figure 2 into supplementary Figure S1 
+to provide more evidence from the significant literature review.
+%}
+
+According to the editor's comments, we have the manuscript checked for English grammar and reformatted Table 1 by rotating 90 degrees to portrait mode. %
 We wish our revised manuscript could be satisfied and accepted for publication in Cancers. Thanks very much for the kind helps and the reviewers' critical comments.
 
 Kind regards,
@@ -158,10 +168,9 @@ Graduate Institute of Biomedical Informatics,
 College of Medical Science and Technology,
 
 Taipei Medical University,
-
 Taipei, Taiwan
 
-%2) [cancers-1082127_main_redMarked] 自動化 by latex:
+%2) [cancers-1082127_main_redMarked] 自動化 by latex: red marked on page xx line xx
 %"Track Changes" function in latex => by latexdiff
 %Some options, taken from the documentation, include:
 %UNDERLINE—added text is wavy-underlined and blue, discarded text is struck out and red;
@@ -175,9 +184,8 @@ Taipei, Taiwan
 \pagebreak
 
 \section{rebuttal} % Response2Referees
-We greatly appreciate the reviewers for their helpful suggestions and critical comments on our manuscript. The detailed point-by-point reply to the reviewer’s comments are as follows (marked as \textcolor{blue}{blue}). 
-And the revised portions in the manuscript are indicated in \textcolor{red}{red}.
-
+We much appreciate the reviewers for their helpful suggestions and critical comments on our manuscript. The detailed point-by-point reply to the reviewer's comments are as follows (marked as \textcolor{blue}{blue}). 
+Moreover, the revised portions in the manuscript are indicated in \textcolor{red}{red}.
 %Reviewer #1(Technical Comments to the Author):
 %   The ms investigates an interesting and timely topic. However, the discovery cohort involves a small sample size and throughout the analysis, the issue of correcting the obtained p-values for multiple comparisons is not addressed. Hence, the evidence for zooming into TMSB4X is not convincing.
 
@@ -187,7 +195,6 @@ And the revised portions in the manuscript are indicated in \textcolor{red}{red}
 
 Comments from the reviewer \#1:
 
-Comments and Suggestions for Authors
 The authors have described the effectiveness of RNA sequencing as a tool for exploring prognostic factors; they have also performed a large-scale analysis using the TCGA cohort, which is a very attractive analysis method. I have a few minor questions.
 
 This is an attractive analysis method and I would like to know more details.
@@ -198,7 +205,7 @@ It is generally known that high expression of EGFR is a poor prognostic factor i
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comments and thank for his/her agreement of our analysis using the TCGA cohort.
+We appreciate the reviewer for the critical comments and thanks for the agreement with our analysis using the TCGA cohort.
 %[我的 candidate 中為什麼沒有 EGFR];  
 In our analysis, the \acrshort{egfr} is ranked at 5707 from 20500 protein-coding genes %5708-1
 by Kaplan-Meier estimate with the log-rank test P-value as 0.0495. The \acrshort{egfr} is identified as one of those poor prognostic factors as well. %However, it is far from the top 20 candidates.
@@ -211,7 +218,7 @@ As in our manuscript mentioned,
 In a multivariate analysis, tumor site, tumor level of \acrshort{egfr}, and tumor level of TGF-$\alpha$ (\acrshort{egfr} ligand) were statistically significant predictors of disease-free survival of \acrshort{hnscc} patients\cite{Rusch1996}\cite{Grandis1998}.
 Since that breakthrough discovery and validation, the \acrshort{egfr} monoclonal antibody (cetuximab)\cite{Bonner2006a} and \acrshort{egfr} \acrshort{tki} (such as gefitinib, erlotinib, osimertinib) were developed to treat advanced \acrshort{hnscc}. Although 90\% of \acrshort{hnscc} has overexpression of \acrshort{egfr}, cetuximab has only 10\% to 20\% response rate on those patients\cite{Johnson2020}. So far, cetuximab is still the only drug of choice with proven efficacy, which targeted the selected \acrshort{hnscc} patients\cite{Taberna2019}.
 %citing the line number and exact change, marked in \textcolor{red}{Red from page 6 (line 16) to page 7 (line 17)}
-Thus, we wish the further validations of our meaningful hypotheses of candidate to explore more useful drug of choice in the treatment of \acrshort{hnscc} patients.
+Thus, we wish the further validations of our meaningful hypotheses of the candidate to explore more useful drug of choice in the treatment of \acrshort{hnscc} patients.
 % a list from literature review, 留 下少於  50 articles mentioned candidates
 %HNSCC_survivalAnalysis_marginS_EGFR.Rda
 %HNSCC_survivalAnalysis_marginS_EGFR.xlsx
@@ -228,19 +235,19 @@ DNA alteration (mutation/amplification) is also an influential prognostic factor
 Answer
 
 We appreciate the reviewer for reminding the importance of DNA alteration in survival analysis.
-Those different types of omics data measured for the same patients (called multi-omics data) are currently under investigation across several disciplines such as genomics (i.e. DNA mutation/amplification, single nucleotide polymorphisms), %copy number variation), 
-epigenomics, transcriptomics (i.e. RNA expression), proteomics, metabolomics and microbiomics.
+Those different types of omics data measured for the same patients (called multi-omics data) are currently under investigation across several disciplines such as genomics (i.e., DNA mutation/amplification, single nucleotide polymorphisms), %copy number variation), 
+epigenomics, transcriptomics (i.e., RNA expression), proteomics, metabolomics, and microbiomics.
 The usefulness of multi-omics data for the prediction of HNSCC outcome is expected.
 %such as the (censored) survival time.
-Moritz Herrmann et al.(2020) observed that using multi-omics and survival data can slightly improve the performance of prediction methods for particular datasets, such as TCGA HNSCC\cite{Herrmann2020}.
+Moritz Herrmann et al.(2020) observed that using multi-omics and survival data can slightly improve prediction methods for particular datasets, such as TCGA HNSCC\cite{Herrmann2020}.
 %It is limited that the utility of multi-omics data for prediction purposes in the considered TCGA studies\cite{Herrmann2020}.
 %18 cancer datasets from The Cancer Genome Atlas (TCGA) 
-According to their study, %the multi-omics structure have a slightly better prediction performance than naive (0.562 vs.	0.557 ) with favoring clinical variables leads to better prediction results for HNSCC. %likelihood-based boosting (CoxBoost and CoxBoost favoring)
+According to their study, %the multi-omics structure have a slightly better prediction performance than naive (0.562 vs. 0.557 ) with favoring clinical variables leads to better prediction results for HNSCC. %likelihood-based boosting (CoxBoost and CoxBoost favoring)
 % Exemplary t-tests comparing blockForest with CoxBoost favoring and the Clinical only model showed no significant differences in performance. 
 % blockForest also offers the possibility of favoring clinical covariates using the argument always.select.block of the blockfor function
 %Last but not the least, multi-omics data are structured: the variables are partitioned into (non overlapping) groups. 
 % ***
-the survival analysis of TCGA HNSCC dataset by blockForest method (with multi-omics and clinical variables) has a similar prediction performance than that by Cox's model (with clinical variables alone). %from The Cancer Genome Atlas (TCGA) 
+the survival analysis of the TCGA HNSCC dataset by blockForest method (with multi-omics and clinical variables) has a similar prediction performance than Cox's model (with clinical variables alone). %from The Cancer Genome Atlas (TCGA) 
 They also reported the performance C-index as 0.582 [CI: 0.554, 0.610] in blockForest method and 0.554 [CI: 0.519, 0.588] in Cox's model\cite{Herrmann2020}.
 
 % 小心光茫太甚  Well-established prognostic clinical variables: prioritize
@@ -249,8 +256,8 @@ They also reported the performance C-index as 0.582 [CI: 0.554, 0.610] in blockF
 %*** Taking this structure into account can protect the predictive information that transcriptomics (e.x. RNA-Seq) or low-dimensional clinical variables might get lost within the huge amount of genomics (e.x. DNA mutation/amplification, copy number variation) data\cite{Boulesteix2011}\cite{Herrmann2020}.
 DNA amplification will usually be one of the causes to overexpress the gene.
 Moreover, transcriptomics study is helpful in drug discovery. For example, the overexpressed gene is possible to be a drug-targetable candidate\cite{Park2015}. After thoughtful validation in vitro/in vivo then pathway study, the EGFR inhibitory leads were constructed by antibody design or chemical compound screening\cite{Mahajan2016}. %比較容易研發 clinical and transcriptomics by ssurvival::survfit and urvival::coxph
-% the selection of clinicalfeatures by domain knowledge and studies where HNSCC was under investigation.
-The discovery of EGFR inhibitors\cite{Bonner2006a} for HNSCC therapy will encourage research community to conduct the survival analysis under abnormality in gene expression.
+% the selection of clinical features by domain knowledge and studies where HNSCC was under investigation.
+The discovery of EGFR inhibitors\cite{Bonner2006a} for HNSCC therapy will encourage the research community to conduct the survival analysis under abnormality in gene expression.
 
 % *** it needs deep learning, but less interpretability (yet under development\cite{Chaudhary2018}) (DNA+RNA and clinical dataset => multi-omics cancer study)
 %high dimensional multi-omics analysis by deep learning 
@@ -298,10 +305,10 @@ How representative is the TCGA database for HNSCC?
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the question giving an opportunity to discuss TCGA in detail.\\
+We appreciate the reviewer for the question allowing discussing TCGA in detail.\\
 To the best of our knowledge, TCGA "HNSC"(they coded) is the only single and largest collection of whole-genome sequencing and clinical survival dataset in the field of HNSCC research so far.
-When we queried from the Embase database using the MESH words "HNSCC AND TCGA", a simple statistics shows total 12,636 research articles/conference abstracts for HNSCC from 2008 to 2021, since the first TCGA article was published on 2008\cite{McLendon2008} by TCGA research network.
-Thereafter, there are 18,082 cross-cancer type articles which were produced using TCGA database. The 778 publications (Figure \ref{figure:fig_embase}, b. 778) among them were focused on HNSCC research. Those occupied about 18\% of HNSCC research articles with genetic-related topics during the same time period. Thus, about 60 TCGA HNSCC articles were published worldwide per year since 2008. %\ref{figure:fig_embase}
+When we queried from the Embase database using the MESH words "HNSCC AND TCGA," simple statistics show a total of 12,636 research articles/conference abstracts for HNSCC from 2008 to 2021, since the first TCGA article was published on 2008\cite{McLendon2008} by TCGA research network.
+After that, there are 18,082 cross-cancer type articles produced using the TCGA database. The 778 publications (Figure \ref{figure:fig_embase}, b. 778) among them were focused on HNSCC research. Those occupied about 18\% of HNSCC research articles with genetic-related topics during the same time. Thus, about 60 TCGA HNSCC articles were published worldwide per year since 2008. %\ref{figure:fig_embase}
 \begin{figure}
 \raggedleft
 \includegraphics[width=14cm]{Answer_2-1.pdf}
@@ -313,9 +320,9 @@ Thereafter, there are 18,082 cross-cancer type articles which were produced usin
 %There is 374 genes in the oral cancer gene database of Indian HNSCC; http://www.bioinformation.net/006/97320630006169.pdf
 %http://www.actrec.gov.in/OCDB/index.htm
 
-Despite of other databases carrying HNSCC genomics and clinical data we found, such as MSKCC (151 cases), Broad (74 cases), Johns Hopkins (32 cases), MD Anderson (40 cases), and NCBI Gene Expression Omnibus (GEO) datasets (e.x. GSE2837, 40 cases; GSE6631, 22 cases; GSE31056, 23 cases)\cite{Cerami2012b}\cite{Gao2013a}. However,  MSKCC, Broad and Johns Hopkins databases were processed the whole-exome sequencing instead of whole-genome sequencing in TCGA database.
+Although other databases carrying HNSCC genomics and clinical data we found, such as MSKCC (151 cases), Broad (74 cases), Johns Hopkins (32 cases), MD Anderson (40 cases), and NCBI Gene Expression Omnibus (GEO) datasets (e.x. GSE2837, 40 cases; GSE6631, 22 cases; GSE31056, 23 cases)\cite{Cerami2012b}\cite{Gao2013a}. However, the MSKCC, Broad, and Johns Hopkins databases were processed through whole-exome sequencing instead of whole-genome sequencing in the TCGA database.
 
-There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010},  SurvExpress\cite{Aguirre-Gamboa2013}, UALCAN (available at http://ualcan\\.path.uab.edu/)\cite{Chandrashekar2017a} and Gene Expression Profiling Interactive Analysis (GEPIA, GEPIA2)\cite{Tang2019}. According to the citing articles\cite{Wu2020} and their online documents, the back-end databases of those web-tools were collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO datasets (available at https://www.ncbi.nlm.nih.gov/gds). Furthermore, almost all of their survival data came from TCGA database.
+There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010},  SurvExpress\cite{Aguirre-Gamboa2013}, UALCAN (available at http://ualcan\\.path.uab.edu/)\cite{Chandrashekar2017a} and Gene Expression Profiling Interactive Analysis (GEPIA, GEPIA2)\cite{Tang2019}. According to the citing articles\cite{Wu2020} and their online documents, the back-end databases of those web-tools were collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO datasets (available at https://www.ncbi.nlm.nih.gov/gds). Furthermore, almost all of their survival data came from the TCGA database.
 %GEO (few survival features, less than 100 participate in each GSE dataset)
 %GSE31056, GSE2837 (Prognoscan)
 %there is survival feature: A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631
@@ -329,14 +336,14 @@ There is several useful web-tools for survival analysis, such as cBioportal\cite
 %DKK1 expression was significantly associated with smoking, alcohol abuse, sex, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}.
 %The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}.
 
-For example, Wei et al\cite{Wei2020} conducted the analysis of prognostic value of DKK1 expression in human cancers based on bioinformatics tools, including UALCAN, GEPIA2 (dataset from TCGA)\cite{Tang2019}, and DriverDBv3 databases.
+For example, Wei et al.\cite{Wei2020} conducted the analysis of the prognostic value of DKK1 expression in human cancers based on bioinformatics tools, including UALCAN, GEPIA2 (dataset from TCGA)\cite{Tang2019}, and DriverDBv3 databases.
 %using http://gepia2.cancer-pku.cn/detail.php?gene=DKK1 => \cite{Tang2019}
-%GEPIA is a web-based tools that plots expression profiles of given genes (dataset from TCGA database)
+%GEPIA is a web-based tool that plots expression profiles of given genes (dataset from TCGA database)
 They has suggested that overexpression of DKK1 indicates adverse OS in bladder urothelial carcinoma (BLCA)\cite{Wei2020}, HNSCC\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC leading to the worst prognosis of the patients. 
 %\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}(non-TCGA)\cite{Hu2020}\cite{Wei2020}
 
 
-Conclusion: TCGA database is representative for HNSCC.
+Conclusion: TCGA database is representative of HNSCC.
 
 \end{MyColorPar}
 
@@ -352,7 +359,7 @@ We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has
 %https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
 The GSE2837 carries
 % VUMC, VAMC, UTMDACC (1992-2005)
-relapse free survival (RFS) data, instead of overall survival in TCGA dataset,
+relapse-free survival (RFS) data, instead of overall survival in TCGA dataset,
 and microarray gene expression (by Affymetrix X3P chips U133\_X3P).
 The survival significance (Kaplan Meier P-value) is in the following probes of 10 genes:\\
 1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
@@ -360,11 +367,11 @@ The survival significance (Kaplan Meier P-value) is in the following probes of 1
 %17 out of 20 candidates
 %?DKK1 (0.253635), 
 Please see Figure \ref{figure:fig_GSE2837}.
-Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far less participants than TCGA cohort.
+Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far fewer participants than the TCGA cohort.
 %DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
 %ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
 %Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
-The 10 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using GSE2837 dataset other than TCGA cohort.
+The 10 out of 20 positive and negative prognostic genes underlined are confirmed by comparable studies using GSE2837 dataset other than the TCGA cohort.
 
 \begin{figure}
 \raggedleft
@@ -382,7 +389,7 @@ Could the authors summarize the elements of the workflow that could be used on a
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comments and thank for your agreement of our workflow in the field of cancer research.
+We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
 
 %how to apply or modify the R scripts to use on other datasets
 %\begin{itemize} %summarize the elements of the workflow
@@ -429,7 +436,7 @@ In short, the elements of the workflow with the \{codes\} shows:\\
 %Currently, less HNSCC dataset is available worldwide (Indian?) => 
 %能否套用在別的 database，可以，需要標準化(fpkm or RSEM)
 %It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.?)
-Moreover, we are planning to extend this workflow applied on other studies, such as TCGA CRC (colorectal cancer), TCGA LUAD (lung adenocarcinoma), or TCGA BRCA (breast cancer).
+Moreover, we are planning to extend this workflow applied to other studies, such as TCGA CRC (colorectal cancer), TCGA LUAD (lung adenocarcinoma), or TCGA BRCA (breast cancer).
 Then it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
 
 \begin{figure}
@@ -500,20 +507,22 @@ We appreciate the reviewer for the critical comment and modified the Introductio
 
 \begin{MyColorPar}{red}
 
-The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} is developed and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI) funded by the US government since 2005.
-TCGA represents a comprehensive genomics and clinic data from 84,392 patients among 33 major cancer types (data release 27.0 - October 29, 2020, available at https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/studied-cancers).
+
+The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} is developed and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI), funded by the US government since 2005.
+TCGA represents comprehensive genomics and clinic data from 84,392 patients among 33 major cancer types (data release 27.0 - Oct 29, 2020, available at https://www.cancer.gov/about-nci/\\organization/ccg/research/structural-genomics/tcga/studied-cancers).
 %The Cancer Genome Atlas (TCGA): The TCGA consortium, which is a National Institute of Health (NIH) initiative, makes publicly available molecular and clinical information for more than 33 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome.
 
-TCGA and other collaborated \acrfull{gdac} generated and analyzed DNA (mutation, copy number variation, methylation, simple nucleotide polymorphism, SNP), RNA (microarray, RNA-Seq, microRNA) and protein (reverse protein phase array) data derived from biospecimen. Sample types available at TCGA are: primary solid tumors, recurrent solid tumors, blood derived normal and tumor, metastatic, and solid tissue normal. 
+TCGA and other collaborated \acrfull{gdac} generated and analyzed DNA (mutation, copy number variation, methylation, simple nucleotide polymorphism, SNP), RNA (microarray, RNA-Seq, microRNA), and protein (reverse protein phased array) data derived from biospecimen. Sample types available at TCGA are primary solid tumors, recurrent solid tumors, blood-derived normal and tumor, metastatic, and solid tissue normal.  
 
 The NCI's Genomic Data Commons (GDC, available at https://portal.\\gdc.cancer.gov/) receives, processes, and distributes genomic, clinical, and biospecimen data from TCGA database and other cancer research programs. The clinical features has been defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}. The \acrshort{rnaseq} expression data has been harmonized and re-aligned against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}).
 %The old TCGA data portal (https://tcga-data.nci.nih.gov/docs/publications/tcga/) stops updating and all TCGA data was transferred to the GDC data portal .
 \acrshort{tcga}, GDC and research community offer several computational tools to the public for facilitating cancer research. %There is three categories of tools to approach the TCGA data from GDC.
 
-GDC Data Portal (available at https://portal.gdc.cancer.gov) is the official web-based TCGA data analysis tools. Other available web-based tools has been reviewed by Zhang et al.\cite{Zhang2019b} and 
+GDC Data Portal (available at https://portal.gdc.cancer.gov) is the official web-based TCGA data analysis tools. Other available web-based tools have been reviewed by Zhang et al.\cite{Zhang2019b} and 
 Matthieu Foll (availalbe at https://\\github.com/IARCbioinfo/awesome-TCGA).
-One of \acrshort{gdac}s, the Broad TCGA Data and Analyses (Broad GDAC), provides Firehose which is a repository of the TCGA public-accessible Level 3 data and Level 4 analyses. Broad GDAC Firehose is an analytical infrastructure to provide analyses algorithms not performed by the GDC (e.x. GISTIC, MutSig2CV, correlation with clinical variables, mRNA clustering etc.). 
-A web-based version of Broad GDAC Firehose is Firebrowse (available at firebrowse.org, Version: 1.1.40 , 2019\-10\-13).
+One of \acrshort{gdac}s, the Broad TCGA Data and Analyses (Broad GDAC), provides Firehose, a repository of the TCGA public-accessible Level 3 data and Level 4 analyses. Broad GDAC Firehose is an analytical infrastructure that analyses algorithms not performed by the GDC (e.x. GISTIC, MutSig2CV, correlation with clinical variables, mRNA clustering). 
+A web-based version of Broad GDAC Firehose is Firebrowse (available at firebrowse.org, Version: 1.1.40, 2019-10-13).
+
 %Python and UNIX bindings
 %R bindings
 Broad GDAC Firebrowse provides graphical tools like viewGene to explore expression levels and iCoMut to explore a mutation analysis of each TCGA disease. 
@@ -521,22 +530,22 @@ Broad GDAC Firebrowse provides graphical tools like viewGene to explore expressi
 %Second, GDC data transfer tool (available at https://gdc.cancer.gov/access-data/gdc-data-transfer-tool) allows users to access the open or controlled data. %the GDC data model, data formats
 % RESTful API
 
-GDC \acrfull{api} is designed under the \acrfull{rest} architecture and provides accessibility to external users for programmatic access to the same functionality found through GDC Portals. This includes searching, viewing, submitting and downloading subsets of data files, metadata, and annotations based on specific parameters. Moreover, if restricted data is requested, a token must be provided by the user along with the API call. This token can be downloaded directly from the GDC Portals. (this paragraph was originally published and courtesy of the National Cancer Institute)
+GDC \acrfull{api} is designed under the \acrfull{rest} architecture and provides accessibility to external users for programmatic access to the same functionality found through GDC Portals. Those functions include searching, viewing, submitting, and downloading subsets of data files, metadata, and annotations based on specific parameters. Moreover, if restricted data is requested, the user must provide a token along with the API call. This token can be downloaded directly from the GDC Portals. (courtesy of the National Cancer Institute)
 Broad GDAC Firebrowse \acrshort{rest}ful \acrshort{api} could be accessed using an R package, FirebrowseR (available at https://github.com/mariodeng/FirebrowseR)\cite{Deng2017}.
 
 % clinical
 %We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patient.
 
 %In summarize the advantages of its use.
-In summary, the advantages of applying the TCGA data for cancer research includes:
+In summary, the advantages of applying the TCGA data for cancer research include:
 \begin{outline}
-\1  To the best of our knowledge, TCGA database is the largest collection (cancer types and cohort size) of comprehensive genomics with survival data available in the field of cancer research so far. The whole-genome sequencing data has been harmonized cross all GDACs. The basic demographic data is usually available on many database. However, TCGA data has more comprehensive features, such as exposure of alcohol, asbestos, radioactive radon, tobacco smoking or cigarette, than others.
-\1  TCGA has remarkable advantage for computational and life scientists who study cancer, since useful web-tools and API are ready for analysis and visualization of TCGA data. It might be getting help easily from research community for trouble-shooting.
-\1  Many achievements of diagnoses, treatments and prevention with the TCGA data have already been published and keep growing.\cite{Tomczak2015}
+\1  To the best of our knowledge, the TCGA database is the largest collection (cancer types and cohort size) of comprehensive genomics with survival data available in the field of cancer research so far. The whole-genome sequencing data has been harmonized across all GDACs. The basic demographic data is usually available on many databases. However, TCGA data has more comprehensive features, such as exposure to alcohol, asbestos, radioactive radon, tobacco smoking, or cigarettes.
+\1  TCGA has a remarkable advantage for computational and life scientists who study cancer since useful web-tools and API are ready to analyze and visualize TCGA data. It might be getting help quickly from the research community for trouble-shooting.
+\1  Many achievements of diagnoses, treatments, and prevention with the TCGA data have already been published and keep growing.\cite{Tomczak2015}
 \end{outline}
 
 \end{MyColorPar}   % marked in red above
-In our workflow, we utilize FirebrowseR in the step 1 to receive standardized genomic and clinical data frames while avoiding data re-formatting, often causing some errors. (please also see Figure \ref{fig:workflow}, different sources of databases)
+In our workflow, we utilize FirebrowseR in step 1 to receive standardized genomic and clinical data frames while avoiding data reformatting, often causing some errors. (please also see Figure \ref{fig:workflow}, different sources of databases)
 %The other GDAC, the MD Anderson GDAC's MBatch (http://bioinformatics.mdanderson.org/tcgabatcheffects) is a website that enables scientists to identify and quantify the batch effects accompanying TCGA data set, currently according to hierarchical clustering and enhanced PCA plots.
 
 % RNA-Seq
@@ -564,22 +573,21 @@ There is little information provided. The authors should provide more evidence t
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comment. We provide more evidences mentioned below, to support the prognostic impact of these candidate genes. It needs to be further validated.
+We appreciate the reviewer for the critical comment. We provide more evidence mentioned below to support the prognostic impact of these candidate genes. It needs to be further validated.
 According to the reviewer's comment, the Discussion was modified accordingly (marked as red).
 
 \begin{MyColorPar}{red}
 
 \subsubsection*{SurvExpress} % TCGA
-SurvExpress\cite{Aguirre-Gamboa2013} is one of the
 % 2021/01/23 pdf x 12 from SurvExpress
-web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier P-value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
+SurvExpress\cite{Aguirre-Gamboa2013} is one of the web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier P-value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
 1) poor prognosis: DKK1 (0.00005), CAMK2N1 (0.000006), STC2 (0.001), PGK1 (0.01), SURF4 (0.002), USP10 (0.002), NDFIP1 (0.000008), STIP1 (0.001), DKC1 (0.01);
 %CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
 2) better prognosis: ZNF557 (0.0007), ZNF266 (0.00008), FCGBP (0.001).
 %IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
 %17 out of 20 candidates
 %?DKK1 (0.253635),
-The 12 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using SurvExpress with TCGA cohort. Please see Figure \ref{fig:fig_SurvExpress}.
+The 12 out of 20 positive and negative prognostic genes underlined are confirmed by comparable studies using SurvExpress with the TCGA cohort. Please see Figure \ref{fig:fig_SurvExpress}.
 
 % red or green is NOT by expression level
 \begin{figure}
@@ -594,17 +602,17 @@ Thus, the poor prognostic genes are marked as \textcolor{red}{red}; the better p
 
 % % SurvExpress 沒有類似的結果是因為:
 Nevertheless, the survival prediction could not be found in FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB using SurvExpress. 
-Our workflow has advantage to find an optimal cutpoint of those \acrshort{rna} expression data to maximize candidate mining coverage.
+Our workflow has the advantage to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage.
 %因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
 
  
 \subsubsection{HPA} %still TCGA's RNA-Seq
-The Human Protein Atlas project (HPA) Proteome analysis is based on26941 antibodies targeting 17165 unique proteins. The HPA's Pathology Atlas makes analysis of each protein in patients, using immunohistochemistry (IHC) analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
-All transcriptomics data has been retrieved from the Cancer Genome Atlas and all proteomics data has been generated in-house using the same antibodies.
-Our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020\-11\-19). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
-Moreover, overexpression of ubiquitin specific peptidase 10 (USP10), one of autophagy related genes, has poor prognostic impact on HNSCC, which has been proved at mRNA and protein level.\cite{Ren2020}
+The Human Protein Atlas project (HPA) Proteome analysis is based on26941 antibodies targeting 17165 unique proteins. The HPA's Pathology Atlas analyzes each protein in patients, using immunohistochemistry (IHC) analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
+All transcriptomics data has been retrieved from the Cancer Genome Atlas, and all proteomics data has been generated in-house using the same antibodies.
+Our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020-11-19). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the autophagy-related genes, has a poor prognostic impact on HNSCC, which has been proved at mRNA and protein level((HPA database, available at https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/\\head+and+neck+cancer)\cite{Ren2020}.
 % 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
-found at Human Protein Atlas dataset (HPA, available at https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/\\head+and+neck+cancer).
+%found at Human Protein Atlas dataset 
 (Please see Figure \ref{fig:fig_HPA_USP10})
 
 \begin{figure}
@@ -631,9 +639,8 @@ Overexpression of USP10 has poor prognosis on HNSCC.}
 We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from online tools: PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/PrognoScan/)\cite{Mizuno2009a}.
 %??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
 %https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
-The GSE2837 carries
-% VUMC, VAMC, UTMDACC (1992-2005)
-relapse free survival (RFS) data, instead of overall survival in TCGA dataset,
+The GSE2837 carries % VUMC, VAMC, UTMDACC (1992-2005)
+relapse-free survival (RFS) data, instead of overall survival in TCGA dataset,
 and microarray gene expression (by Affymetrix X3P chips U133\_X3P).
 The survival significance (Kaplan Meier P-value) is in the following probes of 10 genes:\\
 1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
@@ -641,27 +648,27 @@ The survival significance (Kaplan Meier P-value) is in the following probes of 1
 %17 out of 20 candidates
 %?DKK1 (0.253635), 
 Please see Figure \ref{figure:fig_GSE2837}.
-Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far less participants than TCGA cohort.
+Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far fewer participants than the TCGA cohort.
 %DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
 %ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
 %Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
-The 10 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using GSE2837 dataset other than TCGA cohort.
+The 10 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using the GSE2837 dataset other than the TCGA cohort.
 
 
 
 \subsubsection*{Review articles}
-After discovery by our workflow, we performed the literature review by Embase/Pubmed  to find the evidence of suggested 7 biomarkers in cancer research.
+After discovering using our workflow, we also performed the literature review by Embase/Pubmed to find the evidence convincing to 7 of our suggested 20 biomarkers in cancer research.
 %Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
 %through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
 %PubTator Central\cite{Wei2019} is a useful Pubmed text miner
 
 %%%%%% bad guy
-The Dickkopf1 (DKK1) gene encodes a protein that was mainly involved in Wnt and other signaling pathways.
+The Dickkopf1 (DKK1) gene encodes a protein mainly involved in Wnt and other signaling pathways.
 Inhibition of DKK1 in Hep-2 cells reduces their proliferation, colony formation, cell migration, and invasion in vitro\cite{Shi2014}.
-Pang et al\cite{Pang2018} demonstrated that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhanced their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. 
+Pang et al.\cite{Pang2018} demonstrated that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhanced their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. 
 Increased DKK1 levels in HNSCC tissues correlated with elevated VEGF-C and beta-catenin\cite{Shi2014}.
 DKK1 expression was significantly associated with smoking, alcohol abuse, sex, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}.
-The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Ovverexpression of DKK1 indicates adverse OS in bladder urothelial carcinoma (BLCA)\cite{Wei2020}, HNSCC\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC leading to the worst prognosis of the patients. 
+The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Overexpression of DKK1 indicates adverse OS in bladder urothelial carcinoma (BLCA)\cite{Wei2020}, HNSCC\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC, leading to the worst prognosis of the patients. 
 %\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}(non-TCGA)\cite{Hu2020}\cite{Wei2020}
 %Wei et al\cite{Wei2020} conducted the analysis of prognostic value of DKK1 expression in human cancers based on bioinformatics tools, including UALCAN, GEPIA2 (dataset from TCGA)\cite{Tang2019}, and DriverDBv3 databases.
 %using http://gepia2.cancer-pku.cn/detail.php?gene=DKK1 => \cite{Tang2019}
@@ -669,24 +676,27 @@ The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-
 
 
 %STC2:
-The miR-381 suppresses cell proliferation, migration and invasion in HNSCC SCC-4 cell line through targeting stanniocalcin 2 (STC2), and participates in HNSCC development probably via the FAK/PI3K/Akt/mTOR signaling pathway.\cite{Ma2020}
+The miR-381 suppresses cell proliferation, migration, and invasion in the HNSCC SCC-4 cell line through targeting stanniocalcin 2 (STC2) and participates in HNSCC development probably via the FAK/PI3K/Akt/mTOR signaling pathway.\cite{Ma2020}
 
-Phosphoglycerate kinase 1 (PGK1 or PGK-1), one of an glycolysis enzyme, is responsive in cisplatin-resistant HNSCC cell line (H-1R). The resistance is associated with up-regulated expression of ATP-binding cassette transporter genes (MDR1, MRP1, and MRP2), CD55, and PGK1 and down-regulated expression of Caveolin 1\cite{Nakamura2005}.
+% PGK1
+Phosphoglycerate kinase 1 (PGK1 or PGK-1), a glycolysis enzyme, is responsive in cisplatin-resistant HNSCC cell line (H-1R). The resistance is associated with up-regulated expression of ATP-binding cassette transporter genes (MDR1, MRP1, and MRP2), CD55, and PGK1 and down-regulated expression Caveolin 1\cite{Nakamura2005}.
 
-Surfeit gene 4 (SURF4): patients with tumors (such as glioma, breast cancer, lymphoma , pancreatic cancer, adrenocortical carcinoma, and sarcoma%; not HNSCC
-) exhibiting high SURF4 expression had significantly shorter overall survival than low SURF4 expression. SURF4 has the potential for inducing cellular transformation and cell migration in vitro and has increased tumor growth ability in vivo\cite{Kim2018a}.
+%SURF4
+Surfeit gene 4 (SURF4): patients with tumors (such as glioma, breast cancer, lymphoma, , pancreatic cancer, adrenocortical carcinoma, and sarcoma%; not HNSCC
+) exhibiting high SURF4 expression had significantly shorter overall survival than low SURF4 expression. SURF4 can induce cellular transformation and cell migration in vitro and has increased tumor growth ability in vivo\cite{Kim2018a}.
 %NIH/3T3 cells (Mus musculus, mouse), 293T cell
 %Loss of contact inhibition leads to phenotypic changes and promotes foci formation in vitro
 %http://www.canevolve.org/AnalysisResults/AnalysisResults.html
 %web-based tools survival (not TCGA?)
 
-Ubiquitin specific peptidase 10 (USP10), one of autophagy-related genes (ARGs) may serve as a prognostic biomarker and target for in various human cancers, including epithelial ovarian cancer, colorectal cancer, and HNSCC\cite{Ren2020}.
+% USP10
+Ubiquitin specific peptidase 10 (USP10), one of the autophagy-related genes (ARGs) may serve as a prognostic biomarker and target for in various human cancers, including epithelial ovarian cancer, colorectal cancer, and HNSCC\cite{Ren2020}.
 Functional annotation - by gene set variation analysis (GSVA) and gene set enrichment analysis (GSEA) - revealed that USP10 has been significantly enriched in many critical pathways correlated with tumorigenesis of HNSCC, including the p53 pathway, IL2 STAT5 signaling, TGF beta signaling, and PI3K Ak mTOR signaling\cite{Ren2020}.
 % 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
 %found at Human Protein Atlas dataset (HPA), TCGA, and (GSE6631): A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631. https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/head+and+neck+cancer
 
-FOXA2:
-Prognostic signature integrated of DNA methylation, gene expression, and clinical information provides a prognostic prediction value for HNSCC patients 
+%FOXA2
+Prognostic signature integrated of DNA methylation, gene expression, and clinical information provides a prognostic prediction value for HNSCC patients. 
 FOXA2 is significantly associated with the poor prognosis of HNSCC through the studies of CpG-based DNA methylation and RNA expression approach\cite{Shen2017a}.
 %32 HNSCC patients had both tumor and adjacent non-tumor tissue samples in TCGA cohort, which was used as the discovery set to identify differential methylation CpG sites.
 %  + 0.0256 × cg03774514 FOXA2 => "+" coefficients; higher prognostic score was significantly associated with shorter survival in the training set; 
@@ -695,10 +705,10 @@ FOXA2 is significantly associated with the poor prognosis of HNSCC through the s
 %Association between gene expression and methylation. Left panels show correlation of a AJAP1, b SHANK2, c FOXA2, d MT1A, e ZNF570, f HOXC4, and g HOXB4 expression (X-axis) with methylation (Y-axis). Right panels show Kaplan-Meier survival plots of gene expression from the TCGA cohort. 
 
 
-% non-TCGA
+% STIP1; non-TCGA
 Stress-induced phosphoprotein 1 (STIP1, also known as HOP, P60, STI1), is increased
 in the poor survival patients of ovarian cancer\cite{Chao2013}\cite{Cho2014}. T
-The auto-antibody against STIP1 in serum could be a useful diagnostic biomarker for early-staged esophageal squamous cell carcinoma\cite{Xu2017}.
+The auto-antibody against STIP1 in serum could be a useful diagnostic biomarker for early-stage esophageal squamous cell carcinoma\cite{Xu2017}.
 %STIP1 could bind to bind Hsp70 and Hsp90.
 
 
@@ -709,7 +719,7 @@ The auto-antibody against STIP1 in serum could be a useful diagnostic biomarker 
 
 
 %%%%%% good guy
-%ZNF557 is a tumor supressor in HPV-positive HNSCC???
+%ZNF557 is a tumor suppressor in HPV-positive HNSCC???
 %Oncogenic human herpesviruses (e.x. EBV and KSHV) 
 %Oncogenic human viruses are silenced through the activities of two members of the Kruppel-associated box (KRAB) domain-zinc finger protein (ZFP) (KRAB-ZFP) epigenetic silencing family, revealing a novel STAT3-KRAB-ZFP axis of virus latency.
 %Epstein-Barr virus (EBV) and Kaposi’s sarcoma-associated herpesvirus (KSHV) are silenced by SZF1 and ZNF557, two members of the KRAB-ZFP repressor family\cite{Li2018c}
@@ -718,16 +728,19 @@ The auto-antibody against STIP1 in serum could be a useful diagnostic biomarker 
 %ZNF266, % or ZNF16, HZF1?
 %MYO1H associated mandibular prognathism\cite{Sun2018}
 
+% FCGBP
 % IgG Fc binding protein ($Fc\gamma BP$), (Fc Fragment Of IgG Binding Protein) 
 Fc fragment of IgG binding protein (($Fc\gamma BP$, FCGBP) is expressed in normal thyroid and, more significantly, it is down-regulated in papillary and follicular thyroid carcinomas.\cite{ODonovan2002}\cite{Griffith2006}
 %in thyroid biopsies might help to make the difficult distinction between a thyroid follicular adenoma and a follicular carcinoma.\cite{ODonovan2002}\cite{Griffith2006}, 
 %gene ID @gene@8857
 
 %?LOC148709?, 
-%EVPLL in cDNA project,
+%EVPLL in cDNA project
+
+% PNMA5
 Paraneoplastic Ma 5 (PNMA5) promotes apoptosis signaling in HeLa (cervical cancer) and MCF-7 (breast cancer) cells\cite{Lee2016}
 
-%The endogenous ligand of G protein-coupled receptors (GPR7) is IQCN (previous name as KIAA1683), and NPB (Neuropeptide B)\cite{Andreis2005}. GPR7 is associated with poor prognosis of prostate cancer\cite{Cottrell2007}. 
+%The endogenous ligand of G protein-coupled receptors (GPR7) is IQCN (previous/former name as KIAA1683), and NPB (Neuropeptide B)\cite{Andreis2005}. GPR7 is associated with a poor prognosis of prostate cancer\cite{Cottrell2007}. 
 
 %calcium/calmodulin-dependent protein kinase II inhibitor (CAMK2N1) is the endogenous inhibitor of CAMK2, which is activated by an increased intracellular Ca2+ concentration.SYT12 plays a critical role in oral cancer and may be a novel therapeutic target. (PMID31598163)
 %Overall survival times (as determined by Kaplan-Meier analysis) were markedly longer in patients that had elevated CAMK2N1 expression compared with patients with negative or low CAMK2N1 expression. The miR-182-5p plays a vital role in controlling OSCC cell apoptosis and proliferation by regulating CAMK2N1 expression, which was found to be reduced in OSCC. Down-regulation of miR-182-5p expression attenuated tumor growth, cell survival, and proliferation in vivo through the regulation of the AKT/ERK1/2/NF-κB signaling pathways.
@@ -750,23 +763,31 @@ Paraneoplastic Ma 5 (PNMA5) promotes apoptosis signaling in HeLa (cervical cance
 %DKC1 is the tumor suppressor gene in HNSCC
 % Fanconi anemia (FA) and dyskeratosis congenita (DC) are rare inherited syndromes that cause head and neck squamous cell cancer (HNSCC).
 
-The 9 out of 20 positive and negative prognostic genes underlined has been also suggested by published studies using TCGA cohort, in-house cohort, or experiments in vitro and in vivo.
+The 9 out of 20 positive and negative prognostic genes underlined has also been suggested by published studies using TCGA cohort, in-house cohort, or experiments in vitro and in vivo.
 
 \end{MyColorPar} % marked as red
 
 \pagebreak
 
+
+
+
+
+
+
+
+
 \begin{outline} % still blue
-In conclusion, 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are associated with the prognosis of OS in our study.
+n conclusion, 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (former name as KIAA1683), and NPB, are associated with the prognosis of OS in our study.
 Comparison with previous publications or database analyses, 
 
 \1 The 12 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using SurvExpress with TCGA cohort
 
-\1 The 12 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using TCGA HNSCC cohort from \acrfull{hpa}. Moreover, overexpression of ubiquitin specific peptidase 10 (USP10), one of autophagy related genes, has poor prognostic impact on HNSCC, which has been proved at mRNA and protein level.\cite{Ren2020}
+\1 The 12 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using TCGA HNSCC cohort from \acrfull{hpa}. Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the autophagy-related genes, has a poor prognostic impact on HNSCC, which has been proved at mRNA and protein level.\cite{Ren2020}
 
-\1 The 10 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using GSE2837 dataset other than TCGA cohort.
+\1 The 10 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using the GSE2837 dataset other than the TCGA cohort.
 
-\1 The 9 out of 20 positive and negative prognostic genes underlined has been also suggested by published studies using TCGA cohort, in-house cohort, or experiments in vitro and in vivo.
+\1 The 9 out of 20 positive and negative prognostic genes underlined has also been suggested by published studies using TCGA cohort, in-house cohort, or experiments in vitro and in vivo.
 
 \end{outline}
 
