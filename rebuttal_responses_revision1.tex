@@ -315,24 +315,26 @@ Thereafter, there are 18,082 cross-cancer type articles which were produced usin
 
 Despite of other databases carrying HNSCC genomics and clinical data we found, such as MSKCC (151 cases), Broad (74 cases), Johns Hopkins (32 cases), MD Anderson (40 cases), and NCBI Gene Expression Omnibus (GEO) datasets (e.x. GSE2837, 40 cases; GSE6631, 22 cases; GSE31056, 23 cases)\cite{Cerami2012b}\cite{Gao2013a}. However,  MSKCC, Broad and Johns Hopkins databases were processed the whole-exome sequencing instead of whole-genome sequencing in TCGA database.
 
-There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010},  SurvExpress\cite{Aguirre-Gamboa2013}, and UALCAN (available at http://ualcan\\.path.uab.edu/)\cite{Chandrashekar2017a}. According to the citing articles\cite{Wu2020} and their online documents, the back-end databases of those web-tools were collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO datasets (available at https://www.ncbi.nlm.nih.gov/gds). Furthermore, almost all of their survival data came from TCGA database.
+There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010},  SurvExpress\cite{Aguirre-Gamboa2013}, UALCAN (available at http://ualcan\\.path.uab.edu/)\cite{Chandrashekar2017a} and Gene Expression Profiling Interactive Analysis (GEPIA, GEPIA2)\cite{Tang2019}. According to the citing articles\cite{Wu2020} and their online documents, the back-end databases of those web-tools were collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO datasets (available at https://www.ncbi.nlm.nih.gov/gds). Furthermore, almost all of their survival data came from TCGA database.
 %GEO (few survival features, less than 100 participate in each GSE dataset)
 %GSE31056, GSE2837 (Prognoscan)
 %there is survival feature: A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631
 %有文章為證1. Lawrence, M. S. et al. Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature 517, 576–582 (2015).\cite{Lawrence2015a}
 %datasets for each cancer type that include exactly the same prediction and outcome variables and consider comparable target populations. Currently, such data is simply not available.
 
-The Dickkopf1 (DKK1) gene encodes a protein that was mainly involved in Wnt and other signaling pathways.
-Inhibition of DKK1 in Hep-2 cells reduces their proliferation, colony formation, cell migration, and invasion in vitro\cite{Shi2014}.
-Pang et al\cite{Pang2018} demonstrated that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhanced their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. 
-Increased DKK1 levels in HNSCC tissues correlated with elevated VEGF-C and beta-catenin\cite{Shi2014}.
-DKK1 expression was significantly associated with smoking, alcohol abuse, sex, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}.
-The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Overexpression of DKK1 indicated adverse OS in bladder urothelial carcinoma (BLCA), HNSCC\cite{Chakraborty2020}\cite{Hu2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC leading to the worst prognosis of the patients. 
-%\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}(non-TCGA)\cite{Hu2020}\cite{Wei2020}
-%until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).\cite{Wei2020}
+%The Dickkopf1 (DKK1) gene encodes a protein that was mainly involved in Wnt and other signaling pathways.
+%Inhibition of DKK1 in Hep-2 cells reduces their proliferation, colony formation, cell migration, and invasion in vitro\cite{Shi2014}.
+%Pang et al\cite{Pang2018} demonstrated that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhanced their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. 
+%Increased DKK1 levels in HNSCC tissues correlated with elevated VEGF-C and beta-catenin\cite{Shi2014}.
+%DKK1 expression was significantly associated with smoking, alcohol abuse, sex, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}.
+%The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}.
+
+For example, Wei et al\cite{Wei2020} conducted the analysis of prognostic value of DKK1 expression in human cancers based on bioinformatics tools, including UALCAN, GEPIA2 (dataset from TCGA)\cite{Tang2019}, and DriverDBv3 databases.
 %using http://gepia2.cancer-pku.cn/detail.php?gene=DKK1 => \cite{Tang2019}
-%GEPIA is a commonly used interactive website that plots expression profiles of given genes (from TCGA database)
-%The analysis of prognosis was conducted by using the UALCAN, Gene Expression Profiling Interactive Analysis (GEPIA2)\cite{Tang2019}, and DriverDBv3 databases.
+%GEPIA is a web-based tools that plots expression profiles of given genes (dataset from TCGA database)
+They has suggested that overexpression of DKK1 indicates adverse OS in bladder urothelial carcinoma (BLCA)\cite{Wei2020}, HNSCC\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC leading to the worst prognosis of the patients. 
+%\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}(non-TCGA)\cite{Hu2020}\cite{Wei2020}
+
 
 Conclusion: TCGA database is representative for HNSCC.
 
@@ -568,7 +570,7 @@ According to the reviewer's comment, the Discussion was modified accordingly (ma
 \begin{MyColorPar}{red}
 
 \subsubsection*{SurvExpress} % TCGA
-SurvExpress\cite{Aguirre-Gamboa2013} is
+SurvExpress\cite{Aguirre-Gamboa2013} is one of the
 % 2021/01/23 pdf x 12 from SurvExpress
 web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier P-value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
 1) poor prognosis: DKK1 (0.00005), CAMK2N1 (0.000006), STC2 (0.001), PGK1 (0.01), SURF4 (0.002), USP10 (0.002), NDFIP1 (0.000008), STIP1 (0.001), DKC1 (0.01);
@@ -659,12 +661,11 @@ Inhibition of DKK1 in Hep-2 cells reduces their proliferation, colony formation,
 Pang et al\cite{Pang2018} demonstrated that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhanced their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. 
 Increased DKK1 levels in HNSCC tissues correlated with elevated VEGF-C and beta-catenin\cite{Shi2014}.
 DKK1 expression was significantly associated with smoking, alcohol abuse, sex, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}.
-The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Overexpression of DKK1 indicated adverse OS in bladder urothelial carcinoma (BLCA), HNSCC\cite{Chakraborty2020}\cite{Hu2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC leading to the worst prognosis of the patients. 
+The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Ovverexpression of DKK1 indicates adverse OS in bladder urothelial carcinoma (BLCA)\cite{Wei2020}, HNSCC\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC leading to the worst prognosis of the patients. 
 %\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}(non-TCGA)\cite{Hu2020}\cite{Wei2020}
-%until 2020 1. Wei, R. et al. Analyzing the prognostic value of DKK1 expression in human cancers based on bioinformatics. Ann. Transl. Med. 8, 552 (2020).\cite{Wei2020}
+%Wei et al\cite{Wei2020} conducted the analysis of prognostic value of DKK1 expression in human cancers based on bioinformatics tools, including UALCAN, GEPIA2 (dataset from TCGA)\cite{Tang2019}, and DriverDBv3 databases.
 %using http://gepia2.cancer-pku.cn/detail.php?gene=DKK1 => \cite{Tang2019}
 %GEPIA is a commonly used interactive website that plots expression profiles of given genes (from TCGA database)
-%The analysis of prognosis was conducted by using the UALCAN, Gene Expression Profiling Interactive Analysis (GEPIA2)\cite{Tang2019}, and DriverDBv3 databases.
 
 
 %STC2:
