@@ -41,7 +41,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Tex
 \usepackage[]{caption} % bf
 \newcommand{\bcaption}[2]{\caption{\textbf{#1} #2}}
+\usepackage{outlines}
+% mark in blue or red
+\usepackage{xcolor}
 
+\newenvironment{MyColorPar}[1]{%
+    \leavevmode\color{#1}\ignorespaces%
+}{%
+}%
 %\usepackage[upplemac]{inputenc} %applemac support if unicode package fails
 %\usepackage[latin1]{inputenc} %UNIX support if unicode package fails
 %...
@@ -309,6 +316,46 @@ According to the phase 3 KEYNOTE-048 study, \acrshort{pdl1} is a validated bioma
 In our previous proteomic study in 2017, \acrfull{tmsb4x} was reported to be related to tumor growth and metastasis of \acrshort{hnscc}\cite{Chi2017}. It was also found by the subsequent investigations that \acrshort{tmsb4x} engaged in tumor aggressiveness through \acrfull{emt} on pancreatic\cite{Zhang2008}, gastric\cite{Ryu2012}, colorectal\cite{Gemoll2015}, lung\cite{Huang2016}, ovarian\cite{Chu2019} and melanoma\cite{Makowiecka2019} cancers. Thus, it might be suggested that \acrshort{tmsb4x}  is possible for tumor type-agnostic therapy\cite{Yan2018} as a common biomarker crossing several types of cancer.
 %TMSB4X proteins regulate intracellular signal transduction and has been proved to overexpress in various cancers, including colorectal, lung, gastric, pancreatic, and squamous cell cancers.\cite{Chi2017}
 % https://doi.org/10.1038/s41598-017-09539-w
+
+
+
+\begin{MyColorPar}{red}
+%%%%%% revision1 added [TCGA] [2021/02/02]
+The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} is developed and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI), funded by the US government since 2005.
+TCGA represents comprehensive genomics and clinic data from 84,392 patients among 33 major cancer types (data release 27.0 - Oct 29, 2020, available at https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/studied-cancers).
+%The Cancer Genome Atlas (TCGA): The TCGA consortium, which is a National Institute of Health (NIH) initiative, makes publicly available molecular and clinical information for more than 33 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome.
+TCGA and other collaborated \acrfull{gdac} generated and analyzed DNA (mutation, copy number variation, methylation, simple nucleotide polymorphism, SNP), RNA (microarray, RNA-Seq, microRNA), and protein (reverse protein phased array) data derived from biospecimen. Sample types available at TCGA are primary solid tumors, recurrent solid tumors, blood-derived normal and tumor, metastatic, and solid tissue normal.  
+
+The NCI's Genomic Data Commons (GDC, available at https://portal.\\gdc.cancer.gov/) receives, processes, and distributes genomic, clinical, and biospecimen data from TCGA database and other cancer research programs. The clinical features has been defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}. The \acrshort{rnaseq} expression data has been harmonized and re-aligned against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}).
+%The old TCGA data portal (https://tcga-data.nci.nih.gov/docs/publications/tcga/) stops updating and all TCGA data was transferred to the GDC data portal .
+\acrshort{tcga}, GDC and research community offer several computational tools to the public for facilitating cancer research. %There is three categories of tools to approach the TCGA data from GDC.
+GDC Data Portal (available at https://portal.gdc.cancer.gov) is the official web-based TCGA data analysis tools. Other available web-based tools have been reviewed by Zhang et al.\cite{Zhang2019b} and 
+Matthieu Foll (availalbe at https://github.com/IARCbioinfo/awesome-TCGA).
+One of \acrshort{gdac}s, the Broad TCGA Data and Analyses (Broad GDAC), provides Firehose, a repository of the TCGA public-accessible Level 3 data and Level 4 analyses. Broad GDAC Firehose is an analytical infrastructure that analyses algorithms not performed by the GDC (e.x. GISTIC, MutSig2CV, correlation with clinical variables, mRNA clustering). 
+A web-based version of Broad GDAC Firehose is Firebrowse (available at firebrowse.org, Version: 1.1.40, 2019-10-13).
+%Python and UNIX bindings
+%R bindings
+Broad GDAC Firebrowse provides graphical tools like viewGene to explore expression levels and iCoMut to explore a mutation analysis of each TCGA disease. 
+
+%Second, GDC data transfer tool (available at https://gdc.cancer.gov/access-data/gdc-data-transfer-tool) allows users to access the open or controlled data. %the GDC data model, data formats
+% RESTful API
+
+GDC \acrfull{api} is designed under the \acrfull{rest} architecture and provides accessibility to external users for programmatic access to the same functionality found through GDC Portals. Those functions include searching, viewing, submitting, and downloading subsets of data files, metadata, and annotations based on specific parameters. Moreover, if restricted data is requested, the user must provide a token along with the API call. This token can be downloaded directly from the GDC Portals. (courtesy of the National Cancer Institute)
+Broad GDAC Firebrowse \acrshort{rest}ful \acrshort{api} could be accessed using an R package, FirebrowseR (available at https://github.com/mariodeng/FirebrowseR)\cite{Deng2017}.
+
+% clinical
+%We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patient.
+
+% to summarize the advantages of its use.
+The highlights of the advantages of applying the TCGA data for cancer research include:
+\begin{outline}
+\1  To the best of our knowledge, the TCGA database is the largest collection (cancer types and cohort size) of comprehensive genomics with survival data available in the field of cancer research so far. The whole-genome sequencing data has been harmonized across all GDACs. The basic demographic data is usually available on many databases. However, TCGA data has more comprehensive features, such as exposure to alcohol, asbestos, radioactive radon, tobacco smoking, or cigarettes.
+\1  TCGA has a remarkable advantage for computational and life scientists who study cancer since useful web-tools and API are ready to analyze and visualize TCGA data. It might be getting help quickly from the research community for trouble-shooting.
+\1  Many achievements of diagnoses, treatments, and prevention with the TCGA data have already been published and keep growing.\cite{Tomczak2015}
+\end{outline}
+
+\end{MyColorPar}
+%%%%%% end of additional revision1
 
 In summary, identifying predictive biomarkers for selecting standard-of-care or advanced systemic therapy\cite{Cristina2019} in \acrshort{hnscc} is crucial. 
 However, there are three challenges of biomarker discovery from survival analysis, so far.
@@ -748,14 +795,197 @@ The other  \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evalu
 (ClinicalTrials.gov Identifier: NCT01968109) and II-IVA\cite{Neal2019} (ClinicalTrials.gov Identifier: NCT04080804) studies.
 
 Although we combined the power of genome-wide scanning and an optimal cutoff finder for Kaplan-Meier survival analysis, the study has some limitations. We are aware of the importance of direct assessment of protein products comprising the basic functional units in cancer cells' biological processes. The announcement of the Cancer Proteome Atlas (\acrshort{tcpa}, http://tcpaportal.org) excited the cancer research community\cite{Li2013c}\cite{Li2017b}. By the utility of the \acrfull{rppa} or \acrfull{rpma}, a microarray of "Western blots" in the \acrshort{tcpa} could help to test our hypotheses.
-However, there are only 237 antibodies available so far. We found our 20 candidates are not included in the \acrshort{tcpa} database (v3.0\cite{Chen2019}).
+However, there are only 237 antibodies available so far. We found that our candidates are not included in the \acrshort{tcpa} database (v3.0\cite{Chen2019}) yet. %  USP-10 in HPA
 %> semi_join(pvalueTex_bad, HPA_bad, by=c("V1"="Gene"))
 %validation at protein level:
-At the same time, we found our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa}
-(available at https://www.proteinatlas.org/humanproteome/\newline
-pathology/head+and+neck+cancer, accessed 28 September 2020). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+%At the same time, we found our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteomepathology/head+and+neck+cancer, accessed 28 September 2020). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
 % > semi_join(pvalueTex_good, HPA_good, by=c("V1"="Gene"))
 %There are 628 genes that consensus of pvalue005KM (6429 genes) and HPA (bad+good in HNSCC)
+%%%%%%%%%% modified discussion
+\begin{MyColorPar}{red}
+We utilized other approaches to validate our candidates.
+
+\subsubsection*{Analysis by web-tools}
+After discovering using our workflow, we also used the web-tools to find the evidence convincing up to 12 of our suggested 20 biomarkers in TCGA and GSE2837 cohort.
+%\subsubsection*{SurvExpress} % TCGA
+% 2021/01/23 pdf x 12 from SurvExpress
+SurvExpress\cite{Aguirre-Gamboa2013} is one of the web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier P-value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
+1) poor prognosis: DKK1 (0.00005), CAMK2N1 (0.000006), STC2 (0.001), PGK1 (0.01), SURF4 (0.002), USP10 (0.002), NDFIP1 (0.000008), STIP1 (0.001), DKC1 (0.01);
+%CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
+2) better prognosis: ZNF557 (0.0007), ZNF266 (0.00008), FCGBP (0.001).
+%IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
+%17 out of 20 candidates
+%?DKK1 (0.253635),
+The 12 out of 20 positive and negative prognostic genes underlined are confirmed by comparable studies using SurvExpress with the TCGA cohort. Please see Supplementary Figure 1. %\ref{fig:fig_SurvExpress}.
+% moved to supplementary file
+
+
+% % SurvExpress 沒有類似的結果是因為:
+Nevertheless, the survival prediction could not be found in FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB using SurvExpress. 
+Our workflow has the advantage to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage.
+%因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
+
+ 
+%\subsubsection{HPA} %still TCGA's RNA-Seq
+The Human Protein Atlas project (HPA) Proteome analysis is based on26941 antibodies targeting 17165 unique proteins. The HPA's Pathology Atlas analyzes each protein in patients, using immunohistochemistry (IHC) analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
+All transcriptomics data has been retrieved from the Cancer Genome Atlas, and all proteomics data has been generated in-house using the same antibodies.
+Our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020-11-19). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the autophagy-related genes, has a poor prognostic impact on HNSCC, which has been proved at mRNA and protein level((HPA database, available at https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/head+and+neck+\\cancer)\cite{Ren2020}.
+% 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
+%found at Human Protein Atlas dataset 
+(Please see Supplementary Figure 2.) %\ref{fig:fig_HPA_USP10})
+% moved to Supplementary
+
+
+
+% Version: 3.0.2 Date: 2015/06/11 SurvNet
+%Preloaded TCGA  data is also available for analysis.
+%DKK1 has the P-value 1.99328e-07 of multivariable Cox proportional hazards regression model, which was reported by network-based biomarkers research tools (SurvNet, accessed at http://bioinformatics.mdanderson.org/main/SurvNet; saved as supplementary file SurvNet\_HNSCC\_result.tsv)\cite{Li2012a}. %gene regulatory or protein interaction network
+% cited by 10 articles
+% he P-values pi from a univariable Cox proportional hazards regression model, which quantifies how significantly the molecular profiling data of the gene correlate with the patient survival data. 
+% SurvNet also calculates the mutivariable Cox P-values for each subnetwork (a group of genes) to validate their clinical utility.
+%The network files are in a '.dot' format that can be visualized by GraphViz (http://www.graphviz.org)
+
+%\subsubsection*{GSE2837} % non-TCGA
+% from Anwser2-2
+%by GEO GSE2837 HNSCC dataset (PrognoScan)
+We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from online tools: PrognoScan (availalbe at http://dna00.\\bio.kyutech.ac.jp/PrognoScan/)\cite{Mizuno2009a}.
+%??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
+%https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
+The GSE2837 carries % VUMC, VAMC, UTMDACC (1992-2005)
+relapse-free survival (RFS) data, instead of overall survival in TCGA dataset,
+and microarray gene expression (by Affymetrix X3P chips U133\_X3P).
+The survival significance (Kaplan Meier P-value) is in the following probes of 10 genes:\\
+1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
+2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
+%17 out of 20 candidates
+%?DKK1 (0.253635), 
+Please see Supplementary figure 3.\\ %\ref{figure:fig_GSE2837}.
+Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far fewer participants than the TCGA cohort.
+%DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
+%ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
+%Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
+The 10 out of 20 positive and negative prognostic genes underlined is confirmed by comparable studies using the GSE2837 dataset other than the TCGA cohort.
+
+
+
+\subsubsection*{Review articles}
+After discovering using our workflow, we also performed the literature review by Embase/Pubmed to find the evidence convincing to 7 of our suggested 20 biomarkers in cancer research.
+%Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
+%through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
+%PubTator Central\cite{Wei2019} is a useful Pubmed text miner
+
+%%%%%% bad guy
+The Dickkopf1 (DKK1) gene encodes a protein mainly involved in Wnt and other signaling pathways.
+Inhibition of DKK1 in Hep-2 cells reduces their proliferation, colony formation, cell migration, and invasion in vitro\cite{Shi2014}.
+Pang et al.\cite{Pang2018} demonstrated that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhanced their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. 
+Increased DKK1 levels in HNSCC tissues correlated with elevated VEGF-C and beta-catenin\cite{Shi2014}.
+DKK1 expression was significantly associated with smoking, alcohol abuse, sex, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}.
+The mRNA expression of DKK1 and DKK3 was elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Overexpression of DKK1 indicates adverse OS in bladder urothelial carcinoma (BLCA)\cite{Wei2020}, HNSCC\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC, leading to the worst prognosis of the patients. 
+%\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}(non-TCGA)\cite{Hu2020}\cite{Wei2020}
+%Wei et al\cite{Wei2020} conducted the analysis of prognostic value of DKK1 expression in human cancers based on bioinformatics tools, including UALCAN, GEPIA2 (dataset from TCGA)\cite{Tang2019}, and DriverDBv3 databases.
+%using http://gepia2.cancer-pku.cn/detail.php?gene=DKK1 => \cite{Tang2019}
+%GEPIA is a commonly used interactive website that plots expression profiles of given genes (from TCGA database)
+
+
+%STC2:
+The miR-381 suppresses cell proliferation, migration, and invasion in the HNSCC SCC-4 cell line through targeting stanniocalcin 2 (STC2) and participates in HNSCC development probably via the FAK/PI3K/Akt/mTOR signaling pathway.\cite{Ma2020}
+
+% PGK1
+Phosphoglycerate kinase 1 (PGK1 or PGK-1), a glycolysis enzyme, is responsive in cisplatin-resistant HNSCC cell line (H-1R). The resistance is associated with up-regulated expression of ATP-binding cassette transporter genes (MDR1, MRP1, and MRP2), CD55, and PGK1 and down-regulated expression Caveolin 1\cite{Nakamura2005}.
+
+%SURF4
+Surfeit gene 4 (SURF4): patients with tumors (such as glioma, breast cancer, lymphoma, , pancreatic cancer, adrenocortical carcinoma, and sarcoma%; not HNSCC
+) exhibiting high SURF4 expression had significantly shorter overall survival than low SURF4 expression. SURF4 can induce cellular transformation and cell migration in vitro and has increased tumor growth ability in vivo\cite{Kim2018a}.
+%NIH/3T3 cells (Mus musculus, mouse), 293T cell
+%Loss of contact inhibition leads to phenotypic changes and promotes foci formation in vitro
+%http://www.canevolve.org/AnalysisResults/AnalysisResults.html
+%web-based tools survival (not TCGA?)
+
+% USP10
+Ubiquitin specific peptidase 10 (USP10), one of the autophagy-related genes (ARGs) may serve as a prognostic biomarker and target for in various human cancers, including epithelial ovarian cancer, colorectal cancer, and HNSCC\cite{Ren2020}.
+Functional annotation - by gene set variation analysis (GSVA) and gene set enrichment analysis (GSEA) - revealed that USP10 has been significantly enriched in many critical pathways correlated with tumorigenesis of HNSCC, including the p53 pathway, IL2 STAT5 signaling, TGF beta signaling, and PI3K Ak mTOR signaling\cite{Ren2020}.
+% 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
+%found at Human Protein Atlas dataset (HPA), TCGA, and (GSE6631): A total of 44 patients (22 HNSCC samples and 22 normal samples) were obtained from GSE6631. https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/head+and+neck+cancer
+
+%FOXA2
+Prognostic signature integrated of DNA methylation, gene expression, and clinical information provides a prognostic prediction value for HNSCC patients. 
+FOXA2 is significantly associated with the poor prognosis of HNSCC through the studies of CpG-based DNA methylation and RNA expression approach\cite{Shen2017a}.
+%32 HNSCC patients had both tumor and adjacent non-tumor tissue samples in TCGA cohort, which was used as the discovery set to identify differential methylation CpG sites.
+%  + 0.0256 × cg03774514 FOXA2 => "+" coefficients; higher prognostic score was significantly associated with shorter survival in the training set; 
+% https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=28852427
+%A multi-stage screening strategy => univariate Cox regression was used to evaluate their association with overall survival in the training set, which identified 15 CpG sites with P < 0.05. Further, SIS analysis was performed to further screen out a stable probe combination. Seven of the 15 candidate CpGs were identified, including cg13495205, cg07110405, cg03774514, cg09137696, cg19655456, cg03146625, and cg21546671 (Fig. 2c, Additional file 1: Table S1), mapped to AJAP1, SHANK2, FOXA2, MT1A, ZNF570, HOXC4, and HOXB4, respectively. Using coefficients generated from Cox model, we calculated a prognostic score for each patient based on individualized values of the seven genes (Fig. 2d): prognostic score, methylation = 0.0054 × cg13495205 AJAP1  + 0.0318 × cg07110405 SHANK2 + 0.0256 × cg03774514 FOXA2  + 0.0063 × cg09137696 MT1A  + 0.0013 × cg19655456 ZNF570 − 0.0297 × cg03146625 HOXC4  − 0.0157 × cg21546671 HOXB4 .
+%Association between gene expression and methylation. Left panels show correlation of a AJAP1, b SHANK2, c FOXA2, d MT1A, e ZNF570, f HOXC4, and g HOXB4 expression (X-axis) with methylation (Y-axis). Right panels show Kaplan-Meier survival plots of gene expression from the TCGA cohort. 
+
+
+% STIP1; non-TCGA
+Stress-induced phosphoprotein 1 (STIP1, also known as HOP, P60, STI1), is increased
+in the poor survival patients of ovarian cancer\cite{Chao2013}\cite{Cho2014}. T
+The auto-antibody against STIP1 in serum could be a useful diagnostic biomarker for early-stage esophageal squamous cell carcinoma\cite{Xu2017}.
+%STIP1 could bind to bind Hsp70 and Hsp90.
+
+
+%IL-19 specifically activated an intracellular signal and induced proliferation of the cells, which indicated that IL-19 may act in an autocrine manner in oral cancer.
+%IL19 in esophageal squamous cell carcinoma\cite{Hsing2013}, the effects of IL-19 on the esophageal SCC in vivo and in vitro. CE81T cells
+%IL-19 may be involved in the pathogenesis of systemic inflammatory diseases. IL-19 is also involved in various inflammatory diseases such as psoriasis, asthma, and rheumatoid arthritis.
+% the Chi-Mei Medical Center Institutional Review Board (IRB9705-003). n=60
+
+
+%%%%%% good guy
+%ZNF557 is a tumor suppressor in HPV-positive HNSCC???
+%Oncogenic human herpesviruses (e.x. EBV and KSHV) 
+%Oncogenic human viruses are silenced through the activities of two members of the Kruppel-associated box (KRAB) domain-zinc finger protein (ZFP) (KRAB-ZFP) epigenetic silencing family, revealing a novel STAT3-KRAB-ZFP axis of virus latency.
+%Epstein-Barr virus (EBV) and Kaposi’s sarcoma-associated herpesvirus (KSHV) are silenced by SZF1 and ZNF557, two members of the KRAB-ZFP repressor family\cite{Li2018c}
+
+
+%ZNF266, % or ZNF16, HZF1?
+%MYO1H associated mandibular prognathism\cite{Sun2018}
+
+% FCGBP
+% IgG Fc binding protein ($Fc\gamma BP$), (Fc Fragment Of IgG Binding Protein) 
+Fc fragment of IgG binding protein (($Fc\gamma BP$, FCGBP) is expressed in normal thyroid and, more significantly, it is down-regulated in papillary and follicular thyroid carcinomas.\cite{ODonovan2002}\cite{Griffith2006}
+%in thyroid biopsies might help to make the difficult distinction between a thyroid follicular adenoma and a follicular carcinoma.\cite{ODonovan2002}\cite{Griffith2006}, 
+%gene ID @gene@8857
+
+%?LOC148709?, 
+%EVPLL in cDNA project
+
+% PNMA5
+Paraneoplastic Ma 5 (PNMA5) promotes apoptosis signaling in HeLa (cervical cancer) and MCF-7 (breast cancer) cells\cite{Lee2016}
+
+%The endogenous ligand of G protein-coupled receptors (GPR7) is IQCN (previous/former name as KIAA1683), and NPB (Neuropeptide B)\cite{Andreis2005}. GPR7 is associated with a poor prognosis of prostate cancer\cite{Cottrell2007}. 
+
+%calcium/calmodulin-dependent protein kinase II inhibitor (CAMK2N1) is the endogenous inhibitor of CAMK2, which is activated by an increased intracellular Ca2+ concentration.SYT12 plays a critical role in oral cancer and may be a novel therapeutic target. (PMID31598163)
+%Overall survival times (as determined by Kaplan-Meier analysis) were markedly longer in patients that had elevated CAMK2N1 expression compared with patients with negative or low CAMK2N1 expression. The miR-182-5p plays a vital role in controlling OSCC cell apoptosis and proliferation by regulating CAMK2N1 expression, which was found to be reduced in OSCC. Down-regulation of miR-182-5p expression attenuated tumor growth, cell survival, and proliferation in vivo through the regulation of the AKT/ERK1/2/NF-κB signaling pathways.
+%CAMK2N1 operated as a tumor suppressor gene in patients with HNSCC.
+%: 26 results of cancer: ; 1 HNSCC cell line (CAL-27) all said "good guy"
+%\cite{Li2018b}
+%EMT genes (TCF3, CAMK2N1, EGFR, and IGFBP4) 
+%x c) CCLE_RNAseq_rsem_genes_tpm_20180929.txt.gz
+
+%NDFIP1:
+%The adaptor protein Nedd4-family interacting protein 1 (NDFIP1), was reported as candidate biomarker for breast cancer\cite{Tian2020}. was both better prognosis in the overall survival (OS) and relapse free survival (RFS)
+%MCF7 cells 
+%Howitt et al showed that NDFIP1 knockdown results in the loss of phosphatase and tensin homolog nuclear compartmentalization, promotes cell proliferation, and alters the cell cycle
+%NDFIP1 is a direct target of miR-155; MiR-155 promotes uveal melanoma cell proliferation and invasion by regulating NDFIP1 expression.
+%=> good guy: Zhang et al\cite{Zhang2019a} report that miR-873 promotes Warburg effect in HCC cells by increasing glucose uptake, extracellular acidification rate (ECAR), lactate production, and ATP generation, and decreasing oxygen consumption rate (OCR) in HCC cells. Mechanistically, we show that miR-873 activates the key glycolytic proteins AKT/mTOR via targeting NDFIP1 which triggers metabolic shift. We further demonstrate that enhanced glycolysis is essential for the role of miR-873 to drive HCC progression. hepatocellular carcinoma\cite{Zhang2019a}
+% MiR-873 promotes the proliferation, migration, and invasion of liver cancer cells via NDFIP1 in HEK293T cell.
+%  the adaptor protein Nedd4-family interacting protein 1 (NDFIP1) plays a key role in the ubiquitination and nuclear translocation of PTEN. It represses cell proliferation of melanoma and thus acts as a tumor suppressor.(PMID: 29333944)
+
+%DKC1 (dyskeratin) is related with HNSCC\cite{Smith2010}.
+%DKC1 is the tumor suppressor gene in HNSCC
+% Fanconi anemia (FA) and dyskeratosis congenita (DC) are rare inherited syndromes that cause head and neck squamous cell cancer (HNSCC).
+
+The 9 out of 20 positive and negative prognostic genes underlined has also been suggested by published studies using TCGA cohort, in-house cohort, or experiments in vitro and in vivo."
+
+\end{MyColorPar} % marked as red
+
+
+
+
+
+%%%%%%%5%%%%% modified end
+
 Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
 % second limitation:
 In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.

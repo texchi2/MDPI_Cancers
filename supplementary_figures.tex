@@ -1,0 +1,180 @@
+\documentclass[preprint,12pt]{elsarticle}
+
+% major revision and answer question (3 reviewers)
+%Sunday, January 24⋅22:30 – 22:55
+%Daily, until Jan 29, 2021
+
+\renewcommand{\figurename}{Supplementary Figure}
+
+% mark in blue or red
+\usepackage{xcolor}
+
+\newenvironment{MyColorPar}[1]{%
+    \leavevmode\color{#1}\ignorespaces%
+}{%
+}%
+
+\usepackage{outlines}
+
+%%% for abbreviations, or acronyms
+\usepackage[automake, acronym, nopostdot]{glossaries} 
+%\usepackage{glossary-inline}
+%\newenvironment{abbreviation}
+\makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
+\newacronym{fdr}{FDR}{false discovery rate}
+\newacronym{hpa}{HPA}{the Human Protein Atlas}
+\newacronym{hnscc}{HNSCC}{head and neck squamous cell carcinoma}
+\newacronym{tcga}{TCGA}{the Cancer Genome Atlas}
+\newacronym{tcpa}{TCPA}{the Cancer Proteome Atlas}
+\newacronym{rna}{RNA}{ribonucleic acid}
+\newacronym{rnaseq}{RNA-Seq}{RNA sequencing}
+\newacronym{lncrna}{lncRNA}{long non-coding RNA}
+%\newacronym{km}{KM}{Kaplan-Meier}
+\newacronym{rppa}{RPPAs}{reverse-phase protein arrays}
+\newacronym{rpma}{RPMA}{reverse-phase protein lysate microarray}
+
+\newacronym{mmp}{MMP}{matrix metalloproteinase}
+ %DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1
+ %ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683, and NPB
+
+\newacronym{DKK1}{DKK1}{dickkopf WNT signaling pathway inhibitor 1} 
+\newacronym{CAMK2N1}{CAMK2N1}{calcium/calmodulin dependent protein kinase II inhibitor 1} 
+\newacronym{STC2}{STC2}{stanniocalcin 2} 
+\newacronym{PGK1}{PGK1}{phosphoglycerate kinase 1} 
+\newacronym{SURF4}{SURF4}{surfeit 4} 
+\newacronym{USP10}{USP10}{ubiquitin specific peptidase 10} 
+\newacronym{NEDD4}{NEDD4}{neural precursor cell expressed, developmentally down-regulated 4}
+\newacronym{NDFIP1}{NDFIP1}{NEDD4 family interacting protein 1} 
+\newacronym{FOXA2}{FOXA2}{forkhead box A2} 
+\newacronym{STIP1}{STIP1}{stress-induced-phosphoprotein 1} 
+\newacronym{DKC1}{DKC1}{dyskeratosis congenita 1, dyskerin} 
+
+\newacronym{ZNF557}{ZNF557}{zinc finger protein 557} 
+\newacronym{ZNF266}{ZNF266}{zinc finger protein 266} 
+\newacronym{IL19}{IL19}{interleukin 19} 
+\newacronym{MYO1H}{MYO1H}{myosin 1H} 
+\newacronym{FCGBP}{FCGBP}{Fc fragment of IgG binding protein} 
+\newacronym{LOC148709}{LOC148709}{LncRNA LOC148709} 
+\newacronym{EVPLL}{EVPLL}{envoplakin-like protein} 
+\newacronym{PNMA5}{PNMA5}{paraneoplastic antigen like 5} 
+%\newacronym{KIAA1683}{KIAA1683}{IQCN, IQ Motif Containing N} 
+\newacronym{IQCN}{IQCN}{IQ motif containing N} % previous name KIAA1683
+% "IQ" refers to the first two amino acids of the motif: isoleucine (commonly) and glutamine (invariably)
+\newacronym{NPB}{NPB}{neuropeptide B} 
+
+ \newacronym{rt}{RT}{radiation therapy}
+ \newacronym{nccn}{NCCN}{National Comprehensive Cancer Network}
+ \newacronym{hif}{HIF}{hypoxia-inducible factor}
+ \newacronym{egfr}{EGFR}{epidermal growth factor receptor}
+ \newacronym{ras}{RAS}{rat sarcoma}
+ \newacronym{hras}{HRAS}{Harvey rat sarcoma viral oncoprotein}
+ \newacronym{erk}{ERK}{extracellular signal-regulated kinases}
+ \newacronym{us}{US}{United States}
+ \newacronym{fda}{FDA}{Food and Drug Administration}
+ \newacronym{tpf}{Tax-PF}{docetaxel, cisplatin, and 5-fluorouracil}
+ \newacronym{tki}{TKI}{tyrosine kinase inhibitor}
+ \newacronym{her}{HER}{human epidermal growth factor receptor}
+ \newacronym{ici}{ICI}{immune-checkpoint inhibitor}
+ \newacronym{ctla4}{CTLA-4}{cytotoxic T lymphocyte antigen 4}
+ \newacronym{pd1}{PD-1}{programmed death 1}
+ \newacronym{pdl1}{PD-L1}{programmed death ligand 1}
+ \newacronym{tim3}{TIM-3}{T-cell immunoglobulin mucin protein 3}
+ \newacronym{lag3}{LAG-3}{lymphocyte activation gene 3}
+ \newacronym{ifng}{IFN-$\gamma$}{interferon gamma}
+ \newacronym{tigit}{TIGIT}{T cell immunoglobin and immunoreceptor tyrosine-based inhibitory motif}
+ \newacronym{gitr}{GITR}{glucocorticoid-induced tumor necrosis factor receptor}
+ \newacronym{vista}{VISTA}{V-domain Ig suppressor of T-cell activation}
+ \newacronym{tmsb4x}{TMSB4X}{thymosin beta-4 X-linked}
+ \newacronym{emt}{EMT}{epithelial-mesenchymal-transition}
+ \newacronym{gdc}{GDC}{Genomic Data Commons}
+ \newacronym{nci}{NCI}{the National Cancer Institute}
+ \newacronym{gdac}{GDAC}{Genome Data Analysis Center}
+ \newacronym{rest}{REST}{Representational State Transfer} 
+ \newacronym{api}{API}{Application Programmable Interface}
+\newacronym{grch38}{GRCh38}{Genome Reference Consortium Homo sapiens genome assembly 38}
+\newacronym{fpkm}{FPKM}{Fragments per kilobase per million reads mapped}
+\newacronym{rsem}{RSEM}{RNA-Seq by Expectation-Maximization}
+\newacronym{slca}{SLC35E2A}{solute carrier family 35 member E2A}
+\newacronym{slcb}{SLC35E2B}{solute carrier family 35 member E2B}
+\newacronym{cde}{CDE}{Common Data Element}
+\newacronym{id}{ID}{identification}
+\newacronym{ajcc}{AJCC}{the American Joint Committee on Cancer}
+\newacronym{uicc}{UICC}{he Union for International Cancer Control}
+\newacronym{tnm}{TNM}{the tumor size (T), cervical lymph node metastases (N), and distal metastasis status (M)}
+\newacronym{ci95}{95\% CI}{95\% confidence interval}
+\newacronym{os}{OS}{overall survival}
+\newacronym{hr}{HR}{hazard ratio}
+\newacronym{hpv}{HPV}{human papillomavirus}
+\newacronym{ene}{ENE}{extra-nodal extension}
+\newacronym{lvsi}{LVSI}{lymph-vascular space invasion}
+\newacronym{pni}{PNI}{perineural invasion}
+\newacronym{doi}{DOI}{depth of invasion}
+\newacronym{lnd}{LND}{lymph node density}
+\newacronym{wpoi5}{WPOI-5}{worst pattern of invasion score 5}
+\newacronym{glut4}{GLUT4}{glucose transporters 4}
+\newacronym{slc2a4}{SLC2A4}{solute carrier family 2 member A4}
+\newacronym{trim24}{TRIM24}{tripartite motif-containing 24}
+\newacronym{til}{TIL}{tumor-infiltrating lymphocytes}
+\newacronym{tmb}{TMB}{tumor mutational burden}
+
+
+
+%==================
+\begin{document}
+\underline{Supplementary information}
+% title and author
+
+Supplementary figure legends:
+
+Supplementary figure 1\\
+The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of high risk and low risk groups, which is derived from risk groups optimization. %cumulative P-value plots).
+Inset color scale shows risk groups (high/low) and corresponded RNA expression in high/low.
+Thus, the poor prognostic genes are marked as red; the better prognostic genes are marked as orange.
+
+Supplementary figure 2\\
+The query results from HPA: Kaplan-Meier plots of  ubiquitin-specific peptidase 10 (USP10) with cutoff by mRNA high expression and low expression groups (P-value = 0.0018).
+Over-expression of USP10 has poor prognosis on HNSCC.
+
+Supplementary figure 3\\
+GSE2837 query results from PrognoScan: Kaplan-Meier plots of 10 genes (the cutoff of high risk and low risk groups, which is derived from cumulative P-value plots). The poor prognostic genes are marked as red; the better prognostic genes are marked as green.
+
+
+% SFigure 1, SurvExpress
+
+% red or green is NOT by expression level
+\begin{figure}
+\raggedleft
+\includegraphics[width=14cm]{Answer_3-1.pdf}
+\caption{The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{green}{low risk} groups, which is derived from risk groups optimization. %cumulative P-value plots).
+Inset color scale shows risk groups (\textcolor{red}{high}/\textcolor{green}{low}) and corresponded RNA expression in \textcolor{red}{high}/\textcolor{green}{low}.
+Thus, the poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{orange}{orange}.}
+\label{fig:fig_SurvExpress}
+\end{figure}
+\clearpage
+
+%%
+
+\begin{figure}
+\raggedleft
+\includegraphics[width=14cm]{Answer_3-1_USP10.pdf}
+\caption{The query results from HPA: Kaplan-Meier plots of  ubiquitin specific peptidase 10 (USP10) with cutoff by mRNA \textcolor{red}{high expression} and \textcolor{blue}{low expression} groups (P-value = 0.0018).
+Overexpression of USP10 has poor prognosis on HNSCC.}
+\label{fig:fig_HPA_USP10}
+\end{figure}
+\clearpage
+
+
+% from Answer2-2 GSE2837
+
+\begin{figure}
+\raggedleft
+\includegraphics[width=14cm]{Answer_2-2.pdf}
+\caption{GSE2837 query results from PrognoScan: Kaplan-Meier plots of 10 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{blue}{low risk} groups, which is derived from cumulative P-value plots). The poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{green}{green}.}
+\label{figure:fig_GSE2837}
+\end{figure}
+\clearpage
+
+\bibliographystyle{unsrt} %model1-num-names}
+\bibliography{TCGA_margin_cutoff.bib}
+
+\end{document}
