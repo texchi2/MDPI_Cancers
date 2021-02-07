@@ -571,11 +571,10 @@ The highlights of the advantages of applying the TCGA data for cancer research i
 \section*{Response to Reviewer 3 Comments}
 %Response to Referees} % rebuttal
 We much appreciate the reviewers for their helpful suggestions and critical comments on our manuscript. The detailed point-by-point reply to the reviewer's comments are as follows (marked as \textcolor{blue}{blue}). 
-Moreover, the revised portions in the manuscript are indicated in \textcolor{red}{red}.
+%Moreover, the revised portions in the manuscript are indicated in \textcolor{red}{red}.
 
 
-\subsection*{3-1}
-Comments from the reviewer \#3
+\subsection*{Comments from the reviewer \#3}
 
 Round 1:
 %Must be improved:
@@ -589,29 +588,113 @@ There is little information provided. The authors should provide more evidence t
 
 Round 2:
 The authors still did not provide any experiment results that support the finding of the manuscript.
-%  Once the authors identify TMSB4X as a target, the rest of the analysis seems fine, but their rationale for looking into TMSB4X is not strongly supported by the available data.
+
 
 
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comment and apology for inadequate evidence provided. 
-We then did experiment for mRNA expression among HNSCC cell lysates to provide more evidence below to support our discovery of those candidate genes. We modified "Material and Methods" , Results and Discussion of manuscript according the new evidence.
 
-\subsubsection*{Material and Methods}
-Quantitative real-time PCR (qRT-PCR) analysis
-\subsectionmark*{qRT-PCR analysis}
+\subsection*{Revision notes: rebuttal}  
+%Where the authors disagree with a reviewer, they must provide a clear response by a rebuttal if some of the reviewer’s comments cannot be revised. 
+%動之以情，和氣誠懇地說明原委 https://www.mdpi.com/journal/cancers/instructions#editorial_procedure
+% *** Alex: yes, please answer the reviewer politely 和氣誠懇地 and tell him that 
+%in a respectful and considerate manner.
+We appreciate the reviewer for the critical comment and apology for short of experiment results. 
+%We modified "Material and Methods",  Results and Discussion of manuscript according the new evidence.
+It is encouraged for multidisciplinary studies that use complementary computational and  experimental approaches to address challenging cancer research.
+%下一篇文章的內容。目前在計畫中，但還沒有開始進行
+These in vitro and in vivo validation experiments will be undertaken in Alex's laboratory (one of our co-authors).
+We plan to analysis on mRNA (e.x. qRT-PCR) and protein (e.x. western blot) of HNSCC cell lysate to confirm expression of those candidate genes.
+%mRNA expression level in HNSCC cell lines (其他文章已有發表 overexpression）
+The effect of over-expression and knockdown of gene by lenti-viral clones should be observed on cell function assay (e.x. proliferation, migration, and invasion) and mouse xenograft model (e.x. tumor growth). %這些都需要一年以上的時間
+%their rationale for looking into TMSB4X is not strongly supported by the available data.
+
+This bioinformatics paper is providing targets and hints for the in vitro and in vivo validation.
+We open invitation of research community by strongly support their rationale for looking into these HNSCC candidates.
+%邀請科學家們一塊兒來繼續研究下去找出幫助癌症患者的方法
+%the rest of the analysis seems fine, but 
+%文章的初衷、跨領域：如同deep leaning Keras API，推廣研究者一個有效的方法 
+We also aim to promote a reproducible research\cite{Preeyanon2014} with this workflow which will apply on their in-house HNSCC database to find more useful biomarkers. % or even other cancer types
+why reproducibility?
+
+Once those candidates are identified as the target, the compound screening could help to discover a potential drug for HNSCC therapy.
+%https://www.mdpi.com/journal/cancers/instructions
+
+%The authors should provide a separate Revision Notes file for revisions. The file should include a point-by-point response to each reviewer's comments, which the authors have received alongside the initial decision letter from the handling editor. Revision notes should clearly state the revisions the authors made to the manuscript, preferably including the subdivision title and page/line numbers to indicate where the manuscript has been edited.
+
+
+
+% rebuttal
+%Reconsider after Major Revisions: 
+%The acceptance of the manuscript would depend on the revisions. The author needs to provide a point by point response or provide a rebuttal if some of the reviewer’s comments cannot be revised. 
+
+%All reviewer comments should be responded to in a point-by-point fashion.
+
+%usually, only one round of major revisions is allowed. Authors will be asked to resubmit the revised paper within a suitable time frame, and the revised version will be returned to the reviewer for further comments.
+
+\subsubsection*{Author Appeals for a rejection, in case}
+%Authors may appeal a rejection by sending an e-mail to the Editorial Office of the journal. The appeal must provide a detailed justification, including point-by-point responses to the reviewers' and/or Editor's comments. The Managing Editor of the journal will forward the manuscript and related information (including the identities of the referees) to the Editor-in-Chief, Associate Editor, or Editorial Board member. The academic Editor being consulted will be asked to give an advisory recommendation on the manuscript and may recommend acceptance, further peer-review, or uphold the original rejection decision. A reject decision at this stage is final and cannot be reversed.
+
+...
+
+
+
+
+
+\subsection*{Material and Methods}
+
+\subsubsection{Quantitative real-time PCR (qRT-PCR) analysis}
+%\subsectionmark*{qRT-PCR analysis}
 
 DKK1 mRNA expression in Hep-2 and 293T cell lines, as well as tumor tissues from 30 pairs of LSCC specimens and adjacent non-cancer specimens, were measured using qRT-PCR as described previously [3]. The primer sequences were as follows: DKK1 forward primer: 5'-TAGAGTCTAGAACGCAAGGATCT-3' and DKK1 reverse primer: 5'-CAAAAACTATCACAGCCTAAAGGG--3'; $\beta$-actin forward primer: 5'-TTGTTACAG GAAG TCCCTTGC C-3' and $\beta$-actin reverse primer: 5'-ATGCTATCACCTCCCC TGTGTG-3'. Relative mRNA levels were calculated based on the cycle threshold (Ct) values, according to the equation: 2–ÎCt [ÎCt = Ct (DKK1) – Ct (β-actin)]. 
 All experiments were performed in triplicate.\cite{Shi2014}
 
+由 HNSCC cell lysate 測出 qRT-PCR，DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1 表現高；ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN and NPB 表現低？
 
-\subsubsection*{Results}
+然後我收集 7 genes 的 primer sequence pairs
+做 qPCR 證明在 HNSCC 口腔癌 cell lysate 中是多的。當成回答問題：experiment prove our discovered 7 (out of 20 )genes 是值得繼續探索下去。
+
+qRT-PCR and western blot analyses
+
+DKK1 mRNA expression in Hep-2 and 293T cell lines, as well as tumor tissues from 30 pairs of LSCC specimens and adjacent non-cancer specimens, were measured using qRT-PCR as described previously [3]. The primer sequences were as follows: DKK1 forward primer: 5′-TAGAGTCTAGAACGCAAGGATCT C-3′ and DKK1 reverse primer: 5′-CAAAAAC TATCACAGCCTAAAGGG-3′; β-actin forward primer: 5′-TTGTTACAG GAAG TCCCTTGC C-3′and β-actin reverse primer: 5′-ATGCTATCACCTCCCC TGTGTG-3′. Relative mRNA levels were calculated based on the cycle threshold (Ct) values, according to the equation: 2–ÎCt [ÎCt = Ct (DKK1) – Ct (β-actin)]. All experiments were performed in triplicate.
 
 
-\subsubsection*{Discussion}
+qRT-PCR primer design: primer sequence of
+DKK1 forward primer: 5′-TAGAGTCTAGAACGCAAGGATCTC-3′
+DKK1 reverse primer: 5′-CAAAAACTATCACAGCCTAAAGGG-3′
 
-\subsectionmark*{qPCR}
+FaDu cells
+STC2 forward primer: 5'-TGAAATGTAAGGCCCACGCT-3'
+STC2 reverse primer: 5'-CGAGGTGCAGAAGCTCAAGA-3'
+
+PGK1 (condition: 62dC, Ct 25)
+PGK1 forward primer: 5'-CAAGAAGTGTGCTGAGGCTGTCAC-3'
+PGK1 reverse primer: 5'-GCAGTGTCTCCACCACCTATGAT-3'
+
+SURF4 forward primer: 5'-GAT CCC CTC AGC ACC TTC CTG GAG GAT TCA AGA GAT CCT CCA GGA AGG TGC-3'
+SURF4  reverse primer: 5'-AGC TTT TCC AAA AAT CAG CAC CTT CCT GGA GGA TCT CTT GAA TTC TCC AGG AAG-3'
+
+USP10
+USP10  forward primer: 5'-AAATGCCACCGAACCTATCGGC-3'
+USP10 reverse primer: 5'-CAGCCATTCAGACCGATCTGGA-3'
+(https://www.origene.com/catalog/gene-expression/qpcr-primer-pairs/hp208343/usp10-human-qpcr-primer-pair-nm_005153)
+
+FOXA2
+FOXA2 forward primer: 5'-GGAACACCACTACGCCTTCAAC-3'
+FOXA2 reverse primer: 5'-AGTGCATCACCTGTTCGTAGGC-3'
+
+STIP1
+STIP1 forward primer: 5'-ATCCTCAGCGTCCTCTTGG‐3′
+STIP1 reverse primer: 5'-GGTGGAGGTGTTGCAATCTCTT‐3′
+(https://onlinelibrary.wiley.com/doi/full/10.1002/gcc.22136)\cite{Cho2014}
+
+
+\subsection*{Results}
+
+
+\subsection*{Discussion}
+
 
 
 \begin{outline} % still blue
