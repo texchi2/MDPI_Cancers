@@ -435,9 +435,10 @@ The workflow, shown in Figure \ref{fig:figure1}, scanned 20,500 human protein-co
 \includegraphics[width=14cm]{Figure_1_manuscript_workflow} % .PDF is better than .png
 %, height=8cm
 %\caption
-\bcaption{A workflow of \acrshort{hnscc} biomarker discovery, step 1 (blue line: main procedure) and step 2 (orange line: analysis export).}
+\bcaption{A workflow of \acrshort{hnscc} biomarker discovery, step 1 (\textcolor{blue}{blue line}: main procedure) and step 2 (\textcolor{orange}{orange line}: analysis export).}
 %Step 3 (purple line: dealing with surgical margin).
-{The "main procedure" includes data retrieving from TCGA GDC data portal, data process with merging and cleaning, then performing the survival analyses. The Cutoff engine (cutofFinder\_func.HNSCC.R) might calculate all possible Kaplan-Meier \textit{P} value to find the optimal cutoff value of RNA-Seq for subsequent Cox modeling (a draft diagram shown on the upper right corner "HNSCC cohort", the serial cut for grouping patients with low [green] or high [red] expression of a specific gene, to yield a collection of \textit{P} values; please see Materials and Methods section for details). The step 2 "analysis export" performs dissecting and selection of candidate genes by Bonferroni adjusted \textit{P} value as well as a hazard ratio of Cox model, which was based on the results from the step 1.
+{The "main procedure" includes data retrieval from TCGA GDC data portal, data process with merging and cleaning (red rectangled),% should be modified aggressively according to different sources of database)
+then performing the survival analyses. The Cutoff engine (cutofFinder\_func.HNSCC.R) might calculate all possible Kaplan-Meier \textit{P} value to find the optimal cutoff value of RNA-Seq for subsequent Cox modeling (a draft diagram shown on the upper right corner "HNSCC cohort", the serial cut for grouping patients with \textcolor{green}{low [green]} or \textcolor{red}{high [red]} expression of a specific gene, to yield a collection of \textit{P} values; please see Materials and Methods section for details). The step 2 "analysis export" performs dissecting and selection of candidate genes by Bonferroni adjusted \textit{P} value as well as a hazard ratio of Cox model, based on the results from the step 1.
 (HNSCC: head and neck squamous cell carcinoma; TCGA: the Cancer Genome Atlas; RNA-Seq: RNA sequencing; GDC: Genomic Data Commons.)}
 \label{fig:figure1}
 \end{figure}
