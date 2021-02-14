@@ -4,7 +4,7 @@
 %=================================================================
 % Journal of Personalized Medicine, JPM
 \documentclass[jpm,article,submit,moreauthors,pdftex]{Definitions/mdpi}
-\maxdeadcycles=300 % Output loop---200 consecutive dead cycles.
+\maxdeadcycles=500 % Output loop---200 consecutive dead cycles.
 
 % For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal and change "submit" to "accept". The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
 
@@ -261,13 +261,16 @@ $^{4}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Sc
 %\conference{} % An extended version of a conference paper
 
 % Abstract (Do not insert blank lines, i.e. \\) 
-\abstract{The survival analysis of the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover the gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by the patients' dichotomization for the continuous gene expression in survival analysis. There is some optimization software for cutoff determination. However, the software's predetermined cutoffs are usually set at the median or quantiles of RNA sequencing value to perform the survival analyses. There are few clinicopathological features available on their pre-processed data sets.
+\abstract{
+The survival analysis of the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover the gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by the patients' dichotomization for the continuous gene expression in survival analysis. There is some optimization software for cutoff determination. However, the software's predetermined cutoffs are usually set at the median or quantiles of RNA sequencing value to perform the survival analyses. There are few clinicopathological features available on their pre-processed data sets.
 We developed a comprehensive workflow that includes data retrieving and pre-processing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard modeling, and biomarker discovery.
 Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes. After adjustment with confounders and Bonferroni adjusted P-value, ten candidate biomarkers, named as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, are significantly associated with the poor prognosis of overall survival. At the same time, the other ten genes were over-expressed in the better survival patients, named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
-We suggest this workflow could help for biomarker discovery.}
+We suggest this workflow could help for biomarker discovery.
+}
 
 % Keywords
-\keyword{Head and Neck Squamous Cell Carcinoma (HNSCC);
+\keyword{
+Head and Neck Squamous Cell Carcinoma (HNSCC);
 %Genome Database\sep
 the Cancer Genome Atlas (TCGA);
 RNA-sequencing;
@@ -278,9 +281,11 @@ Optimal Cutoff;
 %Immuno-Oncology\sep
 %Targeted Therapy\sep
 %Systemic Therapy\sep
-Surgical Margin}
+%Surgical Margin
+}
 
-
+% I have a graphic abstract: graphic_abstract_pvalueTex.pdf
+% National Cancer Institute. Changing the dressing on a patient’s neck. https://unsplash.com/photos/IrqLPsxemQ4?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink (1950).\cite{nci1950}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -292,6 +297,14 @@ Surgical Margin}
 
 %The template details the sections that can be used in a manuscript. Note that the order and names of article sections may differ from the requirements of the journal (e.g., the positioning of the Materials and Methods section). Please check the instructions on the authors' page of the journal to verify the correct order and names. For any questions, please contact the editorial office of the journal or support@mdpi.com. For LaTeX-related questions please contact latex@mdpi.com.
 %The order of the section titles is: Introduction, Materials and Methods, Results, Discussion, Conclusions for these journals: aerospace,algorithms,antibodies,antioxidants,atmosphere,axioms,biomedicines,carbon,crystals,designs,diagnostics,environments,fermentation,fluids,forests,fractalfract,informatics,information,inventions,jfmk,jrfm,lubricants,neonatalscreening,neuroglia,particles,pharmaceutics,polymers,processes,technologies,viruses,vision
+%%
+
+\begin{figure}
+    \centering
+    \includegraphics[width=14cm]{graphic_abstract_pvalueTex.pdf}
+    \caption{(inset image courtesy of National Cancer Institute\cite{nci1950})}
+    \label{fig:my_label}
+\end{figure}
 
 \section{Introduction}
 
@@ -341,7 +354,8 @@ Broad GDAC Firebrowse provides graphical tools like viewGene to explore expressi
 %Second, GDC data transfer tool (available at https://gdc.cancer.gov/access-data/gdc-data-transfer-tool) allows users to access the open or controlled data. %the GDC data model, data formats
 % RESTful API
 
-GDC \acrfull{api} is designed under the \acrfull{rest} architecture and provides accessibility to external users for programmatic access to the same functionality found through GDC Portals. Those functions include searching, viewing, submitting, and downloading subsets of data files, metadata, and annotations based on specific parameters. Moreover, if restricted data is requested, the user must provide a token along with the API call. This token can be downloaded directly from the GDC Portals. (courtesy of the National Cancer Institute)
+GDC \acrfull{api} is designed under the \acrfull{rest} architecture and provides accessibility to external users for programmatic access to the same functionality found through GDC Portals. Those functions include searching, viewing, submitting, and downloading subsets of data files, metadata, and annotations based on specific parameters. Moreover, if restricted data is requested, the user must provide a token along with the API call. This token can be downloaded directly from the GDC Portals. (paragraph is provided here courtesy of the National Cancer Institute)
+% Articles from Cureus are provided here courtesy of Cureus Inc.
 Broad GDAC Firebrowse \acrshort{rest}ful \acrshort{api} could be accessed using an R package, FirebrowseR (available at https://github.com/mariodeng/FirebrowseR)\cite{Deng2017}.
 
 % clinical
@@ -1082,7 +1096,8 @@ We wish this bioinformatics tool will be available for the broad usage of tumor-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \authorcontributions{
 %For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``
-Conceptualization, Michael Hsiao; Funding acquisition, Yu-Chuan (Jack) Li; Methodology, Li-Hsing Chi; Resources, Alexander TH Wu; Software, Li-Hsing Chi; Supervision, Yu-Chuan (Jack) Li; Validation, Michael Hsiao; Writing - original draft, Li-Hsing Chi; Writing - review and editing, Alexander TH Wu. 
+%Conceptualization, Michael Hsiao; Funding acquisition, Yu-Chuan (Jack) Li; Methodology, Li-Hsing Chi; Resources, Alexander TH Wu; Software, Li-Hsing Chi; Supervision, Yu-Chuan (Jack) Li; Validation, Michael Hsiao; Writing - original draft, Li-Hsing Chi; Writing - review and editing, Alexander TH Wu. 
+Conceptualization, Yu-Chuan (Jack) Li; Data curation, Alexander TH Wu; Formal analysis, Li-Hsing Chi; Investigation, Michael Hsiao; Methodology, Michael Hsiao; Resources, Alexander TH Wu; Software, Li-Hsing Chi and Yu-Chuan (Jack) Li; Supervision, Michael Hsiao and Yu-Chuan (Jack) Li; Writing – original draft, Li-Hsing Chi; Writing – review and editing, Alexander TH Wu.
 All authors have read and agreed to the published version of the manuscript.}
 %'' please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.
 
@@ -1162,7 +1177,7 @@ mtbwi/index.do. Accessed 20 May 2020.}
 \externalbibliography{yes}
 %\bibliography{your_external_BibTeX_file}
 %\bibliographystyle{model1-num-names}
-\bibliography{TCGA_margin_cutoff.bib}
+\bibliography{TCGA_margin_cutoff.bib, Holistic.bib}
 
 
 %=====================================
