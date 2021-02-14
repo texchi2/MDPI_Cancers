@@ -262,9 +262,13 @@ $^{4}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Sc
 
 % Abstract (Do not insert blank lines, i.e. \\) 
 \abstract{
-The survival analysis of the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover the gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by the patients' dichotomization for the continuous gene expression in survival analysis. There is some optimization software for cutoff determination. However, the software's predetermined cutoffs are usually set at the median or quantiles of RNA sequencing value to perform the survival analyses. There are few clinicopathological features available on their pre-processed data sets.
-We developed a comprehensive workflow that includes data retrieving and pre-processing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard modeling, and biomarker discovery.
-Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes. After adjustment with confounders and Bonferroni adjusted P-value, ten candidate biomarkers, named as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, are significantly associated with the poor prognosis of overall survival. At the same time, the other ten genes were over-expressed in the better survival patients, named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
+The survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. There is some optimization software for cutoff determination. However, that software's predetermined cutoffs have been set at the median or quantiles of RNA sequencing value to perform the survival analysis. 
+%There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
+We developed a comprehensive workflow to perform biomarker discovery. It includes data retrieval, data pre-processing, feature selection, cutoff engine, Kaplan-Meier survival analysis, and Cox proportional hazard modeling.
+Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes and adjusted them with confounders and Bonferroni corrected P-value.
+The result showed that ten over-expressed genes (named DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) 
+are significantly associated with a poor prognosis of overall survival. 
+Furthermore, the other ten over-expressed genes (named ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former name as KIAA1683, and NPB) are correlated with better survival.
 We suggest this workflow could help for biomarker discovery.
 }
 
@@ -809,7 +813,8 @@ Currently, there are several common biomarkers of \acrshort{ici} under evaluatio
 The other  \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evaluated under the phase I/IIA\cite{Cristina2019}\linebreak
 (ClinicalTrials.gov Identifier: NCT01968109) and II-IVA\cite{Neal2019} (ClinicalTrials.gov Identifier: NCT04080804) studies.
 
-Although we combined the power of genome-wide scanning and an optimal cutoff finder for Kaplan-Meier survival analysis, the study has some limitations. We are aware of the importance of direct assessment of protein products comprising the basic functional units in cancer cells' biological processes. The announcement of the Cancer Proteome Atlas (\acrshort{tcpa}, http://tcpaportal.org) excited the cancer research community\cite{Li2013c}\cite{Li2017b}. By the utility of the \acrfull{rppa} or \acrfull{rpma}, a microarray of "Western blots" in the \acrshort{tcpa} could help to test our hypotheses.
+Although we combined the power of genome-wide scanning and an optimal cutoff finder for Kaplan-Meier survival analysis, the study has some limitations.
+We are aware of the importance of direct assessment of protein products comprising the basic functional units in cancer cells' biological processes. The announcement of the Cancer Proteome Atlas (\acrshort{tcpa}, http://tcpaportal.org) excited the cancer research community\cite{Li2013c}\cite{Li2017b}. By the utility of the \acrfull{rppa} or \acrfull{rpma}, a microarray of "Western blots" in the \acrshort{tcpa} could help to test our hypotheses.
 However, there are only 237 antibodies available so far. We found that our candidates are not included in the \acrshort{tcpa} database (v3.0\cite{Chen2019}) yet. %  USP-10 in HPA
 %> semi_join(pvalueTex_bad, HPA_bad, by=c("V1"="Gene"))
 %validation at protein level:
@@ -1004,6 +1009,22 @@ The 9 out of 20 positive and negative prognostic genes underlined has also been 
 Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
 % second limitation:
 In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
+
+\subsection{holistic}
+TCGA 都是手術後？TNM available yes
+discussion: limitation
+the TCGA has not collected holistic features
+癌症與身心靈的重要關係：中醫、citation?
+repentantly confess for not taking care of body and spirit, and sincere thanks for the hard work of my physical body
+自他不二
+心存正念
+1.衷心懺悔
+2.真心感謝
+3.誠意祝福
+4.永存善念
+5.心無恐懼: 情志養生
+
+祝福全世界
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods} % 4
