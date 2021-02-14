@@ -262,14 +262,14 @@ $^{4}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Sc
 
 % Abstract (Do not insert blank lines, i.e. \\) 
 \abstract{
-The survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. There is some optimization software for cutoff determination. However, that software's predetermined cutoffs have been set at the median or quantiles of RNA sequencing value to perform the survival analysis. 
+Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
 %There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
 We developed a comprehensive workflow to perform biomarker discovery. It includes data retrieval, data pre-processing, feature selection, cutoff engine, Kaplan-Meier survival analysis, and Cox proportional hazard modeling.
-Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes and adjusted them with confounders and Bonferroni corrected P-value.
+Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes and adjusted them with confounders and Bonferroni corrected \textit{P} value.
 The result showed that ten over-expressed genes (named DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) 
 are significantly associated with a poor prognosis of overall survival. 
 Furthermore, the other ten over-expressed genes (named ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former name as KIAA1683, and NPB) are correlated with better survival.
-We suggest this workflow could help for biomarker discovery.
+We suggest this workflow equipped with a cutoff-mining engine could help for biomarker discovery.
 }
 
 % Keywords
@@ -303,18 +303,48 @@ Optimal Cutoff;
 %The order of the section titles is: Introduction, Materials and Methods, Results, Discussion, Conclusions for these journals: aerospace,algorithms,antibodies,antioxidants,atmosphere,axioms,biomedicines,carbon,crystals,designs,diagnostics,environments,fermentation,fluids,forests,fractalfract,informatics,information,inventions,jfmk,jrfm,lubricants,neonatalscreening,neuroglia,particles,pharmaceutics,polymers,processes,technologies,viruses,vision
 %%
 
-\begin{figure}
-    \centering
-    \includegraphics[width=14cm]{graphic_abstract_pvalueTex.pdf}
-    \caption{(inset image courtesy of National Cancer Institute\cite{nci1950})}
-    \label{fig:my_label}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=14cm]{graphic_abstract_pvalueTex.pdf}
+%    \caption{(inset image courtesy of National Cancer Institute\cite{nci1950})}
+%    \label{fig:my_label}
+%\end{figure}
 
 \section{Introduction}
 
 Head and neck squamous cell carcinoma (\acrshort{hnscc}), including oral, oropharyngeal, and hypopharyngeal origin, is the fourth leading cancer causes of death for males in Taiwan\cite{MOHW_death2017}. The age-standardized incidence rate of \acrshort{hnscc} in males is 42.43 per 100,000 persons\cite{MOHW_incidence2018}. 
 % chemotherapy => systemic therapy
-The treatment strategies of \acrshort{hnscc} are surgery alone, systemic therapy with concurrent radiation therapy (systemic therapy/\acrshort{rt}), or surgery with adjuvant systemic therapy/\acrshort{rt} (according to \acrlong{nccn}, \acrshort{nccn} Clinical Practice Guidelines in \acrshort{hnscc}, Version 2.2020)\cite{Pfister2020a}. Despite the improvement in those interventions, the survival of \acrshort{hnscc} has improved only marginally over the past decade worldwide\cite{hpa2019}. The critical advancement of targeted therapy and immuno-oncology should benefit from emerging prognostic biomarkers, which guide the development of modern systemic therapy.
+The treatment strategies of \acrshort{hnscc} are surgery alone, systemic therapy with concurrent radiation therapy (systemic therapy/\acrshort{rt}), or surgery with adjuvant systemic therapy/\acrshort{rt} (according to \acrlong{nccn}, \acrshort{nccn} Clinical Practice Guidelines in \acrshort{hnscc}, Version 2.2020)\cite{Pfister2020a}. Despite the improvement in those interventions, the survival of \acrshort{hnscc} has improved only marginally over the past decade worldwide\cite{hpa2019}. The critical advancement of targeted therapy and immuno-oncology should benefit from emerging prognostic  biomarkers guiding modern systemic therapy.
+
+%latex https://www.latex-tutorial.com/symbols/greek-alphabet/
+\subsection*{Linear regression in biomarker discovery}
+Linear regression is useful as a concept in biomarker discovery.
+A linear regression equation that relates a Y-variable to n X-variables is written as%\\[1cm]
+\par
+%Highlights
+% https://quicklatex.com
+\begin{flushleft}
+% equation
+%\begin{math}
+
+ground truth Y (e.x. patient's survival):\\[0.5cm]
+%Y$:\\[0.3cm]
+$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$
+\linebreak
+\linebreak
+Input $X_1...n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
+\\[0.5cm]
+Coefficients $\beta_0...n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)\\[0.5cm]
+A residual (error) term is calculated as $\epsilon=Y - \hat Y$\\
+Since the model established by survival analysis, predicted value $\hat Y$ is calculated as:\\[0.3cm]
+$\hat Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n$
+\linebreak
+%(predicted Y, output) intercept, slope, independent (input) \Times
+%\end{math}
+\end{flushleft}
+Thus, the biomarker discovery strategy is survival modeling through collections of $X_1...X_n$ features from cancer datasets.
+
+
 
 %% TP53 gene => p53 protein; mutation of TP53
 Accumulative knowledge showed that some biomarkers have prognostic significance in \acrshort{hnscc}. For example, node-negative \acrshort{hnscc} patients with p53 overexpression were found to have lower survival\cite{DeVicente2004}.
@@ -336,7 +366,7 @@ In our previous proteomic study in 2017, \acrfull{tmsb4x} was reported to be rel
 % https://doi.org/10.1038/s41598-017-09539-w
 
 
-
+\subsection{A introduction of TCGA}
 %\begin{MyColorPar}{red}
 %%%%%% revision1 added [TCGA] [2021/02/02]
 The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} is developed and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI), funded by the US government since 2005.
@@ -368,7 +398,9 @@ Broad GDAC Firebrowse \acrshort{rest}ful \acrshort{api} could be accessed using 
 % to summarize the advantages of its use.
 The highlights of the advantages of applying the TCGA data for cancer research include:
 \begin{outline}
-\1  To the best of our knowledge, the TCGA database is the largest collection (cancer types and cohort size) of comprehensive genomics with survival data available in the field of cancer research so far. The whole-genome sequencing data has been harmonized across all GDACs. The basic demographic data is usually available on many databases. However, TCGA data has more comprehensive features, such as exposure to alcohol, asbestos, radioactive radon, tobacco smoking, or cigarettes.
+\1  To the best of our knowledge, the TCGA database is the largest collection (cancer types and cohort size) of comprehensive genomics with survival data available in the field of cancer research so far. 
+There are many $X_1 ... X_n$ physical and social features of patients available for survival modelling.
+The whole-genome sequencing data has been harmonized across all GDACs. The basic demographic data is usually available on many databases. However, TCGA data has more comprehensive features, such as exposure to alcohol, asbestos, radioactive radon, tobacco smoking, or cigarettes.
 \1  TCGA has a remarkable advantage for computational and life scientists who study cancer since useful web-tools and API are ready to analyze and visualize TCGA data. It might be getting help quickly from the research community for trouble-shooting.
 \1  Many achievements of diagnoses, treatments, and prevention with the TCGA data have already been published and keep growing.\cite{Tomczak2015}
 \end{outline}
@@ -399,7 +431,7 @@ Using this workflow on the \acrshort{tcga} \acrshort{hnscc} cohort, the 20,500 h
 %\caption
 \bcaption{A workflow of \acrshort{hnscc} biomarker discovery, step 1 (blue line: main procedure) and step 2 (orange line: analysis export).}
 %Step 3 (purple line: dealing with surgical margin).
-{The "main procedure" includes data retrieving from TCGA GDC data portal, data process with merging and cleaning, then performing the survival analyses. The Cutoff engine (cutofFinder\_func.HNSCC.R) might calculate all possible Kaplan-Meier P-value to find the optimal cutoff value of RNA-Seq for subsequent Cox modeling (a draft diagram shown on the upper right corner "HNSCC cohort", the serial cut for grouping patients with low [green] or high [red] expression of a specific gene, to yield a collection of P-values; please see Materials and Methods section for details). The step 2 "analysis export" performs dissecting and selection of candidate genes by Bonferroni adjusted P-value as well as a hazard ratio of Cox model, which was based on the results from the step 1.
+{The "main procedure" includes data retrieving from TCGA GDC data portal, data process with merging and cleaning, then performing the survival analyses. The Cutoff engine (cutofFinder\_func.HNSCC.R) might calculate all possible Kaplan-Meier \textit{P} value to find the optimal cutoff value of RNA-Seq for subsequent Cox modeling (a draft diagram shown on the upper right corner "HNSCC cohort", the serial cut for grouping patients with low [green] or high [red] expression of a specific gene, to yield a collection of \textit{P} values; please see Materials and Methods section for details). The step 2 "analysis export" performs dissecting and selection of candidate genes by Bonferroni adjusted \textit{P} value as well as a hazard ratio of Cox model, which was based on the results from the step 1.
 (HNSCC: head and neck squamous cell carcinoma; TCGA: the Cancer Genome Atlas; RNA-Seq: RNA sequencing; GDC: Genomic Data Commons.)}
 \label{fig:figure1}
 \end{figure}
@@ -411,18 +443,18 @@ Using this workflow on the \acrshort{tcga} \acrshort{hnscc} cohort, the 20,500 h
 
 
 The 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated at workflow step 1 (see Figure \ref{fig:figure1}) and justified by the ranking of hazard ratios.
-By uncorrected P-value below 0.05, we selected 967 genes in which \acrfull{hr} is greater than 1.5 or less than 0.5 (see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b)  multivariate plots). At the final step, a Bonferroni P-value correction was used to yield the twenty candidate genes, under the stringent criteria (see Figure \ref{fig:figure2}(c), (d)). The ten candidates, including DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, have significantly associated with the poor prognosis of \acrshort{os} (see Table \ref{table:table1}),
+By uncorrected \textit{P} value below 0.05, we selected 967 genes in which \acrfull{hr} is greater than 1.5 or less than 0.5 (see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b)  multivariate plots). At the final step, a Bonferroni \textit{P} value correction was used to yield the twenty candidate genes, under the stringent criteria (see Figure \ref{fig:figure2}(c), (d)). The ten candidates, including DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, have significantly associated with the poor prognosis of \acrshort{os} (see Table \ref{table:table1}),
 %\subsubsection{Figure 3}
 while the other ten genes were over-expressed in the better survival patients, named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB (see Table \ref{table:table3}, with their full name of genes).
-We made a volcano plot for 9416 genes by Kaplan-Meier P-value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot revealed that the most significant (Bonferroni-adjusted P-value $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
+We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot revealed that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
 
 
 %\subsubsection{Figure 2:h}
 \begin{figure}[hp]
 \centering
 \includegraphics[width=14cm]{Figure2.pdf}
-\bcaption{\acrshort{hnscc} Cox's hazard ratio and P-value plots.}
-{(a) Univariate HR versus uncorrected P-value; (b) Multivariate HR versus uncorrected P-value; (c) Univariate HR versus Bonferroni corrected P-value; and (d) Multivariate HR versus Bonferroni corrected P-value.}
+\bcaption{\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.}
+{(a) Univariate HR versus uncorrected \textit{P} value; (b) Multivariate HR versus uncorrected \textit{P} value; (c) Univariate HR versus Bonferroni corrected \textit{P} value; and (d) Multivariate HR versus Bonferroni corrected \textit{P} value.}
 \label{fig:figure2}
 \end{figure}
 
@@ -435,7 +467,7 @@ We made a volcano plot for 9416 genes by Kaplan-Meier P-value (less than 0.05, o
 \begin{table}
 %\begin{sidewaystable}[hp]
 \centering
-\caption{ The 10 candidate genes over-expressed with poor prognosis in \acrshort{hnscc} (ranked by Bonferroni adjusted P-value) }
+\caption{ The 10 candidate genes over-expressed with poor prognosis in \acrshort{hnscc} (ranked by Bonferroni adjusted \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
 \resizebox{\linewidth}{!}{
 %\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
@@ -444,7 +476,7 @@ We made a volcano plot for 9416 genes by Kaplan-Meier P-value (less than 0.05, o
 \hline
 \multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}}     & \multicolumn{2}{c|}{Kaplan-Meier survival}                                                                                   & \multicolumn{2}{c|}{Univariate~}                                                        & \multicolumn{2}{c|}{Multivariate}                                                       & \multirow{2}{*}{Remark}                     \\ 
 \cline{3-8}
-\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                      & \multicolumn{1}{c|}{P-value}               & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Adjusted \\P-value\end{tabular}} & \multicolumn{1}{c|}{HR*}                   & 95\% CI                                    & HR*                                        & 95\% CI                                    &                                             \\ 
+\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                      & \multicolumn{1}{c|}{\textit{P} value}               & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Adjusted \\\textit{P} value\end{tabular}} & \multicolumn{1}{c|}{HR*}                   & 95\% CI                                    & HR*                                        & 95\% CI                                    &                                             \\ 
 \hline
 DKK1                                           & dickkopf WNT signaling pathway inhibitor 1                 & \num{8.9e-8}                               & 0.001                                                                           & 2.266                                      & 1.666-3.082                                & 2.135                                      & 1.559-2.924                                & **                                          \\ 
 \hline
@@ -468,9 +500,9 @@ DKC1                                           & dyskeratosis congenita 1, dyske
 \hline
 \multicolumn{1}{|l!{\color{black}\vrule}}{}    & \multicolumn{1}{l!{\color{black}\vrule}}{}                 & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}                                      & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}  \\ 
 \arrayrulecolor{black}\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier Bonferroni adjusted P-value $< 0.05 $~\\~Cox's univariate and multivariate$ HR >= 1.5$ \end{tabular}}                                                                                                                                                                                                                                                              \\ 
+\multicolumn{9}{|l!{\color{black}\vrule}}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier Bonferroni adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate$ HR >= 1.5$ \end{tabular}}                                                                                                                                                                                                                                                              \\ 
 \hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{* Cox's model: P-value $< 0.001$ }                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
+\multicolumn{9}{|l!{\color{black}\vrule}}{* Cox's model: \textit{P} $< 0.001$ }                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
 \hline
 \multicolumn{9}{|l!{\color{black}\vrule}}{Remark: number of articles related with cancer research; ** as many~}                                                                                                                                                                                                                                                                                                                                                             \\
 \hline
@@ -489,14 +521,14 @@ DKC1                                           & dyskeratosis congenita 1, dyske
 %Table3. The 10 candidate genes over-expressed with better prognosis in HNSCC (ranked by Bonferroni corrected Kaplan-Meier P-value).
 \begin{table}[hp]
 \centering
-\caption{The 10 candidate genes over-expressed with better prognosis in \acrshort{hnscc} (ranked by Bonferroni corrected P-value) }
+\caption{The 10 candidate genes over-expressed with better prognosis in \acrshort{hnscc} (ranked by Bonferroni corrected \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
 \resizebox{\linewidth}{!}{%
 \begin{tabular}{|l|l|l|l|l|l|l|l|c|} 
 \hline
 \multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}} & \multicolumn{2}{l|}{Kaplan-Meier survival}                                                                                                                                                & \multicolumn{2}{c|}{Univariate~}                                                                        & \multicolumn{2}{c|}{Multivariate}                                                                       & \multicolumn{1}{l|}{\multirow{2}{*}{Remark}}  \\ 
 \cline{3-8}
-\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{P-value}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}Adjusted\\~P-value\end{tabular}} & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{l|}{}                         \\ 
+\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\textit{P} value}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}Adjusted\\~\textit{P} value\end{tabular}} & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{l|}{}                         \\ 
 \cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
 ZNF557                                         & zinc finger protein 557                                & \multicolumn{1}{l!{\color{black}\vrule}}{\textcolor[rgb]{0,0,0.471}{\num{8.6e-8}}} & \multicolumn{1}{l!{\color{black}\vrule}}{0.001}                                                      & \multicolumn{1}{l!{\color{black}\vrule}}{0.465} & \multicolumn{1}{l!{\color{black}\vrule}}{0.348-0.619} & \multicolumn{1}{l!{\color{black}\vrule}}{0.499} & \multicolumn{1}{l!{\color{black}\vrule}}{0.372-0.669} & 0                                             \\ 
 \cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
@@ -520,7 +552,7 @@ NPB                                            & neuropeptide B                 
 \hline
                                                &                                                        &                                                                                    &                                                                                                      &                                                 &                                                       &                                                 &                                                       & \multicolumn{1}{l|}{}                         \\ 
 \hline
-\multicolumn{9}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier Bonferroni adjusted P-value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textgreater{}= 1.5\\* Cox's model: P-value \textless{} 0.001\\Remark: number off articles related to cancer research; ** as many~\\lncRNA: Long non-coding RNA\end{tabular}}                                                                                                                                                                                                                 \\
+\multicolumn{9}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier Bonferroni adjusted \textit{P} value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textgreater{}= 1.5\\* Cox's model: \textit{P} value \textless{} 0.001\\Remark: number off articles related to cancer research; ** as many~\\lncRNA: Long non-coding RNA\end{tabular}}                                                                                                                                                                                                                 \\
 \hline
 \end{tabular}
 }
@@ -536,9 +568,9 @@ NPB                                            & neuropeptide B                 
 \centering
 \includegraphics[width=14cm]{TCGA_HNSC_Optimal_Overall_allPlot_unKM_P_multiHR-Figure3.pdf} % .png from PvalueplotKM_20genes_Bonf.pdf
 \bcaption{Volcano plot of genes under survival analyses.}
-{X axis: unadjusted P-value of Kaplan-Meier survival (-log10 transformed).
+{X axis: unadjusted \textit{P} value of Kaplan-Meier survival (-log10 transformed).
 Y axis: multivariate hazard ratio from Cox proportional regression model.
-Dotted line: significant Bonferroni corrected P-value. 
+Dotted line: significant Bonferroni corrected \textit{P} value. 
 Red circles mark 10 candidate genes, which impact on poor prognosis ($HR>=1.5$). Green circles mark 10 genes, which affect on better survival ($HR<=0.5$).}
 \label{fig:figure3}
 \end{figure}
@@ -548,9 +580,9 @@ Red circles mark 10 candidate genes, which impact on poor prognosis ($HR>=1.5$).
 \clearpage
 
 
-Our top 1 candidate is \acrfull{DKK1} (see Figure \ref{fig:figure4}(a)). The Kaplan-Meier curve revealed 227 patients bearing the higher expression of \acrshort{DKK1} were suffered from only 40\% of 5-year \acrshort{os} rate. In comparison, the other 187 patients with lower expression (the cutoff at -0.312(RSEM)) have been a better prognosis (adjusted P-value as $0.001$).
-Figure \ref{fig:figure4}(b)'s cumulative P-value plot showed that the uncorrected 116 P-values ($< 0.05$) were estimated by a serial cut from 125 to 290 persons for grouping the cohort in our cutoff finding procedure (cutofFinder\_func.R, see Figure \ref{fig:figure1}, "HNSCC cohort"). The smallest P-value (\num{8.9e-8}), when cut on n=187 (45.2\% of 414), was defined as optimal P-value.
-Conversely, the most associated gene with better survival is \acrfull{ZNF557}. In Figure \ref{fig:figure4}(c), a Kaplan-Meier curve revealed 264 patients bearing the higher expression of \acrshort{ZNF557} have 55\% of 5-year OS survival rate (adjusted P-value = $0.001$). The cutoff finding procedure (cutofFinder\_func.R) generated cumulative P-value plots in Figure \ref{fig:figure4}(d). There were 166 uncorrected P-values estimated by a serial cut from 125 to 290 for grouping the cohort. All was less than 0.05, and the smallest P-value (\num{8.6e-8}), when cut on n=150 (36.2\% of total cohort 414), was defined as optimal P-value with a cutoff value -0.511(RSEM) of \acrshort{rnaseq}.
+Our top 1 candidate is \acrfull{DKK1} (see Figure \ref{fig:figure4}(a)). The Kaplan-Meier curve revealed 227 patients bearing the higher expression of \acrshort{DKK1} were suffered from only 40\% of 5-year \acrshort{os} rate. In comparison, the other 187 patients with lower expression (the cutoff at -0.312(RSEM)) have been a better prognosis (adjusted \textit{P} = $0.001$).
+Figure \ref{fig:figure4}(b)'s cumulative \textit{P} value plot showed that the uncorrected 116 \textit{P} values ($< 0.05$) were estimated by a serial cut from 125 to 290 persons for grouping the cohort in our cutoff finding procedure (cutofFinder\_func.R, see Figure \ref{fig:figure1}, "HNSCC cohort"). The smallest \textit{P} value (\num{8.9e-8}), when cut on n=187 (45.2\% of 414), was defined as optimal \textit{P} value.
+Conversely, the most associated gene with better survival is \acrfull{ZNF557}. In Figure \ref{fig:figure4}(c), a Kaplan-Meier curve revealed 264 patients bearing the higher expression of \acrshort{ZNF557} have 55\% of 5-year OS survival rate (adjusted \textit{P} = $0.001$). The cutoff finding procedure (cutofFinder\_func.R) generated cumulative \textit{P} value plots in Figure \ref{fig:figure4}(d). There were 166 uncorrected \textit{P} values estimated by a serial cut from 125 to 290 for grouping the cohort. All was less than 0.05, and the smallest \textit{P} value (\num{8.6e-8}), when cut on n=150 (36.2\% of total cohort 414), was defined as optimal \textit{P} value with a cutoff value -0.511(RSEM) of \acrshort{rnaseq}.
 %The second candidate, which improving patient survival, is ZNF266.
 %\subsubsection{Tables} in main article
 
@@ -559,15 +591,15 @@ Conversely, the most associated gene with better survival is \acrfull{ZNF557}. I
 \centering
 \includegraphics[width=15cm]{Figure4.pdf}
 \bcaption{Kaplan-Meier survival analyses, by cutoff finding.}
-{(a) Kaplan-Meier plot of DKK1 under optimal P-value, and (b) the cutoff was derived from cumulative P-value plots of DKK1. (c) Kaplan-Meier plot of ZNF557 under optimal P-value, and (d) the cutoff was derived from cumulative P-value plots of ZNF557.}
+{(a) Kaplan-Meier plot of DKK1 under optimal \textit{P} value, and (b) the cutoff was derived from cumulative \textit{P} value plot of DKK1. (c) Kaplan-Meier plot of ZNF557 under optimal \textit{P} value, and (d) the cutoff was derived from cumulative \textit{P} value plot of ZNF557.}
 \label{fig:figure4}
 \end{figure}
 
 \clearpage
 
-Table \ref{table:table1} showed ten candidate genes over-expressed with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier P-value. We found their Cox's univariate and multivariate HR are all greater than 1.837. There were few published articles of \acrfull{SURF4} and \acrfull{NDFIP1} (\acrshort{NEDD4}: \acrlong{NEDD4}), which were related to cancer research.
+Table \ref{table:table1} showed ten candidate genes over-expressed with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value. We found their Cox's univariate and multivariate HR are all greater than 1.837. There were few published articles of \acrfull{SURF4} and \acrfull{NDFIP1} (\acrshort{NEDD4}: \acrlong{NEDD4}), which were related to cancer research.
 In Table \ref{table:table2},
-after adjustment of confounders, it was considered the \acrshort{DKK1} over-expression is the independent prognostic factor (multivariate HR 2.135 [95\% CI: 1.559-2.924, P-value $<$ 0.001]), as well as clinical T stage (HR 1.978 [95\% CI: 1.046-3.737, P-value = 0.036]) and surgical margins status (HR 1.601 [95\% CI: 1.159-2.211, P-value = 0.004]). The age older than 65 year-old has negative influence on survival (HR 1.462 [95\% CI: 1.078-1.983, P-value = 0.015]). The M stage could not be considered due to only 3 out of 414 patients which have distant metastasis.
+after adjustment of confounders, it was considered the \acrshort{DKK1} over-expression is the independent prognostic factor (multivariate HR 2.135 [95\% CI: 1.559-2.924, \textit{P} $<$ 0.001]), as well as clinical T stage (HR 1.978 [95\% CI: 1.046-3.737, \textit{P} = 0.036]) and surgical margins status (HR 1.601 [95\% CI: 1.159-2.211, \textit{P} = 0.004]). The age older than 65 year-old has negative influence on survival (HR 1.462 [95\% CI: 1.078-1.983, \textit{P} = 0.015]). The M stage could not be considered due to only 3 out of 414 patients which have distant metastasis.
 
 %\subsubsection{Table2/legend}
 %Table 2. Univariate/Multivariate Cox's proportional hazards regression analyses on OS time of DKK1 gene expression in HNSCC.
@@ -581,7 +613,7 @@ after adjustment of confounders, it was considered the \acrshort{DKK1} over-expr
 \arrayrulecolor{black}\cline{1-2}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{3-8}
 \multicolumn{2}{|c!{\color{black}\vrule}}{\multirow{2}{*}{Features}}                                                          & \multicolumn{3}{c|}{Univariate}                                                                                                                                                                                                                & \multicolumn{3}{c|}{Multivariate}                                                                                                                                                                                                               \\ 
 \cline{3-8}
-\multicolumn{2}{|c!{\color{black}\vrule}}{}                                                                                   & \multicolumn{1}{c!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{c!{\color{black}\vrule}}{P-value}                             & \multicolumn{1}{c!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{c!{\color{black}\vrule}}{P-value}                              \\ 
+\multicolumn{2}{|c!{\color{black}\vrule}}{}                                                                                   & \multicolumn{1}{c!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{c!{\color{black}\vrule}}{\textit{P} value}                             & \multicolumn{1}{c!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{c!{\color{black}\vrule}}{\textit{P} value}                              \\ 
 \arrayrulecolor{black}\hline
 \multirow{2}{*}{Gender}                 & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}Female} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}1} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}1} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}}  \\ 
 \cline{2-8}
@@ -621,7 +653,7 @@ after adjustment of confounders, it was considered the \acrshort{DKK1} over-expr
 \hline
 \multicolumn{8}{|l|}{}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\ 
 \hline
-\multicolumn{8}{|l|}{(P-value significant codes is denoted: $red<0.05$; *** $<0.001$~~)}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\
+\multicolumn{8}{|l|}{(\textit{P} value significant codes is denoted: $red<0.05$; *** $<0.001$~~)}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\
 \hline
 \end{tabular}
 }
@@ -634,7 +666,7 @@ after adjustment of confounders, it was considered the \acrshort{DKK1} over-expr
 
 There were also ten candidate genes over-expressed with a better prognosis of \acrshort{hnscc}, listed in Table \ref{table:table3}. Cox's univariate and multivariate HR is just under 0.5.
 In Table \ref{table:table4},
-after adjustment of confounders, it revealed HR 1.961 [95\% CI: 1.035-3.714, P-value = 0.039] in advance clinical T Status, HR 1.631 [95\% CI: 1.18-2.254, P-value = 0.003] with positive surgical margin involvement, HR 1.453 [95\% CI: 1.055-2.000, P-value = 0.022] with higher tobacco exposure, and a protective HR 0.499 [95\% CI: 0.372-0.669, P-value $<$ 0.001] in over-expressed \acrshort{ZNF557} gene.
+after adjustment of confounders, it revealed HR 1.961 [95\% CI: 1.035-3.714, \textit{P} = 0.039] in advance clinical T Status, HR 1.631 [95\% CI: 1.18-2.254, \textit{P} = 0.003] with positive surgical margin involvement, HR 1.453 [95\% CI: 1.055-2.000, \textit{P} = 0.022] with higher tobacco exposure, and a protective HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001] in over-expressed \acrshort{ZNF557} gene.
 
 In overall results, those 20 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
 
@@ -650,7 +682,7 @@ In overall results, those 20 candidate biomarkers, clinical T stage, and surgica
 \arrayrulecolor{black}\cline{1-2}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{3-8}
 \multicolumn{2}{|c!{\color{black}\vrule}}{\multirow{2}{*}{Features}}                                                          & \multicolumn{3}{c|}{Univariate}                                                                                                                                                                                                                & \multicolumn{3}{c|}{Multivariate}                                                                                                                                                                                                               \\ 
 \cline{3-8}
-\multicolumn{2}{|c!{\color{black}\vrule}}{}                                                                                   & \multicolumn{1}{c!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{c!{\color{black}\vrule}}{P-value}                             & \multicolumn{1}{c!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{c!{\color{black}\vrule}}{P-value}                              \\ 
+\multicolumn{2}{|c!{\color{black}\vrule}}{}                                                                                   & \multicolumn{1}{c!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{c!{\color{black}\vrule}}{\textit{P} value}                             & \multicolumn{1}{c!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{c!{\color{black}\vrule}}{\textit{P} value}                              \\ 
 \arrayrulecolor{black}\hline
 \multirow{2}{*}{Gender}                 & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}Female} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}1} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}1} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}}  \\ 
 \cline{2-8}
@@ -690,7 +722,7 @@ In overall results, those 20 candidate biomarkers, clinical T stage, and surgica
 \hline
 \multicolumn{8}{|l|}{}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\ 
 \hline
-\multicolumn{8}{|l|}{(P-value significant codes is denoted: $red<0.05$; *** $<0.001$~~)}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\
+\multicolumn{8}{|l|}{(\textit{P} value significant codes is denoted: $red<0.05$; *** $<0.001$~~)}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\
 \hline
 \end{tabular}
 }
@@ -823,13 +855,42 @@ However, there are only 237 antibodies available so far. We found that our candi
 %There are 628 genes that consensus of pvalue005KM (6429 genes) and HPA (bad+good in HNSCC)
 %%%%%%%%%% modified discussion
 %\begin{MyColorPar}{red}
+
+\subsection{our lab}
+It is encouraged for multidisciplinary studies that use complementary computational and experimental approaches to address challenging cancer research.
+%下一篇文章的內容。目前在計畫中，但還沒有開始進行
+These in vitro and in vivo validation experiments will be undertaken in our laboratory.
+We plan to analyze mRNA (e.x. qRT-PCR) and protein (e.x. western blot) of HNSCC cell lysate to confirm the candidate genes' expression.
+%mRNA expression level in HNSCC cell lines (其他文章已有發表 overexpression）
+The effect of over-expression and knockdown of the gene by lentiviral clones should be observed on cell function assay (e.x. proliferation, migration, and invasion) and mouse xenograft model (e.x. tumor growth). %這些都需要一年以上的時間
+%their rationale for looking into TMSB4X is not strongly supported by the available data.
+
+% 其實文章真正的目標是  bioinformatics workflow，而不是 discovered biomarkers itself (see TCGA marker paper\cite{Lawrence2015a})
+Moreover, this bioinformatics paper provides targets and supports the community's rationale for looking into these HNSCC candidates by in vitro and in vivo validation. %Collectively, these findings provide new insights into HNSCC and suggest that shared and unique alterations might be leveraged to accelerate progress in prevention and therapy across tumour types\cite{Lawrence2015a}.
+%We open invitation for research community by potential support their rationale for looking into these HNSCC candidates.
+%邀請科學家們一塊兒來繼續研究下去找出幫助癌症患者的方法
+%the rest of the analysis seems fine, but 
+%文章的初衷、跨領域：如同deep leaning Keras API，推廣研究者一個有效的方法 
+We aim to promote a reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} workflow allowing successful repetition and extension of analyses based on TCGA or their in-house HNSCC dataset. % to find more useful biomarkers. % or even other cancer types
+% to allow successful repetition and extension of analyses based on original data
+A good practice of research reproducibility is necessary to allow the reuse of code and results for new projects.
+%previously developed methodology to be effectively applied on new data, or to allow 
+%reuse of code and results for new projects. %In other words, good habits of reproducibility
+It may turn out to be a time-saver in the longer run.
+When multiple scientists can reproduce a result, it will also validate our initial results and readiness to progress to the next research phase. 
+%why reproducibility?
+%Reproducible Bioinformatics Project provides a general schema and an infrastructure to distribute robust and reproducible workflows. Thus, it guarantees to final users the ability to repeat consistently any analysis independently by the used UNIX-like architecture.
+%Utility of this model would facilitate development of more individualized therapy for HNSCC patients and improve prognosis.
+
+Once our laboratory and the community identify those candidates as the targets, the compound screening could facilitate more individualized therapy for HNSCC patients and improve prognosis.
+
 We utilized other approaches to validate our candidates.
 
 \subsection*{Analysis by web-tools}
 After discovering using our workflow, we also used the web-tools to find the evidence convincing up to 12 of our suggested 20 biomarkers in TCGA and GSE2837 cohort.
 %\subsubsection*{SurvExpress} % TCGA
 % 2021/01/23 pdf x 12 from SurvExpress
-SurvExpress\cite{Aguirre-Gamboa2013} is one of the web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier P-value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
+SurvExpress\cite{Aguirre-Gamboa2013} is one of the web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier \textit{P} value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
 1) poor prognosis: DKK1 (0.00005), CAMK2N1 (0.000006), STC2 (0.001), PGK1 (0.01), SURF4 (0.002), USP10 (0.002), NDFIP1 (0.000008), STIP1 (0.001), DKC1 (0.01);
 %CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
 2) better prognosis: ZNF557 (0.0007), ZNF266 (0.00008), FCGBP (0.001).
@@ -843,7 +904,7 @@ The 12 out of 20 positive and negative prognostic genes underlined are confirmed
 % % SurvExpress 沒有類似的結果是因為:
 Nevertheless, the survival prediction could not be found in FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB using SurvExpress. 
 Our workflow has the advantage to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage.
-%因為 cutoff 不適當，這也就是我們 p-value Tex 的設計目的與強項
+%因為 cutoff 不適當，這也就是我們 pvalueTex \textit{P} 的設計目的與強項
 
  
 %\subsubsection{HPA} %still TCGA's RNA-Seq
@@ -875,7 +936,7 @@ We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has
 The GSE2837 carries % VUMC, VAMC, UTMDACC (1992-2005)
 relapse-free survival (RFS) data, instead of overall survival in TCGA dataset,
 and microarray gene expression (by Affymetrix X3P chips U133\_X3P).
-The survival significance (Kaplan Meier P-value) is in the following probes of 10 genes:\\
+The survival significance (Kaplan Meier \textit{P} value) is in the following probes of 10 genes:\\
 1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
 2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
 %17 out of 20 candidates
@@ -1010,21 +1071,21 @@ Our strategy still has the strength to explore the more possible biomarkers from
 % second limitation:
 In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
 
-\subsection{holistic}
-TCGA 都是手術後？TNM available yes
+\subsection{Holistic health care}
+TCGA treated by surgery and more; TNM available yes
 discussion: limitation
+Even there are many $X_1 ... X_n$ physical and social features of patients available for survival modelling in the TCGA.
 the TCGA has not collected holistic features
-癌症與身心靈的重要關係：中醫、citation?
+%癌症與身心靈的重要關係：中醫、citation? 中醫人體觀－五臟與經絡情緒 工作坊《課程簡介》情緒是人體自身的氣，我們因情緒而調動它，也因它內傷，誘發情緒的原因有外在和內在，外在多跟經絡接收訊息的能力有關，當外在的影響如果沒有適當阻斷的時候，也會影響到五臟功能；內生的情緒則多以活出自我價值感有關，當我們活出此生想要體驗的人生與成就，我們就能夠不受情緒控制而保持內在平靜，這一切的源頭皆與我們是否活出真實的自己有關。
 repentantly confess for not taking care of body and spirit, and sincere thanks for the hard work of my physical body
-自他不二
-心存正念
-1.衷心懺悔
-2.真心感謝
-3.誠意祝福
-4.永存善念
-5.心無恐懼: 情志養生
+%自他不二 心存正念
+%1.衷心懺悔
+%2.真心感謝
+%3.誠意祝福
+%4.永存善念
+%5.心無恐懼: 情志養生
 
-祝福全世界
+Wish and bless the whole world
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods} % 4
@@ -1066,36 +1127,36 @@ We made data clean by removing duplicated rows and columns.
 
 %\label{key:cutoff}
 To evaluate the effect of gene expression on the patient's survival, we introduced the stratifying of patients with Kaplan-Meier survival analysis according to each gene's low/high expression.
-Our cutofFinder\_func subroutine employs the minimum P-value approach to recognizing cutoff points in continuous gene expression measurement for patients sub-population.
-First, patients were ordered by \acrshort{rnaseq} value (RSEM) of a given gene. Next, patients were stratified at a serial cut (counted by person ranked in 30\% to 70\% percentile of the cohort; please see Figure \ref{fig:figure1} "HNSCC cohort"). The survival risk differences of the two groups were estimated by log-rank test to yield around 165 Kaplan-Meier P-values for each gene.
-Then, the optimal cutoff of \acrshort{rnaseq}, giving the minimum P-value, was selected by the cutofFinder\_func subroutine.
+Our cutofFinder\_func subroutine employs the minimum \textit{P} value approach to recognizing cutoff points in continuous gene expression measurement for patients sub-population.
+First, patients were ordered by \acrshort{rnaseq} value (RSEM) of a given gene. Next, patients were stratified at a serial cut (counted by person ranked in 30\% to 70\% percentile of the cohort; please see Figure \ref{fig:figure1} "HNSCC cohort"). The survival risk differences of the two groups were estimated by log-rank test to yield around 165 Kaplan-Meier \textit{P} values for each gene.
+Then, the optimal cutoff of \acrshort{rnaseq}, giving the minimum \textit{P} value, was selected by the cutofFinder\_func subroutine.
 This iteration method could calculate all possible cutoff of each gene expression in this cohort. At each run of cutofFinder\_func function call for an individual gene, it returned an optimal cutoff value (e.x. 0.027 for gene \acrlong{CAMK2N1}, \acrshort{CAMK2N1}). The optimal cutoff value and its correlated patient grouping size (e.x. low-expression in 262 persons vs. high-expression in 152 persons with gene \acrshort{CAMK2N1}) would be returned to the main program to allow downstream Cox survival analysis. The percentile range we applied as 30\% to 70\% was used to avoid a small grouping effect\cite{Miller1982}\cite{Mizuno2009a}.
-In case there was no significant P-value, a median expression of this gene was set as its cutpoint as usual.
+In case there was no significant \textit{P} value, a median expression of this gene was set as its cutpoint as usual.
 
 \subsection{Statistical Consideration}
 
 Our workflow has loops to call function survival\_marginSFP(GeneName) with given GeneName to process the survival analysis gene by gene.
-We dichotomized the clinicopathological features, which includes gender (male/ female), age at diagnosed (below/beyond 65 year-old), clinical tumor size (T1-2/T3-4), clinical nodal status (negative/positive), clinical distant metastasis (negative/positive), TNM staging (early/late), surgical margin status (negative/positive) and tobacco exposure (low/high). The patients were grouped by an \acrshort{rnaseq} value of each gene, cut at low- or high-expression on an optimal P-value obtained from the cutofFinder\_func subroutine (see the section of "Cutoff Finder Core Engine"). Pearson's chi-square test was used for these binary variables. Kaplan-Meier survival was analyzed using the log-rank test for two groups OS comparison.
+We dichotomized the clinicopathological features, which includes gender (male/ female), age at diagnosed (below/beyond 65 year-old), clinical tumor size (T1-2/T3-4), clinical nodal status (negative/positive), clinical distant metastasis (negative/positive), TNM staging (early/late), surgical margin status (negative/positive) and tobacco exposure (low/high). The patients were grouped by an \acrshort{rnaseq} value of each gene, cut at low- or high-expression on an optimal \textit{P} value obtained from the cutofFinder\_func subroutine (see the section of "Cutoff Finder Core Engine"). Pearson's chi-square test was used for these binary variables. Kaplan-Meier survival was analyzed using the log-rank test for two groups OS comparison.
 The Cox proportional hazards regression is the widely accepted approach for modeling survival while accounting for confounding factors\cite{Magen2019}. Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the OS.
-Results were considered statistically significant when a two-sided P-value $<$ 0.05, or a lower threshold if indicated.
-The \acrfull{fdr} ($< 0.05$) could be used to pick up the optimal P-value to ensure the control for type I error of the Kaplan-Meier survival test during the cutoff finding procedure.
+Results were considered statistically significant when a two-sided \textit{P} $<$ 0.05, or a lower threshold if indicated.
+The \acrfull{fdr} ($< 0.05$) could be used to pick up the optimal \textit{P} value to ensure the control for type I error of the Kaplan-Meier survival test during the cutoff finding procedure.
 %statistical inference problems in biomedical and genomic data analysis routinely involve the simultaneous test of thousands, or even millions, of null hypotheses. Examples
-There were also multiple correlated tests of null hypotheses in the Kaplan-Meier family during our global scanning of protein-coding genes. The stringent Bonferroni correction could result in an adjusted P-value to ensure the control for type I error. 
+There were also multiple correlated tests of null hypotheses in the Kaplan-Meier family during our global scanning of protein-coding genes. The stringent Bonferroni correction could result in an adjusted \textit{P} value to ensure the control for type I error. 
 %There were multiple correlated tests in the family of Kaplan-Meier survival hypotheses during our global scanning of protein-coding genes. The stringent Bonferroni correction could result in an adjusted P-value to ensure the control for type I error. 
 
-The resulting data, including Kaplan-Meier curves, cumulative P-value plots, and Cox regression tables, were exported to ".xlsx" and ".Rda" files (by R package "r2excel") for subsequent biomarker selection.
+The resulting data, including Kaplan-Meier curves, cumulative \textit{P} value plots, and Cox regression tables, were exported to ".xlsx" and ".Rda" files (by R package "r2excel") for subsequent biomarker selection.
 
 
 \subsection{Biomarker Selection}
 
 Those genes with prognostic impact, whose hazard ratio $>=1.5$ or $<=0.5$ in both Cox's univariate/multivariate model, were assigned as provisional candidates.
-Bonferroni adjusted (Kaplan-Meier) P-value was used to make a ranking of candidates for the final decision (see Figure \ref{fig:figure1}, step 2).
+Bonferroni adjusted (Kaplan-Meier) \textit{P} value was used to make a ranking of candidates for the final decision (see Figure \ref{fig:figure1}, step 2).
 
 %%%%%
 \section{Conclusions} % 5
 
 
-Our findings suggested 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are all heavily associated with the prognosis of \acrshort{os} under optimal cutoff points with stringent Bonferroni P-values and proper confounders control. They also might be potential common biomarkers for subsequent study.
+Our findings suggested 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are all heavily associated with the prognosis of \acrshort{os} under optimal cutoff points with stringent Bonferroni \textit{P} values and proper confounders control. They also might be potential common biomarkers for subsequent study.
 We wish this bioinformatics tool will be available for the broad usage of tumor-agnostic research\cite{Looney2020} to cross several \acrshort{tcga} diseases to make translational impacts. %Tex: PvalueTex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
