@@ -268,9 +268,8 @@ Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known m
 %There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
 We developed a comprehensive workflow to perform biomarker discovery. It includes data retrieval, data pre-processing, feature selection, cutoff engine, Kaplan-Meier survival analysis, and Cox proportional hazard modeling.
 Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes and adjusted them with confounders and Bonferroni corrected \textit{P} value.
-The result showed that ten over-expressed genes (named DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) 
-are significantly associated with a poor prognosis of overall survival. 
-Furthermore, the other ten over-expressed genes (named ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former name as KIAA1683, and NPB) are correlated with better survival.
+The result showed ten over-expressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of overall survival. 
+Furthermore, the other ten over-expressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
 We suggest this workflow equipped with a cutoff-mining engine could help for biomarker discovery.
 }
 
@@ -450,10 +449,11 @@ then performing the survival analyses. The Cutoff engine (cutofFinder\_func.HNSC
 
 
 The 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated at workflow step 1 (see Figure \ref{fig:figure1}) and justified by the ranking of hazard ratios.
-By uncorrected \textit{P} value below 0.05, we selected 967 genes in which \acrfull{hr} is greater than 1.5 or less than 0.5 (see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b)  multivariate plots). At the final step, a Bonferroni \textit{P} value correction was used to yield the twenty candidate genes, under the stringent criteria (see Figure \ref{fig:figure2}(c), (d)). The ten candidates, including DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, have significantly associated with the poor prognosis of \acrshort{os} (see Table \ref{table:table1}),
-%\subsubsection{Figure 3}
-while the other ten genes were over-expressed in the better survival patients, named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB (see Table \ref{table:table3}, with their full name of genes).
-We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot revealed that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
+The 967 genes were kept by criteria of uncorrected \textit{P} value (below 0.05) and \acrfull{hr} (greater than 1.5 or less than 0.5) (see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b) multivariate plots). 
+At the final step, a stringent criteria (Bonferroni \textit{P} value correction) was used to yield twenty candidates (see Figure \ref{fig:figure2}(c), (d)). 
+Among these candidates, ten over-expressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of  \acrshort{os} (see Table \ref{table:table1}). 
+The other ten over-expressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{table:table3}, with their gene name).
+We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot reveals that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
 
 
 %\subsubsection{Figure 2:h}
@@ -578,7 +578,7 @@ NPB                                            & neuropeptide B                 
 {X axis: unadjusted \textit{P} value of Kaplan-Meier survival (-log10 transformed).
 Y axis: multivariate hazard ratio from Cox proportional regression model.
 Dotted line: significant Bonferroni corrected \textit{P} value. 
-Red circles mark 10 candidate genes, which impact on poor prognosis ($HR>=1.5$). Green circles mark 10 genes, which affect on better survival ($HR<=0.5$).}
+\textcolor{red}{Red circles} mark 10 candidate genes, which impact on poor prognosis ($HR>=1.5$). \textcolor{green}{Green circles} mark 10 genes, which affect on better survival ($HR<=0.5$).}
 \label{fig:figure3}
 \end{figure}
 % new figure of volcano plot: TCGA_HNSC_Optimal_Overall_allPlot_unKM_P_multiHR.pdf, -log10(raw KM P-value) vs Cox multivariate HR
@@ -587,9 +587,9 @@ Red circles mark 10 candidate genes, which impact on poor prognosis ($HR>=1.5$).
 \clearpage
 
 
-Our top 1 candidate is \acrfull{DKK1} (see Figure \ref{fig:figure4}(a)). The Kaplan-Meier curve revealed 227 patients bearing the higher expression of \acrshort{DKK1} were suffered from only 40\% of 5-year \acrshort{os} rate. In comparison, the other 187 patients with lower expression (the cutoff at -0.312(RSEM)) have been a better prognosis (adjusted \textit{P} = $0.001$).
-Figure \ref{fig:figure4}(b)'s cumulative \textit{P} value plot showed that the uncorrected 116 \textit{P} values ($< 0.05$) were estimated by a serial cut from 125 to 290 persons for grouping the cohort in our cutoff finding procedure (cutofFinder\_func.R, see Figure \ref{fig:figure1}, "HNSCC cohort"). The smallest \textit{P} value (\num{8.9e-8}), when cut on n=187 (45.2\% of 414), was defined as optimal \textit{P} value.
-Conversely, the most associated gene with better survival is \acrfull{ZNF557}. In Figure \ref{fig:figure4}(c), a Kaplan-Meier curve revealed 264 patients bearing the higher expression of \acrshort{ZNF557} have 55\% of 5-year OS survival rate (adjusted \textit{P} = $0.001$). The cutoff finding procedure (cutofFinder\_func.R) generated cumulative \textit{P} value plots in Figure \ref{fig:figure4}(d). There were 166 uncorrected \textit{P} values estimated by a serial cut from 125 to 290 for grouping the cohort. All was less than 0.05, and the smallest \textit{P} value (\num{8.6e-8}), when cut on n=150 (36.2\% of total cohort 414), was defined as optimal \textit{P} value with a cutoff value -0.511(RSEM) of \acrshort{rnaseq}.
+Our top 1 candidate is \acrfull{DKK1}. The Kaplan-Meier curve reveals 227 patients bearing the higher expression of \acrshort{DKK1} were suffered from only 40\% of 5-year \acrshort{os} rate. In comparison, the other 187 patients with lower expression (the cutoff at -0.312(RSEM)) had a better prognosis (adjusted \textit{P} = $0.001$) (see Figure \ref{fig:figure4}(a)).
+Figure \ref{fig:figure4}(b)'s cumulative \textit{P} value plot shows that the uncorrected 116 \textit{P} values ($< 0.05$) have been estimated by a serial cut from 125 to 290 persons for grouping the cohort in our cutoff finding procedure (cutofFinder\_func.R, see Figure \ref{fig:figure1}, "HNSCC cohort"). The smallest \textit{P} value (\num{8.9e-8}), when cut on n=187 (45.2\% of 414), has been defined as an optimal \textit{P} value.
+Conversely, the most associated gene with better survival is \acrfull{ZNF557}. In Figure \ref{fig:figure4}(c), a Kaplan-Meier curve reveals 264 patients bearing the higher expression of \acrshort{ZNF557} had 55\% of 5-year OS survival rate (adjusted \textit{P} = $0.001$). The cutoff finding procedure (cutofFinder\_func.R) generated cumulative \textit{P} value plot in Figure \ref{fig:figure4}(d). The 166 uncorrected \textit{P} values were estimated by a serial cut from 125 to 290 for grouping the cohort. The smallest \textit{P} value (\num{8.6e-8}), when cut on n=150 (36.2\% of total cohort 414), has been defined as an optimal \textit{P} value with a cutoff value -0.511(RSEM) of \acrshort{rnaseq}.
 %The second candidate, which improving patient survival, is ZNF266.
 %\subsubsection{Tables} in main article
 
@@ -598,15 +598,19 @@ Conversely, the most associated gene with better survival is \acrfull{ZNF557}. I
 \centering
 \includegraphics[width=15cm]{Figure4.pdf}
 \bcaption{Kaplan-Meier survival analyses, by cutoff finding.}
-{(a) Kaplan-Meier plot of DKK1 under optimal \textit{P} value, and (b) the cutoff was derived from cumulative \textit{P} value plot of DKK1. (c) Kaplan-Meier plot of ZNF557 under optimal \textit{P} value, and (d) the cutoff was derived from cumulative \textit{P} value plot of ZNF557.}
+{(a) Kaplan-Meier plot of DKK1 under optimal \textit{P} value, and (b) the cutoff is derived from cumulative \textit{P} value plot of DKK1. (c) Kaplan-Meier plot of ZNF557 under optimal \textit{P} value, and (d) the cutoff is derived from cumulative \textit{P} value plot of ZNF557.}
 \label{fig:figure4}
 \end{figure}
 
 \clearpage
 
-Table \ref{table:table1} showed ten candidate genes over-expressed with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value. We found their Cox's univariate and multivariate HR are all greater than 1.837. There were few published articles of \acrfull{SURF4} and \acrfull{NDFIP1} (\acrshort{NEDD4}: \acrlong{NEDD4}), which were related to cancer research.
+Table \ref{table:table1} shows ten over-expressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value. 
+We found their Cox's univariate and multivariate HR are all greater than 1.837. 
+%There were few published articles of \acrfull{SURF4} and \acrfull{NDFIP1} (\acrshort{NEDD4}: \acrlong{NEDD4}), which were related to cancer research.
 In Table \ref{table:table2},
-after adjustment of confounders, it was considered the \acrshort{DKK1} over-expression is the independent prognostic factor (multivariate HR 2.135 [95\% CI: 1.559-2.924, \textit{P} $<$ 0.001]), as well as clinical T stage (HR 1.978 [95\% CI: 1.046-3.737, \textit{P} = 0.036]) and surgical margins status (HR 1.601 [95\% CI: 1.159-2.211, \textit{P} = 0.004]). The age older than 65 year-old has negative influence on survival (HR 1.462 [95\% CI: 1.078-1.983, \textit{P} = 0.015]). The M stage could not be considered due to only 3 out of 414 patients which have distant metastasis.
+after adjustment of confounders, \acrshort{DKK1} over-expression is the independent prognostic factor (multivariate HR 2.135 [95\% CI: 1.559-2.924, \textit{P} $<$ 0.001]), as well as clinical T stage (HR 1.978 [95\% CI: 1.046-3.737, \textit{P} = 0.036]) and surgical margins status (HR 1.601 [95\% CI: 1.159-2.211, \textit{P} = 0.004]). 
+Older age (more than 65) also worse the survival (HR 1.462 [95\% CI: 1.078-1.983, \textit{P} = 0.015]). 
+The M stage could be ignored in this cohort due to only 3 out of 414 patients with distant metastasis.
 
 %\subsubsection{Table2/legend}
 %Table 2. Univariate/Multivariate Cox's proportional hazards regression analyses on OS time of DKK1 gene expression in HNSCC.
@@ -671,11 +675,13 @@ after adjustment of confounders, it was considered the \acrshort{DKK1} over-expr
 
 
 
-There were also ten candidate genes over-expressed with a better prognosis of \acrshort{hnscc}, listed in Table \ref{table:table3}. Cox's univariate and multivariate HR is just under 0.5.
+In Table \ref{table:table3}, the other ten over-expressed genes have been found in better prognosis of \acrshort{hnscc} patients. Cox's univariate and multivariate HR is under 0.5.
 In Table \ref{table:table4},
-after adjustment of confounders, it revealed HR 1.961 [95\% CI: 1.035-3.714, \textit{P} = 0.039] in advance clinical T Status, HR 1.631 [95\% CI: 1.18-2.254, \textit{P} = 0.003] with positive surgical margin involvement, HR 1.453 [95\% CI: 1.055-2.000, \textit{P} = 0.022] with higher tobacco exposure, and a protective HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001] in over-expressed \acrshort{ZNF557} gene.
+after adjustment of confounders, prognosis is influenced by advance clinical T Status (HR 1.961 [95\% CI: 1.035-3.714, \textit{P} = 0.039] ), positive surgical margin involvement (HR 1.631 [95\% CI: 1.18-2.254, \textit{P} = 0.003]) , and higher tobacco exposure (HR 1.453 [95\% CI: 1.055-2.000, \textit{P} = 0.022]).
+Over-expressed \acrshort{ZNF557} gene could has a protective influencce on prognosis (HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001]).
 
-In overall results, those 20 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
+
+In summary, those 20 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
 
 
 
