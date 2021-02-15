@@ -1,3 +1,4 @@
+% Supplementary_figures.tex
 \documentclass[preprint,12pt]{elsarticle}
 
 % major revision and answer question (3 reviewers)
@@ -17,10 +18,10 @@
 \usepackage{outlines}
 
 %%% for abbreviations, or acronyms
-\usepackage[automake, acronym, nopostdot]{glossaries} 
+\usepackage[acronym, nopostdot]{glossaries} 
 %\usepackage{glossary-inline}
 %\newenvironment{abbreviation}
-\makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
+%\makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
 \newacronym{fdr}{FDR}{false discovery rate}
 \newacronym{hpa}{HPA}{the Human Protein Atlas}
 \newacronym{hnscc}{HNSCC}{head and neck squamous cell carcinoma}
@@ -135,7 +136,8 @@ A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in 
 
 % Authors, for the paper (add full first names)
 %\Author{
-Li-Hsing Chi $^{1,2}$\orcidA{}, Alexander TH Wu $^{1}$,
+Li-Hsing Chi $^{1,2}$%\orcidA{}
+, Alexander TH Wu $^{1}$,
 Michael Hsiao $^{3}$*
 and Yu-Chuan (Jack) Li $^{1,4}$*%\orcidB{}
 %\Author{Firstname Lastname $^{1,\dagger,\ddagger}$\orcidA{}, Firstname Lastname $^{1,\ddagger}$ and Firstname Lastname $^{2,}$*}
@@ -170,16 +172,16 @@ Correspondence: Hsiao: mhsiao@gate.sinica.edu.tw; Li: jaak88@gmail.com\\[1cm]
 
 \underline{Supplementary figure legends}\\[1cm]
 
-Supplementary Figure S1\\
+Supplementary Figure S\ref{fig:fig_SurvExpress}\\
 The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of high risk and low risk groups, which is derived from risk groups optimization. %cumulative P-value plots).
 Inset color scale shows risk groups (high/low) and corresponded RNA expression in high/low.
 Thus, the poor prognostic genes are marked as red; the better prognostic genes are marked as orange.
 
-Supplementary Figure S2\\
+Supplementary Figure S\ref{fig:fig_HPA_USP10}\\
 The query results from HPA: Kaplan-Meier plots of  ubiquitin-specific peptidase 10 (USP10) with cutoff by mRNA high expression and low expression groups (P-value = 0.0018).
 Over-expression of USP10 has poor prognosis on HNSCC.
 
-Supplementary Figure S3\\
+Supplementary Figure S\ref{fig:fig_GSE2837}\\
 GSE2837 query results from PrognoScan: Kaplan-Meier plots of 10 genes (the cutoff of high risk and low risk groups, which is derived from cumulative P-value plots). The poor prognostic genes are marked as red; the better prognostic genes are marked as green.
 
 
@@ -188,7 +190,7 @@ GSE2837 query results from PrognoScan: Kaplan-Meier plots of 10 genes (the cutof
 % red or green is NOT by expression level
 \begin{figure}
 \raggedleft
-\includegraphics[width=14cm]{Answer_3-1.pdf}
+\includegraphics[width=10cm]{Answer_3-1.pdf}
 \caption{The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{green}{low risk} groups, which is derived from risk groups optimization. %cumulative P-value plots).
 Inset color scale shows risk groups (\textcolor{red}{high}/\textcolor{green}{low}) and corresponded RNA expression in \textcolor{red}{high}/\textcolor{green}{low}.
 Thus, the poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{orange}{orange}.}
@@ -200,7 +202,7 @@ Thus, the poor prognostic genes are marked as \textcolor{red}{red}; the better p
 
 \begin{figure}
 \raggedleft
-\includegraphics[width=14cm]{Answer_3-1_USP10.pdf}
+\includegraphics[width=12cm]{Answer_3-1_USP10.pdf}
 \caption{The query results from HPA: Kaplan-Meier plots of  ubiquitin specific peptidase 10 (USP10) with cutoff by mRNA \textcolor{red}{high expression} and \textcolor{blue}{low expression} groups (P-value = 0.0018).
 Overexpression of USP10 has poor prognosis on HNSCC.}
 \label{fig:fig_HPA_USP10}
@@ -212,9 +214,9 @@ Overexpression of USP10 has poor prognosis on HNSCC.}
 
 \begin{figure}
 \raggedleft
-\includegraphics[width=14cm]{Answer_2-2.pdf}
+\includegraphics[width=12cm]{Answer_2-2.pdf}
 \caption{GSE2837 query results from PrognoScan: Kaplan-Meier plots of 10 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{blue}{low risk} groups, which is derived from cumulative P-value plots). The poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{green}{green}.}
-\label{figure:fig_GSE2837}
+\label{fig:fig_GSE2837}
 \end{figure}
 \clearpage
 
