@@ -333,9 +333,9 @@ ground truth Y (e.x. patient's survival):\\[0.5cm]
 $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$
 \linebreak
 \linebreak
-Input $X_1...n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
+Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
 \\[0.5cm]
-Coefficients $\beta_0...n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)\\[0.5cm]
+Coefficients $\beta_0...\beta_n$ (built in model)\\[0.5cm]
 A residual (error) term is calculated as $\epsilon=Y - \hat Y$\\
 Since the model established by survival analysis, predicted value $\hat Y$ is calculated as:\\[0.3cm]
 $\hat Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n$
@@ -343,7 +343,7 @@ $\hat Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n$
 %(predicted Y, output) intercept, slope, independent (input) \Times
 %\end{math}
 \end{flushleft}
-Thus, the biomarker discovery strategy is survival modeling through collections of $X_1...X_n$ features from cancer datasets.
+Thus, the biomarker discovery strategy is survival modeling through collections of $X_1...X_n$ features from cancer datasets.\\[1cm]
 
 
 
@@ -682,6 +682,9 @@ Over-expressed \acrshort{ZNF557} gene could has a protective influencce on progn
 
 
 In summary, those 20 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
+Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific 20 gene expressions, clinical T stage, and surgical margin.
+%\\[0.5cm]
+
 
 
 
@@ -1090,6 +1093,9 @@ discussion: limitation
 Even there are many $X_1 ... X_n$ physical and social features of patients available for survival modelling in the TCGA.
  since it has comprehensive clinical features, such as exposure to alcohol, asbestos, radioactive radon, tobacco smoking, or cigarettes.
 the TCGA has not collected holistic features
+Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
+[Results] In summary, those 20 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
+Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific 20 gene expressions, clinical T stage, and surgical margin.
 %癌症與身心靈的重要關係：中醫、citation? 中醫人體觀－五臟與經絡情緒 工作坊《課程簡介》情緒是人體自身的氣，我們因情緒而調動它，也因它內傷，誘發情緒的原因有外在和內在，外在多跟經絡接收訊息的能力有關，當外在的影響如果沒有適當阻斷的時候，也會影響到五臟功能；內生的情緒則多以活出自我價值感有關，當我們活出此生想要體驗的人生與成就，我們就能夠不受情緒控制而保持內在平靜，這一切的源頭皆與我們是否活出真實的自己有關。
 repentantly confess for not taking care of body and spirit, and sincere thanks for the hard work of my physical body
 %自他不二 心存正念
