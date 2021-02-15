@@ -940,8 +940,6 @@ The 10 out of 20 candidates are confirmed by a comparative study using the GSE28
 
 %%%
 \subsection{The candidates shown in literature review}
-% *** why here?
-In our previous work, altered glucose metabolism (e.k.a. the Warburg effect\cite{Warburg1956}) promotes the progression of \acrshort{hnscc}, which is partially attributed to the \acrfull{slc2a4} (or \acrlong{glut4}, \acrshort{glut4}) and \acrfull{trim24} pathway\cite{Chang2017b}. 
 
 %%
 %\subsection*{Review articles}
@@ -1116,11 +1114,13 @@ There is a trend toward cancer type-agnostic study. The success of pembrolizumab
 It showed a precedent of tumor type-agnostic therapy\cite{Yan2018}.
 %*** PD-L1/PD-L2 is a biomarker; Keynote-012
 Currently, there are several common biomarkers of \acrshort{ici} under evaluation, which include \acrfull{til}, \acrfull{ifng}, and \acrfull{tmb}\cite{Gavrielatou2020}.
-The other  \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evaluated under the phase I/IIA\cite{Cristina2019}\linebreak
+The other \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evaluated under the phase I/IIA\cite{Cristina2019}\linebreak
 (ClinicalTrials.gov Identifier: NCT01968109) and II-IVA\cite{Neal2019} (ClinicalTrials.gov Identifier: NCT04080804) studies.
 
 In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
 
+% *** why here?
+In our previous work, altered glucose metabolism (e.k.a. the Warburg effect\cite{Warburg1956}) promotes the progression of \acrshort{hnscc}, which is partially attributed to the \acrfull{slc2a4} (or \acrlong{glut4}, \acrshort{glut4}) and \acrfull{trim24} pathway\cite{Chang2017b}. 
 
 
 
