@@ -287,8 +287,8 @@ Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known m
 %There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
 We developed a comprehensive workflow to perform biomarker discovery. It includes data retrieval, data pre-processing, feature selection, cutoff engine, Kaplan-Meier survival analysis, and Cox proportional hazard modeling.
 Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes and adjusted them with confounders and Bonferroni corrected \textit{P} value.
-The result showed ten over-expressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of overall survival. 
-Furthermore, the other ten over-expressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+The result showed ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of overall survival. 
+Furthermore, the other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
 We suggest this workflow equipped with a cutoff-mining engine could help for biomarker discovery.
 }
 
@@ -368,7 +368,7 @@ Thus, the biomarker discovery strategy is survival modeling through collections 
 
 %% TP53 gene => p53 protein; mutation of TP53
 Accumulative knowledge showed that some biomarkers have prognostic significance in \acrshort{hnscc}. For example, node-negative \acrshort{hnscc} patients with p53 overexpression were found to hold lower survival\cite{DeVicente2004}.
-Overexpression of \acrfull{hif}-1 alpha\cite{Aebersold2001} or Ki-67\cite{Couture2002} was found to be correlated with poor response to radiotherapy of \acrshort{hnscc}. The \acrfull{egfr}\cite{O-Charoenrat2000}\cite{Bentzen2005} and \acrfull{mmp}\cite{Harrington2017} were found to be over-expressed to promote invasion and metastasis of \acrshort{hnscc}.
+Overexpression of \acrfull{hif}-1 alpha\cite{Aebersold2001} or Ki-67\cite{Couture2002} was found to be correlated with poor response to radiotherapy of \acrshort{hnscc}. The \acrfull{egfr}\cite{O-Charoenrat2000}\cite{Bentzen2005} and \acrfull{mmp}\cite{Harrington2017} were found to be overexpressed to promote invasion and metastasis of \acrshort{hnscc}.
 From 2000 to 2006, the first anti-\acrshort{egfr} antibody-drug (cetuximab) has been developed and combined with radiotherapy, known as bio-\acrshort{rt}, to increase survival of unresectable locoregionally advanced disease\cite{Bonner2006a}.
 The systemic therapy of cetuximab plus platinum-fluorouracil chemotherapy (EXTREME regimen) has improved overall survival when given as first-line treatment in patients with recurrent or metastatic \acrshort{hnscc}\cite{Vermorken2008}\cite{Rivera2009}. It has been approved by the \acrshort{us} \acrfull{fda} since 2008. In advance, the bio-\acrshort{rt} could be proceeded with \acrfull{tpf} induction chemotherapy to overcome  radio-resistance of \acrshort{hnscc}\cite{Blanchard2013}.
 
@@ -469,8 +469,8 @@ then performing the survival analyses. The Cutoff engine (cutofFinder\_func.HNSC
 The 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated at workflow step 1 (see Figure \ref{fig:figure1}) and justified by the ranking of hazard ratios.
 The 967 genes were kept by criteria of uncorrected \textit{P} value (below 0.05) and \acrfull{hr} (greater than 1.5 or less than 0.5) (see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b) multivariate plots). 
 At the final step, a stringent criteria (Bonferroni \textit{P} value correction) was used to yield twenty candidates (see Figure \ref{fig:figure2}(c), (d)). 
-Among these candidates, ten over-expressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of  \acrshort{os} (see Table \ref{table:table1}). 
-The other ten over-expressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{table:table3}, with their gene name).
+Among these candidates, ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of  \acrshort{os} (see Table \ref{table:table1}). 
+The other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{table:table3}, with their gene name).
 We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot reveals that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
 
 
@@ -492,7 +492,7 @@ We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less tha
 \begin{table}
 %\begin{sidewaystable}[hp]
 \centering
-\caption{ The 10 candidate genes over-expressed with poor prognosis in \acrshort{hnscc} (ranked by Bonferroni adjusted \textit{P} value) }
+\caption{ The 10 candidate genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by Bonferroni adjusted \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
 \resizebox{\linewidth}{!}{
 %\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
@@ -543,10 +543,10 @@ DKC1                                           & dyskeratosis congenita 1, dyske
 
 
 %\subsubsection{Table3/legend}
-%Table3. The 10 candidate genes over-expressed with better prognosis in HNSCC (ranked by Bonferroni corrected Kaplan-Meier P-value).
+%Table3. The 10 candidate genes overexpressed with better prognosis in HNSCC (ranked by Bonferroni corrected Kaplan-Meier P-value).
 \begin{table}[hp]
 \centering
-\caption{The 10 candidate genes over-expressed with better prognosis in \acrshort{hnscc} (ranked by Bonferroni corrected \textit{P} value) }
+\caption{The 10 candidate genes overexpressed with better prognosis in \acrshort{hnscc} (ranked by Bonferroni corrected \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
 \resizebox{\linewidth}{!}{%
 \begin{tabular}{|l|l|l|l|l|l|l|l|c|} 
@@ -622,11 +622,11 @@ Conversely, the most associated gene with better survival is \acrfull{ZNF557}. I
 
 \clearpage
 
-Table \ref{table:table1} shows ten over-expressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value. 
+Table \ref{table:table1} shows ten overexpressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value. 
 We found their Cox's univariate and multivariate HR are all greater than 1.837. 
 %There were few published articles of \acrfull{SURF4} and \acrfull{NDFIP1} (\acrshort{NEDD4}: \acrlong{NEDD4}), which were related to cancer research.
 In Table \ref{table:table2},
-after adjustment of confounders, \acrshort{DKK1} over-expression is the independent prognostic factor (multivariate HR 2.135 [95\% CI: 1.559-2.924, \textit{P} $<$ 0.001]), as well as clinical T stage (HR 1.978 [95\% CI: 1.046-3.737, \textit{P} = 0.036]) and surgical margins status (HR 1.601 [95\% CI: 1.159-2.211, \textit{P} = 0.004]). 
+after adjustment of confounders, \acrshort{DKK1} overexpression is the independent prognostic factor (multivariate HR 2.135 [95\% CI: 1.559-2.924, \textit{P} $<$ 0.001]), as well as clinical T stage (HR 1.978 [95\% CI: 1.046-3.737, \textit{P} = 0.036]) and surgical margins status (HR 1.601 [95\% CI: 1.159-2.211, \textit{P} = 0.004]). 
 Older age (more than 65) also worse the survival (HR 1.462 [95\% CI: 1.078-1.983, \textit{P} = 0.015]). 
 The M stage could be ignored in this cohort due to only 3 out of 414 patients with distant metastasis.
 
@@ -693,10 +693,10 @@ The M stage could be ignored in this cohort due to only 3 out of 414 patients wi
 
 
 
-In Table \ref{table:table3}, the other ten over-expressed genes have been found in better prognosis of \acrshort{hnscc} patients. Cox's univariate and multivariate HR is under 0.5.
+In Table \ref{table:table3}, the other ten overexpressed genes have been found in better prognosis of \acrshort{hnscc} patients. Cox's univariate and multivariate HR is under 0.5.
 In Table \ref{table:table4},
 after adjustment of confounders, prognosis is influenced by advance clinical T Status (HR 1.961 [95\% CI: 1.035-3.714, \textit{P} = 0.039] ), positive surgical margin involvement (HR 1.631 [95\% CI: 1.18-2.254, \textit{P} = 0.003]) , and higher tobacco exposure (HR 1.453 [95\% CI: 1.055-2.000, \textit{P} = 0.022]).
-Over-expressed \acrshort{ZNF557} gene could has a protective influencce on prognosis (HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001]).
+Overexpressed \acrshort{ZNF557} gene could has a protective influencce on prognosis (HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001]).
 
 
 In summary, those 20 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
@@ -1059,10 +1059,12 @@ Paraneoplastic Ma 5 (PNMA5) promotes apoptosis signaling in HeLa (cervical cance
 
 
 
-\subsection{Research limitation}
-Although we combined the power of genome-wide scanning and an optimal cutoff finder for survival analysis, the study has some limitations.
-We are aware of the importance of direct assessment of protein products comprising the basic functional units in cancer cells' biological processes. The announcement of the Cancer Proteome Atlas (\acrshort{tcpa}, http://tcpaportal.org) excited the cancer research community\cite{Li2013c}\cite{Li2017b}. By the utility of the \acrfull{rppa} or \acrfull{rpma}, a microarray of "Western blots" in the \acrshort{tcpa} could help to test our hypotheses.
-However, in the \acrshort{tcpa} database (v3.0\cite{Chen2019}), there are only 237 antibodies available, not including our candidates so far. %  USP-10 in HPA
+\subsection{Limitations of the work}
+
+Although we combine the power of genome-wide scanning and an optimal cutoff finder for survival analysis, the study has some limitations.
+% first limitation:
+We are aware of the importance of direct assessment of protein products comprising the basic functional units in cancer cells' biological processes. The announcement of the Cancer Proteome Atlas (\acrshort{tcpa}, http://tcpaportal.org) excites the cancer research community\cite{Li2013c}\cite{Li2017b}. By the utility of the \acrfull{rppa} or \acrfull{rpma}, a microarray kind of "Western blots" in the \acrshort{tcpa} could help to test our hypotheses from \acrshort{rnaseq} study.
+However, in the \acrshort{tcpa} database (v3.0\cite{Chen2019}), there are only 237 antibodies available, not covering our candidates so far. %  USP-10 in HPA
 %> semi_join(pvalueTex_bad, HPA_bad, by=c("V1"="Gene"))
 %validation at protein level:
 %At the same time, we found our candidates (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteomepathology/head+and+neck+cancer, accessed 28 September 2020). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
@@ -1071,14 +1073,36 @@ However, in the \acrshort{tcpa} database (v3.0\cite{Chen2019}), there are only 2
 %%%%%%%%%% modified discussion
 %\begin{MyColorPar}{red}
 
-\subsection{Future work}
+
+
+% second limitation:
+%\subsubsection{Cancer type-agnostic study}
+Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
+% *** why here?
+In our previous work, altered glucose metabolism (e.k.a. the Warburg effect\cite{Warburg1956}) promotes the progression of \acrshort{hnscc}, which is partially attributed to the \acrlong{slc2a4} (\acrshort{slc2a4}, or \acrlong{glut4}, \acrshort{glut4}) and \acrfull{trim24} pathway\cite{Chang2017b}\cite{Mani2020}.
+% Cited In for PMID: 28061796
+Lactic acidosis induced \acrshort{glut4} overexpression was also found in lung cancer cells\cite{Prado-Garcia2020}. 
+%The overexpression of \acrshort{glut4} will lead to higher glucose uptake in proliferating cancer cells\cite{Mani2020}.
+%There is a trend toward cancer type-agnostic study. 
+Currently, Pembrolizumab and nivolumab's success has been based on a common biomarker (e.g., \acrshort{pd1}) crossing several types of cancer.
+It shows a model of tumor type-agnostic therapy\cite{Yan2018}.
+%*** PD-L1/PD-L2 is a biomarker; Keynote-012
+There are several common biomarkers of \acrfull{ici} under evaluation, including \acrfull{til}, \acrfull{ifng}, and \acrfull{tmb}\cite{Gavrielatou2020}.
+The other \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evaluated under the phase I/IIA\cite{Cristina2019} (ClinicalTrials.gov Identifier: NCT01968109) and II-IVA\cite{Neal2019} (NCT04080804) studies.
+
+In line with tumor-agnostic research, we plan to explore common biomarkers crossing TCGA diseases. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, it is necessary to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. This process should be carefully curated to confirm the data integrity within the correct definition. We also plan to upgrade our R script of the cutoff engine to the C++ language and source it in the Rstudio server. The high performance of C++ could speed up the critical steps in this workflow involving heavy computation of matrix data\cite{Woodward2020}. Moreover, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
+
+
+
+
+\subsection{Future research directions}
 \subsubsection{Laboratory validation}
 It is encouraged for multidisciplinary studies that use complementary computational and experimental approaches to address challenging cancer research.
 %下一篇文章的內容。目前在計畫中，但還沒有開始進行
 These in vitro and in vivo validation experiments will be undertaken in our laboratory.
-We plan to analyze mRNA (e.x. qRT-PCR) and protein (e.x. western blot) of HNSCC cell lysate to confirm the candidate genes' expression.
+We plan to analyze mRNA (e.x. qRT-PCR) and protein (e.x. Western blot) of HNSCC cell lysate to confirm the candidate genes' expression.
 %mRNA expression level in HNSCC cell lines (其他文章已有發表 overexpression）
-The effect of over-expression and knockdown of the gene by lentiviral clones should be observed on cell function assay (e.x. proliferation, migration, and invasion) and mouse xenograft model (e.x. tumor growth). %這些都需要一年以上的時間
+The effect of overexpression and knockdown of the gene by lentiviral clones should be observed on cell function assay (e.x. proliferation, migration, and invasion) and mouse xenograft model (e.x. tumor growth). %這些都需要一年以上的時間
 %their rationale for looking into TMSB4X is not strongly supported by the available data.
 
 % 其實文章真正的目標是  bioinformatics workflow，而不是 discovered biomarkers itself (see TCGA marker paper\cite{Lawrence2015a})
@@ -1086,41 +1110,24 @@ Moreover, this bioinformatics paper provides targets and supports the community'
 %We open invitation for research community by potential support their rationale for looking into these HNSCC candidates.
 %邀請科學家們一塊兒來繼續研究下去找出幫助癌症患者的方法
 %the rest of the analysis seems fine, but 
-%文章的初衷、跨領域：如同deep leaning Keras API，推廣研究者一個有效的方法 
-We aim to promote a reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} workflow allowing successful repetition and extension of analyses based on TCGA or their in-house HNSCC dataset. % to find more useful biomarkers. % or even other cancer types
+%文章的初衷、跨領域：如同deep leaning Keras API，推廣給研究者一個有效的方法 
+We aim to promote a reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} workflow allowing successful repetition and extension of analyses based on the TCGA or other in-house HNSCC datasets. % to find more useful biomarkers. % or even other cancer types
 % to allow successful repetition and extension of analyses based on original data
-A good practice of research reproducibility is necessary to allow the reuse of code and results for new projects.
+A good research reproducibility practice is necessary to allow the reuse of code and results for new projects.
 %previously developed methodology to be effectively applied on new data, or to allow 
 %reuse of code and results for new projects. %In other words, good habits of reproducibility
 It may turn out to be a time-saver in the longer run.
 When multiple scientists can reproduce a result, it will also validate our initial results and readiness to progress to the next research phase. 
 %why reproducibility?
-%Reproducible Bioinformatics Project provides a general schema and an infrastructure to distribute robust and reproducible workflows. Thus, it guarantees to final users the ability to repeat consistently any analysis independently by the used UNIX-like architecture.
+%Reproducible Bioinformatics Project provides a general schema and an infrastructure to distribute robust and reproducible workflows. Thus, it guarantees to final users the ability to repeat any analysis independently using UNIX-like architecture.
 %Utility of this model would facilitate development of more individualized therapy for HNSCC patients and improve prognosis.
-
-Once our laboratory and the community identify those candidates as the targets, the compound screening could facilitate more individualized therapy for HNSCC patients and improve prognosis.
-
-
+Once our laboratory or the community confirms those candidates as the targets, the compound screening could facilitate more individualized therapy for HNSCC patients.
+%and improve prognosis.
 
 
 
 
-\subsubsection{Cancer type-agnostic study}
-Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
 
-% second limitation:
-
-There is a trend toward cancer type-agnostic study. The success of pembrolizumab and nivolumab was based on a common biomarker (e.g., \acrshort{pd1}) crossing several types of cancer.
-It showed a precedent of tumor type-agnostic therapy\cite{Yan2018}.
-%*** PD-L1/PD-L2 is a biomarker; Keynote-012
-Currently, there are several common biomarkers of \acrshort{ici} under evaluation, which include \acrfull{til}, \acrfull{ifng}, and \acrfull{tmb}\cite{Gavrielatou2020}.
-The other \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evaluated under the phase I/IIA\cite{Cristina2019}\linebreak
-(ClinicalTrials.gov Identifier: NCT01968109) and II-IVA\cite{Neal2019} (ClinicalTrials.gov Identifier: NCT04080804) studies.
-
-In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
-
-% *** why here?
-In our previous work, altered glucose metabolism (e.k.a. the Warburg effect\cite{Warburg1956}) promotes the progression of \acrshort{hnscc}, which is partially attributed to the \acrfull{slc2a4} (or \acrlong{glut4}, \acrshort{glut4}) and \acrfull{trim24} pathway\cite{Chang2017b}. 
 
 
 
@@ -1141,7 +1148,9 @@ repentantly confess for not taking care of body and spirit, and sincere thanks f
 %3.誠意祝福
 %4.永存善念
 %5.心無恐懼: 情志養生
-
+the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
+with more TCGA features
+graph convolutional neural network (GCNN)
 Wish and bless the whole world
 
 
@@ -1212,11 +1221,16 @@ Bonferroni adjusted (Kaplan-Meier) \textit{P} value was used to make a ranking o
 
 %%%%%
 \section{Conclusions} % 5
-
+% Conclusions: This section is not mandatory, but can be added to the manuscript if the discussion is unusually long or complex.
 
 Our findings suggested 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are all heavily associated with the prognosis of \acrshort{os} under optimal cutoff points with stringent Bonferroni \textit{P} values and proper confounders control. They also might be potential common biomarkers for subsequent study.
-We wish this bioinformatics tool will be available for the broad usage of tumor-agnostic research\cite{Looney2020} to cross several \acrshort{tcga} diseases to make translational impacts. %Tex: PvalueTex
+% welcome for study
 
+%tumor-agnostic research, we plan to explore common biomarkers crossing TCGA diseases
+We wish this bioinformatics tool will be available for the broad usage of tumor-agnostic research\cite{Looney2020} to crossing several \acrshort{tcga} diseases to make translational impacts. %Tex: PvalueTex
+
+We aim to promote a reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} workflow allowing successful repetition and extension of analyses based on the TCGA or other in-house HNSCC datasets.
+TCGA has not collected holistic features.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Patents}
 
@@ -1226,8 +1240,12 @@ We wish this bioinformatics tool will be available for the broad usage of tumor-
 \vspace{6pt} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% optional
-%\supplementary{The following are available online at \linksupplementary{s1}, Figure S1: title, Table S1: title, Video S1: title.}
+%% optional: The data presented in this study are available in supplementary material.
+\supplementary{The following are available online at \linksupplementary{Supplementary_figures.pdf}, Figure S1: The query results from SurvExpress, Figure S2: The query results from HPA, Figure S3: GSE2837 query results from PrognoScan.}
+%Table S1: title, Video S1: title.}
+%S1
+%S2
+%S3
 
 % Only for the journal Methods and Protocols:
 % If you wish to submit a video article, please do so with any other supplementary material.
@@ -1249,7 +1267,7 @@ All authors have read and agreed to the published version of the manuscript.}
 \informedconsent{Not applicable}
 
 \dataavailability{All data process and analyses were performed with R programming language (https://www.r-project.org/, version 4.0.2 2020-06-22) and R packages "firebrowseR", "survival", "reshape", "data.table", "ggplot2", "R.utils", "xlsx", "r2excel", "rJava" and "rms" at Rstudio server (version 1.2.5001) based on Google cloud platform under operation system Linux (Ubuntu LTS, release v18.04.3).
-The supplementary figures are available online.%, tables, and R script codes 
+%The supplementary figures are available online.%, tables, and R script codes 
 The R script codes and datasets generated during the current study are available at the GitHub repository, https://github.com/texchi2/pvalueTex.} 
 
 \acknowledgments{The results shown here are in whole based upon data generated by the \acrshort{tcga} Research Network: https://www.cancer.gov/tcga.

@@ -1,11 +1,12 @@
 % Supplementary_figures.tex
-\documentclass[preprint,12pt]{elsarticle}
+%\documentclass[preprint,12pt]{elsarticle}
+\documentclass[jpm,supfile,submit,moreauthors,pdftex]{Definitions/mdpi}
 
 % major revision and answer question (3 reviewers)
 %Sunday, January 24⋅22:30 – 22:55
 %Daily, until Jan 29, 2021
 
-\renewcommand{\figurename}{Supplementary Figure S}
+\renewcommand{\figurename}{Supplementary Figure } %S
 
 % mark in blue or red
 \usepackage{xcolor}
@@ -125,45 +126,8 @@
 %%%%%%%%% title
 % Full title of the paper (Capitalized)
 %\Title{
-A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma
-
-% MDPI internal command: Title for citation in the left column
-%\TitleCitation{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
-
-% Author Orchid ID: enter ID or remove command
-%\newcommand{\orcidauthorA}{0000-0002-4476-2600} % Add \orcidA{} behind the author's name
-%\newcommand{\orcidauthorB}{0000-0001-6497-4232} % Add \orcidB{} behind the author's name
-
-% Authors, for the paper (add full first names)
-%\Author{
-Li-Hsing Chi $^{1,2}$%\orcidA{}
-, Alexander TH Wu $^{1}$,
-Michael Hsiao $^{3}$*
-and Yu-Chuan (Jack) Li $^{1,4}$*%\orcidB{}
-%\Author{Firstname Lastname $^{1,\dagger,\ddagger}$\orcidA{}, Firstname Lastname $^{1,\ddagger}$ and Firstname Lastname $^{2,}$*}
-
-% MDPI internal command: Authors, for metadata in PDF
-%\AuthorNames{Li-Hsing Chi, Alexander TH Wu, Michael Hsiao and Yu-Chuan (Jack) Li}
-
-% MDPI internal command: Authors, for citation in the left column
-%\AuthorCitation{Chi, LH.; Wu, ATH.; Hsiao, M.; Li, YCJ.}
-
-% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
-%\address{%
-
-$^{1}$ \quad The Ph.D. Program for Translational Medicine, College of Medical Science and Technology\unskip, 
-    Taipei Medical University and Academia Sinica\unskip, Taipei\unskip, Taiwan\\
-$^{2}$ \quad Division of Oral and Maxillofacial Surgery, Department of Dentistry\unskip,
-    Taipei Medical University Hospital\unskip, Taipei\unskip, Taiwan\\
-$^{3}$ \quad Genomics Research Center\unskip, 
-    Academia Sinica\unskip, Taipei\unskip, Taiwan\\
-$^{4}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Science and Technology\unskip, Taipei Medical University\unskip, Taipei\unskip, Taiwan\\
-
-
-% Contact information of the corresponding author
-%\corres{
-Correspondence: Hsiao: mhsiao@gate.sinica.edu.tw; Li: jaak88@gmail.com\\[1cm]
-%(optional; include country code; if there are multiple corresponding authors, add author initials) +xx-xxxx-xxx-xxxx (F.L.)}
+Title: A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma\\[2cm]
+%}
 
 %==================
 
@@ -171,17 +135,19 @@ Correspondence: Hsiao: mhsiao@gate.sinica.edu.tw; Li: jaak88@gmail.com\\[1cm]
 % title and author
 
 \underline{Supplementary figure legends}\\[1cm]
-
-Supplementary Figure S\ref{fig:fig_SurvExpress}\\
+% S1
+Supplementary Figure \ref{fig:fig_SurvExpress}\\
 The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of high risk and low risk groups, which is derived from risk groups optimization. %cumulative P-value plots).
 Inset color scale shows risk groups (high/low) and corresponded RNA expression in high/low.
 Thus, the poor prognostic genes are marked as red; the better prognostic genes are marked as orange.
 
-Supplementary Figure S\ref{fig:fig_HPA_USP10}\\
+%S2
+Supplementary Figure \ref{fig:fig_HPA_USP10}\\
 The query results from HPA: Kaplan-Meier plots of  ubiquitin-specific peptidase 10 (USP10) with cutoff by mRNA high expression and low expression groups (P-value = 0.0018).
 Over-expression of USP10 has poor prognosis on HNSCC.
 
-Supplementary Figure S\ref{fig:fig_GSE2837}\\
+%S3
+Supplementary Figure \ref{fig:fig_GSE2837}\\
 GSE2837 query results from PrognoScan: Kaplan-Meier plots of 10 genes (the cutoff of high risk and low risk groups, which is derived from cumulative P-value plots). The poor prognostic genes are marked as red; the better prognostic genes are marked as green.
 
 
@@ -196,7 +162,7 @@ Inset color scale shows risk groups (\textcolor{red}{high}/\textcolor{green}{low
 Thus, the poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{orange}{orange}.}
 \label{fig:fig_SurvExpress}
 \end{figure}
-\clearpage
+%\clearpage
 
 %%
 
@@ -207,7 +173,7 @@ Thus, the poor prognostic genes are marked as \textcolor{red}{red}; the better p
 Overexpression of USP10 has poor prognosis on HNSCC.}
 \label{fig:fig_HPA_USP10}
 \end{figure}
-\clearpage
+%\clearpage
 
 
 % from Answer2-2 GSE2837
@@ -218,9 +184,50 @@ Overexpression of USP10 has poor prognosis on HNSCC.}
 \caption{GSE2837 query results from PrognoScan: Kaplan-Meier plots of 10 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{blue}{low risk} groups, which is derived from cumulative P-value plots). The poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{green}{green}.}
 \label{fig:fig_GSE2837}
 \end{figure}
-\clearpage
+%\clearpage
 
 %\bibliographystyle{unsrt} %model1-num-names}
 %\bibliography{TCGA_margin_cutoff.bib}
 
 \end{document}
+
+%%%
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-4476-2600} % Add \orcidA{} behind the author's name
+\newcommand{\orcidauthorB}{0000-0001-6497-4232} % Add \orcidB{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{
+Li-Hsing Chi $^{1,2}$\orcidA{}
+, Alexander TH Wu $^{1}$,
+Michael Hsiao $^{3}$*
+and Yu-Chuan (Jack) Li $^{1,4}$*\orcidB{}
+}
+%\Author{Firstname Lastname $^{1,\dagger,\ddagger}$\orcidA{}, Firstname Lastname $^{1,\ddagger}$ and Firstname Lastname $^{2,}$*}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Li-Hsing Chi, Alexander TH Wu, Michael Hsiao and Yu-Chuan (Jack) Li}
+
+% MDPI internal command: Authors, for citation in the left column
+\AuthorCitation{Chi, LH.; Wu, ATH.; Hsiao, M.; Li, YCJ.}
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address{%
+
+$^{1}$ \quad The Ph.D. Program for Translational Medicine, College of Medical Science and Technology\unskip, 
+    Taipei Medical University and Academia Sinica\unskip, Taipei\unskip, Taiwan\\
+$^{2}$ \quad Division of Oral and Maxillofacial Surgery, Department of Dentistry\unskip,
+    Taipei Medical University Hospital\unskip, Taipei\unskip, Taiwan\\
+$^{3}$ \quad Genomics Research Center\unskip, 
+    Academia Sinica\unskip, Taipei\unskip, Taiwan\\
+$^{4}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Science and Technology\unskip, Taipei Medical University\unskip, Taipei\unskip, Taiwan\\
+}
+
+% Contact information of the corresponding author
+\corres{
+Correspondence: Hsiao: mhsiao@gate.sinica.edu.tw; Li: jaak88@gmail.com\\[1cm]
+}
+%(optional; include country code; if there are multiple corresponding authors, add author initials) +xx-xxxx-xxx-xxxx (F.L.)}
