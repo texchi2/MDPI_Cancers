@@ -286,11 +286,16 @@ $^{4}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Sc
 Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
 %There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
 We developed a comprehensive workflow to perform biomarker discovery. It includes data retrieval, data pre-processing, feature selection, cutoff engine, Kaplan-Meier survival analysis, and Cox proportional hazard modeling.
-Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes and adjusted them with confounders and Bonferroni corrected \textit{P} value.
-The result showed ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of overall survival. 
-Furthermore, the other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes and adjusted them with confounders, and Bonferroni corrected \textit{P} value. After validation with an independent \acrshort{hnscc} cohort (GSE2837), the result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. 
+Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
 We suggest this workflow equipped with a cutoff-mining engine could help for biomarker discovery.
 }
+% validated by the other HNSCC cohort:
+%1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
+%2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
+
+% row 20: The result showed ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of overall survival. Furthermore, the other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+
 
 % Keywords
 \keyword{
@@ -469,10 +474,11 @@ then performing the survival analyses. The Cutoff engine (cutofFinder\_func.HNSC
 The 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated at workflow step 1 (see Figure \ref{fig:figure1}) and justified by the ranking of hazard ratios.
 The 967 genes were kept by criteria of uncorrected \textit{P} value (below 0.05) and \acrfull{hr} (greater than 1.5 or less than 0.5) (see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b) multivariate plots). 
 At the final step, a stringent criteria (Bonferroni \textit{P} value correction) was used to yield twenty candidates (see Figure \ref{fig:figure2}(c), (d)). 
+% before validation
 Among these candidates, ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of  \acrshort{os} (see Table \ref{table:table1}). 
 The other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{table:table3}, with their gene name).
 We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot reveals that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
-
+% => after validation: The result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
 
 %\subsubsection{Figure 2:h}
 \begin{figure}[hp]
@@ -873,8 +879,34 @@ It is suggested by authors \cite{Scholl1986}\cite{Sutton2003}\cite{Shaw2004}\cit
 %%%
 
 \subsection{Validation by web-based tools}
-We utilized another approach of web-based tools (TCGA and GSE2837 cohort) to validate our candidates. %Since the discovery of workflow, we also used the web-based tools to find the evidence convincing up to 12 of our suggested 20 biomarkers in TCGA and GSE2837 cohort.
+%注意 強調GSE2837: 
+The prognostic
+significance of the candidate genes has been validated by an independent patient cohort.
 
+%\subsubsection*{GSE2837} % non-TCGA
+% from Anwser2-2
+%by GEO GSE2837 HNSCC dataset (PrognoScan)
+After the discovery with our workflow, we validated the suggested 20 biomarkers in the other \acrshort{hnscc} cohort.
+We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/\\PrognoScan/)\cite{Mizuno2009a}.
+%??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
+%https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
+The GSE2837 carries out % VUMC, VAMC, UTMDACC (1992-2005)
+microarray gene expression (by Affymetrix X3P chips U133\_X3P) and relapse-free survival (RFS) data, instead of overall survival in TCGA dataset.
+The survival significance (Kaplan Meier \textit{P} value) is in the following probes of 10 genes:\\
+1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
+2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
+%17 out of 20 candidates
+%?DKK1 (0.253635), 
+%Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far fewer participants than the TCGA cohort.
+%DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
+%ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
+%Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
+The 10 out of 20 candidates are confirmed by a comparative study using the GSE2837 dataset other than the TCGA cohort. Please see Kaplan-Meier plots in Supplementary Figure S1.%\ref{fig:fig_GSE2837}.
+
+
+
+%
+We also utilized another approach of web-based tools (TCGA) to analyze our candidates.
 %\subsubsection*{SurvExpress} % TCGA
 % 2021/01/23 pdf x 12 from SurvExpress
 SurvExpress\cite{Aguirre-Gamboa2013} is one of the web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier \textit{P} value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
@@ -884,7 +916,7 @@ SurvExpress\cite{Aguirre-Gamboa2013} is one of the web-based tools for Biomarker
 %IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
 %17 out of 20 candidates
 %?DKK1 (0.253635),
-The 12 out of 20 candidate genes are confirmed by a comparative study using SurvExpress with the TCGA cohort. Please see Supplementary Figure S1.%\ref{fig:fig_SurvExpress}.
+The 12 out of 20 candidate genes are confirmed by a comparative study using SurvExpress with the TCGA cohort. Please see Supplementary Figure S2.%\ref{fig:fig_SurvExpress}.
 % moved to supplementary file: Supplementary_figures.tex
 
 
@@ -901,7 +933,7 @@ Our 9 candidates (e.g., DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, 
 Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the autophagy-related genes, has a poor prognostic impact on HNSCC, which has been proved at mRNA and protein level (HPA database, available at https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/head+and+neck+\\cancer)\cite{Ren2020}.
 % 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
 %found at Human Protein Atlas dataset 
-(Please see Supplementary Figure S2)%\ref{fig:fig_HPA_USP10})
+(Please see Supplementary Figure S3)%\ref{fig:fig_HPA_USP10})
 % moved to Supplementary
 
 
@@ -913,28 +945,6 @@ Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the 
 % he P-values pi from a univariable Cox proportional hazards regression model, which quantifies how significantly the molecular profiling data of the gene correlate with the patient survival data. 
 % SurvNet also calculates the mutivariable Cox P-values for each subnetwork (a group of genes) to validate their clinical utility.
 %The network files are in a '.dot' format that can be visualized by GraphViz (http://www.graphviz.org)
-
-%\subsubsection*{GSE2837} % non-TCGA
-% from Anwser2-2
-%by GEO GSE2837 HNSCC dataset (PrognoScan)
-We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from online tools: PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/\\PrognoScan/)\cite{Mizuno2009a}.
-%??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
-%https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
-The GSE2837 carries % VUMC, VAMC, UTMDACC (1992-2005)
-relapse-free survival (RFS) data, instead of overall survival in TCGA dataset,
-and microarray gene expression (by Affymetrix X3P chips U133\_X3P).
-The survival significance (Kaplan Meier \textit{P} value) is in the following probes of 10 genes:\\
-1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
-2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
-%17 out of 20 candidates
-%?DKK1 (0.253635), 
-Please see Supplementary Figure S3.%\ref{fig:fig_GSE2837}.
-
-Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far fewer participants than the TCGA cohort.
-%DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
-%ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
-%Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
-The 10 out of 20 candidates are confirmed by a comparative study using the GSE2837 dataset other than the TCGA cohort.
 
 
 
@@ -1401,8 +1411,8 @@ Bonferroni adjusted (Kaplan-Meier) \textit{P} value was used to make a ranking o
 %%%%%
 \section{Conclusions} % 5
 % Conclusions: This section is not mandatory, but can be added to the manuscript if the discussion is unusually long or complex.
-
-Our findings suggested 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB, are all heavily associated with the prognosis of \acrshort{os} under optimal cutoff points with stringent Bonferroni \textit{P} values and proper confounders control. They also might be potential common biomarkers for subsequent study.
+%The result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+Our findings suggested 10 candidate biomarkers,CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2, as well as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB, are all heavily associated with the prognosis of \acrshort{os} under optimal cutoff points with stringent Bonferroni \textit{P} values and proper confounders control. They also might be potential common biomarkers for subsequent study.
 % welcome for study
 
 %tumor-agnostic research, we plan to explore common biomarkers crossing TCGA diseases
