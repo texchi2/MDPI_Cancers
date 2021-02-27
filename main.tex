@@ -1088,7 +1088,7 @@ However, in the \acrshort{tcpa} database (v3.0\cite{Chen2019}), there are only 2
 % second limitation:
 %\subsubsection{Cancer type-agnostic study}
 Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
-% *** why here?
+% *** yes here
 In our previous work, altered glucose metabolism (e.k.a. the Warburg effect\cite{Warburg1956}) promotes the progression of \acrshort{hnscc}, which is partially attributed to the \acrlong{slc2a4} (\acrshort{slc2a4}, or \acrlong{glut4}, \acrshort{glut4}) and \acrfull{trim24} pathway\cite{Chang2017b}\cite{Mani2020}.
 % Cited In for PMID: 28061796
 Lactic acidosis induced \acrshort{glut4} overexpression was also found in lung cancer cells\cite{Prado-Garcia2020}. 
@@ -1100,7 +1100,7 @@ It shows a model of tumor type-agnostic therapy\cite{Yan2018}.
 There are several common biomarkers of \acrfull{ici} under evaluation, including \acrfull{til}, \acrfull{ifng}, and \acrfull{tmb}\cite{Gavrielatou2020}.
 The other \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evaluated under the phase I/IIA\cite{Cristina2019} (ClinicalTrials.gov Identifier: NCT01968109) and II-IVA\cite{Neal2019} (NCT04080804) studies.
 
-In line with tumor-agnostic research, we plan to explore common biomarkers crossing TCGA diseases. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, it is necessary to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. This process should be carefully curated to confirm the data integrity within the correct definition. We also plan to upgrade our R script of the cutoff engine to the C++ language and source it in the Rstudio server. The high performance of C++ could speed up the critical steps in this workflow involving heavy computation of matrix data\cite{Woodward2020}. Moreover, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
+In line with tumor-agnostic research, we plan to explore common biomarkers crossing TCGA diseases. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, it is necessary to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. This process should be carefully curated to confirm the data integrity within the correct definition\cite{Rendleman2019}. We also plan to upgrade our R script of the cutoff engine to the C++ language and source it in the Rstudio server. The high performance of C++ could speed up the critical steps in this workflow involving heavy computation of matrix data\cite{Woodward2020}. Moreover, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
 
 
 
@@ -1148,6 +1148,7 @@ https://github.com/Serian1992/ImgBio.
 %The Stanford Tissue Microarray Database (TMAD; x http://tma.stanford.edu) 
 %https://tma.im/cgi-bin/ontologyBrowser.pl?anchor=C34447; there is few HNSCC slides
 
+*** interpretable or explainable CNN
 
 https://www.cancer.gov/research/areas/diagnosis/artificial-intelligence
 % NCI
@@ -1176,135 +1177,59 @@ recurrent neural network for NLP
 
 %在生物醫學領域，氨基酸或DNA等序列的使用可說是相當普遍，由於序列可視為一種具有隱性結構的語言，因此自然語言處理模型所採用的架構便可運用在理解並生成生物醫學領域的序列。
 
+%the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
+%with more TCGA features (holistic)
+
 
 \subsubsection{Holistic cancer care} 
-% by epigenetic control (placebo/nocebo), Bruce Lipton introduced mind-brain-body system.
-% person-central approach, PCA; Cullen, Carl Rogers
+% carcinogenesis by epigenetic control (placebo/nocebo), Bruce Lipton introduced mind-brain-body system. (gene expression is not an independent $X_mrna$, which is correlated with other $X_body, X_stress, X_inflammation, X_ros$)
+% cancer care with person-central approach, PCA; Cullen, Carl Rogers
 
-TCGA treated by surgery and more; TNM available yes
-discussion: limitation
-Even there are many $X_1 ... X_n$ physical and social features of patients available for survival modelling in the TCGA.
- since it has comprehensive clinical features, such as exposure to alcohol, asbestos, radioactive radon, tobacco smoking, or cigarettes.
-the TCGA does not collect holistic features
-Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, 
-or even spiritual, emotional, and social status) go holistic
+%TCGA treated by surgery and more; TNM available yes
 
-World Health Organisation has called worldwide for delivering people-centred (or person-centred) care from the physical, emotional, socioeconomic and spiritual perspectives\cite{WHO2015}.
-Core principles can be taken to achieve people-centred and integrated health service delivery. First principle is holistic – focusing on physical, socioeconomic, mental and emotional well-being. (Holistic care: care to the “whole person” that considers psychological, social and environmental factors rather than just the symptoms of disease or ill-health)
-Second principle is Empowering – supporting people to manage and take responsibility for their own health. (Empowerment: the process of supporting people and communities to take control of their own health needs resulting, for example, in the uptake of healthier behaviours or the ability to self- manage illnesses)
+%discussion: the third limitation
+Even there are eighty one ($X_1 ... X_81$) physical, pathological and social features of patients available for survival modelling in the TCGA, 
+% since it has comprehensive clinical features, 
+such as age, gender, residual tumor, vital status, days\_to\_last\_followup, cancer stage, smoking duration, exposure to alcohol, asbestos, radioactive radon, the TCGA did not collect other holistic features from their participants.
+% Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, 
+Going for holistic cancer care\cite{Mehta2019}\cite{Iftikhar2021} spiritual and emotional condition is equal important comparing with physical and social status.
+%
+World Health Organisation has called worldwide for delivering people-centred (or person-centred) care from the physical, emotional, socioeconomic and spiritual perspectives\cite{WHO2015}\cite{Ling-ChengMong2021}.
+Core principles can be taken to achieve people-centred and integrated health service delivery. 
+First principle is holistic – focusing on physical, socioeconomic, mental and emotional well-being. 
+Holistic care: care and see the person as a whole with psychological, social and environmental levels of needs and goals.
+%that considers  factors rather than just the symptoms of disease or ill-health.
+Second principle is Empowering – supporting people to manage and take responsibility for their own health. 
+Empowerment: the process of supporting people and communities to take control of their own health needs resulting, for example, in the uptake of healthier behaviours or the ability to self-manage illnesses.
 People-centred care requires that people have the education and support they need to make decisions and participate in their own care.
-Glossary:
+%Glossary:
 %People-centred care: an approach to care that consciously adopts individuals’, carers’, families’ and communities’ perspectives as participants in, and beneficiaries of, trusted health systems that respond to their needs and preferences in humane and holistic ways. People-centred care also requires that people have the education and support they need to make decisions and participate in their own care. It is organized around the health needs and expectations of people rather than diseases (7,8) 
 %Person-centred care: care approaches and practices that see the person as a whole with many levels of needs and goals, with these needs coming from their own personal social determinants of health.
-(1. World Health Organization. WHO global strategy on people-centred and integrated health services: interim report. https://apps.who.int/iris/handle/10665/155002 (2015).)
+%(1. World Health Organization. WHO global strategy on people-centred and integrated health services: interim report. https://apps.who.int/iris/handle/10665/155002 (2015).)
 
-The spiritual care is he key of holistic healthcare in dental practice or for cancer patient.  Being mindful to patient’s mental health and emotional changes during the dental care. Taking patient’s socioeconomic statement and supporting system thoroughly for building a holistic consideration.
-Learning to listen proactively
-9) Therapeutic relationship is an essential key towards spiritual care.
+The spiritual care is the key of holistic healthcare in dental practice\cite{Ling-ChengMong2021} or even for cancer patient. Being mindful to patient’s mental health and emotional changes during the dental care. Taking patient’s socioeconomic statement and supporting system thoroughly for building a holistic consideration. Learning to listen proactively.
 Being aware of patient’s spiritual needs during/after treatment.
-12) Applying the holistic healthcare strategies, such as the Shared Decision Marking, to collect more spiritual-related information of patients in the treating process and adjusting the approaches dynamically.\cite{Ling-ChengMong2021}
+%Applying the holistic healthcare strategies, such as the shared decision making, to collect more spiritual-related information of patients in the treating process and adjusting the approaches dynamically.\cite{Ling-ChengMong2021}
 
-%%
-Bruce Lipton introduced mind-brain-body system.
-Lipton 1992, epinephrine and histamine signals in endothelium, %心智作用
- In a state of fear, the brain releases chemicals associated with fear, which are stress hormones and inflammatory agents.
-dopamine, oxytocin, vasopressin, and growth hormone will be released by central nerve system in response to the perception of love.
-
-Epigenetics control says that genetic expression is directly due to the environment and our perception of the environment\cite{Gustafson2017}.
-The microenvironment of HNSCC requires further exploration and understanding using a multiparametric approach.
-Bruce Lipton: the biology of belief %信念的力量
-placebo effect and the old belief of genetic determinism\cite{Mokhtari2011}\cite{Kobisi2012}\cite{Gustafson2017}
-%biowell 勿膨脹自我: 我非常擔心，所謂的科學實驗，研究的疾病，發明的藥物，都會潛藏一種危機，因為它的療效與科學證據，都是建立在「意識統一場域」中，科學家在研究時，一定希望有效，能夠發現別人沒有發現且有用的事情，所以「成功」還是會帶有「人為的意念」。
-%那麼，這個結果不「公正」。甚至，當原來藥物發明者的心念改變了，（開始只想賺錢），那麼藥物的作用就更無法掌握。也許，藥物副作用會很嚴重。而目前科學的解釋是，只是因為個體的基因差異。
-
-%% 1. Kobisi, W. Mind inhibitors. in The 30th International Congress Of The World Federation Of Hemophilia, July 8‐12 vol. 18 170–171 (John Wiley & Sons, Ltd, 2012).
-As a person with hemophilia (PWH), my passion led me to conduct personal research to uncover the main cause of my drawbacks in my education, my career, and my romantic life. I have experienced unjustified conflicts in my social relations, feeling stale in mind and body, indefinite self-image, emotional instability, and successive spontaneous bleeds despite the continuous factor replacement. My research is based on my experience of living with hemophilia for 37 years, reading countless books on personal development and the mind-body relationship, and having profound discussions about these experiences with my wife. Findings: Through my research, I uncovered that I used to suffer from what I call 'mind inhibitors' these were the hidden cause of my life disorders and spontaneous bleeds. These mind inhibitors are responsible for locking the body factor receptors, blocking body energy centres (like the solar plexus), discouraging the super-intelligent body cells from running their auto-healing system, and paralyzing the instinctive high-speed cellular response to external molecular treatment. Mind inhibitors originate from different sources like thinking of oneself in a victim role, anxiety about medical treatments, lack of financial stability, negative attitudes, self-rejection, and contradictory thoughts and feelings. Conclusion: Mind inhibitors should be handled as seriously as biological inhibitors. As Dr. Bruce Lipton explains in his book, 'The Biology of Belief': DNA does not control our biology; instead DNA is controlled by signals from outside the cell. Our bodies can be changed as we retrain our thinking, since thoughts are made of energy that affects the cellular energy level, and thus everything is created twice: once in our minds and then the physical creation follows. New holistic approaches should be considered for treating PWH as a complete synchronized system of Soul, Mind, and Body; treatment should include more than just factor adjustment. Factor adjustment only treats symptoms, but a holistic approach would also address the patient's need for a subconscious paradigm shift in the person's thought and belief system.\cite{Kobisi2012}
-
-%%
+%% PCA and ECA
+Therapeutic relationship is an essence towards spiritual care.
+Carl Rogers developed person-centered theory that the therapist is providing the appropriate social-environmental conditions for their patients\cite{Rogers1957}\cite{Joseph2004}\cite{Griffiths2013}.
+Person-centred theory holds that the innate tendency towards growth and development is facilitated by the six conditions described by Rogers in 1957\cite{Rogers1957}.
+The research implication is to investigate the relationship between the patient’s intrinsic motivation to explore his or her trauma-related thoughts and feelings and the nature of the therapeutic relationship as defined by the six conditions\cite{Rogers1957}.
+Dealing with negative emotions. As the patient feels intense negative emotions of fear, despair, sadness and so on, it is not the patient-centred therapist’s task to try and remove these feelings: The task is simply to stay with the patient’s experiences. 
+%The research implication is to investigate the necessity and sufficiency of the six conditions.
+%Rogers, C. R. A Theory of Therapy, Personality, and Interpersonal Relationships: As Developed in the Client-centered Framework. in Psychology: A Study of a Science. Study 1, Volume 3: Formulations of the Person and the Social Context (ed. Koch, S.) 184–256 (McGraw Hill, 1959).\cite{Rogers1959}
 
 
-genetic determinism 所以我們的科學家依舊在研究，基因對癌症的影響（單向）
-The genetics of the cell give us all kinds of potentials. % 自性空
-
-%冤親債主的意念 unknown X factors
-[Results] In summary, those 10 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
-Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific 20 gene expressions, clinical T stage, and surgical margin.
-依舊是以管窺天
-% https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-1428-6_575
-%癌症與身心靈的重要關係：中醫、citation? emotional centered approach
-
-
-%%%
-PCA and ECA
-Carl Rogers: Carl Rogers' person-centered theory
-the therapist is providing the appropriate social-environmental conditions \cite{Rogers1957}.\cite{Joseph2004}\cite{Griffiths2013}
-Person-centred theory holds that the innate tendency towards growth and development is facilitated by the six conditions described by Rogers\cite{Rogers1957}.
-The research implication is to investigate the relationship between the client’s intrinsic motivation to explore his or her trauma-related thoughts and feelings and the nature of the therapeutic relationship as defined by the six conditions\cite{Rogers1957}.
-Dealing with negative emotions. As the client feels intense negative emotions of fear, despair, sadness and so on, it is not the client-centred therapist’s task to try and remove these feelings: The task is simply to stay with the client’s experiences. T he research implication is to investigate the necessity and sufficiency of the six conditions.
-
-Rogers, C. R. A Theory of Therapy, Personality, and Interpersonal Relationships: As Developed in the Client-centered Framework. in Psychology: A Study of a Science. Study 1, Volume 3: Formulations of the Person and the Social Context (ed. Koch, S.) 184–256 (McGraw Hill, 1959).\cite{Rogers1959}
-% http://bibliotecaparalapersona-epimeleia.com/greenstone/collect/ecritos2/index/assoc/HASH01a5/4583605e.dir/doc.pdf
-
-% so do the cancer
-Individual treatment and avoiding assumptions. Although it is useful for therapists to have a knowledge of the trauma literature on the general reactions of people who experience trauma, the therapist should not assume that this knowledge necessarily applies to each and every client\cite{Joseph2004}.
-
-Cullen's lecture notes reveal a sophisticated clinical understanding of mind-body interaction,13,16 centred on a physician's therapeutic intentions and his attunement to patient sympathy.
-we educate them
-1. Mong, L.-C., Liao, F., Chiou, J. & Chiang, P. Tips for Integrating Spiritual Care Delivery in Dental Education. in Asia Pacific Medical Education Conference. Short Communication 5 (National University of Singapore, 2021).\cite{Ling-ChengMong2021}
-
-*** make Figure 5 holistic:
-meridian and emotion has mutual reaction
-meridian effect tissue and organ
-(autonomic nerve system, myofascial network, prefrontal cortex)
-placebo-effect influence on drug discovery
-博士班學生，越研究越發現，科學的不足，心理與靈性的力量，更是背後推動的冥冥力量，身心靈是合一的。#正念 除了可以減壓，還可以治癒疼痛
-
-騙過你的病-安慰劑效應 The Placebo Effect
-(Emmanuelle Sapin, Pascal Goblot)
-%1. Sapin, E. & Goblot, P. L’effet placebo (English: The Placebo Effect) [enregistrement vidéo] : le formidable pouvoir de l’auto-guérison. 53 PP-Quebec (Cinéfête, 2014).\cite{Sapin2014}
-% https://biblio.bdeb.qc.ca/in/sim/faces/details.xhtml;jsessionid=E3DD39109012D0BEA598E6E5B66A4FD2?id=p::usmarcdef_0000058243&posInPage=8
-1. Finniss, D. G. Placebo Effects: Historical and Modern Evaluation. in International review of neurobiology vol. 139 1–27 (2018).\cite{Finniss2018}
-%蓋倫劑量 placebo effect 身心靈醫學的核心
-In 1772, Willian Cullen, a British physician, wrote that  "I own that I did not trust much to it, but I gave it because it is necessary to give a medicine, and as what I call a placebo. If I had thought of any internal medicine it would have been a dose of the Dover's powders."\cite{Kerr2008}\cite{Finniss2018}.
- (made up of Ipecac and opium) 
- Cullen studied the objective science of analytical chemistry. He also sense that the patient's subjective, psychosomatic or ‘sympathetic constitution’ determined his reaction to a prescribed therapeutic substance.
-***Cullen developed a theory of "sympathy" (or empathy) which informed his ideas about clinical medicine dealing with psychosomatic theory of illness and mind-body therapeutics. % he do 炮製
-Cullen's theory of sympathy is a mind-body function, a kind of ‘vital force’ that animated the human body, coordinated function, and transmitted sensation to target organs\cite{Forget2003}\cite{Kerr2008}.
-This finely calibrated, rational use of active placebo treatment, in which the physician dispensed a weak, physiologically active substance in order to please and calm the patient rather than to cure the patient's underlying disorder, was a product of the rational scientific culture of the 18th century Scottish Enlightenment and its embrace of a grounded, empirical approach to medicine. %啟蒙運動
-
-%sympathy 富有同情心、慈悲心，靈性高度成熟的醫師，不是只用藥物或手術來治療病患，「他自己本身」就具有療癒效果。
-The role of the physician was to be a gentle, sympathetic listener, who could interpret the patient's sympathetic disorder and select the proper remedy to treat it, whether by prescribing placebos to please (influence the emotional states of patients), or medicine to cure the patient's disorder.
-placebo effect 安慰劑的研究，拓展了我們對醫病關係的理解，回歸到以病患為中心。
-醫療處理的不只是藥物和手術，人更是必須處理的對象，把病患看作一個整體，要掌握身與心的個人特質。
-安慰劑效應的研究，最後導向了良好醫病關係的思考，並成為醫生臨床醫術的元素之一：
-「醫師開藥時，其實是把自己當藥方開出去」。
-安慰劑效應的科學研究，驚人地發現現代西方醫學的不確定性。
-前額葉背側區 (dorsolateral prefrontal cortex)  是形成安慰劑療效的關鍵(PCA「治療關係」的生理學依據)
-PCA理論
+%PCA理論
+治療關係的核心條件: 說好話 眼對眼 engaging 用真心
 以心印心 engaging
 身心相連 body-mind connection
 捨末求本
-the anterior cingulate cortex and the dorsolateral prefrontal cortex have been found to be activated by placebo administration.
-\cite{Benedetti2005}\cite{Benedetti2011}\cite{Carlino2011}\cite{Bennett2018}
-But modern research, especially the results of neuroimaging studies, has shown unequivocally that placebo-induced analgesia is real in the sense that the neural correlates of the sensation of pain are reduced, in the same way that they would be reduced by a decrease in the intensity of a pain-evoking stimulus or by the administration of an analgesic drug\cite{Eippert2009}\cite{Watson2009}. Today, pain researchers are united in the belief that placebo analgesia is real, in the sense that the neural processes that represent pain are reduced\cite{Bennett2018}.
 身心靈全人醫療，展現魅力、慈悲心，靈性成熟的醫師，用藥物或手術來治療病患時，
 「他自己本身」就具有療癒效果
 「把自己當藥方開出去」
-#正念 減壓，療癒疼痛\cite{Krummenacher2010}\cite{Bennett2018}、免疫系統、內分泌系統或自律神經系統相關的疾病，以及憂鬱症、焦慮症 
-The idea of placebo as a diluted but active substance persisted into the 19th century17 but the term also came to mean a physiologically inert substance - bread or lactose, for example.18,19 Inert substances began to be used in comparative clinical trials during the first half of the 19th century,20 but this latter meaning of the term was given particular impetus at the end of the 19th century and the beginning of the 20th century, when inert substances were used as controls in pharmacological experiments.21 This shift in meaning may have reflected the rise of a new emphasis (or even metaphysics) in medicine, in which the molecular make up of an active drug assumed central importance, and any other positive benefits were seen as non-specific, placebo effects.\cite{Kerr2008}
 
-prefrontal lobe 理智腦 意識 正念 杏仁核 prefrontal cortex runs conscious mind
-「安慰劑」placebo effect，也已經有科學證明，與醫師、病患的意識（前額葉）功能，非常有關係。這也是負責同理心與愛的腦區。
-物理作用、信號，雷射針灸
-Therapeutic Relationship
-Spirituality
-慈悲心 compassion 
-同情心 sympathy
-同理心 empathy
-non-verbal contact
-前額葉內側 (medial prefrontal cortex)
-額葉底部(orbitofrontal cortex)
-治療關係的核心條件: 說好話 眼對眼 engaging 用真心
 empowering
 (一)雙方有心理的接觸。
 (二)當事人正感到焦慮或不一致(incongruence)。 
@@ -1334,7 +1259,7 @@ I find that when I am closest to my inner, intuitive self, when I am somehow in 
 「診後說三句，更勝良帖十方」
 
 
-
+%% why holistic?
 中醫人體觀－五臟與經絡情緒 工作坊《課程簡介》情緒是人體自身的氣，我們因情緒而調動它，也因它內傷，誘發情緒的原因有外在和內在，外在多跟經絡接收訊息的能力有關，當外在的影響如果沒有適當阻斷的時候，也會影響到五臟功能；內生的情緒則多以活出自我價值感有關，當我們活出此生想要體驗的人生與成就，我們就能夠不受情緒控制而保持內在平靜，這一切的源頭皆與我們是否活出真實的自己有關。
 養生和治療的原則:
 一、某些病症可以透過食療而改善的會建議自行調養
@@ -1344,6 +1269,123 @@ I find that when I am closest to my inner, intuitive self, when I am somehow in 
 五、體質會變，所以變的是療法，而不是讓體質去適應固定療程
 六、認識自己身體的狀態比吸收營養資訊更重要
 七、沒有好或不好的飲食或療法，只有適不適合自身體質的療法
+情志養生 悲喜憂思苦 七情
+人俯仰於天地之間
+順從四季氣候變化
+保養正氣陶冶性情
+自我療癒身心靈疾病
+%自他不二 心存正念 向內看，解決苦之源
+%1.衷心懺悔
+%2.真心感謝
+%3.誠意祝福
+%4.永存善念 慈悲
+%5.心無恐懼: 情志養生
+每位醫師都可以成為「創傷知情者」
+幫助我們身邊的病患， 懂他的心靈創傷
+讓他有安全感， 才有機會改變疾病的走向
+
+“每一位患者都有自癒能力， 我們知情之後， 也要逐步讓他本人知情， 看見之後， 在良好的「治療關係」中， 協助他們漸漸找回自己的療癒。（以他們自己的腳步）”
+解說：
+患者的自癒力就是復原力（resilience),  強調「治療關係」（安全、 信任、 分享權力、 自決） 以及”知情”(暸解過往創傷經驗對自身的影響，進而開始療癒的過程）的重要性。
+
+%% why holistic?
+Bruce Lipton introduced mind-brain-body system.
+Lipton 1992, epinephrine and histamine signals in endothelium, %心智作用
+ In a state of fear, the brain releases chemicals associated with fear, which are stress hormones and inflammatory agents.
+dopamine, oxytocin, vasopressin, and growth hormone will be released by central nerve system in response to the perception of love.
+
+Epigenetics control says that genetic expression is directly due to the environment and our perception of the environment\cite{Gustafson2017}.
+The microenvironment of HNSCC requires further exploration and understanding using a multiparametric approach.
+Bruce Lipton: the biology of belief %信念的力量
+placebo effect and the old belief of genetic determinism\cite{Mokhtari2011}\cite{Kobisi2012}\cite{Gustafson2017}
+%biowell 勿膨脹自我: 我非常擔心，所謂的科學實驗，研究的疾病，發明的藥物，都會潛藏一種危機，因為它的療效與科學證據，都是建立在「意識統一場域」中，科學家在研究時，一定希望有效，能夠發現別人沒有發現且有用的事情，所以「成功」還是會帶有「人為的意念」。
+%那麼，這個結果不「公正」。甚至，當原來藥物發明者的心念改變了，（開始只想賺錢），那麼藥物的作用就更無法掌握。也許，藥物副作用會很嚴重。而目前科學的解釋是，只是因為個體的基因差異。
+
+%% 1. Kobisi, W. Mind inhibitors. in The 30th International Congress Of The World Federation Of Hemophilia, July 8‐12 vol. 18 170–171 (John Wiley & Sons, Ltd, 2012).
+As a person with hemophilia (PWH), my passion led me to conduct personal research to uncover the main cause of my drawbacks in my education, my career, and my romantic life. I have experienced unjustified conflicts in my social relations, feeling stale in mind and body, indefinite self-image, emotional instability, and successive spontaneous bleeds despite the continuous factor replacement. My research is based on my experience of living with hemophilia for 37 years, reading countless books on personal development and the mind-body relationship, and having profound discussions about these experiences with my wife. Findings: Through my research, I uncovered that I used to suffer from what I call 'mind inhibitors' these were the hidden cause of my life disorders and spontaneous bleeds. These mind inhibitors are responsible for locking the body factor receptors, blocking body energy centres (like the solar plexus), discouraging the super-intelligent body cells from running their auto-healing system, and paralyzing the instinctive high-speed cellular response to external molecular treatment. Mind inhibitors originate from different sources like thinking of oneself in a victim role, anxiety about medical treatments, lack of financial stability, negative attitudes, self-rejection, and contradictory thoughts and feelings. Conclusion: Mind inhibitors should be handled as seriously as biological inhibitors. As Dr. Bruce Lipton explains in his book, 'The Biology of Belief': DNA does not control our biology; instead DNA is controlled by signals from outside the cell. Our bodies can be changed as we retrain our thinking, since thoughts are made of energy that affects the cellular energy level, and thus everything is created twice: once in our minds and then the physical creation follows. New holistic approaches should be considered for treating PWH as a complete synchronized system of Soul, Mind, and Body; treatment should include more than just factor adjustment. Factor adjustment only treats symptoms, but a holistic approach would also address the patient's need for a subconscious paradigm shift in the person's thought and belief system.\cite{Kobisi2012}
+
+%%
+
+
+genetic determinism 所以我們的科學家依舊在研究，基因對癌症的影響（單向）
+The genetics of the cell give us all kinds of potentials. % 自性空
+
+%冤親債主的意念 unknown X factors
+[Results] In summary, those 10 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
+Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific 20 gene expressions, clinical T stage, and surgical margin.
+依舊是以管窺天
+% https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-1428-6_575
+%癌症與身心靈的重要關係：中醫、citation? emotional centered approach
+
+
+
+
+% so do the cancer
+Individual treatment and avoiding assumptions. Although it is useful for therapists to have a knowledge of the trauma literature on the general reactions of people who experience trauma, the therapist should not assume that this knowledge necessarily applies to each and every client\cite{Joseph2004}.
+
+Cullen's lecture notes reveal a sophisticated clinical understanding of mind-body interaction,13,16 centred on a physician's therapeutic intentions and his attunement to patient sympathy.
+we educate them
+%1. Mong, L.-C., Liao, F., Chiou, J. & Chiang, P. Tips for Integrating Spiritual Care Delivery in Dental Education. in Asia Pacific Medical Education Conference. Short Communication 5 (National University of Singapore, 2021).\cite{Ling-ChengMong2021}
+
+
+
+%騙過你的病-安慰劑效應 
+The Placebo Effect (Emmanuelle Sapin, Pascal Goblot)
+%1. Sapin, E. & Goblot, P. L’effet placebo (English: The Placebo Effect) [enregistrement vidéo] : le formidable pouvoir de l’auto-guérison. 53 PP-Quebec (Cinéfête, 2014).\cite{Sapin2014}
+% https://biblio.bdeb.qc.ca/in/sim/faces/details.xhtml;jsessionid=E3DD39109012D0BEA598E6E5B66A4FD2?id=p::usmarcdef_0000058243&posInPage=8
+1. Finniss, D. G. Placebo Effects: Historical and Modern Evaluation. in International review of neurobiology vol. 139 1–27 (2018).\cite{Finniss2018}
+%蓋倫劑量 placebo effect 身心靈醫學的核心
+In 1772, Willian Cullen, a British physician, wrote that  "I own that I did not trust much to it, but I gave it because it is necessary to give a medicine, and as what I call a placebo. If I had thought of any internal medicine it would have been a dose of the Dover's powders."\cite{Kerr2008}\cite{Finniss2018}.
+ (made up of Ipecac and opium) 
+ Cullen studied the objective science of analytical chemistry. He also sense that the patient's subjective, psychosomatic or ‘sympathetic constitution’ determined his reaction to a prescribed therapeutic substance.
+***Cullen developed a theory of "sympathy" (or empathy) which informed his ideas about clinical medicine dealing with psychosomatic theory of illness and mind-body therapeutics. % he do 炮製
+Cullen's theory of sympathy is a mind-body function, a kind of ‘vital force’ that animated the human body, coordinated function, and transmitted sensation to target organs\cite{Forget2003}\cite{Kerr2008}.
+This finely calibrated, rational use of active placebo treatment, in which the physician dispensed a weak, physiologically active substance in order to please and calm the patient rather than to cure the patient's underlying disorder, was a product of the rational scientific culture of the 18th century Scottish Enlightenment and its embrace of a grounded, empirical approach to medicine. %啟蒙運動
+
+% how placebo effect works?
+安慰劑效應的科學研究，驚人地發現現代西方醫學的不確定性。
+前額葉背側區 (dorsolateral prefrontal cortex)  是形成安慰劑療效的關鍵(PCA「治療關係」的生理學依據)
+the anterior cingulate cortex and the dorsolateral prefrontal cortex have been found to be activated by placebo administration.
+\cite{Benedetti2005}\cite{Benedetti2011}\cite{Carlino2011}\cite{Bennett2018}
+But modern research, especially the results of neuroimaging studies, has shown unequivocally that placebo-induced analgesia is real in the sense that the neural correlates of the sensation of pain are reduced, in the same way that they would be reduced by a decrease in the intensity of a pain-evoking stimulus or by the administration of an analgesic drug\cite{Eippert2009}\cite{Watson2009}. Today, pain researchers are united in the belief that placebo analgesia is real, in the sense that the neural processes that represent pain are reduced\cite{Bennett2018}.
+
+%sympathy 富有同情心、慈悲心，靈性高度成熟的醫師，不是只用藥物或手術來治療病患，「他自己本身」就具有療癒效果。
+The role of the physician was to be a gentle, sympathetic listener, who could interpret the patient's sympathetic disorder and select the proper remedy to treat it, whether by prescribing placebos to please (influence the emotional states of patients), or medicine to cure the patient's disorder.
+placebo effect 安慰劑的研究，拓展了我們對醫病關係的理解，回歸到以病患為中心。
+醫療處理的不只是藥物和手術，人更是必須處理的對象，把病患看作一個整體，要掌握身與心的個人特質。
+安慰劑效應的研究，最後導向了良好醫病關係的思考，並成為醫生臨床醫術的元素之一：
+「醫師開藥時，其實是把自己當藥方開出去」。
+
+
+
+#正念 減壓，療癒疼痛\cite{Krummenacher2010}\cite{Bennett2018}、免疫系統、內分泌系統或自律神經系統相關的疾病，以及憂鬱症、焦慮症 
+The idea of placebo as a diluted but active substance persisted into the 19th century17 but the term also came to mean a physiologically inert substance - bread or lactose, for example.18,19 Inert substances began to be used in comparative clinical trials during the first half of the 19th century,20 but this latter meaning of the term was given particular impetus at the end of the 19th century and the beginning of the 20th century, when inert substances were used as controls in pharmacological experiments.21 This shift in meaning may have reflected the rise of a new emphasis (or even metaphysics) in medicine, in which the molecular make up of an active drug assumed central importance, and any other positive benefits were seen as non-specific, placebo effects.\cite{Kerr2008}
+
+prefrontal lobe 理智腦 意識 正念 杏仁核 prefrontal cortex runs conscious mind
+「安慰劑」placebo effect，也已經有科學證明，與醫師、病患的意識（前額葉）功能，非常有關係。這也是負責同理心與愛的腦區。
+物理作用、信號，雷射針灸
+Therapeutic Relationship
+Spirituality
+慈悲心 compassion 
+同情心 sympathy
+同理心 empathy
+non-verbal contact
+前額葉內側 (medial prefrontal cortex)
+額葉底部(orbitofrontal cortex)
+
+
+
+
+
+*** make Figure 5 holistic:
+meridian and emotion has mutual reaction
+meridian effect tissue and organ
+(autonomic nerve system, myofascial network, prefrontal cortex)
+placebo-effect influence on drug discovery
+博士班學生，越研究越發現，科學的不足，心理與靈性的力量，更是背後推動的冥冥力量，身心靈是合一的。#正念 除了可以減壓，還可以治癒疼痛
+
+
+
 
 repentantly confess for not taking care of body and spirit, and sincere thanks for the hard work of my physical body
 
@@ -1384,25 +1426,6 @@ Science has recognized that immediately after falling in love, we enter a period
 You start running programs that are based on your conscious wishes and desires. All of a sudden, without the programs—without the subconscious programs—we begin to experience a heavenly life.
 %%%%
 
-情志養生 悲喜憂思苦 七情
-人俯仰於天地之間
-順從四季氣候變化
-保養正氣陶冶性情
-自我療癒身心靈疾病
-%自他不二 心存正念 向內看，解決苦之源
-%1.衷心懺悔
-%2.真心感謝
-%3.誠意祝福
-%4.永存善念 慈悲
-%5.心無恐懼: 情志養生
-每位醫師都可以成為「創傷知情者」
-幫助我們身邊的病患， 懂他的心靈創傷
-讓他有安全感， 才有機會改變疾病的走向
-
-“每一位患者都有自癒能力， 我們知情之後， 也要逐步讓他本人知情， 看見之後， 在良好的「治療關係」中， 協助他們漸漸找回自己的療癒。（以他們自己的腳步）”
-解說：
-患者的自癒力就是復原力（resilience),  強調「治療關係」（安全、 信任、 分享權力、 自決） 以及”知情”(暸解過往創傷經驗對自身的影響，進而開始療癒的過程）的重要性。
-
 %%%%%% carcinogenesis
 mind-brain-body axis: subconscious fear -> inflammatory and stress hormones -> DNA/methylation mutation/mRNA expression alteration -> carcinogenesis of cancer.
 95\% of cognitive behavior runs on subconscious program:
@@ -1422,14 +1445,14 @@ the cell membrane through receptors picking up the signals and translating them 
 ground truth Y (e.x. patient's survival):\\[0.5cm]
 %Y$:\\[0.3cm]
 $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$
-
+gene expression is not an independent $X_mrna$, which is correlated with other $X_body, X_stress, X_inflammation, X_ros$
 There is much work to be done in investigating the functional relationships more fully.\cite{Rogers1959}
+We wish the TCGA does collect holistic features from their participants in the future. % electric healthcare record, EHR, enabled in holistic way
 
 
 how to do: once holistic feature available, graph convolutional neural network (GCNN) is mandatory: 以免 genomics 光芒萬丈
 
-the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
-with more TCGA features (holistic)
+
 Impact of stress on cancer metastasis\cite{Lutgendorf2010}\cite{Moreno-Smith2010}\cite{Du2020}\cite{Xu2021}
 cancer initiation under stress\cite{Lutgendorf2010}\cite{Powell2013}
 HNSCC\cite{Iftikhar2021}
