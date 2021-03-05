@@ -1149,7 +1149,21 @@ https://github.com/Serian1992/ImgBio.
 %https://tma.im/cgi-bin/ontologyBrowser.pl?anchor=C34447; there is few HNSCC slides
 
 *** interpretable or explainable CNN
+Manning meap book: 不再是黑盒子
+https://www.manning.com/books/trust-in-machine-learning
+Trust in Machine Learning
 
+*** 必備 explainable interpretable 
+By saliency mapping: e.x. diabetes retinopathy, model focused on retinal aterry
+
+https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-019-0624-2
+#XAI
+Interpretable deep neural network for cancer survival analysis by integrating genomic and clinical data
+
+Jie Hao, 2019
+By PyTorch
+
+https://www.deeplearningbook.org/
 https://www.cancer.gov/research/areas/diagnosis/artificial-intelligence
 % NCI
 Aiding the Genomic Characterization of Tumors: 
@@ -1188,9 +1202,9 @@ recurrent neural network for NLP
 %TCGA treated by surgery and more; TNM available yes
 
 %discussion: the third limitation
-Even there are eighty one ($X_1 ... X_81$) physical, pathological and social features of patients available for survival modelling in the TCGA, 
+There are eighty one ($X_1 ... X_81$) physical, pathological and social features of patients available for survival modelling in the TCGA, 
 % since it has comprehensive clinical features, 
-such as age, gender, residual tumor, vital status, days\_to\_last\_followup, cancer stage, smoking duration, exposure to alcohol, asbestos, radioactive radon, the TCGA did not collect other holistic features from their participants.
+such as age, gender, residual tumor, vital status, days\_to\_last\_followup, cancer stage, smoking duration, exposure to alcohol, asbestos, radioactive radon. However, the TCGA did not collect other holistic features from their participants.
 % Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, 
 Going for holistic cancer care\cite{Mehta2019}\cite{Iftikhar2021} spiritual and emotional condition is equal important comparing with physical and social status.
 %
@@ -1440,6 +1454,28 @@ Genes are not self-actualizing. The control of genes is not due to any inherent 
 
 the cell membrane through receptors picking up the signals and translating them into biology, which then sends signals into the nucleus, which then controls the genetic activity.
 
+% ***七星山的 idea [2021/03/01]
+Generative adversarial networks simulate gene expression and predict perturbations in single cells
+3.1. Gene expression in \cite{Ching2018} % deep review
+% 環境 -> chromosome accessibility
+%  unsupervised deep learning algorithm
+generative adversarial networks (GAN) with VAE (variational autoencoder) could simulate environment causing carcinogenesis
+%graph convolutional network (from deepchem import GraphConvModel)
+deep or graph convolutional network in gene regulation, which includes chromosome accessibility, transcription factor binding site, DNA methylation, and RNA inhibitions (RNAi, microRNA, LncRNA).
+
+%GAN overview
+In this paper compares GAN with VAE (variational autoencoder) and RBM (restricted Boltzmann machine) models.
+As a new unsupervised learning algorithm framework, generative adversarial networks (GAN) has been favored by more and more researchers, and it has become a research hotspot. GAN is inspired by the two-person zero-sum game theory in game theory. Its unique confrontation training idea can generate high-quality samples and has more powerful feature learning and feature expression ability than traditional machine learning algorithms. At present, GAN has achieved remarkable success in the field of computer vision, especially in the field of sample generation.
+%Learning Generative Models of Tissue Organization with Supervised GANs
+\cite{Han2018}
+
+%https://www.amazon.com/Deep-Learning-Life-Sciences-Microscopy-ebook/dp/B07QM3G5JM
+
+%book: https://github.com/deepchem/DeepLearningLifeSciences
+%https://github.com/deepchem/torchchem
+
+%https://github.com/hindupuravinash/the-gan-zoo
+
 %%%%%
 
 ground truth Y (e.x. patient's survival):\\[0.5cm]
@@ -1447,8 +1483,38 @@ ground truth Y (e.x. patient's survival):\\[0.5cm]
 $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$
 gene expression is not an independent $X_mrna$, which is correlated with other $X_body, X_stress, X_inflammation, X_ros$
 There is much work to be done in investigating the functional relationships more fully.\cite{Rogers1959}
-We wish the TCGA does collect holistic features from their participants in the future. % electric healthcare record, EHR, enabled in holistic way
+We wish the TCGA does collect holistic features from their participants in the future. 
+
+holistic-enabled Electric healthcare record, EHR
 Deep Patient
+Under HL7, RESTful
+deep learning by EHR-converted FHIR: with holistic observations
+=> Level 4 Record-keeping and Data Exchange for the healthcare process
+(clinical data)
+Allergy, Problem,
+Procedure,
+CarePlan/Goal,
+ServiceRequest,
+Family History,
+Risk Assessment (APGAR, Glasgow coma scale)
+condition: physical, mental
+{observations: 
+vital signs, 
+body temperature, body weight and body height, 
+x-ray, 
+laboratory data, 
+pulse oximetry, 
+ECG, EEG, EMG, 
+clinical findings (symptom and sign), 
+tobacco exposure, family support, cognitive status
+pregnancy status
+death assertion
+HIV, HBV, HCV status
+}
+
+%https://mos2718.github.io/FHIRspec/Index.html
+%https://www.hl7.org/fhir/patient.html
+%https://mos2718.github.io/FHIRspec/Spec/Patient/EHR_Patient.docx
 
 We design a #holisticDental chart in our outpaitent department for Psycho-Social-Spiritual Evaluation\cite{Ling-ChengMong2021}.:
 1. Emotional: stable/depression/ anxiety/ agitated/ perplexed
@@ -1461,6 +1527,24 @@ We design a #holisticDental chart in our outpaitent department for Psycho-Social
 side-effects/ litigation experience
 8. Other aspects
 /no other specific issues
+
+In personal history section of admission note (EHR for inpatient): 
+< Habits >
+　　　　-Tobacco:
+　、　1.5　pack/day for　30　years
+　　　　-Alcohol drinking:　Occasionally
+　　　　-Betel nuts:　、　nuts/day for　30　years　
+　　< Social/Economic Evaluation >
+　　　　-Living condition:　Living with family
+　　　　-Family support:　Well
+　　　　-Main caregiver:　Spouse
+　　　　-Financial support:　Sufficient
+　　< Psychological Evaluation >
+　　　　Stable
+　　　　Suspected to be ” abuse ” or ”neglected victim” (if the answer is “Yes“ should be assisted by social workers)　No
+　　< Spiritual Assessment >
+　　　　Religion:　Nil
+　　　　Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers?　No
 
 how to do: once holistic feature available, graph convolutional neural network (GCNN) is mandatory: 以免 genomics 光芒萬丈
 
