@@ -1453,118 +1453,107 @@ Over 90\% of disease is a total reflection of environment and especially our pro
 %the disempowering, self-sabotaging behaviors that we acquired in the first 7 years.
 %the cell membrane through receptors picking up the signals and translating them into biology, which then sends signals into the nucleus, which then controls the genetic activity.
 The mind-brain-body axis shows that subconscious fear causes releasing of inflammatory and stress hormones from brain, in terms of cell alteration in DNA methylation, mutation, mRNA expression. Carcinogenesis will occurs if the reprogramming is persistent in a longer period of time.
+Moreover, long-term stress could be correlated with cancer metastasis\cite{Lutgendorf2010}\cite{Moreno-Smith2010}\cite{Du2020}\cite{Xu2021},
+and cancer initiation\cite{Lutgendorf2010}\cite{Powell2013}\cite{Iftikhar2021}. %HNSCC
+Adverse psychosocial exposures in early life, namely experiences such as child maltreatment, caregiver stress, and community violence, have been associated in epidemiological studies with increased lifetime risk of adverse outcomes, including diabetes, heart disease, cancers, and psychiatric illnesses. Additional work has shed light on the potential molecular mechanisms by which early adversity becomes “biologically embedded” in altered physiology across body systems.\cite{Berens2017}
 %%%%%
 
-
+%% TCGA new holistic features %%%%%
+In summary of our current study, those 10 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in our \acrshort{hnscc} study.
+Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific 10 gene expressions, clinical T stage, and surgical margin so far.
+When we consider the survival prediction model again,
 ground truth Y (e.x. patient's survival):\\[0.5cm]
 %Y$:\\[0.3cm]
-$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$
-gene expression is not an independent $X_mrna$, which is correlated with other $X_body, X_stress, X_inflammation, X_ros$
-There is much work to be done in investigating the functional relationships more fully.\cite{Rogers1959}
-We wish the TCGA does collect holistic features from their participants in the future. 
+$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\
+gene expression is not an independent $X_mrna$, which could be correlated with other $X_body, X_stress, X_fear, X_meaningOfLife, X_inflammation, X_ros$ factors.
+There is much work to be done in investigating the functional network more fully\cite{Rogers1959}.
+%We wish the TCGA does collect more holistic features from their participants in the future.
+%依舊是以管窺天
+% https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-1428-6_575
+%癌症與身心靈的重要關係：中醫、citation? emotional centered approach
+We suggest TCGA should cover more holistic features:
+cortisol is one of the most common objective outcome studied in psychoneuroimmunological (PNI) factors. Other factors usually are interleukin, cytokines, lymphocytes (CD4+, CD8+), CD56+, vitals signs, telomere length, telomere activity, HRV.
+The standardized, psychosocial (subjective) measures includes depression, stress, quality of life, anxiety, fatigue, mindfulness, mood and specific spiritual growth (ie, meaning of life)\cite{Hsiao2012}.
+%冤親債主的意念 unknown X factors 回到我們的文章
+Since sychological benefit (reduction of stress, fatigue, sleep disturbance, and depressive symptoms) also optimizes immune function (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) in terms of better survival of cancer patients.
 
-holistic-enabled Electric healthcare record, EHR
-Deep Patient
-Under HL7, RESTful
-deep learning by EHR-converted FHIR: with holistic observations
-=> Level 4 Record-keeping and Data Exchange for the healthcare process
-(clinical data)
-Allergy, Problem,
-Procedure,
-CarePlan/Goal,
-ServiceRequest,
-Family History,
-Risk Assessment (APGAR, Glasgow coma scale)
-condition: physical, mental
-{observations: 
-vital signs, 
-body temperature, body weight and body height, 
-x-ray, 
-laboratory data, 
-pulse oximetry, 
-ECG, EEG, EMG, 
-clinical findings (symptom and sign), 
-tobacco exposure, family support, cognitive status
-pregnancy status
-death assertion
-HIV, HBV, HCV status
-}
+% holistic EHR
+Moreover, we encourage that physician might write their electric healthcare record (EHR) in a "holistic way".
+% Deep Patient:  
+Deep learning applied to EHR can derive patient representations that offer improved clinical predictions\cite{Miotto2016}
+Deep learning also might convert EHR to the Fast Healthcare Interoperability Resources (FHIR) format\cite{Rajkomar2018}\cite{HealthLevelSeven2019} for handling free-text notes.
+%=> Level 4 Record-keeping and Data Exchange for the healthcare process (clinical data) %Under HL7, RESTful
+%Allergy, Problem,
+%Procedure,
+%CarePlan/Goal,
+%ServiceRequest,
+%Family History,
+%Risk Assessment (APGAR, Glasgow coma scale)
+%condition: physical, mental
+%{observations: 
+%vital signs, 
+%body temperature, body weight and body height, 
+%x-ray, 
+%laboratory data, 
+%pulse oximetry, 
+%ECG, EEG, EMG, 
+%clinical findings (symptom and sign), 
+%tobacco exposure, family support, cognitive status and pregnancy status.
+%death assertion
+%HIV, HBV, HCV status
+%}
 
 %https://mos2718.github.io/FHIRspec/Index.html
 %https://www.hl7.org/fhir/patient.html
 %https://mos2718.github.io/FHIRspec/Spec/Patient/EHR_Patient.docx
+In Taipei Medical University Hospital, holistic-enabled EHR has been designed as holistic dental chart for our outpaitent with psycho-social-spiritual evaluation\cite{Ling-ChengMong2021}:\\
+1. Emotional: stable/depression/ anxiety/ agitated/ perplexed\\
+2. Interaction: expression disorder/ confusion/ hard to make decision/ uncooperative to dental treatment\\
+3. Social: (disturbing living/ disturbing working/ disturbing other life aspect) by present illness\\
+4. Function loss(subjectively): mastication/ pronunciation/ life quality/ state of mind\\
+5. Self-expectation: lack of confidence/ low self-esteem/ social-withdrawal\\
+6. Impact to life: financial problem/ family problem\\
+7. Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment/ side-effects/ litigation experience\\[2cm]
 
-We design a #holisticDental chart in our outpaitent department for Psycho-Social-Spiritual Evaluation\cite{Ling-ChengMong2021}.:
-1. Emotional: stable/depression/ anxiety/ agitated/ perplexed
-2. Interaction: expression disorder/ confusion/ hard to make decision/ uncooperative to dental treatment
-3. Social: (disturbing living/ disturbing working/ disturbing other life aspect) by present illness
-4. Function loss(subjectively): mastication/ pronunciation/ life quality/ state of mind
-5. Self-expectation: lack of confidence/ low self-esteem/ social-withdrawal
-6. Impact to life: financial problem/ family problem
-7. Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment 
-side-effects/ litigation experience
-8. Other aspects
-/no other specific issues
-
-In personal history section of admission note (EHR for inpatient): 
-< Habits >
-　　　　-Tobacco:
-　、　1.5　pack/day for　30　years
-　　　　-Alcohol drinking:　Occasionally
-　　　　-Betel nuts:　、　nuts/day for　30　years　
-　　< Social/Economic Evaluation >
-　　　　-Living condition:　Living with family
-　　　　-Family support:　Well
-　　　　-Main caregiver:　Spouse
-　　　　-Financial support:　Sufficient
-　　< Psychological Evaluation >
-　　　　Stable
-　　　　Suspected to be ” abuse ” or ”neglected victim” (if the answer is “Yes“ should be assisted by social workers)　No
-　　< Spiritual Assessment >
-　　　　Religion:　Nil
-　　　　Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers?　No
-　　　　
-　　　　
-　　　　
-　　　　%冤親債主的意念 unknown X factors 回到我們的文章
-　　　　% cancer cure (care) 的證明
+In personal history section of admission note for inpatient:\\
+<Habits>\\
+　　　　-Tobacco: 1.5 pack/day for 30 years\\
+　　　　-Alcohol drinking: Occasionally\\
+　　　　-Betel nuts: 30 nuts/day for 30 years\\
+<Social/Economic Evaluation>\\
+　　　　-Living condition: Living with family\\
+　　　　-Family support: Well\\
+　　　　-Main caregiver: Spouse\\
+　　　　-Financial support: Sufficient\\
+<Psychological Evaluation>\\
+　　　　Stable but worry about this oral lesion\\
+　　　　Suspected to be abuse or neglected victim: negative\\
+<Spiritual Assessment>\\
+　　　　Religion: Nil\\
+　　　　Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers?　No\\
+% cancer cure (care) 的證明
 %# 懺悔
-repentantly confess for not taking care of body and spirit, and sincere thanks for the hard work of my physical body
-mindfulness and meditation for cancer
-
-In summary, those 10 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in our \acrshort{hnscc} study.
-Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific 10 gene expressions, clinical T stage, and surgical margin.
-%依舊是以管窺天
-% https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-1428-6_575
-%癌症與身心靈的重要關係：中醫、citation? emotional centered approach
-Moreover, we suggest TCGA should cover more holistic features:
-cortisol is one of the most common objective outcome studied in psychoneuroimmunological (PNI) factors. Other factors usually are interleukin, cytokines, lymphocytes (CD4+, CD8+), CD56+, vitals signs, telomere length, telomere activity, HRV.
-The standardized, psychosocial (subjective) measures includes depression, stress, quality of life, anxiety, fatigue, mindfulness, mood and specific spiritual growth (ie, meaning of life)\cite{Hsiao2012}.
- psychological benefits (reduction of stress, fatigue, sleep disturbance, and depressive symptoms), and also optimizes immune functions (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) 
-how to do: once holistic feature available, graph convolutional neural network (GCNN) is mandatory: 以免 genomics 光芒萬丈
+We always educate our cancer patients that they should repentantly confess for not taking care of body and spirit in the pass, and sincere thanks for the hard work of our physical body. Mindfulness and meditation will be helpful in cancer healthcare.
+Once holistic feature is available, graph convolutional neural network (GCNN) is mandatory for further survival analysis\cite{Ching2018}.
+The microenvironment of HNSCC, influenced by the mind-brain-body axis, requires further exploration and understanding using this multi-parametric approach.
 %  extreme pleasure, anger, overthinking, sadness, fear, shock, anxiety, depression, fatigue, stress
 %七情: 喜、怒、思、悲、恐、驚、憂
+
 *** make Figure 5 holistic:
-meridian and emotion has mutual reaction
-meridian effect tissue and organ
-(autonomic nerve system, myofascial network, prefrontal cortex)
-placebo-effect influence on drug discovery
-gene expression in deep learning
-Ching, T. et al. Opportunities and obstacles for deep learning in biology and medicine. J. R. Soc. Interface 15, (2018).\cite{Ching2018}
+%meridian and emotion has mutual reaction
+%meridian effect tissue and organ
+%(autonomic nerve system, myofascial network, prefrontal cortex)
+%placebo-effect influence on drug discovery
+%gene expression in deep learning
+%Ching, T. et al. Opportunities and obstacles for deep learning in biology and medicine. J. R. Soc. Interface 15, (2018).
 %慈悲心 利他心
-博士班學生，越研究越發現，科學的不足，心理與靈性的力量，更是背後推動的冥冥力量，身心靈是合一的
-#正念 除了可以減壓，還可以治癒疼痛
-Environment 改造患者的心，就能改造他的身體環境，有利消除癌症
-The microenvironment of HNSCC requires further exploration and understanding using a multiparametric approach.
+%博士班學生，越研究越發現，科學的不足，心理與靈性的力量，更是背後推動的冥冥力量，身心靈是合一的
+%#正念 除了可以減壓，還可以治癒疼痛
+%Environment 改造患者的心，就能改造他的身體環境，有利消除癌症
 
-Impact of stress on cancer metastasis\cite{Lutgendorf2010}\cite{Moreno-Smith2010}\cite{Du2020}\cite{Xu2021}
-cancer initiation under stress\cite{Lutgendorf2010}\cite{Powell2013}
-HNSCC\cite{Iftikhar2021}
-Adverse psychosocial exposures in early life, namely experiences such as child maltreatment, caregiver stress or depression, and domestic or community violence, have been associated in epidemiological studies with increased lifetime risk of adverse outcomes, including diabetes, heart disease, cancers, and psychiatric illnesses. Additional work has shed light on the potential molecular mechanisms by which early adversity becomes “biologically embedded” in altered physiology across body systems.\cite{Berens2017}
+We also aim to promote a reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} workflow allowing successful repetition and extension of analyses based on all the TCGA or other in-house cancer datasets.
 
-We aim to promote a reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} workflow allowing successful repetition and extension of analyses based on all the TCGA or other in-house cancer datasets.
-
-Dali Lama: Wish and bless the whole world %慈悲心 利他心
+%Dali Lama: Wish and bless the whole world %慈悲心 利他心
 % 多了解身心靈的關係，減少癌症對健康的損害
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
