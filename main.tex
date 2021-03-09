@@ -1136,7 +1136,7 @@ Once our laboratory or the community confirms those candidates as the targets, t
 % 1. Pathak, N. et al. Uncovering flexible active site conformations of SARS-COV-2 3Cl proteases through protease pharmacophore clusters and covid-19 drug repurposing. ACS Nano 15, 857–872 (2021). 陽明交大
 
 
-\subsubsection{TCIA validation}
+\subsubsection{TCIA validation by deep learning}
 %https://wiki.cancerimagingarchive.net/display/Public/TCGA-HNSC
 %https://cancer.digitalslidearchive.org/#!/CDSA/hnsc/TCGA-BA-4076/TCGA-BA-4076-01A-01-BS1?slide=TCGA-BA-4076-01A-01-BS1.4aef481c-f634-4ffc-9fb3-609f59a8caf9.svs
 TCGA Pathology Images => The Cancer Imaging Archive (TCIA) by Deep learning (R/Keras framework)
@@ -1156,15 +1156,15 @@ Trust in Machine Learning
 %*** 必備 explainable interpretable 
 By saliency mapping: e.x. diabetes retinopathy, model focused on retinal aterry
 
-https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-019-0624-2
+%https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-019-0624-2
 #XAI
 Interpretable deep neural network for cancer survival analysis by integrating genomic and clinical data
 
 Jie Hao, 2019
 By PyTorch
 
-https://www.deeplearningbook.org/
-https://www.cancer.gov/research/areas/diagnosis/artificial-intelligence
+%https://www.deeplearningbook.org/
+%https://www.cancer.gov/research/areas/diagnosis/artificial-intelligence
 % NCI
 Aiding the Genomic Characterization of Tumors: 
 deep learning could predict commonly mutated genes and mRNA expression from the images
@@ -1184,7 +1184,7 @@ Incorporating information about biological processes into the algorithm is likel
 %
 TMA by deep learning (CNN) mRNA expression associated with pathological images
 *** TCGA TCIA Pathology Images with deep learning: gene expression on pathological section, or digital tissue microarray, TMA
-recurrent neural network for NLP
+%recurrent neural network for NLP
 
 %佩戴可監測心率、體溫、血壓及其他關鍵數據的裝置，醫師也因此能夠獲得更多資料以更深入瞭解患者的病情，不再依靠病人的回憶進行判斷，診斷的準確性也會隨之提升。
 
@@ -1464,7 +1464,7 @@ When we consider the survival prediction model again,
 ground truth Y (e.x. patient's survival):\\[0.5cm]
 %Y$:\\[0.3cm]
 $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\
-gene expression is not an independent $X_mrna$, which could be correlated with other $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{ros}$ factors.
+gene expression is not an independent $X_{mrna}$, which could be correlated with other $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{ros}$ factors.
 There is much work to be done in investigating the functional network more fully\cite{Rogers1959}.
 %We wish the TCGA does collect more holistic features from their participants in the future.
 %依舊是以管窺天
