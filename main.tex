@@ -1137,23 +1137,23 @@ Once our laboratory or the community confirms those candidates as the targets, t
 
 
 \subsubsection{TCIA validation}
-https://wiki.cancerimagingarchive.net/display/Public/TCGA-HNSC
-https://cancer.digitalslidearchive.org/#!/CDSA/hnsc/TCGA-BA-4076/TCGA-BA-4076-01A-01-BS1?slide=TCGA-BA-4076-01A-01-BS1.4aef481c-f634-4ffc-9fb3-609f59a8caf9.svs
+%https://wiki.cancerimagingarchive.net/display/Public/TCGA-HNSC
+%https://cancer.digitalslidearchive.org/#!/CDSA/hnsc/TCGA-BA-4076/TCGA-BA-4076-01A-01-BS1?slide=TCGA-BA-4076-01A-01-BS1.4aef481c-f634-4ffc-9fb3-609f59a8caf9.svs
 TCGA Pathology Images => The Cancer Imaging Archive (TCIA) by Deep learning (R/Keras framework)
 %數位模擬，能讓臨床醫師和研究人員更快速了解細胞成長後的狀況，而不是花費時間等待細胞的培養。
 image-based phenotypes and their underlying genomic data 
-https://www.biorxiv.org/content/10.1101/2020.03.10.985887v1.full
-https://github.com/Serian1992/ImgBio.
+%https://www.biorxiv.org/content/10.1101/2020.03.10.985887v1.full
+%https://github.com/Serian1992/ImgBio.
 
 %The Stanford Tissue Microarray Database (TMAD; x http://tma.stanford.edu) 
 %https://tma.im/cgi-bin/ontologyBrowser.pl?anchor=C34447; there is few HNSCC slides
 
 *** interpretable or explainable CNN
-Manning meap book: 不再是黑盒子
-https://www.manning.com/books/trust-in-machine-learning
+%Manning meap book: 不再是黑盒子
+%https://www.manning.com/books/trust-in-machine-learning
 Trust in Machine Learning
 
-*** 必備 explainable interpretable 
+%*** 必備 explainable interpretable 
 By saliency mapping: e.x. diabetes retinopathy, model focused on retinal aterry
 
 https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-019-0624-2
@@ -1174,8 +1174,7 @@ For the first phase of this work (transcriptome prediction), we accelerated the 
 
 %AI methods can also be used to identify specific gene mutations from tumor pathology images instead of using traditional genomic sequencing. For instance, NCI-funded researchers at New York University used deep learning (DL) to analyze pathology images of lung tumors obtained from The Cancer Genome Atlas. Not only could the DL method accurately distinguish between two of the most common lung cancer subtypes, adenocarcinoma and squamous cell carcinoma, it could predict commonly mutated genes from the images.
 
-Understanding the Method Behind the Machine
-interpredability
+Understanding the Method Behind the Machine: interpredability
 
 %One challenge of AI, and DL specifically, is the “black box” problem: not fully understanding what features of the data a computer has used in its decision-making process. For example, a DL algorithm that predicts the optimal treatment for a patient does not provide the reasoning it used to make that prediction. Additional efforts are needed to reveal how algorithms arrive at a decision or prediction so that the process becomes transparent to scientists and clinicians. Making these algorithms transparent could help researchers identify new biological features relevant to disease diagnosis or treatment.
 ***  unconscious biases:
@@ -1465,7 +1464,7 @@ When we consider the survival prediction model again,
 ground truth Y (e.x. patient's survival):\\[0.5cm]
 %Y$:\\[0.3cm]
 $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\
-gene expression is not an independent $X_mrna$, which could be correlated with other $X_body, X_stress, X_fear, X_meaningOfLife, X_inflammation, X_ros$ factors.
+gene expression is not an independent $X_mrna$, which could be correlated with other $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{ros}$ factors.
 There is much work to be done in investigating the functional network more fully\cite{Rogers1959}.
 %We wish the TCGA does collect more holistic features from their participants in the future.
 %依舊是以管窺天
@@ -1475,7 +1474,7 @@ We suggest TCGA should cover more holistic features:
 cortisol is one of the most common objective outcome studied in psychoneuroimmunological (PNI) factors. Other factors usually are interleukin, cytokines, lymphocytes (CD4+, CD8+), CD56+, vitals signs, telomere length, telomere activity, HRV.
 The standardized, psychosocial (subjective) measures includes depression, stress, quality of life, anxiety, fatigue, mindfulness, mood and specific spiritual growth (ie, meaning of life)\cite{Hsiao2012}.
 %冤親債主的意念 unknown X factors 回到我們的文章
-Since sychological benefit (reduction of stress, fatigue, sleep disturbance, and depressive symptoms) also optimizes immune function (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) in terms of better survival of cancer patients.
+Since psychological benefit (reduction of stress, fatigue, sleep disturbance, and depressive symptoms) also optimizes immune function (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) in terms of better survival of cancer patients.
 
 % holistic EHR
 Moreover, we encourage that physician might write their electric healthcare record (EHR) in a "holistic way".
