@@ -1169,7 +1169,7 @@ By PyTorch
 Aiding the Genomic Characterization of Tumors: 
 deep learning could predict commonly mutated genes and mRNA expression from the images
 *** A deep learning model to predict RNA-Seq expression of tumours from whole slide images\cite{Schmauch2020}
-Preprocessing of whole-slide images. The application of deep-learning algo- rithms to histological data is a challenging problem, particularly due to the high dimensionality of the data (up to 100,000 × 100,000 pixels for a single whole-slide image) and the small size of available datasets. We divided the whole-slide images into squares of 112 × 112 μm (224 × 224 pixels) called “tiles”, and used the Otsu algorithm62 (as implemented in python package skimage) to select only those containing tissue, excluding the white background. We sampled a maximum of 8000 such tiles from each slide. We then extracted 2048 features from those tiles with a 50-layer ResNet63 pretrained on the ImageNet dataset64 (using the Keras implementation), such that a slide could be represented as a 8000 × 2048 matrix.
+Preprocessing of whole-slide images. The application of deep-learning algo- rithms to histological data is a challenging problem, particularly due to the high dimensionality of the data (up to 100,000 × 100,000 pixels for a single whole-slide image) and the small size of available datasets. We divided the whole-slide images into squares of 112 × 112 $\mu$m (224 × 224 pixels) called “tiles”, and used the Otsu algorithm62 (as implemented in python package skimage) to select only those containing tissue, excluding the white background. We sampled a maximum of 8000 such tiles from each slide. We then extracted 2048 features from those tiles with a 50-layer ResNet63 pretrained on the ImageNet dataset64 (using the Keras implementation), such that a slide could be represented as a 8000 × 2048 matrix.
 For the first phase of this work (transcriptome prediction), we accelerated the training of our models through a simple preprocessing step inspired by simple linear iterative clustering (SLIC)65: we used the k-means algorithm (as implemented in python package libkmcuda) to create 100 clusters (supertiles) of tiles on the basis of tile location on the slide, and we averaged the features of the tiles within each cluster. The use of these supertiles reduces the dimensions of a slide to 100 × 2048. The model was first trained on this reduced dataset, with all the TCGA data. Then, for specific organs, fine-tuning was achieved with full-scale data from the organs concerned only.
 
 %AI methods can also be used to identify specific gene mutations from tumor pathology images instead of using traditional genomic sequencing. For instance, NCI-funded researchers at New York University used deep learning (DL) to analyze pathology images of lung tumors obtained from The Cancer Genome Atlas. Not only could the DL method accurately distinguish between two of the most common lung cancer subtypes, adenocarcinoma and squamous cell carcinoma, it could predict commonly mutated genes from the images.
@@ -1516,20 +1516,20 @@ In Taipei Medical University Hospital, holistic-enabled EHR has been designed as
 
 In personal history section of admission note for inpatient:\\
 <Habits>\\
-　　　　-Tobacco: 1.5 pack/day for 30 years\\
-　　　　-Alcohol drinking: Occasionally\\
-　　　　-Betel nuts: 30 nuts/day for 30 years\\
+-Tobacco: 1.5 pack/day for 30 years\\
+-Alcohol drinking: Occasionally\\
+-Betel nuts: 30 nuts/day for 30 years\\
 <Social/Economic Evaluation>\\
-　　　　-Living condition: Living with family\\
-　　　　-Family support: Well\\
-　　　　-Main caregiver: Spouse\\
-　　　　-Financial support: Sufficient\\
+-Living condition: Living with family\\
+-Family support: Well\\
+-Main caregiver: Spouse\\
+-Financial support: Sufficient\\
 <Psychological Evaluation>\\
-　　　　Stable but worry about this oral lesion\\
-　　　　Suspected to be abuse or neglected victim: negative\\
+Stable but worry about this oral lesion\\
+Suspected to be abuse or neglected victim: negative\\
 <Spiritual Assessment>\\
-　　　　Religion: Nil\\
-　　　　Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers?　No\\
+Religion: Nil\\
+Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers? No\\
 % cancer cure (care) 的證明
 %# 懺悔
 We always educate our cancer patients that they should repentantly confess for not taking care of body and spirit in the pass, and sincere thanks for the hard work of our physical body. Mindfulness and meditation will be helpful in cancer healthcare.
