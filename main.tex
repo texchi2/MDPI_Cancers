@@ -316,10 +316,12 @@ Optimal Cutoff;
 % I have a graphic abstract: graphic_abstract_pvalueTex.pdf
 % National Cancer Institute. Changing the dressing on a patient’s neck. https://unsplash.com/photos/IrqLPsxemQ4?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink (1950).\cite{nci1950}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\globalcounter* % for paracol
 
 \begin{document}
-\begin{paracol}{2}
+\linenumbers
+%\begin{paracol}{2}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\setcounter{section}{-1} %% Remove this when starting to work on the template.
 %\section{How to Use this Template}
@@ -454,6 +456,7 @@ The workflow, shown in Figure \ref{fig:figure1}, scanned 20,500 human protein-co
 %\subsubsection{Figure 1:h}
 \begin{figure}[hp]
 \centering
+%\widefigure
 \includegraphics[width=14cm]{Figure_1_manuscript_workflow} % .PDF is better than .png
 %, height=8cm
 %\caption
@@ -848,8 +851,8 @@ Thus, the prognosis model with coefficients is established from \acrshort{tcga} 
 % Example of a figure that spans the whole page width (the commands \widefigure and \begin{paracol}{2}, \linenumbers, and\switchcolumn need to be present). The same concept works for tables, too.
   
 \begin{paracol}{2}
-\linenumbers
-\switchcolumn
+%\linenumbers
+\switchcolumn[1]
 
 %Please punctuate equations as regular text. Theorem-type environments (including propositions, lemmas, corollaries etc.) can be formatted as follows:
 %% Example of a theorem:
