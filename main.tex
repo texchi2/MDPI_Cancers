@@ -246,9 +246,9 @@
 
 % Authors, for the paper (add full first names)
 \Author{
-Li-Hsing Chi $^{1,2}$\orcidA{}, Alexander TH Wu $^{1}$,
-Michael Hsiao $^{3}$*
-and Yu-Chuan (Jack) Li $^{1,4}$*\orcidB{}}
+Li-Hsing Chi $^{1,2,3}$\orcidA{}, Alexander TH Wu $^{1}$,
+Michael Hsiao $^{4}$*
+and Yu-Chuan (Jack) Li $^{1,5}$*\orcidB{}}
 %\Author{Firstname Lastname $^{1,\dagger,\ddagger}$\orcidA{}, Firstname Lastname $^{1,\ddagger}$ and Firstname Lastname $^{2,}$*}
 
 % MDPI internal command: Authors, for metadata in PDF
@@ -261,11 +261,17 @@ and Yu-Chuan (Jack) Li $^{1,4}$*\orcidB{}}
 \address{%
 $^{1}$ \quad The Ph.D. Program for Translational Medicine, College of Medical Science and Technology\unskip, 
     Taipei Medical University and Academia Sinica\unskip, Taipei\unskip, Taiwan\\
-$^{2}$ \quad Division of Oral and Maxillofacial Surgery, Department of Dentistry\unskip,
+    
+%Director,
+$^{2}$ \quad Division of Oral and Maxillofacial Surgery, Department of Dentistry\unskip, 
+    Taipei Municipal Wanfang Hospital\unskip, Taipei\unskip, Taiwan\\
+    
+$^{3}$ \quad Division of Oral and Maxillofacial Surgery, Department of Dentistry\unskip,
     Taipei Medical University Hospital\unskip, Taipei\unskip, Taiwan\\
-$^{3}$ \quad Genomics Research Center\unskip, 
+    
+$^{4}$ \quad Genomics Research Center\unskip, 
     Academia Sinica\unskip, Taipei\unskip, Taiwan\\
-$^{4}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Science and Technology\unskip, Taipei Medical University\unskip, Taipei\unskip, Taiwan\\
+$^{5}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Science and Technology\unskip, Taipei Medical University\unskip, Taipei\unskip, Taiwan\\
 }
 
 % Contact information of the corresponding author
@@ -1147,7 +1153,7 @@ Once our laboratory or the community confirms those candidates as the targets, t
 %TCGA treated by surgery and more; TNM available yes
 
 %discussion: the third limitation
-There are eighty-one ($X_1 ... X_81$) physical, pathological and social conditions derived from participants available for survival modeling in the TCGA, 
+There are eighty-one ($X_1 ... X_{81}$) physical, pathological and social conditions derived from participants available for survival modeling in the TCGA, 
 % since it has comprehensive clinical features, 
 such as age, gender, residual tumor, vital status, days\_to\_last\_followup, cancer stage, smoking duration, exposure to alcohol, asbestos, radioactive radon. 
 However, the TCGA did not collect other features from holistic cancer care.
@@ -1433,8 +1439,8 @@ Thus, the prognosis model with coefficients is established from \acrshort{tcga} 
 When we consider the survival prediction model again,
 ground truth Y (e.x. patient's survival):\\[0.5cm]
 %Y$:\\[0.3cm]
-$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\
-gene expression is not an independent $X_{mrna}$, which could be correlated with other $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{ros}$ factors.
+$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
+Gene expression is not an independent $X_{mrna}$. It could be correlated with other\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{ros}$ factors.
 There is much work to be done in investigating the functional network more fully\cite{Rogers1959}.
 %We wish the TCGA does collect more holistic features from their participants in the future.
 %依舊是以管窺天
@@ -1482,7 +1488,7 @@ In Taipei Medical University Hospital, holistic-enabled EHR has been designed as
 4. Function loss(subjectively): mastication/ pronunciation/ life quality/ state of mind\\
 5. Self-expectation: lack of confidence/ low self-esteem/ social-withdrawal\\
 6. Impact to life: financial problem/ family problem\\
-7. Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment/ side-effects/ litigation experience\\[2cm]
+7. Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment/ side-effects/ litigation experience\\[0.5cm]
 
 In personal history section of admission note for inpatient:\\
 <Habits>\\
@@ -1499,9 +1505,10 @@ Stable but worry about this oral lesion\\
 Suspected to be abuse or neglected victim: negative\\
 <Spiritual Assessment>\\
 Religion: Nil\\
-Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers? No\\
+Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers? No
 % cancer cure (care) 的證明
 %# 懺悔
+
 We continually educate our cancer patients that they should repentantly confess for not taking care of body and spirit in the past, and sincere thanks for our physical body's hard working. Mindfulness and meditation will be helpful in cancer healthcare.
 Once the holistic feature is available, a graph convolutional neural network (GCNN) is mandatory for further survival analysis\cite{Ching2018a}.
 The microenvironment of HNSCC, influenced by the mind-brain-body axis, requires further exploration and understanding using this multi-parametric approach.
