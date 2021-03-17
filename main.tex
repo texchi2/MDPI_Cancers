@@ -448,8 +448,7 @@ First, although \acrshort{tcga} genomics data was harmonized, there is unclean d
 Second, we need to find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}. Usually, the investigators should get the rationale or revelation of the genes of interest on a specific cancer type. They should upload those genes manually onto bioinformatics tools, such as SurvExpress (http://bioinformatica.mty.itesm.mx:8080/Biomatec/ \newline
 SurvivaX.jsp\cite{Aguirre-Gamboa2013}, which has been lost since Oct/2019 and currently out of funds), and analyze the cohort (e.x. \acrshort{tcga}). After downloading the survival results, they could curate plots and tables carefully.
 It is not possible to scan the whole human protein-coding genome in this way.
-Third, we need to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage. The above mentioned web-based tools might set a cutpoint at the median, 1/4 quantile, or 3/4 quantile for subsequent analyses. There are several visualization software or R packages which deal with cutoff determination, such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, Human protein atlas\cite{Uhlen2017}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/ \newline
-cutpointr), and cutoffR (available at https://cran.r-project.org/web/
+Third, we need to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage. The above mentioned web-based tools might set a cutpoint at the median, 1/4 quantile, or 3/4 quantile for subsequent analyses. There are several visualization software or R packages which deal with cutoff determination, such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, Human protein atlas\cite{Uhlen2017}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/cutpointr), and cutoffR (available at https://cran.r-project.org/web/
 packages/cutoffR). However, non of them could combine the scanning of the protein-coding genes and cutoff optimization programmatically.
 
 Our approach describes a comprehensive workflow implemented in the R script, which runs on the Rstudio server.
@@ -488,6 +487,27 @@ Among these candidates, ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, 
 The other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{table:table3}, with their gene name).
 We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot reveals that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
 % => after validation: The result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+
+%注意 強調GSE2837: 
+The prognostic significance of the candidate genes has been validated by an independent patient cohort.
+
+% validation by GSE2837 cohort (with web-tools)
+%\subsubsection*{GSE2837} % non-TCGA
+% from Anwser2-2
+%by GEO GSE2837 HNSCC dataset (PrognoScan)
+After the discovery with our workflow, we validated the suggested 20 biomarkers in the other \acrshort{hnscc} cohort.
+The survival significance (Kaplan Meier \textit{P} value) is in the following probes of 10 genes:\\
+1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
+2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
+%17 out of 20 candidates
+%?DKK1 (0.253635), 
+%Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far fewer participants than the TCGA cohort.
+%DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
+%ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
+%Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
+The 10 out of 20 candidates are confirmed by a comparative study using the GSE2837 dataset other than the TCGA cohort. Please see Kaplan-Meier plots in Supplementary Figure S1.%\ref{fig:fig_GSE2837}.
+
+
 
 %\subsubsection{Figure 2:h}
 \begin{figure}[hp]
@@ -714,9 +734,12 @@ after adjustment of confounders, prognosis is influenced by advance clinical T S
 Overexpressed \acrshort{ZNF557} gene could has a protective influencce on prognosis (HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001]).
 
 
-In summary, those 20 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
-Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific 20 gene expressions, clinical T stage, and surgical margin.
+In summary, those ten candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
+Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific ten gene expressions, clinical T stage, and surgical margin.
 %\\[0.5cm]
+% total 6+4 =10
+% After validation with an independent \acrshort{hnscc} cohort (GSE2837), the result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. 
+%Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
 
 
 
@@ -876,7 +899,7 @@ Thus, the prognosis model with coefficients is established from \acrshort{tcga} 
 \section{Discussion}
 
 %%%%
-\subsection{Feature selection for survival modeling} % Even there are many $X_1 ... X_n$ physical and social features of patients available for survival modelling in the TCGA.
+\subsection{Feature Selection for Survival Modeling} % Even there are many $X_1 ... X_n$ physical and social features of patients available for survival modelling in the TCGA.
 % TCGAbiolinks
 %alcohol consumption
 Besides ethnicity, age, gender, \acrshort{tnm} stage, radiation therapy, chemotherapy, and targeted therapy, the comprehensive adversely prognostic features in \acrshort{hnscc} should also include tobacco exposure, \acrshort{egfr} amplification, \acrfull{hpv} status, positive/close surgical margin ($<5 mm$), \acrfull{ene}, \acrfull{lvsi}, \acrfull{pni}, \acrfull{doi} ($>5 mm$), as well as metastatic \acrfull{lnd}\cite{Cheraghlou2018}, and \acrfull{wpoi5}, which is defined as tumor dispersion (1 mm apart between tumor satellites) or positive \acrshort{pni}/\acrshort{lvsi}\cite{Amin2017}.
@@ -887,32 +910,7 @@ It is suggested by authors \cite{Scholl1986}\cite{Sutton2003}\cite{Shaw2004}\cit
 
 %%%
 
-\subsection{Validation by web-based tools}
-%注意 強調GSE2837: 
-The prognostic
-significance of the candidate genes has been validated by an independent patient cohort.
-
-%\subsubsection*{GSE2837} % non-TCGA
-% from Anwser2-2
-%by GEO GSE2837 HNSCC dataset (PrognoScan)
-After the discovery with our workflow, we validated the suggested 20 biomarkers in the other \acrshort{hnscc} cohort.
-We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/\\PrognoScan/)\cite{Mizuno2009a}.
-%??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
-%https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
-The GSE2837 carries out % VUMC, VAMC, UTMDACC (1992-2005)
-microarray gene expression (by Affymetrix X3P chips U133\_X3P) and relapse-free survival (RFS) data, instead of overall survival in TCGA dataset.
-The survival significance (Kaplan Meier \textit{P} value) is in the following probes of 10 genes:\\
-1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
-2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
-%17 out of 20 candidates
-%?DKK1 (0.253635), 
-%Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far fewer participants than the TCGA cohort.
-%DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
-%ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
-%Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
-The 10 out of 20 candidates are confirmed by a comparative study using the GSE2837 dataset other than the TCGA cohort. Please see Kaplan-Meier plots in Supplementary Figure S1.%\ref{fig:fig_GSE2837}.
-
-
+\subsection{Validation by Web-based Tools}
 
 %
 We also utilized another approach of web-based tools (TCGA) to analyze our candidates.
@@ -958,7 +956,7 @@ Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the 
 
 
 %%%
-\subsection{The candidates shown in literature review}
+\subsection{The Candidates Shown in Literature Review}
 
 %%
 %\subsection*{Review articles}
@@ -1078,7 +1076,7 @@ Paraneoplastic Ma 5 (PNMA5) promotes apoptosis signaling in HeLa (cervical cance
 
 
 
-\subsection{Limitations of the work}
+\subsection{Limitations of the Work}
 
 Although we combine the power of genome-wide scanning and an optimal cutoff finder for survival analysis, the study has some limitations.
 % first limitation:
@@ -1114,8 +1112,9 @@ In line with tumor-agnostic research, we plan to explore common biomarkers cross
 
 
 
-\subsection{Future research directions}
-\subsubsection{Laboratory validation}
+\subsection{Future Direction in Translational Medicine}
+
+\subsubsection{Laboratory Validation}
 It is encouraged for multidisciplinary studies that use complementary computational and experimental approaches to address challenging cancer research.
 %下一篇文章的內容。目前在計畫中，但還沒有開始進行
 These in vitro and in vivo validation experiments will be undertaken in our laboratory.
@@ -1146,7 +1145,7 @@ Once our laboratory or the community confirms those candidates as the targets, t
 
 
 %****************%
-\subsubsection{Holistic cancer care} 
+\subsubsection{Holistic Cancer Care} 
 % carcinogenesis by epigenetic control (placebo/nocebo), Bruce Lipton introduced mind-brain-body system. (gene expression is not an independent $X_mrna$, which is correlated with other $X_body, X_stress, X_inflammation, X_ros$)
 % cancer care with person-central approach, PCA; Cullen, Carl Rogers
 
@@ -1516,14 +1515,10 @@ Diagnosed with life-threatening diseases or terminal stage of chronic diseases o
 % cancer cure (care) 的證明
 %# 懺悔
 
-We continually educate our cancer patients that they should repentantly confess for not taking care of body and spirit in the past, and sincere thanks for our physical body's hard working. Mindfulness and meditation will be helpful in cancer healthcare.
+We continually educate our cancer patients that they should repentantly confess for not taking care of body and spirit in the past, and sincere thanks for our physical body's hard working. Since mindfulness meditation will be helpful in cancer healthcare.
 Once the holistic feature is available, a graph convolutional neural network (GCNN) is mandatory for further survival analysis\cite{Ching2018a}.
-The microenvironment of HNSCC, influenced by the mind-brain-body axis, requires further exploration and understanding using this multi-parametric approach.
 %  extreme pleasure, anger, overthinking, sadness, fear, shock, anxiety, depression, fatigue, stress
 %七情: 喜、怒、思、悲、恐、驚、憂
-
-We also aim to promote a reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} workflow allowing successful repetition and extension of analyses based on all the TCGA or other in-house cancer datasets.
-%the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
 %with more TCGA features (holistic)
 %Dali Lama: Wish and bless the whole world %慈悲心 利他心
 % 多了解身心靈的關係，減少癌症對健康的損害
@@ -1546,18 +1541,16 @@ We utilized FirebrowseR with our analysis workflow (see Figure \ref{fig:figure1}
 
 The number of protein-coding genes was suggested as 20,500\cite{Clamp2007}. The \acrshort{gdc} Data Portal provided \acrshort{tcga} data has been harmonized and re-aligned \acrlong{rnaseq} data against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}). \acrshort{rnaseq} expression level read counts produced by Illumina HiSeq have been normalized using the \acrfull{fpkm} method, as described in reference\cite{FPKM2017}.
 The \acrshort{rnaseq} preprocessor of Broad \acrshort{gdac} picked the \acrfull{rsem} value from Illumina HiSeq/GA2 messenger \acrshort{rnaseq} level\_3 (v2) dataset of \acrshort{nci} \acrshort{gdc}. It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.
-We utilized FirebrowseR's function call, Samples.mRNASeq(cohort = "HNSC", gene=GeneName, format="csv"), to download each \acrshort{rnaseq} data of all \acrshort{hnscc} patients and to save as 20,499 data frame files, named as "HNSCC.mRNA.Exp.[GeneName].\newline
-Fire.Rda".
+We utilized FirebrowseR's function call, Samples.mRNASeq(cohort = "HNSC", gene=GeneName, format="csv"), to download each \acrshort{rnaseq} data of all \acrshort{hnscc} patients and to save as 20,499 data frame files, named as "HNSCC.mRNA.Exp.[GeneName].Fire.Rda".
 After careful investigation of the genomics dataset, the \acrshort{rnaseq} values of "\acrfull{slca}" and "\acrfull{slcb}" should be considered two distinct expression entities. We concluded that the number of protein-coding genes in the \acrshort{tcga} dataset is 20,500. We removed null expressed genes, which over 50\% of the cohort, to avoid the useless result.
 
 \subsubsection{Clinical Data} 
 
-We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patients, which saved as one data frame file: "HNSCC.clinical.\linebreak
-Fire.Rda" (accessed November 2019).
+We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patients, which saved as one data frame file: "HNSCC.clinical.Fire.Rda" (accessed November 2019).
+%\linebreak or \newline
 
-One "HNSCC.clinical.Fire.Rda" tables and 20,500 "HNSCC.mRNA.Exp.\newline
-[GeneName].Fire.Rda" tables were transposed and merged by their \newline
-\_participant\_barcode (unique patient \acrlong{id}, \acrshort{id}) to yield a data frame with 528 rows (participants) against 20,581 columns (81 clinical features as well as 20,500 protein-coding \acrshort{rnaseq} of cancer specimen).
+One "HNSCC.clinical.Fire.Rda" tables and 20,500 "HNSCC.mRNA.Exp.[GeneName].\\
+Fire.Rda" tables were transposed and merged by their \_participant\_barcode (unique patient \acrlong{id}, \acrshort{id}) to yield a data frame with 528 rows (participants) against 20,581 columns (81 clinical features as well as 20,500 protein-coding \acrshort{rnaseq} of cancer specimen).
 The clinicopathological features selected for our workflow included gender, age, clinical tumor size, clinical cervical lymph node metastases, clinical distant metastasis assessment, pathological surgical margin, and tobacco exposure with their corresponding survival data.
 The tumor size (T), cervical lymph node metastases (N), and distal metastasis status (M) were classified according to \acrfull{ajcc}\cite{Amin2017} along with \acrfull{uicc}\cite{Brierley2016} \acrshort{tnm} system for clinical staging of \acrshort{hnscc}.
 % In the Eighth Edition, the AJCC has expanded the use of non-anatomic prognostic factors and biomarkers in assigning prognostic stage groups.
@@ -1588,10 +1581,16 @@ There were also multiple correlated tests of null hypotheses in the Kaplan-Meier
 The resulting data, including Kaplan-Meier curves, cumulative \textit{P} value plots, and Cox regression tables, were exported to ".xlsx" and ".Rda" files (by R package "r2excel") for subsequent biomarker selection.
 
 
-\subsection{Biomarker Selection}
+\subsection{Biomarker Selection and Validation}
 
 Those genes with prognostic impact, whose hazard ratio $>=1.5$ or $<=0.5$ in both Cox's univariate/multivariate model, were assigned as provisional candidates.
 Bonferroni adjusted (Kaplan-Meier) \textit{P} value was used to make a ranking of candidates for the final decision (see Figure \ref{fig:figure1}, step 2).
+
+We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/\\PrognoScan/)\cite{Mizuno2009a}.
+%??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
+%https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
+The GSE2837 carries out % VUMC, VAMC, UTMDACC (1992-2005)
+microarray gene expression (by Affymetrix X3P chips U133\_X3P) and relapse-free survival (RFS) data, instead of overall survival in TCGA dataset.
 
 %%%%%
 \section{Conclusions} % 5
@@ -1601,10 +1600,13 @@ Our findings suggested 10 candidate biomarkers,CAMK2N1, PGK1, SURF4, USP10, NDFI
 % welcome for study
 
 %tumor-agnostic research, we plan to explore common biomarkers crossing TCGA diseases
-We wish this bioinformatics tool will be available for the broad usage of tumor-agnostic research\cite{Looney2020} to crossing several \acrshort{tcga} diseases to make translational impacts. %Tex: PvalueTex
+We wish this workflow will be available for the reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} and tumor-agnostic research\cite{Looney2020} to crossing several \acrshort{tcga} diseases to make translational impacts. %Tex: PvalueTex
+% the broad usage
+%We aim to promote a reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} workflow allowing successful repetition and extension of analyses based on the TCGA or other in-house HNSCC datasets.
+%TCGA has not collected holistic features so far.
+The microenvironment of HNSCC, influenced by the mind-brain-body axis, requires further exploration and understanding using holistic multi-parametric approaches.
 
-We aim to promote a reproducible bioinformatics\cite{Preeyanon2014}\cite{Kulkarni2018} workflow allowing successful repetition and extension of analyses based on the TCGA or other in-house HNSCC datasets.
-TCGA has not collected holistic features.
+%the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Patents}
 
