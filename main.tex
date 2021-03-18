@@ -630,7 +630,7 @@ NPB                                            & neuropeptide B                 
 {X axis: unadjusted \textit{P} value of Kaplan-Meier survival (-log10 transformed).
 Y axis: multivariate hazard ratio from Cox proportional regression model.
 Dotted line: significant Bonferroni corrected \textit{P} value. 
-\textcolor{red}{Red circles} mark 10 candidate genes, which impact on poor prognosis ($HR>=1.5$). \textcolor{green}{Green circles} mark 10 genes, which affect on better survival ($HR<=0.5$).}
+\textcolor{red}{Red dots} mark 10 genes (unvalidated), which impact on poor prognosis ($HR>=1.5$). \textcolor{green}{Green dots} mark 10 genes (unvalidated), which affect on better survival ($HR<=0.5$).}
 \label{fig:figure3}
 \end{figure}
 % new figure of volcano plot: TCGA_HNSC_Optimal_Overall_allPlot_unKM_P_multiHR.pdf, -log10(raw KM P-value) vs Cox multivariate HR
@@ -639,9 +639,9 @@ Dotted line: significant Bonferroni corrected \textit{P} value.
 \clearpage
 
 
-Our top 1 candidate is \acrfull{DKK1}. The Kaplan-Meier curve reveals 227 patients bearing the higher expression of \acrshort{DKK1} were suffered from only 40\% of 5-year \acrshort{os} rate. In comparison, the other 187 patients with lower expression (the cutoff at -0.312(RSEM)) had a better prognosis (adjusted \textit{P} = $0.001$) (see Figure \ref{fig:figure4}(a)).
+After validated by GSE2837, our top 1 candidate is \acrfull{CAMK2N1}. The Kaplan-Meier curve reveals 227 patients bearing the higher expression of \acrshort{CAMK2N1} were suffered from only 40\% of 5-year \acrshort{os} rate. In comparison, the other 187 patients with lower expression (the cutoff at -0.312(RSEM)) had a better prognosis (adjusted \textit{P} = $0.001$) (see Figure \ref{fig:figure4}(a)).
 Figure \ref{fig:figure4}(b)'s cumulative \textit{P} value plot shows that the uncorrected 116 \textit{P} values ($< 0.05$) have been estimated by a serial cut from 125 to 290 persons for grouping the cohort in our cutoff finding procedure (cutofFinder\_func.R, see Figure \ref{fig:figure1}, "HNSCC cohort"). The smallest \textit{P} value (\num{8.9e-8}), when cut on n=187 (45.2\% of 414), has been defined as an optimal \textit{P} value.
-Conversely, the most associated gene with better survival is \acrfull{ZNF557}. In Figure \ref{fig:figure4}(c), a Kaplan-Meier curve reveals 264 patients bearing the higher expression of \acrshort{ZNF557} had 55\% of 5-year OS survival rate (adjusted \textit{P} = $0.001$). The cutoff finding procedure (cutofFinder\_func.R) generated cumulative \textit{P} value plot in Figure \ref{fig:figure4}(d). The 166 uncorrected \textit{P} values were estimated by a serial cut from 125 to 290 for grouping the cohort. The smallest \textit{P} value (\num{8.6e-8}), when cut on n=150 (36.2\% of total cohort 414), has been defined as an optimal \textit{P} value with a cutoff value -0.511(RSEM) of \acrshort{rnaseq}.
+Conversely, the most associated gene with better survival is \acrfull{IL19}. In Figure \ref{fig:figure4}(c), a Kaplan-Meier curve reveals 264 patients bearing the higher expression of \acrshort{IL19} had 55\% of 5-year OS survival rate (adjusted \textit{P} = $0.001$). The cutoff finding procedure (cutofFinder\_func.R) generated cumulative \textit{P} value plot in Figure \ref{fig:figure4}(d). The 166 uncorrected \textit{P} values were estimated by a serial cut from 125 to 290 for grouping the cohort. The smallest \textit{P} value (\num{8.6e-8}), when cut on n=150 (36.2\% of total cohort 414), has been defined as an optimal \textit{P} value with a cutoff value -0.511(RSEM) of \acrshort{rnaseq}.
 %The second candidate, which improving patient survival, is ZNF266.
 %\subsubsection{Tables} in main article
 
@@ -650,17 +650,18 @@ Conversely, the most associated gene with better survival is \acrfull{ZNF557}. I
 \centering
 \includegraphics[width=15cm]{Figure_4_CAMK2N1_IL19.pdf}
 \bcaption{Kaplan-Meier survival analyses, by cutoff finding.}
-{(a) Kaplan-Meier plot of DKK1 under optimal \textit{P} value, and (b) the cutoff is derived from cumulative \textit{P} value plot of DKK1. (c) Kaplan-Meier plot of ZNF557 under optimal \textit{P} value, and (d) the cutoff is derived from cumulative \textit{P} value plot of ZNF557.}
+{(a) Kaplan-Meier plot of CAMK2N1 under optimal \textit{P} value, and (b) the cutoff is derived from cumulative \textit{P} value plot of CAMK2N1. (c) Kaplan-Meier plot of IL19 under optimal \textit{P} value, and (d) the cutoff is derived from cumulative \textit{P} value plot of IL19.}
 \label{fig:figure4}
 \end{figure}
 
 \clearpage
 
-Table \ref{table:table1} shows ten overexpressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value. 
-We found their Cox's univariate and multivariate HR are all greater than 1.837. 
+Table \ref{table:table1} shows ten overexpressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value.
+Six out of ten genes has been validated by using GSE2837.
+We found those six candidates have the Cox's univariate and multivariate HR above 1.914.
 %There were few published articles of \acrfull{SURF4} and \acrfull{NDFIP1} (\acrshort{NEDD4}: \acrlong{NEDD4}), which were related to cancer research.
-In Table \ref{table:table2},
-after adjustment of confounders, \acrshort{DKK1} overexpression is the independent prognostic factor (multivariate HR 2.135 [95\% CI: 1.559-2.924, \textit{P} $<$ 0.001]), as well as clinical T stage (HR 1.978 [95\% CI: 1.046-3.737, \textit{P} = 0.036]) and surgical margins status (HR 1.601 [95\% CI: 1.159-2.211, \textit{P} = 0.004]). 
+In Table \ref{table:table2}, % table 3
+after adjustment of confounders, \acrshort{CAMK2N1} overexpression is the independent prognostic factor (multivariate HR 2.135 [95\% CI: 1.559-2.924, \textit{P} $<$ 0.001]), as well as clinical T stage (HR 1.978 [95\% CI: 1.046-3.737, \textit{P} = 0.036]) and surgical margins status (HR 1.601 [95\% CI: 1.159-2.211, \textit{P} = 0.004]). 
 Older age (more than 65) also worse the survival (HR 1.462 [95\% CI: 1.078-1.983, \textit{P} = 0.015]). 
 The M stage could be ignored in this cohort due to only 3 out of 414 patients with distant metastasis.
 
@@ -734,9 +735,10 @@ The M stage could be ignored in this cohort due to only 3 out of 414 patients wi
 
 
 In Table \ref{table:table3}, the other ten overexpressed genes have been found in better prognosis of \acrshort{hnscc} patients. Cox's univariate and multivariate HR is under 0.5.
+Four out of ten has been validated by using GSE2837.
 In Table \ref{table:table4},
 after adjustment of confounders, prognosis is influenced by advance clinical T Status (HR 1.961 [95\% CI: 1.035-3.714, \textit{P} = 0.039] ), positive surgical margin involvement (HR 1.631 [95\% CI: 1.18-2.254, \textit{P} = 0.003]) , and higher tobacco exposure (HR 1.453 [95\% CI: 1.055-2.000, \textit{P} = 0.022]).
-Overexpressed \acrshort{ZNF557} gene could has a protective influencce on prognosis (HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001]).
+Overexpressed \acrshort{IL19} gene could has a protective influencce on prognosis (HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001]).
 
 
 In summary, those ten candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
@@ -916,32 +918,36 @@ It is suggested by authors \cite{Scholl1986}\cite{Sutton2003}\cite{Shaw2004}\cit
 %%%
 
 \subsection{Validation by Web-based Tools}
-
-%
+% GSE2837 validated candidates: 10
 We also utilized another approach of web-based tools (TCGA) to analyze our candidates.
 %\subsubsection*{SurvExpress} % TCGA
 % 2021/01/23 pdf x 12 from SurvExpress
-SurvExpress\cite{Aguirre-Gamboa2013} is one of the web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier \textit{P} value) shows in 12 genes:\\ % SurvExpress 有類似的結果:
-1) poor prognosis: DKK1 (0.00005), CAMK2N1 (0.000006), STC2 (0.001), PGK1 (0.01), SURF4 (0.002), USP10 (0.002), NDFIP1 (0.000008), STIP1 (0.001), DKC1 (0.01);\\
-%CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
-2) better prognosis: ZNF557 (0.0007), ZNF266 (0.00008), FCGBP (0.001).\\
-%IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
+SurvExpress\cite{Aguirre-Gamboa2013} is one of the web-based tools for Biomarker comparison and validation of survival gene expression data. Using their TCGA HNSCC cohort (June 2016, n=502), the survival significance (Kaplan Meier \textit{P} value) shows in 6 genes:\\ % SurvExpress 有類似的結果:
+1) poor prognosis: CAMK2N1 (0.000006), PGK1 (0.01), SURF4 (0.002), USP10 (0.002), NDFIP1 (0.000008);\\
+%, STIP1 (0.001), DKC1 (0.01);\\
+%DKK1 (0.00005), CAMK2N1 (0.048214), STC2 (0.001), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587); % FOXA2 (0.038125)
+2) better prognosis: FCGBP (0.001).\\
+%ZNF557 (0.0007), ZNF266 (0.00008), IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);
 %17 out of 20 candidates
 %?DKK1 (0.253635),
-The 12 out of 20 candidate genes are confirmed by a comparative study using SurvExpress with the TCGA cohort. Please see Supplementary Figure S2.%\ref{fig:fig_SurvExpress}.
+The 6 out of 10 candidate genes are also confirmed by a comparative study using SurvExpress with the TCGA cohort. Please see Supplementary Figure S2.%\ref{fig:fig_SurvExpress}.
 % moved to supplementary file: Supplementary_figures.tex
-
+% \linksupplementary{Supplementary_figures.pdf},
 
 % % SurvExpress 沒有類似的結果是因為:
-Nevertheless, the survival prediction could not be found in FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB using SurvExpress. 
-Our workflow has the advantage to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage.
+%Nevertheless, the survival prediction could not be found in FOXA2, IL19, MYO1H, LOC148709, EVPLL, PNMA5, IQCN, KIAA1683, NPB using SurvExpress. 
+Nevertheless, the survival prediction could not be found in FOXA2, IL19, IQCN, KIAA1683, or NPB using SurvExpress.
+Our workflow has the advantage to find ai optimal cutpoint of that \acrshort{rna} expression data to maximize coverage during candidate mining.
 %因為 cutoff 不適當，這也就是我們 pvalueTex \textit{P} 的設計目的與強項
 
  
 %\subsubsection{HPA} %still TCGA's RNA-Seq
 The Human Protein Atlas project (HPA) has proteomics analysis based on 26,941 antibodies targeting 17,165 unique proteins. The HPA's Pathology Atlas analyzes each protein in patients, using \acrshort{ihc} analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
 All transcriptomics data has been retrieved from the TCGA, and all proteomics data has been generated in-house using the same antibodies.
-Our 9 candidates (e.g., DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, and DKC1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020-11-19). The ZNF557, ZNF266, and FCGBP are on the list of favorable prognostic genes as well.
+Our 5 candidates (e.g. CAMK2N1, PGK1, SURF4, USP10, and NDFIP1) are also on the list of unfavorable prognostic genes for HNSCC from \acrfull{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020-11-19). 
+FCGBP is on the list of favorable prognostic genes as well.
+% DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, and DKC1
+% ZNF557, ZNF266, and FCGBP
 Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the autophagy-related genes, has a poor prognostic impact on HNSCC, which has been proved at mRNA and protein level (HPA database, available at https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/head+and+neck+\\cancer)\cite{Ren2020}.
 % 13 ARGs (GABARAPL1, ITGA3, USP10, ST13, MAPK9, PRKN, FADD, IKBKB, ITPR1, TP73, MAP2K7, CDKN2A, and EEF2K) with prognostic value were identified in HNSCC patients
 %found at Human Protein Atlas dataset 
@@ -966,19 +972,14 @@ Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the 
 %%
 %\subsection*{Review articles}
 Since the discovery of workflow, we performed the literature review by Embase/Pubmed.% to find the evidence convincing the suggested biomarkers in cancer research. 
-The 10 out of 20 candidates has also been suggested by published studies using TCGA cohort, in-house cohort, or experiments in vitro and in vivo.
+The 5 out of 10 candidates has also been suggested by published studies using TCGA cohort, in-house cohort, or experiments in vitro and in vivo.
 
 %Embase searching; %https://www.ncbi.nlm.nih.gov/research/pubtator/?view=docsum&query=CAMK2N1%20head%20and%20neck%20cancer
 %through the PubMed searching, the remark on table 1 and table 2 presents the cancer research articles related to our candidate genes.
 %PubTator Central\cite{Wei2019} is a useful Pubmed text miner
 
 %%%%%% bad guy
-The Dickkopf1 (DKK1) gene encodes a protein mainly involved in Wnt and other signaling pathways.
-Inhibition of DKK1 in Hep-2 cells reduces their proliferation, colony formation, cell migration, and invasion in vitro\cite{Shi2014}.
-Pang et al.\cite{Pang2018} has proved that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhances their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. 
-Increased DKK1 levels in HNSCC tissues is correlated with elevated VEGF-C and beta-catenin\cite{Shi2014}.
-DKK1 expression is significantly associated with smoking, alcohol abuse, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}.
-The mRNA expression of DKK1 and DKK3 is elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Overexpression of DKK1 indicates adverse OS in bladder urothelial carcinoma (BLCA)\cite{Wei2020}, HNSCC\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC, leading to the worst prognosis of the patients. 
+%The Dickkopf1 (DKK1) gene encodes a protein mainly involved in Wnt and other signaling pathways. Inhibition of DKK1 in Hep-2 cells reduces their proliferation, colony formation, cell migration, and invasion in vitro\cite{Shi2014}. Pang et al.\cite{Pang2018} has proved that upregulation of DKK1 in SBC-3 cells (human small cell lung cancer) enhances their proliferation, colony formation, cell migration, and invasion in vitro, as well as bone metastasis in vivo. Increased DKK1 levels in HNSCC tissues is correlated with elevated VEGF-C and beta-catenin\cite{Shi2014}. DKK1 expression is significantly associated with smoking, alcohol abuse, human papillomavirus status\cite{Chakraborty2020}, tumor site, tumor invasion, and pathologic stage in HNSCC patients.\cite{Gao2018}. The mRNA expression of DKK1 and DKK3 is elevated in human papillomavirus (HPV)-negative HNSCC\cite{Hu2020}. Overexpression of DKK1 indicates adverse OS in bladder urothelial carcinoma (BLCA)\cite{Wei2020}, HNSCC\cite{Chakraborty2020}\cite{Hu2020}\cite{Wei2020}, and pancreatic adenocarcinoma (PAAD)\cite{Wei2020}. %Moreover, DKK1 is increased in HPV\+ HNSCC, leading to the worst prognosis of the patients. 
 %\cite{Shi2014}\cite{Gao2018}\cite{Chakraborty2020}(non-TCGA)\cite{Hu2020}\cite{Wei2020}
 %Wei et al\cite{Wei2020} conducted the analysis of prognostic value of DKK1 expression in human cancers based on bioinformatics tools, including UALCAN, GEPIA2 (dataset from TCGA)\cite{Tang2019}, and DriverDBv3 databases.
 %using http://gepia2.cancer-pku.cn/detail.php?gene=DKK1 => \cite{Tang2019}
@@ -986,7 +987,7 @@ The mRNA expression of DKK1 and DKK3 is elevated in human papillomavirus (HPV)-n
 
 
 %STC2:
-The miR-381 suppresses cell proliferation, migration, and invasion in the HNSCC SCC-4 cell line through targeting stanniocalcin 2 (STC2) and participates in HNSCC development probably via the FAK/PI3K/Akt/mTOR signaling pathway\cite{Ma2020}.
+%The miR-381 suppresses cell proliferation, migration, and invasion in the HNSCC SCC-4 cell line through targeting stanniocalcin 2 (STC2) and participates in HNSCC development probably via the FAK/PI3K/Akt/mTOR signaling pathway\cite{Ma2020}.
 
 % PGK1
 Phosphoglycerate kinase 1 (PGK1 or PGK-1), a glycolysis enzyme, is responsive in cisplatin-resistant HNSCC cell line (H-1R). 
@@ -1017,8 +1018,7 @@ Prognostic signature integrated of DNA methylation, gene expression, and clinica
 
 
 % STIP1; non-TCGA
-Stress-induced phosphoprotein 1 (STIP1, also known as HOP, P60, STI1), is increased in the poor survival patients of ovarian cancer\cite{Chao2013}\cite{Cho2014}. 
-The auto-antibody against STIP1 in serum could be a useful diagnostic biomarker for early-stage esophageal squamous cell carcinoma\cite{Xu2017}.
+%Stress-induced phosphoprotein 1 (STIP1, also known as HOP, P60, STI1), is increased in the poor survival patients of ovarian cancer\cite{Chao2013}\cite{Cho2014}. The auto-antibody against STIP1 in serum could be a useful diagnostic biomarker for early-stage esophageal squamous cell carcinoma\cite{Xu2017}.
 %STIP1 could bind to bind Hsp70 and Hsp90.
 
 
@@ -1044,14 +1044,13 @@ Fc fragment of IgG binding protein ($Fc\gamma BP$ or FCGBP) is expressed in norm
 %in thyroid biopsies might help to make the difficult distinction between a thyroid follicular adenoma and a follicular carcinoma.\cite{ODonovan2002}\cite{Griffith2006}, 
 %gene ID @gene@8857
 
-\acrfull{LOC148709} has a contribution to the Warburg effect on esophagus cancer\cite{Liu2019}.
-In our current study, LOC148709 is also suggested as a biomarker of \acrshort{hnscc} (see Table \ref{table:table3} on page \pageref{table:table3}).
+%\acrfull{LOC148709} has a contribution to the Warburg effect on esophagus cancer\cite{Liu2019}. In our current study, LOC148709 is also suggested as a biomarker of \acrshort{hnscc} (see Table \ref{table:table3} on page \pageref{table:table3}).
  
 
 %EVPLL in cDNA project
 
 % PNMA5
-Paraneoplastic Ma 5 (PNMA5) promotes apoptosis signaling in HeLa (cervical cancer) and MCF-7 (breast cancer) cells\cite{Lee2016}.
+%Paraneoplastic Ma 5 (PNMA5) promotes apoptosis signaling in HeLa (cervical cancer) and MCF-7 (breast cancer) cells\cite{Lee2016}.
 
 %The endogenous ligand of G protein-coupled receptors (GPR7) is IQCN (previous/former name as KIAA1683), and NPB (Neuropeptide B)\cite{Andreis2005}. GPR7 is associated with a poor prognosis of prostate cancer\cite{Cottrell2007}. 
 
