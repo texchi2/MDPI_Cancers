@@ -1155,9 +1155,10 @@ Once our laboratory or the community confirms those candidates as the targets, t
 %https://wiki.cancerimagingarchive.net/display/Public/TCGA-HNSC
 %https://cancer.digitalslidearchive.org/#!/CDSA/hnsc/TCGA-BA-4076/TCGA-BA-4076-01A-01-BS1?slide=TCGA-BA-4076-01A-01-BS1.4aef481c-f634-4ffc-9fb3-609f59a8caf9.svs
 TCGA Pathology Images => The Cancer Imaging Archive (TCIA) by Deep learning (R/Pytorch/Keras framework)
-%數位模擬，能讓臨床醫師和研究人員更快速了解細胞成長後的狀況，而不是花費時間等待細胞的培養。
 
-OFA:  TCIA for whole slide deep learning
+%數位模擬，能讓臨床醫師和研究人員更快速了解細胞成長後的狀況，而不是花費時間等待細胞的培養。
+The transcriptomic representation of TCGA learned by HE2RNA.
+TCIA for whole slide deep learning
 IL19 is a candidate marker
 TCPA modeling: Y (RNA-seq) ← X (slide represents gene expression)
 Apply model on TMUH HNSCC test cohort (with survival outcome):
@@ -1167,6 +1168,27 @@ Y (survival) ← X (slide represents gene expression)
 %https://tma.im/cgi-bin/ontologyBrowser.pl?anchor=C34447; there is few HNSCC slides
 
 
+
+
+%https://www.deeplearningbook.org/
+image-based phenotypes could be correlated with their underlying genomics data 
+TMA by deep learning (CNN) mRNA expression associated with pathological images
+*** TCGA TCIA Pathology Images with deep learning: gene expression on pathological section, or digital tissue microarray, digital TMA
+The Cancer Imaging Archive (TCIA) by Deep learning (R/Pytorch/Keras framework)
+%https://www.biorxiv.org/content/10.1101/2020.03.10.985887v1.full
+%https://github.com/Serian1992/ImgBio.
+%https://www.cancer.gov/research/areas/diagnosis/artificial-intelligence
+% NCI
+Aiding the Genomics Characterization of Tumors: 
+deep learning could predict commonly mutated genes and mRNA expression from the images
+*** A deep learning model to predict RNA-Seq expression of tumours from whole slide images\cite{Schmauch2020}.
+A HE2RNA model should be trained to systematically predict RNA-Seq profiles from whole-slide images\cite{Schmauch2020}.
+Preprocessing of whole-slide images. The application of deep-learning algo- rithms to histological data is a challenging problem, particularly due to the high dimensionality of the data (up to 100,000 × 100,000 pixels for a single whole-slide image) and the small size of available datasets. We divided the whole-slide images into squares of 112 × 112 $\mu$m (224 × 224 pixels) called “tiles”, and used the Otsu algorithm62 (as implemented in python package skimage) to select only those containing tissue, excluding the white background. We sampled a maximum of 8000 such tiles from each slide. We then extracted 2048 features from those tiles with a 50-layer ResNet63 pretrained on the ImageNet dataset64 (using the Keras implementation), such that a slide could be represented as a 8000 × 2048 matrix.
+For the first phase of this work (transcriptome prediction), we accelerated the training of our models through a simple preprocessing step inspired by simple linear iterative clustering (SLIC)65: we used the k-means algorithm (as implemented in python package libkmcuda) to create 100 clusters (supertiles) of tiles on the basis of tile location on the slide, and we averaged the features of the tiles within each cluster. The use of these supertiles reduces the dimensions of a slide to 100 × 2048. The model was first trained on this reduced dataset, with all the TCGA data. Then, for specific organs, fine-tuning was achieved with full-scale data from the organs concerned only.
+
+%AI methods can also be used to identify specific gene mutations from tumor pathology images instead of using traditional genomic sequencing. For instance, NCI-funded researchers at New York University used deep learning (DL) to analyze pathology images of lung tumors obtained from The Cancer Genome Atlas. Not only could the DL method accurately distinguish between two of the most common lung cancer subtypes, adenocarcinoma and squamous cell carcinoma, it could predict commonly mutated genes from the images.
+
+Understanding the Method Behind the Machine: interpredability
 %Manning meap book: 不再是黑盒子
 %https://www.manning.com/books/trust-in-machine-learning
 Trust in Machine Learning *** interpretable or explainable CNN
@@ -1175,25 +1197,6 @@ By saliency mapping: e.x. diabetes retinopathy, model focused on retinal artery
 %#XAI
 Interpretable deep neural network for cancer survival analysis by integrating genomic and clinical data\cite{Hao2019a}
 By PyTorch
-
-
-%https://www.deeplearningbook.org/
-image-based phenotypes could be correlated with their underlying genomics data 
-TMA by deep learning (CNN) mRNA expression associated with pathological images
-*** TCGA TCIA Pathology Images with deep learning: gene expression on pathological section, or digital tissue microarray, digital TMA
-%https://www.biorxiv.org/content/10.1101/2020.03.10.985887v1.full
-%https://github.com/Serian1992/ImgBio.
-%https://www.cancer.gov/research/areas/diagnosis/artificial-intelligence
-% NCI
-Aiding the Genomics Characterization of Tumors: 
-deep learning could predict commonly mutated genes and mRNA expression from the images
-*** A deep learning model to predict RNA-Seq expression of tumours from whole slide images\cite{Schmauch2020}
-Preprocessing of whole-slide images. The application of deep-learning algo- rithms to histological data is a challenging problem, particularly due to the high dimensionality of the data (up to 100,000 × 100,000 pixels for a single whole-slide image) and the small size of available datasets. We divided the whole-slide images into squares of 112 × 112 $\mu$m (224 × 224 pixels) called “tiles”, and used the Otsu algorithm62 (as implemented in python package skimage) to select only those containing tissue, excluding the white background. We sampled a maximum of 8000 such tiles from each slide. We then extracted 2048 features from those tiles with a 50-layer ResNet63 pretrained on the ImageNet dataset64 (using the Keras implementation), such that a slide could be represented as a 8000 × 2048 matrix.
-For the first phase of this work (transcriptome prediction), we accelerated the training of our models through a simple preprocessing step inspired by simple linear iterative clustering (SLIC)65: we used the k-means algorithm (as implemented in python package libkmcuda) to create 100 clusters (supertiles) of tiles on the basis of tile location on the slide, and we averaged the features of the tiles within each cluster. The use of these supertiles reduces the dimensions of a slide to 100 × 2048. The model was first trained on this reduced dataset, with all the TCGA data. Then, for specific organs, fine-tuning was achieved with full-scale data from the organs concerned only.
-
-%AI methods can also be used to identify specific gene mutations from tumor pathology images instead of using traditional genomic sequencing. For instance, NCI-funded researchers at New York University used deep learning (DL) to analyze pathology images of lung tumors obtained from The Cancer Genome Atlas. Not only could the DL method accurately distinguish between two of the most common lung cancer subtypes, adenocarcinoma and squamous cell carcinoma, it could predict commonly mutated genes from the images.
-
-Understanding the Method Behind the Machine: interpredability
 
 %One challenge of AI, and DL specifically, is the “black box” problem: not fully understanding what features of the data a computer has used in its decision-making process. For example, a DL algorithm that predicts the optimal treatment for a patient does not provide the reasoning it used to make that prediction. Additional efforts are needed to reveal how algorithms arrive at a decision or prediction so that the process becomes transparent to scientists and clinicians. Making these algorithms transparent could help researchers identify new biological features relevant to disease diagnosis or treatment.
 ***  unconscious biases:
