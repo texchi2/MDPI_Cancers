@@ -2,7 +2,6 @@
 %  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
 
 %=================================================================
-% pm-1174473
 % Journal of Personalized Medicine, JPM
 \documentclass[jpm,article,submit,moreauthors,pdftex]{Definitions/mdpi}
 \maxdeadcycles=1000 % Output loop---200 consecutive dead cycles.
@@ -236,12 +235,10 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{Transcriptomic Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma}
-%\Title{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
+\Title{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
 
 % MDPI internal command: Title for citation in the left column
-\TitleCitation{Transcriptomic Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma}
-%\TitleCitation{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
+\TitleCitation{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
 
 % Author Orchid ID: enter ID or remove command
 \newcommand{\orcidauthorA}{0000-0002-4476-2600} % Add \orcidA{} behind the author's name
@@ -292,14 +289,13 @@ $^{5}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Sc
 
 % Abstract (Do not insert blank lines, i.e. \\) 
 \abstract{
-Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. We have used a workflow to perform biomarker discovery. It includes data retrieval, data pre-processing, feature selection, cutoff engine, Kaplan-Meier survival analysis, and Cox proportional hazard modeling.
+Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
+%There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
+We developed a comprehensive workflow to perform biomarker discovery. It includes data retrieval, data pre-processing, feature selection, cutoff engine, Kaplan-Meier survival analysis, and Cox proportional hazard modeling.
 Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes and adjusted them with confounders, and Bonferroni corrected \textit{P} value. After validation with an independent \acrshort{hnscc} cohort (GSE2837), the result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. 
 Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
-We suggest these ten genes could be the candidates in biomarker discovery of HNSCC.
+We suggest this workflow equipped with a cutoff-mining engine could help for biomarker discovery.
 }
-
-%Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
-%There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
 % validated by the other HNSCC cohort:
 %1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
 %2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
@@ -321,9 +317,8 @@ Optimal Cutoff;
 %Targeted Therapy\sep
 %Systemic Therapy\sep
 %Surgical Margin
-%Holistic Cancer Care;
-%Therapeutic Relationship;
-Mindfulness Meditation
+Holistic Cancer Care;
+Therapeutic Relationship
 }
 
 % I have a graphic abstract: graphic_abstract_pvalueTex.pdf
