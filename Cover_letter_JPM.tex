@@ -221,6 +221,24 @@ The manuscript posted in the preprint server, ResearchSqaure, is our first versi
 Since previous reviewer's suggestion, we made a major revision on the followings:
 1) suggested  candidates of biomarker has been modified  by additional validation using an independent patient cohort (GSE2837).
 We also reviewed literature that supports the prognostic impact of these candidate genes. The resulting Figure 4, Table 3 and Table 4 is different between the two manuscripts.
+
+
+{ 
+(ok)Result 改寫 CAMK2N1, IL19; 
+Supplementary;
+Discussion:
+([ok] 3.2, 3.3 只留下 validated by GSE2837)
+(ok)Figure_4_CAMK2N1_IL19.pdf  KM plots
+(ok)table 1 (6 genes), (ok) table 2 (4 genes)
+
+\resizebox{\linewidth}{!}{ % adjust table size to fit the page width
+Table 3: CAMK2N1 (ok)
+Table 4: IL19  (ok)
+\label
+}
+six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
+four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
+}
 2) Since that revision, we extended holistic cancer care in the discussion section (please see Answer 1-2).
 
 %[我的 candidate 中為什麼沒有 EGFR];  
@@ -336,6 +354,10 @@ In the independent test, half genes have p-values less than 0.05, and most of th
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
+調整 workfow 更加嚴格
+以增加 validation rate
+The p-values are affected by the sample size, which has be described in the main text.
+as following:
 % ???
 % x
 %how to apply or modify the R scripts to use on other datasets
@@ -440,7 +462,7 @@ Then it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.co
 % #####################
 \subsection*{2-4}
 How univariable and multivariable tests work should be clearly described in the main text. In a multivariable test, which variables were used?
-Here is another suggestion. To maximize the use of continuous expression values, the author can build a multivariable model (e.g., logistic regression) integrating multiple genes.
+
 
 
 
@@ -448,6 +470,12 @@ Here is another suggestion. To maximize the use of continuous expression values,
 Answer
 
 We appreciate the reviewer for the critical comment and modified the Introduction accordingly.
+= 詳細描述 univariable and multivariable tests work
+In a multivariable test, which variables were used? 
+= 列出來，並且強調 surgical margin
+
+
+% x
 In our workflow, we utilize FirebrowseR in step 1 to receive standardized genomic and clinical data frames while avoiding data reformatting, often causing some errors. (please also see Figure \ref{fig:workflow}, different sources of databases)
 
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
@@ -478,8 +506,22 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 %The \acrshort{gdc} Data Portal provided \acrshort{tcga} data has been harmonized and re-aligned \acrlong{rnaseq} data against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}). \acrshort{rnaseq} expression level read counts produced by Illumina HiSeq have been normalized using the \acrfull{fpkm} method, as described in reference\cite{FPKM2017}.
 %The \acrshort{rnaseq} preprocessor of Broad \acrshort{gdac} picked the \acrfull{rsem} value from Illumina HiSeq/GA2 messenger \acrshort{rnaseq} level\_3 (v2) dataset of \acrshort{nci} \acrshort{gdc}. It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.
 
-
 \subsection*{2-5}
+Here is another suggestion. To maximize the use of continuous expression values, the author can build a multivariable model (e.g., logistic regression) integrating multiple genes.
+=> = a gene signature with deep learning CNN
+https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
+
+https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
+
+\begin{MyColorPar}{blue}
+Answer
+
+We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
+
+\end{MyColorPar}
+
+
+\subsection*{2-6}
 [Minor comments]
 The background should be revised extensively. For example, the description of the linear model should be removed. X1...Xn should be removed. 
 More introduction to how other researchers used TCGA to find expression biomarkers should be presented. 
@@ -494,7 +536,20 @@ In Figure 2, unlabeled scales on the x-axis.
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
+[Minor comments]
+The background should be revised extensively. 
+x For example, the description of the linear model should be removed. X1...Xn should be removed. 
+***More introduction to how other researchers used TCGA to find expression biomarkers should be presented. 
+Detailed introduction of TCGA-related tools should be moved to Methods.
 
+In line 154 paragraph, what does unclean data mean, missing values or zero expression? The three challenges are not “challenges” at all. The authors exaggerated the difficulties here. 不要誇大說明 
+In Figure 1, the diagram should have direction. 
+加上 direction of view 
+
+The file names are not interesting. RNAseq (20500 genes) should be gene expression values (20500 genes)???
+
+In Figure 2, unlabeled scales on the x-axis???
+除去 unlabeled stick 即可立刻改進
 \begin{MyColorPar}{red}
 
 \end{MyColorPar}
