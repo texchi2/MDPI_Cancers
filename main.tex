@@ -46,6 +46,7 @@
 \usepackage{outlines}
 % mark in blue or red
 \usepackage{xcolor}
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
 
 \newenvironment{MyColorPar}[1]{% for RED marked of revision
     \leavevmode\color{#1}\ignorespaces%
@@ -360,33 +361,6 @@ Head and neck squamous cell carcinoma (\acrshort{hnscc}), including oral, oropha
 % chemotherapy => systemic therapy
 The treatment strategies of \acrshort{hnscc} are surgery alone, systemic therapy with concurrent radiation therapy (systemic therapy/\acrshort{rt}), or surgery with adjuvant systemic therapy/\acrshort{rt} (according to \acrlong{nccn}, \acrshort{nccn} Clinical Practice Guidelines in \acrshort{hnscc}, Version 2.2020)\cite{Pfister2020a}. Despite the improvement in those interventions, the survival of \acrshort{hnscc} has improved only marginally over the past decade worldwide\cite{hpa2019}. The critical advancement of targeted therapy and immuno-oncology should benefit from emerging prognostic  biomarkers guiding modern systemic therapy.
 
-%latex https://www.latex-tutorial.com/symbols/greek-alphabet/
-%\subsection*{Linear regression in biomarker discovery}
-Linear regression is useful as a concept in biomarker discovery.
-A linear regression equation that relates a Y-variable to n X-variables is written as\\[1cm]
-%\par
-%Highlights
-% https://quicklatex.com
-\begin{flushleft}
-% equation
-%\begin{math}
-
-ground truth Y (e.x. patient's survival):\\[0.5cm]
-%Y$:\\[0.3cm]
-$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$
-\linebreak
-\linebreak
-Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
-\\[0.5cm]
-Coefficients $\beta_0...\beta_n$ (built in model)\\[0.5cm]
-A residual (error) term is calculated as $\epsilon=Y - \hat Y$\\
-Since the model established by survival analysis, predicted value $\hat Y$ is calculated as:\\[0.3cm]
-$\hat Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n$
-\linebreak
-%(predicted Y, output) intercept, slope, independent (input) \Times
-%\end{math}
-\end{flushleft}
-Thus, the biomarker discovery strategy is survival modeling through collections of $X_1...X_n$ features from cancer datasets.\\[1cm]
 
 
 
@@ -410,46 +384,27 @@ According to our proteomic study between 2010 to 2017, \acrfull{tmsb4x} was repo
 %TMSB4X proteins regulate intracellular signal transduction and has been proved to overexpress in various cancers, including colorectal, lung, gastric, pancreatic, and squamous cell cancers.\cite{Chi2017}
 % https://doi.org/10.1038/s41598-017-09539-w
 
-
-%\subsection{A introduction of TCGA}
-%\begin{MyColorPar}{red}
-%%%%%% revision1 added [TCGA] [2021/02/02]
-A large-scale cancer database, aggregating many $X_1 ... X_n$ features, is necessary to facilitate the biomarker discovery.
-The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} has been developed since 2005 and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI), funded by the US government.
-TCGA represents comprehensive genomics and clinic data from 84,392 patients among 33 major cancer types (data release 27.0 - Oct 29, 2020, available at https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/studied-cancers).
-%The Cancer Genome Atlas (TCGA): The TCGA consortium, which is a National Institute of Health (NIH) initiative, makes publicly available molecular and clinical information for more than 33 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome.
-TCGA and other collaborated \acrfull{gdac} generated and analyzed DNA (mutation, copy number variation, methylation, simple nucleotide polymorphism, SNP), RNA (microarray, RNA-Seq, microRNA), and protein (reverse protein phased array) data derived from biospecimen. Sample types available at TCGA are primary solid tumors, recurrent solid tumors, blood-derived normal and tumor, metastatic, and solid tissue normal.  
-
-The NCI's Genomic Data Commons (GDC, available at https://portal.gdc.cancer.gov) receives, processes, and distributes genomic, clinical, and biospecimen data from TCGA database and other cancer research programs. The clinical features has been defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}. The \acrshort{rnaseq} expression data has been harmonized and re-aligned against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}).
-%The old TCGA data portal (https://tcga-data.nci.nih.gov/docs/publications/tcga/) stops updating and all TCGA data was transferred to the GDC data portal .
-\acrshort{tcga}, GDC and some research communities offer several computational tools to the public for facilitating cancer research. %There is three categories of tools to approach the TCGA data from GDC.
-GDC Data Portal is the official web-based TCGA data analysis tools. Other available web-based tools have been reviewed by Zhang et al.\cite{Zhang2019b} and 
-Matthieu Foll (availalbe at https://github.com/IARCbioinfo/awesome-TCGA).
-One of \acrshort{gdac}s, the Broad TCGA Data and Analyses (Broad GDAC), provides Firehose, a repository of the TCGA public-accessible Level 3 data and Level 4 analyses. Broad GDAC Firehose is an analytical infrastructure that analyses algorithms not performed by the GDC (e.x. GISTIC, MutSig2CV, correlation with clinical variables, mRNA clustering). 
-A web-based version of Broad GDAC Firehose is Firebrowse (available at firebrowse.org, Version: 1.1.40, 2019-10-13).
-%Python and UNIX bindings
-%R bindings
-Broad GDAC Firebrowse provides graphical tools like viewGene to explore expression levels and iCoMut to explore a mutation analysis of each TCGA disease. 
-
-%Second, GDC data transfer tool (available at https://gdc.cancer.gov/access-data/gdc-data-transfer-tool) allows users to access the open or controlled data. %the GDC data model, data formats
-% RESTful API
-
-GDC \acrfull{api} is designed under the \acrfull{rest} architecture and provides accessibility to external users for programmatic access to the same functionality found through GDC Portals. Those functions include searching, viewing, submitting, and downloading subsets of data files, metadata, and annotations based on specific parameters. Moreover, if restricted data is requested, the user must provide a token along with the API call. This token can be downloaded directly from the GDC Portals. (paragraph is provided here courtesy of the National Cancer Institute)
-% Articles from Cureus are provided here courtesy of Cureus Inc.
-Broad GDAC Firebrowse \acrshort{rest}ful \acrshort{api} could be accessed using an R package, FirebrowseR (available at https://github.com/mariodeng/FirebrowseR)\cite{Deng2017}.
-
-% clinical
-%We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patient.
+\begin{MyColorPar}{red}
+The Cancer Genome Atlas (\acrshort{tcga}) profiled 528 \acrshort{hnscc} clinical and genomic data, which has been standardized and available at a unified data portal, \acrfull{gdc} of the \acrfull{nci}.
+%\cite{SeanDavis;MartinMorgan2020}
+\end{MyColorPar}
 
 % to summarize the advantages of its use.
 The highlights of the advantages of applying the TCGA data for cancer biomarker identification include:
 \begin{outline}
 \1  To the best of our knowledge, the TCGA database is the largest collection (in both cancer types and cohort size) of comprehensive genomics with survival data available in the field of cancer research so far.  
-There are many physical and social features ($X_1 ... X_n$) of patients available for survival modeling.
+There are many physical and social features of patients available for survival modeling. % ($X_1 ... X_n$)
 The whole-genome sequencing data has been harmonized across all GDACs.  Many databases adopt the essential demographic data from TCGA since it has comprehensive clinical features, such as exposure to alcohol, asbestos, radioactive radon, tobacco smoking, or cigarettes.
 \1  TCGA has a remarkable advantage for computational and life scientists who study cancer since useful web-based tools and API are ready to analyze and visualize TCGA data. It might be getting help quickly from the research community for trouble-shooting.
 \1  Many achievements of diagnoses, treatments, and prevention with the TCGA data have already been published and keep growing\cite{Tomczak2015}.\\[0.5cm]
 \end{outline}
+
+\begin{MyColorPar}{red}
+\subsubsection{utility of TCGA}
+%%%
+Usually, how researchers used TCGA to find expression biomarkers
+%%%%%%
+\end{MyColorPar}
 
 
 
@@ -475,14 +430,16 @@ The workflow, shown in Figure \ref{fig:figure1}, scanned 20,500 human protein-co
 %\widefigure
 \includegraphics[width=14cm]{Figure_1_manuscript_workflow} % .PDF is better than .png
 %, height=8cm
-%\caption
-\bcaption{A workflow of \acrshort{hnscc} biomarker discovery, step 1 (\textcolor{blue}{blue line}: main procedure) and step 2 (\textcolor{orange}{orange line}: analysis export).}
+%\caption % , step 1 (\textcolor{blue}{blue line}: main procedure) and step 2 (\textcolor{orange}{orange line}: analysis export).
 %Step 3 (purple line: dealing with surgical margin).
-{The "main procedure" includes data retrieval from TCGA GDC data portal, data process with merging and cleaning (red rectangled),% should be modified aggressively according to different sources of database)
-then performing the survival analyses. The Cutoff engine (cutofFinder\_func.HNSCC.R) might calculate all possible Kaplan-Meier \textit{P} value to find the optimal cutoff value of RNA-Seq for subsequent Cox modeling (a draft diagram shown on the upper right corner "HNSCC cohort", the serial cut for grouping patients with \textcolor{green}{low [green]} or \textcolor{red}{high [red]} expression of a specific gene, to yield a collection of \textit{P} values; please see Materials and Methods section for details). The step 2 "analysis export" performs dissecting and selection of candidate genes by Bonferroni adjusted \textit{P} value as well as a hazard ratio of Cox model, based on the results from the step 1.
+\bcaption{A workflow of \acrshort{hnscc} biomarker discovery}
+{The workflow includes data retrieval from TCGA GDC data portal, data process with merging and cleaning,% should be modified aggressively according to different sources of database)
+then performing the survival analyses (within \textcolor{yellow}{yellow} square). The Cutoff engine (in R script: cutofFinder\_func.HNSCC.R, a serial cut for grouping patients with \textcolor{asparagus}{low} or \textcolor{red}{high} expression of a specific gene, to yield a collection of \textit{P} values; please see Materials and Methods section for details) might calculate all possible Kaplan-Meier \textit{P} value to find the optimal cutoff value of gene expression for subsequent Cox modeling. The candidate selection performs dissecting and selection of candidate genes by Bonferroni adjusted \textit{P} value as well as a hazard ratio of Cox model, based on the results from the survival analyses. The selected genes will be validated by a independent HNSCC cohort (GSE2837).
 (HNSCC: head and neck squamous cell carcinoma; TCGA: the Cancer Genome Atlas; RNA-Seq: RNA sequencing; GDC: Genomic Data Commons.)}
 \label{fig:figure1}
 \end{figure}
+
+% \definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -753,7 +710,8 @@ Overexpressed \acrshort{IL19} gene could has a protective influencce on prognosi
 
 
 In summary, those ten candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
-Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific ten gene expressions, clinical T stage, and surgical margin.
+Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. 
+%The important input $X_1...X_n$ should be patients' features: age, specific ten gene expressions, clinical T stage, and surgical margin.
 %\\[0.5cm]
 % total 6+4 =10
 % After validation with an independent \acrshort{hnscc} cohort (GSE2837), the result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. 
@@ -1541,8 +1499,39 @@ Diagnosed with life-threatening diseases or terminal stage of chronic diseases o
 
 \subsection{Patient Cohort} 
 
-The Cancer Genome Atlas (\acrshort{tcga}) profiled 528 \acrshort{hnscc} clinical and genomic data, which has been standardized and available at a unified data portal, \acrfull{gdc} of the \acrfull{nci}.
-%\cite{SeanDavis;MartinMorgan2020}
+\begin{MyColorPar}{red}
+%\subsection{A introduction of TCGA}
+%\begin{MyColorPar}{red}
+%%%%%% revision1 added [TCGA] [2021/02/02] %$X_1 ... X_n$ of independent features
+A large-scale cancer database, aggregating many independent features, is necessary to facilitate the biomarker discovery.
+The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} has been developed since 2005 and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI), funded by the US government.
+TCGA represents comprehensive genomics and clinic data from 84,392 patients among 33 major cancer types (data release 27.0 - Oct 29, 2020, available at https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/studied-cancers).
+%The Cancer Genome Atlas (TCGA): The TCGA consortium, which is a National Institute of Health (NIH) initiative, makes publicly available molecular and clinical information for more than 33 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome.
+TCGA and other collaborated \acrfull{gdac} generated and analyzed DNA (mutation, copy number variation, methylation, simple nucleotide polymorphism, SNP), RNA (microarray, RNA-Seq, microRNA), and protein (reverse protein phased array) data derived from biospecimen. Sample types available at TCGA are primary solid tumors, recurrent solid tumors, blood-derived normal and tumor, metastatic, and solid tissue normal.  
+
+The NCI's Genomic Data Commons (GDC, available at https://portal.gdc.cancer.gov) receives, processes, and distributes genomic, clinical, and biospecimen data from TCGA database and other cancer research programs. The clinical features has been defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}. The \acrshort{rnaseq} expression data has been harmonized and re-aligned against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}).
+%The old TCGA data portal (https://tcga-data.nci.nih.gov/docs/publications/tcga/) stops updating and all TCGA data was transferred to the GDC data portal .
+\acrshort{tcga}, GDC and some research communities offer several computational tools to the public for facilitating cancer research. %There is three categories of tools to approach the TCGA data from GDC.
+GDC Data Portal is the official web-based TCGA data analysis tools. Other available web-based tools have been reviewed by Zhang et al.\cite{Zhang2019b} and 
+Matthieu Foll (availalbe at https://github.com/IARCbioinfo/awesome-TCGA).
+One of \acrshort{gdac}s, the Broad TCGA Data and Analyses (Broad GDAC), provides Firehose, a repository of the TCGA public-accessible Level 3 data and Level 4 analyses. Broad GDAC Firehose is an analytical infrastructure that analyses algorithms not performed by the GDC (e.x. GISTIC, MutSig2CV, correlation with clinical variables, mRNA clustering). 
+A web-based version of Broad GDAC Firehose is Firebrowse (available at firebrowse.org, Version: 1.1.40, 2019-10-13).
+%Python and UNIX bindings
+%R bindings
+Broad GDAC Firebrowse provides graphical tools like viewGene to explore expression levels and iCoMut to explore a mutation analysis of each TCGA disease. 
+
+%Second, GDC data transfer tool (available at https://gdc.cancer.gov/access-data/gdc-data-transfer-tool) allows users to access the open or controlled data. %the GDC data model, data formats
+% RESTful API
+\end{MyColorPar}
+
+GDC \acrfull{api} is designed under the \acrfull{rest} architecture and provides accessibility to external users for programmatic access to the same functionality found through GDC Portals. Those functions include searching, viewing, submitting, and downloading subsets of data files, metadata, and annotations based on specific parameters. Moreover, if restricted data is requested, the user must provide a token along with the API call. This token can be downloaded directly from the GDC Portals. (paragraph is provided here courtesy of the National Cancer Institute)
+% Articles from Cureus are provided here courtesy of Cureus Inc.
+Broad GDAC Firebrowse \acrshort{rest}ful \acrshort{api} could be accessed using an R package, FirebrowseR (available at https://github.com/mariodeng/FirebrowseR)\cite{Deng2017}.
+
+% clinical
+%We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patient.
+
+
 GDC is available at https://portal.gdc.cancer.gov/projects/TCGA-HNSC.
 \acrshort{tcga} offers several computational tools to the public for facilitating cancer research.
 Broad \acrfull{gdac} Firebrowse (firebrowse.org, version 1.1.35, 2016\_09\_27) is one of those tools to provide data access to each \acrshort{tcga} disease through a \acrfull{rest} \acrfull{api}.
@@ -1770,3 +1759,32 @@ mtbwi/index.do. Accessed 20 May 2020.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 
+% moved from line 363
+
+%latex https://www.latex-tutorial.com/symbols/greek-alphabet/
+%\subsection*{Linear regression in biomarker discovery}
+Linear regression is useful as a concept in biomarker discovery.
+A linear regression equation that relates a Y-variable to n X-variables is written as\\[1cm]
+%\par
+%Highlights
+% https://quicklatex.com
+\begin{flushleft}
+% equation
+%\begin{math}
+
+ground truth Y (e.x. patient's survival):\\[0.5cm]
+%Y$:\\[0.3cm]
+$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$
+\linebreak
+\linebreak
+Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
+\\[0.5cm]
+Coefficients $\beta_0...\beta_n$ (built in model)\\[0.5cm]
+A residual (error) term is calculated as $\epsilon=Y - \hat Y$\\
+Since the model established by survival analysis, predicted value $\hat Y$ is calculated as:\\[0.3cm]
+$\hat Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n$
+\linebreak
+%(predicted Y, output) intercept, slope, independent (input) \Times
+%\end{math}
+\end{flushleft}
+Thus, the biomarker discovery strategy is survival modeling through collections of $X_1...X_n$ features from cancer datasets.\\[1cm]
