@@ -136,7 +136,7 @@
 %Email: sonia.sun@mdpi.com
 Assistant Editor of JPM%\newline
 
-April 30, 2021
+May 16, 2021
 
 Dear Ms. Sonia Sun:
 
@@ -146,12 +146,12 @@ We have since revised the manuscript accordingly to address their critical comme
 
 
 %{%
-1) % {2-4}
+Reviewer 1: % {2-4}
 "Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use."\\
 We re-wrote the Introduction in detail according to the suggestion by reviewer \#2. %(comment No 2-4).
 %}
 
-2) % {3-1}
+Reviewer 2: % {3-1}
 "Are the conclusions supported by the results?
 Only computer computing in this research to support 20 candidate biomarkers, ... are all heavily associated with the prognosis of OS.
 There is little information provided. The authors should provide more evidence to support this article."\\
@@ -314,17 +314,18 @@ Adjustment of multiple test p-values should be applied here, which is missing in
 Answer
 
 We appreciate the reviewer for kind instruction of expression cutoff in detail.\\
-We modified the workflow as ...
+*We modified the workflow as ...
 
-[after cut-off finding]
-Adjustment of multiple test p-values should be applied here, which is missing in the current manuscript.
+We modified the last paragraph of "Cutoff Finder Core Engine" in the Material and Methods section.
+The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
+\\[0.3cm]
+%as follows:
+%\begin{MyColorPar}
+The \acrfull{fdr} ($< 0.05$) correction has been applied to ensure the control of type I error of multiple test \textit{P} values during our cutoff finding procedure.
+%\end{MyColorPar}
 
-***=> Bonferroni correction should be used in final decision.
-%位置要換一下：
-The false discovery rate
-645 (FDR) (< 0.05) could be used to pick up the optimal P value to ensure the control for
-646 type I error of the Kaplan-Meier survival test during the cutoff finding procedure.
-4.2. Cutoff Finder Core Engine.
+%***=> Bonferroni correction should be used in final decision.
+
 
 
 
@@ -338,8 +339,9 @@ I recommend the authors weaken their statement of the workflow but focus on the 
 Answer
 
 We appreciate the reviewer for the critical comment.
-We change new Title, abstract, change tone
+We changed title as "Transcriptomic Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma", and abstract; we also changed the tone in our manuscript to focus on the identified biomarkers in the head and neck squamous cell carcinoma.
 
+* more evidence to support or validate them
 
 \end{MyColorPar}
 
@@ -354,14 +356,14 @@ In the independent test, half genes have p-values less than 0.05, and most of th
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
-調整 workfow 更加嚴格
-以增加 validation rate
-The p-values are affected by the sample size, which has be described in the main text.
+***調整 workfow 更加嚴格以增加 validation rate
+*The p-values are affected by the sample size, which has be described in the main text.
 as following:
+
+*the authors should look for more data to verify these biomarkers.
 % ???
+
 % x
-%how to apply or modify the R scripts to use on other datasets
-%\begin{itemize} %summarize the elements of the workflow
 \begin{outline}
 The data from TCGA database or other databases could be applied by this workflow, since modification of the R script is necessary to adapt the difference structure among datasets (e.x. data schema, table size, definition of features, number of features and their location on the table column).\\
 In short, the elements of the workflow with the \{codes\} shows:\\
@@ -470,7 +472,7 @@ How univariable and multivariable tests work should be clearly described in the 
 Answer
 
 We appreciate the reviewer for the critical comment and modified the Introduction accordingly.
-= 詳細描述 univariable and multivariable tests work
+= 詳細描述 univariable and multivariable tests work in the Cox proportional hazard regression model.
 In a multivariable test, which variables were used? 
 = 列出來，並且強調 surgical margin
 
@@ -720,7 +722,7 @@ STIP1 reverse primer: 5'-GGTGGAGGTGTTGCAATCTCTT‐3′
 
 
 
-\begin{outline} % still blue
+\begin{outline} % highlight still blue
 In conclusion, 20 candidate biomarkers, DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, as well as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (former name as KIAA1683), and NPB, are associated with the prognosis of OS in our study.
 Comparison with previous publications or database analyses, 
 

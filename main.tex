@@ -1561,19 +1561,76 @@ We made data clean by removing duplicated rows and columns.
 
 \subsection{Cutoff Finder Core Engine}
 
+
 %\label{key:cutoff}
-To evaluate the effect of gene expression on the patient's survival, we introduced the stratifying of patients with Kaplan-Meier survival analysis according to each gene's low/high expression.
+To evaluate the effect of gene expression on the patient's survival, we introduce a sliding window cutoff selection by stratifying patients with Kaplan-Meier survival analysis according to each gene's low/high expression.
 Our cutofFinder\_func subroutine employs the minimum \textit{P} value approach to recognizing cutoff points in continuous gene expression measurement for patients sub-population.
 First, patients were ordered by \acrshort{rnaseq} value (RSEM) of a given gene. Next, patients were stratified at a serial cut (counted by person ranked in 30\% to 70\% percentile of the cohort; please see Figure \ref{fig:figure1} cutoff engine). The survival risk differences of the two groups were estimated by log-rank test to yield around 165 Kaplan-Meier \textit{P} values for each gene.
 Then, the optimal cutoff of \acrshort{rnaseq}, giving the minimum \textit{P} value, was selected by the cutofFinder\_func subroutine.
-This iteration method could calculate all possible cutoff of each gene expression in this cohort. At each run of cutofFinder\_func function call for an individual gene, it returned an optimal cutoff value (e.x. 0.027 for gene \acrlong{CAMK2N1}, \acrshort{CAMK2N1}, Figure \ref{fig:figure4}). The optimal cutoff value and its correlated patient grouping size (e.x. low-expression in 262 persons vs. high-expression in 152 persons with gene \acrshort{CAMK2N1}) would be returned to the main program to allow downstream Cox survival analysis. The percentile range we applied as 30\% to 70\% was used to avoid a small grouping effect\cite{Miller1982}\cite{Mizuno2009a}.
+This iteration method could calculate all possible cutoff of each gene expression in this cohort. At each run of cutofFinder\_func function call for an individual gene, it returned an optimal cutoff at specific patient grouping  (e.x. low-expression in 262 persons vs. high-expression in 152 persons with gene \acrlong{CAMK2N1}, \acrshort{CAMK2N1}, please see Figure \ref{fig:figure4}). The cutoff would be returned to the main program to allow downstream Cox survival analysis. The percentile range we applied as 30\% to 70\% was used to avoid a small grouping effect\cite{Miller1982}\cite{Mizuno2009a}.
 In case there was no significant \textit{P} value, a median expression of this gene was set as its cutpoint as usual.
+\begin{MyColorPar}{red}
+The \acrfull{fdr} ($< 0.05$) correction has been applied to ensure the control of type I error of multiple test \textit{P} values during our cutoff finding procedure.
+\end{MyColorPar}
 
-\subsection{Statistical Consideration}
+\subsection{Statistical Consideration for Survival Analysis}
 
 Our workflow has loops to call function survival\_marginSFP(GeneName) with given GeneName to process the survival analysis gene by gene.
 We dichotomized the clinicopathological features, which includes gender (male/ female), age at diagnosed (below/beyond 65 year-old), clinical tumor size (T1-2/T3-4), clinical nodal status (negative/positive), clinical distant metastasis (negative/positive), TNM staging (early/late), surgical margin status (negative/positive) and tobacco exposure (low/high). The patients were grouped by an \acrshort{rnaseq} value of each gene, cut at low- or high-expression on an optimal \textit{P} value obtained from the cutofFinder\_func subroutine (see the section of "Cutoff Finder Core Engine"). Pearson's chi-square test was used for these binary variables. Kaplan-Meier survival was analyzed using the log-rank test for two groups OS comparison.
-The Cox proportional hazards regression is the widely accepted approach for modeling survival while accounting for confounding factors\cite{Magen2019}. Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the OS.
+
+% reviewer comment 
+\begin{MyColorPar}{red}
+%The Cox proportional hazards regression is the widely accepted approach for modeling survival while 
+
+The Cox proportional-hazards model\cite{Cox1972} is commonly used for modeling survival analysis data. It allows to analyze survival with respect to one or more predictor variables and to provides the effect size (hazard) for them\cite{Bradburn2003b}. % Classification trees and artificial neural networks in survival analysis
+The Cox model is also accounting for confounding factors\cite{Magen2019}.
+It is expressed by the hazard function denoted by h(t). Briefly, the hazard function can be interpreted as the risk of a specific event (e.x. death) at time t. It can be estimated as follow:
+
+%Linear regression is useful as a concept in biomarker discovery.
+%A linear regression equation that relates a Y-variable to n X-variables is written as\\[1cm]
+%\par
+%Highlights
+% https://quicklatex.com
+\begin{flushleft}
+% equation
+%\begin{math}
+
+%ground truth Y (e.x. patient's survival):\\[0.5cm]
+$h(t) = h_0(t) \times exp(\beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n)$\\[0.3cm]
+% natural exponential function => y=e^x
+\end{flushleft}
+%Y$:
+%$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$
+%\linebreak
+%\linebreak
+where,\\
+\begin{outline} % for highlight
+\1 t represents the survival time
+\1 $h(t)$ is the hazard function determined by a set of n covariates ($X_1...X_n$)
+\1 the coefficients ($\beta_1...\beta_n$) measure the impact (i.e., the effect size) of covariates
+\1 the term $h_0$ is called the baseline hazard. It corresponds to the value of the hazard if all the $X_i$ are equal to zero (the quantity exp(0) equals 1). The ‘t’ in $h(t)$ indicates us that the hazard may vary over time
+
+\end{outline}
+
+Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
+\\[0.5cm]
+Coefficients $\beta_0...\beta_n$ (built in model)\\[0.5cm]
+%A residual (error) term is calculated as $\epsilon=Y - \hat Y$\\
+%Since the model established by survival analysis, predicted value $\hat Y$ is calculated as:\\[0.3cm]
+%$\hat Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n$
+%\linebreak
+%(predicted Y, output) intercept, slope, independent (input) \Times
+%\end{math}
+
+Thus, the biomarker discovery strategy is survival modeling through collections of $X_1...X_n$ features from cancer datasets.\\[1cm]
+
+Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the OS.
+ 
+In a multivariate test, those variables used include the clinicopathological features (gender, age at diagnosed separated by 65 year-old, clinical tumor size [T1-2/T3-4], clinical nodal status [N0/N+], clinical distant metastasis [M0/M1], TNM staging [stage 1-2/stage 3-4], surgical margin status [negative/positive] and tobacco exposure [low/high]), and gene expression level [low/high] defined by the cutoff.
+\end{MyColorPar}
+%%
+
+
 Results were considered statistically significant when a two-sided \textit{P} $<$ 0.05, or a lower threshold if indicated.
 The \acrfull{fdr} ($< 0.05$) could be used to pick up the optimal \textit{P} value to ensure the control for type I error of the Kaplan-Meier survival test during the cutoff finding procedure.
 %statistical inference problems in biomedical and genomic data analysis routinely involve the simultaneous test of thousands, or even millions, of null hypotheses. Examples
