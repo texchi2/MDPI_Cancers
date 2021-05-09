@@ -1606,26 +1606,24 @@ $h(t) = h_0(t) \times exp(\beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_
 where,\\
 \begin{outline} % for highlight
 \1 t represents the survival time
-\1 $h(t)$ is the hazard function determined by a set of n covariates ($X_1...X_n$)
+\1 $h(t)$ is the hazard function determined by a set of n covariates ($X_1...X_n$, e.g. clinicopathological features: such as age, gender, gene expression, cancer stage, smoking, alcohol, or even spiritual, emotional, and social status)
 \1 the coefficients ($\beta_1...\beta_n$) measure the impact (i.e., the effect size) of covariates
-\1 the term $h_0$ is called the baseline hazard. It corresponds to the value of the hazard if all the $X_i$ are equal to zero (the quantity exp(0) equals 1). The ‘t’ in $h(t)$ indicates us that the hazard may vary over time
-
+\1 the term $h_0$ is called the baseline hazard. It corresponds to the value of the hazard if all the $X_i$ are equal to zero (the quantity exp(0) equals 1). The ‘t’ in $h(t)$ indicates the hazard may vary over time
 \end{outline}
 
-Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
-\\[0.5cm]
-Coefficients $\beta_0...\beta_n$ (built in model)\\[0.5cm]
+%Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
+%\\[0.5cm]
+%Coefficients $\beta_0...\beta_n$ (built in model)\\[0.5cm]
 %A residual (error) term is calculated as $\epsilon=Y - \hat Y$\\
 %Since the model established by survival analysis, predicted value $\hat Y$ is calculated as:\\[0.3cm]
 %$\hat Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n$
 %\linebreak
 %(predicted Y, output) intercept, slope, independent (input) \Times
 %\end{math}
+Thus, the biomarker discovery strategy is survival modeling through collection of $X_1...X_n$ features from cancer datasets.\\[1cm]
 
-Thus, the biomarker discovery strategy is survival modeling through collections of $X_1...X_n$ features from cancer datasets.\\[1cm]
+Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the overall survival (OS).
 
-Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the OS.
- 
 In a multivariate test, those variables used include the clinicopathological features (gender, age at diagnosed separated by 65 year-old, clinical tumor size [T1-2/T3-4], clinical nodal status [N0/N+], clinical distant metastasis [M0/M1], TNM staging [stage 1-2/stage 3-4], surgical margin status [negative/positive] and tobacco exposure [low/high]), and gene expression level [low/high] defined by the cutoff.
 \end{MyColorPar}
 %%
