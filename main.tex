@@ -407,14 +407,25 @@ Usually, how researchers used TCGA to find expression biomarkers
 \end{MyColorPar}
 
 
-
-In summary, identifying predictive biomarkers for selecting standard-of-care or advanced systemic therapy\cite{Cristina2019} in \acrshort{hnscc} is crucial. 
-However, there are three challenges of biomarker discovery from survival analysis.
+%%% ***
+In summary, identifying predictive biomarkers for selecting standard-of-care or advanced systemic therapy\cite{Cristina2019} in \acrshort{hnscc} is crucial.
+\begin{MyColorPar}{red} %%%
+There are three steps of biomarker discovery from survival analysis.
 First, although \acrshort{tcga} genomics data was harmonized, there is unclean data, including null expressed genes, over 50\% of the cohort, should be manually investigated and cleaned.
-Second, we need to find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}. Usually, the investigators should get the rationale or revelation of the genes of interest on a specific cancer type. They should upload those genes manually onto bioinformatics tools, such as SurvExpress (http://bioinformatica.mty.itesm.mx:8080/Biomatec/ \newline
+%%% *** with more
+Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
+\end{MyColorPar} %%%
+Usually, the investigators should get the rationale or revelation of the genes of interest on a specific cancer type. They should upload those genes manually onto bioinformatics tools, such as SurvExpress (http://bioinformatica.mty.itesm.mx:8080/Biomatec/ \newline
 SurvivaX.jsp\cite{Aguirre-Gamboa2013}, which has been lost since Oct/2019 and currently out of funds), and analyze the cohort (e.x. \acrshort{tcga}). After downloading the survival results, they could curate plots and tables carefully.
 It is not possible to scan the whole human protein-coding genome in this way.
-Third, we need to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage. The above mentioned web-based tools might set a cutpoint at the median, 1/4 quantile, or 3/4 quantile for subsequent analyses. There are several visualization software or R packages which deal with cutoff determination, such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, Human protein atlas\cite{Uhlen2017}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/cutpointr), and cutoffR (available at https://cran.r-project.org/web/
+\begin{MyColorPar}{red} %%% %%%
+% risk of 
+Third, we try to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage.
+However, this strategy might identify more weak "biomarkers". Thus, the false positives and adjustment of multiple comparison should be corrected by \acrfull{fdr}.
+%Exploring all possible expression cutoffs is controversial. A robust expression biomarker should be effective and detectable at most major cutoffs. 
+%Compared to a fixed quantile cutoff, a sliding window cutoff selection of cutoffs would capture more genes whose p-values just reach the significant level (p=0.05). For example, a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 0.04 at 70\% quantile cutoff. But it is not expected that a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 1e-5 at 70\% quantile cutoff. 
+\end{MyColorPar} %%%
+The above mentioned web-based tools might set a cutpoint at the median, 1/4 quantile, or 3/4 quantile for subsequent analyses. There are several visualization software or R packages which deal with cutoff determination, such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, Human protein atlas\cite{Uhlen2017}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/cutpointr), and cutoffR (available at https://cran.r-project.org/web/
 packages/cutoffR). However, non of them could combine the scanning of the protein-coding genes and cutoff optimization programmatically.
 
 Our approach describes a comprehensive workflow implemented in the R script, which runs on the Rstudio server.

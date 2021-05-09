@@ -578,14 +578,21 @@ Usually, researchers used TCGA to find expression biomarkers...
 ***[latex line 410]
 In line 154 paragraph, what does "unclean data" mean, missing values or zero expression? 
 => First, although \acrshort{tcga} genomics data was harmonized, there is unclean data, including null expressed genes, over 50\% of the cohort, should be manually investigated and cleaned. 
-After detailed 梳理, we found that the number of protein-coding genes in the TCGA RNA-Seq dataset should be corrected  (20499 -> 20500)
-The three challenges are not “challenges” at all. The authors exaggerated the difficulties here. 不要誇大說明 謙虛道歉，修改說法
+After extended organizing, we found that the number of protein-coding genes in the TCGA RNA-Seq dataset should be corrected  (20499 -> 20500).
+%% The three challenges are not "challenges" at all. The authors exaggerated the difficulties here. 
+%不要誇大說明 謙虛道歉，修改說法
+=> We are apology for exaggerating the difficulties of our workflow.
+The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following two paragraphs.
 
-The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
 %%%
-=>  However, there are three steps of biomarker discovery from survival analysis.
-***=> Third, we need to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage. 這個 要改為 reviewer's comment (risk of maximizing P-value with cutoff scan)
-...
+There are three steps of biomarker discovery from survival analysis.
+First, although \acrshort{tcga} genomics data was harmonized, there is unclean data, including null expressed genes, over 50\% of the cohort, should be manually investigated and cleaned.
+%%% *** with more
+Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
+
+% risk of 
+Third, we try to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage.
+However, this strategy might identify more weak "biomarkers". Thus, the false positives and adjustment of multiple comparison should be corrected by \acrfull{fdr}.
 
 \end{MyColorPar}
 
