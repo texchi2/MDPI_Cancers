@@ -471,34 +471,58 @@ How univariable and multivariable tests work should be clearly described in the 
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comment and modified the Introduction accordingly.
-= 詳細描述 univariable and multivariable tests work in the Cox proportional hazard regression model.
-In a multivariable test, which variables were used? 
-= 列出來，並且強調 surgical margin
+We appreciate the reviewer for the critical comment and modified the Materials and Methods accordingly.
+The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
+\\[0.3cm]
+%\begin{MyColorPar}{red}
+%The Cox proportional hazards regression is the widely accepted approach for modeling survival while 
+
+The Cox proportional-hazards model\cite{Cox1972} is commonly used for modeling survival analysis data. It allows to analyze survival with respect to one or more predictor variables and to provides the effect size (hazard) for them\cite{Bradburn2003b}. % Classification trees and artificial neural networks in survival analysis
+The Cox model is also accounting for confounding factors\cite{Magen2019}.
+It is expressed by the hazard function denoted by h(t). Briefly, the hazard function can be interpreted as the risk of a specific event (e.x. death) at time t. It can be estimated as follow:
+
+%Highlights
+% https://quicklatex.com
+\begin{flushleft}
+% equation
+%\begin{math}
+
+$h(t) = h_0(t) \times exp(\beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n)$\\[0.3cm]
+% natural exponential function => y=e^x
+\end{flushleft}
+where,\\
+\begin{outline} % for highlight
+\1 t represents the survival time
+\1 $h(t)$ is the hazard function determined by a set of n covariates ($X_1...X_n$, e.g. clinicopathological features: such as age, gender, gene expression, cancer stage, smoking, alcohol, or even spiritual, emotional, and social status)
+\1 the coefficients ($\beta_1...\beta_n$) measure the impact (i.e., the effect size) of covariates
+\1 the term $h_0$ is called the baseline hazard. It corresponds to the value of the hazard if all the $X_i$ are equal to zero (the quantity exp(0) equals 1). The ‘t’ in $h(t)$ indicates the hazard may vary over time
+\end{outline}
+
+Thus, the biomarker discovery strategy is survival modeling through collection of $X_1...X_n$ features from cancer datasets.\\[1cm]
+
+Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the overall survival (OS).
+
+In a multivariate test, those variables used include the clinicopathological features (gender, age at diagnosed separated by 65 year-old, clinical tumor size [T1-2/T3-4], clinical nodal status [N0/N+], clinical distant metastasis [M0/M1], TNM staging [stage 1-2/stage 3-4], surgical margin status [negative/positive] and tobacco exposure [low/high]), and gene expression level [low/high] defined by the cutoff.
+%\end{MyColorPar}
 
 
 % x
-In our workflow, we utilize FirebrowseR in step 1 to receive standardized genomic and clinical data frames while avoiding data reformatting, often causing some errors. (please also see Figure \ref{fig:workflow}, different sources of databases)
+%In our workflow, we utilize FirebrowseR in step 1 to receive standardized genomic and clinical data frames while avoiding data reformatting, often causing some errors. (please also see Figure \ref{fig:workflow}, different sources of databases)
 
-The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
-\\[0.3cm]
+
 %(the revised portions in the manuscript are indicated in \textcolor{red}{red} since page 2 at line 77-129)
 
-%https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga
-% adopted from materials and methods
 
-%The Cancer Genome Atlas (\acrshort{tcga}) profiled 528 \acrshort{hnscc} clinical and genomic data, which has been standardized and available at a unified data portal, \acrfull{gdc} of the \acrfull{nci}.
-%\cite{SeanDavis;MartinMorgan2020}
 
 \end{MyColorPar}
 
-\begin{MyColorPar}{red}
+%\begin{MyColorPar}{red}
 
 
-"The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} is developed and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI), funded by the US government since 2005."
+%"The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} is developed and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI), funded by the US government since 2005."
 
 
-\end{MyColorPar}   % marked in red above
+%\end{MyColorPar}   % marked in red above
 
 
 
@@ -510,15 +534,15 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 
 \subsection*{2-5}
 Here is another suggestion. To maximize the use of continuous expression values, the author can build a multivariable model (e.g., logistic regression) integrating multiple genes.
-=> = a gene signature with deep learning CNN
-https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
-
-https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
 
 \begin{MyColorPar}{blue}
 Answer
 
-We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
+We appreciate the reviewer for the critical comments.
+*** => a gene signature with deep learning CNN
+https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
+
+https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
 
 \end{MyColorPar}
 
@@ -538,23 +562,30 @@ In Figure 2, unlabeled scales on the x-axis.
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
-[Minor comments]
-The background should be revised extensively. 
-x For example, the description of the linear model should be removed. X1...Xn should be removed. 
-***More introduction to how other researchers used TCGA to find expression biomarkers should be presented. 
-Detailed introduction of TCGA-related tools should be moved to Methods.
-
-In line 154 paragraph, what does unclean data mean, missing values or zero expression? The three challenges are not “challenges” at all. The authors exaggerated the difficulties here. 不要誇大說明 
-In Figure 1, the diagram should have direction. 
-加上 direction of view 
-
-The file names are not interesting. RNAseq (20500 genes) should be gene expression values (20500 genes)???
-
+The description of the linear model has been removed. 
+Detailed introduction of TCGA-related tools has been moved to the Materials and Methods.
+We made a new Figure 1 with clear direction of the workflow.
+A "gene expression values (20500 genes)", instead of "RNAseq", indicates the expression data obtained from the TCGA.
 In Figure 2, the ticks and labels on the x-axis were corrected.
 
-\begin{MyColorPar}{red}
+***More introduction to how other researchers used TCGA to find expression biomarkers should be presented in the Introduction section. 
+The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
+%\subsubsection{utility of TCGA}
+%%%
+Usually, researchers used TCGA to find expression biomarkers...
+%%%%%%%%%
 
-\end{MyColorPar}
+***[latex line 410]
+In line 154 paragraph, what does "unclean data" mean, missing values or zero expression? 
+=> First, although \acrshort{tcga} genomics data was harmonized, there is unclean data, including null expressed genes, over 50\% of the cohort, should be manually investigated and cleaned. 
+After detailed 梳理, we found that the number of protein-coding genes in the TCGA RNA-Seq dataset should be corrected  (20499 -> 20500)
+The three challenges are not “challenges” at all. The authors exaggerated the difficulties here. 不要誇大說明 謙虛道歉，修改說法
+
+The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
+%%%
+=>  However, there are three steps of biomarker discovery from survival analysis.
+***=> Third, we need to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage. 這個 要改為 reviewer's comment (risk of maximizing P-value with cutoff scan)
+...
 
 \end{MyColorPar}
 
