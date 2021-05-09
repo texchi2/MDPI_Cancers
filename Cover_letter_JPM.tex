@@ -573,6 +573,16 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 %\subsubsection{utility of TCGA}
 %%%
 Usually, researchers used TCGA to find expression biomarkers...
+see https://www.biostars.org/p/153013/
+Tutorial: Survival analysis of TCGA patients
+#integrating gene expression (RNASeq) data Why would you want to do survival
+#analysis based on gene expression data? Well, let's say you have a number of
+#genes that you are interested in and they are differentially expressed between
+#tumor and normal samples, it would be very powerful to show that alteration in
+#gene expression correlates with worse survival or earlier tumor recurrence.
+#https://groups.google.com/forum/m/#!msg/ucsc-cancer-genomics-browser/YvKnWZSsw1Q/3IAkkEMyFa4J
+#from Mary Goldman and Jing Zhu, UCSC Cancer Browser
+#https://genome-cancer.ucsc.edu/
 %%%%%%%%%
 
 ***[latex line 410]
@@ -587,7 +597,20 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 %%%
 There are three steps of biomarker discovery from survival analysis.
 First, although \acrshort{tcga} genomics data was harmonized, there is unclean data, including null expressed genes, over 50\% of the cohort, should be manually investigated and cleaned.
-%%% *** with more
+%%% 
+{
+[main_marginSFP_HNSCC.R] line 1361
+=> osccT_2021 <- osccT[c(30,31)] # [30] "days_to_last_followup", [31] "days_to_last_known_alive" 
+OS_live_days /30 # derived from last followup [30]/ last known alive [31])
+event (alive) => censored (status 0) # to handle missing data of censored by OS_months imputation
+R help from Jorge I Velez
+[line 1654]
+=> gene correction (20499 -> 20500) from SLC35E2A to 2 genes:
+# SLC35E2A: 9906
+# SLC35E2B: 728661
+}
+
+%%%
 Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
 
 % risk of 
