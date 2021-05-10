@@ -323,9 +323,9 @@ Adjustment of multiple test p-values should be applied here, which is missing in
 Answer
 
 We appreciate the reviewer for kind instruction of expression cutoff in detail.\\
-*We modified the workflow as ...
+***We modified the workflow as ...
 
-We modified the last paragraph of "Cutoff Finder Core Engine" in the Material and Methods section.
+We also modified the last paragraph of "Cutoff Finder Core Engine" in the Material and Methods section.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
 \\[0.3cm]
 
@@ -387,7 +387,7 @@ as following:
 
 
 % #####################
-\subsection*{2-4}
+\subsection*{2-4} % (ok)
 
 How univariable and multivariable tests work should be clearly described in the main text. In a multivariable test, which variables were used?
 
@@ -404,7 +404,7 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 
 \begin{MyColorPar}{red}
 %The Cox proportional hazards regression is the widely accepted approach for modeling survival while 
-The Cox proportional-hazards model\cite{Cox1972} is commonly used for modeling survival analysis data. It allows to analyze survival with respect to one or more predictor variables and to provides the effect size (hazard) for them\cite{Bradburn2003b}. % Classification trees and artificial neural networks in survival analysis
+The Cox proportional-hazards model\cite{Cox1972}\cite{Andersen1982} is commonly used for modeling survival analysis data. It allows to analyze survival with respect to one or more predictor variables and to provides the effect size (coefficients) for them\cite{Bradburn2003b}. % Classification trees and artificial neural networks in survival analysis
 The Cox model is also accounting for confounding factors\cite{Magen2019}.
 It is expressed by the hazard function denoted by h(t). Briefly, the hazard function can be interpreted as the risk of a specific event (e.x. death) at time t. It can be estimated as follow:
 
@@ -422,14 +422,15 @@ where,\\
 \1 t represents the survival time
 \1 $h(t)$ is the hazard function determined by a set of n covariates ($X_1...X_n$, e.g. clinicopathological features: such as age, gender, gene expression, cancer stage, smoking, alcohol, or even spiritual, emotional, and social status)
 \1 the coefficients ($\beta_1...\beta_n$) measure the impact (i.e., the effect size) of covariates
-\1 the term $h_0$ is called the baseline hazard. It corresponds to the value of the hazard if all the $X_i$ are equal to zero (the quantity exp(0) equals 1). The ‘t’ in $h(t)$ indicates the hazard may vary over time
+\1 the term $h_0$ is called the baseline hazard. It corresponds to the value of the hazard if all the $X_i$ are equal to zero (the quantity exp(0) equals 1). The "t" in $h(t)$ indicates the hazard may vary over time
 \end{outline}
 
 Thus, the biomarker discovery strategy is survival modeling through collection of $X_1...X_n$ features from cancer datasets.\\[1cm]
 
-Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the overall survival (OS).
+Univariate Cox proportional regression model, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features and gene expression to the overall survival (OS) individually.
 
-In a multivariate test, those variables used include the clinicopathological features (gender, age at diagnosed separated by 65 year-old, clinical tumor size [T1-2/T3-4], clinical nodal status [N0/N+], clinical distant metastasis [M0/M1], TNM staging [stage 1-2/stage 3-4], surgical margin status [negative/positive] and tobacco exposure [low/high]), and gene expression level [low/high] defined by the cutoff.
+In a multivariate test, those covariates used include the clinicopathological features (gender, age at diagnosed separated by 65 year-old, clinical tumor size [T1-2/T3-4], clinical nodal status [N0/N+], clinical distant metastasis [M0/M1], TNM staging [stage 1-2/stage 3-4], surgical margin status [negative/positive] and tobacco exposure [low/high]), and gene expression level [low/high] defined by the cutoff.
+All covariates has been pool in the hazard function h(t) to estimate their impact on the overall survival.
 \end{MyColorPar}
 
 
@@ -493,11 +494,12 @@ In Figure 2, unlabeled scales on the x-axis.
 \begin{MyColorPar}{blue}
 Answer
 
+% (ok)
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
 The description of the linear model has been removed. 
 Detailed introduction of TCGA-related tools has been moved to the Materials and Methods.
 We made a new Figure 1 with clear direction of the workflow.
-A "gene expression values (20500 genes)", instead of "RNAseq", indicates the expression data obtained from the TCGA.
+A "gene expression values (20500 genes)" in Figure 1, instead of "RNAseq", indicates the expression data obtained from the TCGA.
 In Figure 2, the ticks and labels on the x-axis were corrected.
 
 
@@ -511,19 +513,19 @@ Answer
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
 
 \begin{MyColorPar}{red}
-%\subsubsection{utility of TCGA}
-%%%
+%\subsubsection{utility of TCGA} 
+%%% how other researchers used TCGA to find expression biomarkers
 Usually, researchers used TCGA to find expression biomarkers...
-see https://www.biostars.org/p/153013/
+% reference https://www.biostars.org/p/153013/
 Tutorial: Survival analysis of TCGA patients
 #integrating gene expression (RNASeq) data Why would you want to do survival
 #analysis based on gene expression data? Well, let's say you have a number of
 #genes that you are interested in and they are differentially expressed between
 #tumor and normal samples, it would be very powerful to show that alteration in
 #gene expression correlates with worse survival or earlier tumor recurrence.
-#https://groups.google.com/forum/m/#!msg/ucsc-cancer-genomics-browser/YvKnWZSsw1Q/3IAkkEMyFa4J
-#from Mary Goldman and Jing Zhu, UCSC Cancer Browser
-#https://genome-cancer.ucsc.edu/
+% https://groups.google.com/forum/m/#!msg/ucsc-cancer-genomics-browser/YvKnWZSsw1Q/3IAkkEMyFa4J
+% from Mary Goldman and Jing Zhu, UCSC Cancer Browser
+% https://genome-cancer.ucsc.edu/
 %%%%%%%%%
 \end{MyColorPar}
 
@@ -538,20 +540,19 @@ The three challenges are not "challenges" at all. The authors exaggerated the di
 Answer
 
 % 不要誇大說明 謙虛道歉
-We are apology for exaggerating the difficulties of our workflow.
+We apologize for exaggerating the difficulties of our workflow.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following two paragraphs.
 
 \begin{MyColorPar}{red}
 %%%
-There are three steps of biomarker discovery from survival analysis.
-First, although \acrshort{tcga} genomics data was harmonized, there are 
-several points should be manually investigated and cleaned.
+There are two key-points of biomarker discovery from survival analysis of TCGA HNSCC dataset.
+First, although \acrshort{tcga} genomics data has been harmonized, two things were found during our investigating and data cleaning:
 
 \begin{outline}
-\1 including null expressed genes, over 50\% of the cohort, 
-\1 After extended organizing, we found that the number of protein-coding genes in the TCGA RNA-Seq dataset should be corrected  (20499 to 20500).
+\1 null expressed genes over 50\% of the cohort have been excluded in the workflow
+\1 after extended organizing, the number of protein-coding genes in the  RNA-Seq dataset should be corrected  (from 20499 to 20500);
 %
-
+that is because of ...
 %[main\_marginSFP\_HNSCC.R] line 1361
 osccT_2021 <- osccT[c(30,31)] %[30] "days_to_last_followup", [31] "days_to_last_known_alive" 
 OS\_live_days /30 % derived from last followup [30]/ last known alive [31])
@@ -563,11 +564,11 @@ for gene correction (20499 to 20500) from SLC35E2A to 2 genes:
 % SLC35E2B: 728661
 \end{outline}
 
-Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
+%Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
 
 % risk of 
-Third, we try to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage.
-However, this strategy might identify more weak "biomarkers". Thus, the false positives and adjustment of multiple comparison should be corrected by \acrfull{fdr}.
+Second, trying to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage, this strategy might identify more but weak "biomarkers". 
+Thus, the false positives and adjustment of multiple comparisons should be corrected by \acrfull{fdr}.
 
 \end{MyColorPar} % end of red
 
