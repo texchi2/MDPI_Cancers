@@ -204,16 +204,16 @@ I myself think this manuscript is very interesting, however, I do not find the d
 https://www.researchsquare.com/article/rs-80673/v1
 
 \subsection*{1-1}
-\begin{MyColorPar}{blue}
+%\begin{MyColorPar}{blue}
 First of all, please describe the difference between the two manuscripts.
-\end{MyColorPar}
+
 %The authors have described the effectiveness of RNA sequencing as a tool for exploring prognostic factors; they have also performed a large-scale analysis using the TCGA cohort, which is a very attractive analysis method. I have a few minor questions.
 
 %This is an attractive analysis method and I would like to know more details.
 
 %It is generally known that high expression of EGFR is a poor prognostic factor in head and neck cancers, however, why is it that RNA sequencing does not identify RNA coding for EGFR as a poor prognostic factor?
 
-
+\begin{MyColorPar}{blue}
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement with our analysis using the TCGA cohort.
@@ -243,7 +243,9 @@ four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA168
 }
 
 2) Since that revision, we extended holistic cancer care in the discussion section (please see Answer 1-2).
+\end{MyColorPar}
 
+%% x
 %[我的 candidate 中為什麼沒有 EGFR];  
 %In our analysis, the \acrshort{egfr} is ranked at 5707 from 20500 protein-coding genes %5708-1
 %by Kaplan-Meier estimate with the log-rank test P-value as 0.0495. The \acrshort{egfr} is identified as one of those poor prognostic factors as well. %However, it is far from the top 20 candidates.
@@ -265,16 +267,16 @@ four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA168
 
 
 \subsection*{1-2}
-\begin{MyColorPar}{blue}
+%
 Half of the discussion part was occupied with holistic and spiritual influence on patient’s survival.
 The latter half of the discussion may not be appropriate for this manuscript. Many people aware of the relationship between prognosis and mental/financial/familial situations. Unfortunately, almost all authors do not understand why half of the discussion part was occupied with spiritual something. Isn’t it a totally different theme from biomarkers of HNSCC?
 Stress may affect the expression level of these biomarkers, which may result in an unexpected prognosis, the main theme of this manuscript is different. If you want to describe spiritual something, please submit it as a brand new manuscript.
 Please remember my opinion does not intend to insult your religion because I am also a Buddhist and morning meditation always allow me to start a wonderful day.
-\end{MyColorPar}
+
 %DNA alteration (mutation/amplification) is also an influential prognostic factor, but I would like to know if DNA alteration is considered in this analysis.
 %[如果加入 DNA alteration 又會如何? 不佳; 選擇 mRNA 的原因是? interpretability and drugable: EGFR]
 
-%\begin{MyColorPar}{blue}
+\begin{MyColorPar}{blue}
 Answer
 
 One day in February 2021, after meditation in the morning, the first author (Dr. Chi) has raised this idea then wrote it in discussion section with comprehensive references. Dr. Chi want to say "Stress is also be a kind of biomarker of HNSCC in the future study".
@@ -287,16 +289,18 @@ The summary of holistic cancer care in this revised manuscript could be on the p
 \begin{MyColorPar}{red}
 "
 "
-\end{MyColorPar}
-
+\end{MyColorPar} %red
+\end{MyColorPar} % blue
 %Those different types of omics data measured for the same patients (called multi-omics data) are currently under investigation across several disciplines such as genomics (i.e., DNA mutation/amplification, single nucleotide polymorphisms), %copy number variation), 
 %epigenomics, transcriptomics (i.e., RNA expression), proteomics, metabolomics, and microbiomics.
 %The usefulness of multi-omics data for the prediction of HNSCC outcome %is expected.
 %such as the (censored) survival time.
 
 
-\end{MyColorPar}
+
 \pagebreak
+
+
 %======
 \section*{Response to Reviewer 2 Comments}
 %Response to Referees} % rebuttal
@@ -312,12 +316,13 @@ Exploring all possible expression cutoffs is also usable but should only be used
 
 
 \subsection*{2-1}
-\begin{MyColorPar}{blue}
+
 Exploring all possible expression cutoffs is controversial. A robust expression biomarker should be effective and detectable at most major cutoffs. Compared to a fixed quantile cutoff, a sliding window cutoff selection of cutoffs would capture more genes whose p-values just reach the significant level (p=0.05). For example, a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 0.04 at 70\% quantile cutoff. But it is not expected that a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 1e-5 at 70\% quantile cutoff. This strategy only identifies more weak “biomarkers,” and it also captures more false positives. 
 Adjustment of multiple test p-values should be applied here, which is missing in the current manuscript.
-\end{MyColorPar}
+
 
 %
+\begin{MyColorPar}{blue}
 Answer
 
 We appreciate the reviewer for kind instruction of expression cutoff in detail.\\
@@ -331,6 +336,8 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 The \acrfull{fdr} ($< 0.05$) correction has been applied to ensure the control of type I error of multiple test \textit{P} values during our cutoff finding procedure.
 \end{MyColorPar}
 
+
+\end{MyColorPar}
 %***=> Bonferroni correction should be used in final decision.
 
 
@@ -340,11 +347,12 @@ The \acrfull{fdr} ($< 0.05$) correction has been applied to ensure the control o
 %
 
 \subsection*{2-2}
-\begin{MyColorPar}{blue}
+
 I recommend the authors weaken their statement of the workflow but focus on the identified biomarkers in neck squamous cell carcinoma and use as much as possible evidence to support or validate them. % new Title, abstract, change tone
-\end{MyColorPar}
+
 
 %
+\begin{MyColorPar}{blue}
 Answer
 
 We appreciate the reviewer for the critical comment.
@@ -353,18 +361,19 @@ We changed title as "Transcriptomic Analysis of Expressions of Ten genes and The
 * more evidence to support or validate them
 
 %
-
+\end{MyColorPar}
 
 
 
 \subsection*{2-3}
-\begin{MyColorPar}{blue}
+
 % strategy should changing
 In the independent test, half genes have p-values less than 0.05, and most of them have p-values >0.01. Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. The p-values are affected by the sample size, which should be described in the main text. As I mentioned above, the authors should look for more data to verify these biomarkers.
-\end{MyColorPar}
+
 
 
 %
+\begin{MyColorPar}{blue}
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
@@ -375,109 +384,21 @@ as following:
 *the authors should look for more data to verify these biomarkers.
 ???
 
-% xxxxx
-\begin{outline}
-The data from TCGA database or other databases could be applied by this workflow, since modification of the R script is necessary to adapt the difference structure among datasets (e.x. data schema, table size, definition of features, number of features and their location on the table column).\\
-In short, the elements of the workflow with the \{codes\} shows:\\
-(please also see Figure \ref{fig:workflow})
-\1 $[\# step 1 (main)]$
-\{main\_marginSFP\_HNSCC.R\}
-        \2 dataset retrieval from TCGA GDC data portal (in GDAC format)
-%\1 $[\# step 1]$
-    \2 \{TCGA\_HNSCC\_marginSFP.R\}
-        \3 \underline{raw data cleaning}
-        \3 \underline{data transformation and merge}
-        \3 \underline{dichotomization of clinical features}
-%     \item Using a serial cut from 30\% to 70\% percentile of the cohort, it could find the least P-value cutoff of the Kaplan-Meier analysis for each gene expression.
-        \3 survival analysis
-            \4 cut off finder by \{cutofFinder\_func\_HNSCC.R\}
-%     \item The R script program could automatically scan protein-coding genes and generate the Kaplan-Meier plots and Cox's univariate/multivariate tables.
-            \4 Cox modelling
-\1 $[\# step 2]$
-\{analysis\_export.R\}
-    \2 analysis of the tables generated from \# step 1
-    \2 candidate selection
-%    \item Our analysis could discover the pronounced biomarkers, which impact HNSCC's survival under the stringent Bonferroni adjustment.
-\1 (remark: only the \underline{underlined} portion in \{TCGA\_HNSCC\_marginSFP.R\} should be re-coded aggressively)
-\end{outline}
 
-%\begin{outline}
-%\linebreak
-
-%\1 $[\# step 1]$
-%\{TCGA\_HNSCC\_marginSFP.R\}
-%    \2 raw data cleaning
-%    \2 data transformation and merge
-%    \2 clinical features
-%\end{itemize}
-%\end{outline}
-
-
-%to generalize the utility of our workflow:
-%R scripts could be re-coded and applied to start a new analysis of dataset.
-% *** R 的特色 邊分析解讀，一邊 coding
-%Currently, less HNSCC dataset is available worldwide (Indian?) => 
-%能否套用在別的 database，可以，需要標準化(fpkm or RSEM)
-%It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.?)
-
-%Moreover, we are planning to extend this workflow applied to other studies, such as TCGA CRC (colorectal cancer), TCGA LUAD (lung adenocarcinoma), or TCGA BRCA (breast cancer).
-%Then it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
-
-
-%(other cancer types in the TCGA database). 
-%TCGA HNSCC -> TCGA CRC, TCGA LUAD, TCGA BRCA cohorts -> GEO or other uploaded cancer cohort
-
-% workflow from the manuscript ##########
-%The number of protein-coding genes was suggested as 20,500\cite{Clamp2007}. The \acrshort{gdc} Data Portal provided \acrshort{tcga} data has been harmonized and re-aligned \acrlong{rnaseq} data against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}). \acrshort{rnaseq} expression level read counts produced by Illumina HiSeq have been normalized using the \acrfull{fpkm} method, as described in reference\cite{FPKM2017}.
-%The \acrshort{rnaseq} preprocessor of Broad \acrshort{gdac} picked the \acrfull{rsem} value from Illumina HiSeq/GA2 messenger \acrshort{rnaseq} level\_3 (v2) dataset of \acrshort{nci} \acrshort{gdc}. It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.
-%We utilized FirebrowseR's function call, Samples.mRNASeq(cohort = "HNSC", gene=GeneName, format="csv"), to download each \acrshort{rnaseq} data of all \acrshort{hnscc} patients and to save as 20,499 data frame files, named as "HNSCC.mRNA.Exp.[GeneName].\newline
-%Fire.Rda".
-%After careful investigation of the genomics dataset, the \acrshort{rnaseq} values of "\acrfull{slca}" and "\acrfull{slcb}" should be considered two distinct expression entities. We concluded that the number of protein-coding genes in the \acrshort{tcga} dataset is 20,500. We removed null expressed genes, which over 50\% of the cohort, to avoid the useless result.
-
-%We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patients, which saved as one data frame file: "HNSCC.clinical.\linebreak
-%Fire.Rda" (accessed November 2019).
-
-%One "HNSCC.clinical.Fire.Rda" tables and 20,500 "HNSCC.mRNA.Exp.\newline
-%[GeneName].Fire.Rda" tables were transposed and merged by their \newline
-%\_participant\_barcode (unique patient \acrlong{id}, \acrshort{id}) to yield a data frame with 528 rows (participants) against 20,581 columns (81 clinical features as well as 20,500 protein-coding \acrshort{rnaseq} of cancer specimen).
-%The clinicopathological features selected for our workflow included gender, age, clinical tumor size, clinical cervical lymph node metastases, clinical distant metastasis assessment, pathological surgical margin, and tobacco exposure with their corresponding survival data.
-%The tumor size (T), cervical lymph node metastases (N), and distal metastasis status (M) were classified according to \acrfull{ajcc}\cite{Amin2017} along with \acrfull{uicc}\cite{Brierley2016} \acrshort{tnm} system for clinical staging of \acrshort{hnscc}.
-% In the Eighth Edition, the AJCC has expanded the use of non-anatomic prognostic factors and biomarkers in assigning prognostic stage groups.
-%%We made data clean by removing duplicated rows and columns.
-
-
-%\subsection{Cutoff Finder Core Engine}
-%To evaluate the effect of gene expression on the patient's survival, we introduced the stratifying of patients with Kaplan-Meier survival analysis according to each gene's low/high expression.
-%Our cutofFinder\_func subroutine employs the minimum P-value approach to recognizing cutoff points in continuous gene expression measurement for patients sub-population.
-%First, patients were ordered by \acrshort{rnaseq} value (RSEM) of a given gene. Next, patients were stratified at a serial cut (counted by person ranked in 30\% to 70\% percentile of the cohort; please see Figure \ref{fig:figure1} "HNSCC cohort"). The survival risk differences of the two groups were estimated by log-rank test to yield around 165 Kaplan-Meier P-values for each gene.
-%Then, the optimal cutoff of \acrshort{rnaseq}, giving the minimum P-value, was selected by the cutofFinder\_func subroutine.
-%This iteration method could calculate all possible cutoff of each gene expression in this cohort. At each run of cutofFinder\_func function call for an individual gene, it returned an optimal cutoff value (e.x. 0.027 for gene \acrlong{CAMK2N1}, \acrshort{CAMK2N1}). The optimal cutoff value and its correlated patient grouping size (e.x. low-expression in 262 persons vs. high-expression in 152 persons with gene \acrshort{CAMK2N1}) would be returned to the main program to allow downstream Cox survival analysis. The percentile range we applied as 30\% to 70\% was used to avoid a small grouping effect\cite{Miller1982}\cite{Mizuno2009a}.
-%In case there was no significant P-value, a median expression of this gene was set as its cutpoint as usual.
-
-
-%\subsection{Biomarker Selection}
-
-%Those genes with prognostic impact, whose hazard ratio $>=1.5$ or $<=0.5$ in both Cox's univariate/multivariate model, were assigned as provisional candidates.
-%Bonferroni adjusted (Kaplan-Meier) P-value was used to make a ranking of candidates for the final decision (see Figure \ref{fig:figure1}, step 2).
-
-
-
-% we plan to extend this workflow on other TCGA cancer types
-%Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
-% second limitation:
-%In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
-%\end{MyColorPar}
-
-
-% #####################
-\subsection*{2-4}
-\begin{MyColorPar}{blue}
-How univariable and multivariable tests work should be clearly described in the main text. In a multivariable test, which variables were used?
 \end{MyColorPar}
 
 
 
+% #####################
+\subsection*{2-4}
+
+How univariable and multivariable tests work should be clearly described in the main text. In a multivariable test, which variables were used?
+
+
+
+
 %
+\begin{MyColorPar}{blue}
 Answer
 
 We appreciate the reviewer for the critical comment and modified the Materials and Methods accordingly.
@@ -515,6 +436,8 @@ In a multivariate test, those variables used include the clinicopathological fea
 \end{MyColorPar}
 
 
+\end{MyColorPar}% end of answer 2.4
+
 % x
 %In our workflow, we utilize FirebrowseR in step 1 to receive standardized genomic and clinical data frames while avoiding data reformatting, often causing some errors. (please also see Figure \ref{fig:workflow}, different sources of databases)
 
@@ -539,10 +462,12 @@ In a multivariate test, those variables used include the clinicopathological fea
 
 
 \subsection*{2-5}
-\begin{MyColorPar}{blue}
+
 Here is another suggestion. To maximize the use of continuous expression values, the author can build a multivariable model (e.g., logistic regression) integrating multiple genes.
-\end{MyColorPar}
+
+
 %
+\begin{MyColorPar}{blue}
 Answer
 
 We appreciate the reviewer for the critical comments.
@@ -551,11 +476,12 @@ https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
 
 https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
 
+
+\end{MyColorPar}
 %
 
 
 \subsection*{2-6}
-\begin{MyColorPar}{blue}
 [Minor comments]
 The background should be revised extensively. For example, the description of the linear model should be removed. X1...Xn should be removed. 
 More introduction to how other researchers used TCGA to find expression biomarkers should be presented. 
@@ -564,9 +490,10 @@ In line 154 paragraph, what does unclean data mean, missing values or zero expre
 In Figure 1, the diagram should have direction. 
 The file names are not interesting. RNAseq (20500 genes) should be gene expression values (20500 genes)
 In Figure 2, unlabeled scales on the x-axis.
-\end{MyColorPar}
+
 
 %
+\begin{MyColorPar}{blue}
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
@@ -578,7 +505,7 @@ In Figure 2, the ticks and labels on the x-axis were corrected.
 
 
 %%
-\begin{MyColorPar}{blue} % minor comment
+\begin{MyColorPar}{black} % minor comment
 ***More introduction to how other researchers used TCGA to find expression biomarkers should be presented in the Introduction section.
 \end{MyColorPar}
 
@@ -604,7 +531,7 @@ Tutorial: Survival analysis of TCGA patients
 
 
 %%%***[latex line 410]
-\begin{MyColorPar}{blue} % minor comment
+\begin{MyColorPar}{black} % minor comment
 In line 154 paragraph, what does "unclean data" mean, missing values or zero expression? 
 The three challenges are not "challenges" at all. The authors exaggerated the difficulties here.
 \end{MyColorPar}
@@ -641,10 +568,10 @@ Second, we find a way to determine candidates from the expression level of 20,50
 Third, we try to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage.
 However, this strategy might identify more weak "biomarkers". Thus, the false positives and adjustment of multiple comparison should be corrected by \acrfull{fdr}.
 
-\end{MyColorPar}
+\end{MyColorPar} % end of red
 
 
-
+\end{MyColorPar} % end of blue answer 2-6
 % the end of response rebuttal %%%%%%%%%%%%
 
 
@@ -1063,3 +990,99 @@ Conclusion: TCGA database is representative of HNSCC.
 \label{figure:fig_GSE2837}
 \end{figure}
 \clearpage
+
+
+%%%
+
+% xxxxx
+\begin{outline}
+The data from TCGA database or other databases could be applied by this workflow, since modification of the R script is necessary to adapt the difference structure among datasets (e.x. data schema, table size, definition of features, number of features and their location on the table column).\\
+In short, the elements of the workflow with the \{codes\} shows:\\
+(please also see Figure \ref{fig:workflow})
+\1 $[\# step 1 (main)]$
+\{main\_marginSFP\_HNSCC.R\}
+        \2 dataset retrieval from TCGA GDC data portal (in GDAC format)
+%\1 $[\# step 1]$
+    \2 \{TCGA\_HNSCC\_marginSFP.R\}
+        \3 \underline{raw data cleaning}
+        \3 \underline{data transformation and merge}
+        \3 \underline{dichotomization of clinical features}
+%     \item Using a serial cut from 30\% to 70\% percentile of the cohort, it could find the least P-value cutoff of the Kaplan-Meier analysis for each gene expression.
+        \3 survival analysis
+            \4 cut off finder by \{cutofFinder\_func\_HNSCC.R\}
+%     \item The R script program could automatically scan protein-coding genes and generate the Kaplan-Meier plots and Cox's univariate/multivariate tables.
+            \4 Cox modelling
+\1 $[\# step 2]$
+\{analysis\_export.R\}
+    \2 analysis of the tables generated from \# step 1
+    \2 candidate selection
+%    \item Our analysis could discover the pronounced biomarkers, which impact HNSCC's survival under the stringent Bonferroni adjustment.
+\1 (remark: only the \underline{underlined} portion in \{TCGA\_HNSCC\_marginSFP.R\} should be re-coded aggressively)
+\end{outline}
+
+%\begin{outline}
+%\linebreak
+
+%\1 $[\# step 1]$
+%\{TCGA\_HNSCC\_marginSFP.R\}
+%    \2 raw data cleaning
+%    \2 data transformation and merge
+%    \2 clinical features
+%\end{itemize}
+%\end{outline}
+
+
+%to generalize the utility of our workflow:
+%R scripts could be re-coded and applied to start a new analysis of dataset.
+% *** R 的特色 邊分析解讀，一邊 coding
+%Currently, less HNSCC dataset is available worldwide (Indian?) => 
+%能否套用在別的 database，可以，需要標準化(fpkm or RSEM)
+%It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.?)
+
+%Moreover, we are planning to extend this workflow applied to other studies, such as TCGA CRC (colorectal cancer), TCGA LUAD (lung adenocarcinoma), or TCGA BRCA (breast cancer).
+%Then it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
+
+
+%(other cancer types in the TCGA database). 
+%TCGA HNSCC -> TCGA CRC, TCGA LUAD, TCGA BRCA cohorts -> GEO or other uploaded cancer cohort
+
+% workflow from the manuscript ##########
+%The number of protein-coding genes was suggested as 20,500\cite{Clamp2007}. The \acrshort{gdc} Data Portal provided \acrshort{tcga} data has been harmonized and re-aligned \acrlong{rnaseq} data against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}). \acrshort{rnaseq} expression level read counts produced by Illumina HiSeq have been normalized using the \acrfull{fpkm} method, as described in reference\cite{FPKM2017}.
+%The \acrshort{rnaseq} preprocessor of Broad \acrshort{gdac} picked the \acrfull{rsem} value from Illumina HiSeq/GA2 messenger \acrshort{rnaseq} level\_3 (v2) dataset of \acrshort{nci} \acrshort{gdc}. It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.
+%We utilized FirebrowseR's function call, Samples.mRNASeq(cohort = "HNSC", gene=GeneName, format="csv"), to download each \acrshort{rnaseq} data of all \acrshort{hnscc} patients and to save as 20,499 data frame files, named as "HNSCC.mRNA.Exp.[GeneName].\newline
+%Fire.Rda".
+%After careful investigation of the genomics dataset, the \acrshort{rnaseq} values of "\acrfull{slca}" and "\acrfull{slcb}" should be considered two distinct expression entities. We concluded that the number of protein-coding genes in the \acrshort{tcga} dataset is 20,500. We removed null expressed genes, which over 50\% of the cohort, to avoid the useless result.
+
+%We utilized FirebrowseR's function call, Samples.Clinical(cohort = "HNSC", format="csv"), to get all 81 clinical features (including pathological data, defined by \acrshort{tcga} \acrshort{gdc} data dictionary: \acrfull{cde}\cite{CDE2019}) of all 528 \acrshort{hnscc} patients, which saved as one data frame file: "HNSCC.clinical.\linebreak
+%Fire.Rda" (accessed November 2019).
+
+%One "HNSCC.clinical.Fire.Rda" tables and 20,500 "HNSCC.mRNA.Exp.\newline
+%[GeneName].Fire.Rda" tables were transposed and merged by their \newline
+%\_participant\_barcode (unique patient \acrlong{id}, \acrshort{id}) to yield a data frame with 528 rows (participants) against 20,581 columns (81 clinical features as well as 20,500 protein-coding \acrshort{rnaseq} of cancer specimen).
+%The clinicopathological features selected for our workflow included gender, age, clinical tumor size, clinical cervical lymph node metastases, clinical distant metastasis assessment, pathological surgical margin, and tobacco exposure with their corresponding survival data.
+%The tumor size (T), cervical lymph node metastases (N), and distal metastasis status (M) were classified according to \acrfull{ajcc}\cite{Amin2017} along with \acrfull{uicc}\cite{Brierley2016} \acrshort{tnm} system for clinical staging of \acrshort{hnscc}.
+% In the Eighth Edition, the AJCC has expanded the use of non-anatomic prognostic factors and biomarkers in assigning prognostic stage groups.
+%%We made data clean by removing duplicated rows and columns.
+
+
+%\subsection{Cutoff Finder Core Engine}
+%To evaluate the effect of gene expression on the patient's survival, we introduced the stratifying of patients with Kaplan-Meier survival analysis according to each gene's low/high expression.
+%Our cutofFinder\_func subroutine employs the minimum P-value approach to recognizing cutoff points in continuous gene expression measurement for patients sub-population.
+%First, patients were ordered by \acrshort{rnaseq} value (RSEM) of a given gene. Next, patients were stratified at a serial cut (counted by person ranked in 30\% to 70\% percentile of the cohort; please see Figure \ref{fig:figure1} "HNSCC cohort"). The survival risk differences of the two groups were estimated by log-rank test to yield around 165 Kaplan-Meier P-values for each gene.
+%Then, the optimal cutoff of \acrshort{rnaseq}, giving the minimum P-value, was selected by the cutofFinder\_func subroutine.
+%This iteration method could calculate all possible cutoff of each gene expression in this cohort. At each run of cutofFinder\_func function call for an individual gene, it returned an optimal cutoff value (e.x. 0.027 for gene \acrlong{CAMK2N1}, \acrshort{CAMK2N1}). The optimal cutoff value and its correlated patient grouping size (e.x. low-expression in 262 persons vs. high-expression in 152 persons with gene \acrshort{CAMK2N1}) would be returned to the main program to allow downstream Cox survival analysis. The percentile range we applied as 30\% to 70\% was used to avoid a small grouping effect\cite{Miller1982}\cite{Mizuno2009a}.
+%In case there was no significant P-value, a median expression of this gene was set as its cutpoint as usual.
+
+
+%\subsection{Biomarker Selection}
+
+%Those genes with prognostic impact, whose hazard ratio $>=1.5$ or $<=0.5$ in both Cox's univariate/multivariate model, were assigned as provisional candidates.
+%Bonferroni adjusted (Kaplan-Meier) P-value was used to make a ranking of candidates for the final decision (see Figure \ref{fig:figure1}, step 2).
+
+
+
+% we plan to extend this workflow on other TCGA cancer types
+%Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
+% second limitation:
+%In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
+%\end{MyColorPar}
