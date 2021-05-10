@@ -224,23 +224,20 @@ Since previous reviewer's suggestion, we made a major revision on the followings
 We also reviewed literature that supports the prognostic impact of these candidate genes. The resulting Figure 4, Table 3 and Table 4 is different between the two manuscripts.
 
 
-{ 
-(ok)Result 改寫 CAMK2N1, IL19; 
+%%{
+(ok)Result altered to CAMK2N1, IL19; 
 Supplementary;
 Discussion:
-([ok] 3.2, 3.3 只留下 validated by GSE2837)
-(ok) Figure_4_CAMK2N1_IL19.pdf  KM plots
+([ok] 3.2, 3.3 remained validated by GSE2837)
+(ok) new Figure4.pdf  KM plots
 (ok)table 1 (6 genes), (ok) table 2 (4 genes)
 
-\resizebox{\linewidth}{!}{ % adjust table size to fit the page width
 Table 3: CAMK2N1 (ok)
 Table 4: IL19  (ok)
-\label
-}
 
 six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
 four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
-}
+%%}
 
 2) Since that revision, we extended holistic cancer care in the discussion section (please see Answer 1-2).
 \end{MyColorPar}
@@ -472,9 +469,9 @@ Answer
 
 We appreciate the reviewer for the critical comments.
 *** => a gene signature with deep learning CNN
-https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
+%https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
 
-https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
+%https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
 
 
 \end{MyColorPar}
@@ -509,6 +506,8 @@ In Figure 2, the ticks and labels on the x-axis were corrected.
 ***More introduction to how other researchers used TCGA to find expression biomarkers should be presented in the Introduction section.
 \end{MyColorPar}
 
+Answer
+
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
 
 \begin{MyColorPar}{red}
@@ -536,8 +535,10 @@ In line 154 paragraph, what does "unclean data" mean, missing values or zero exp
 The three challenges are not "challenges" at all. The authors exaggerated the difficulties here.
 \end{MyColorPar}
 
+Answer
+
 % 不要誇大說明 謙虛道歉
-=> We are apology for exaggerating the difficulties of our workflow.
+We are apology for exaggerating the difficulties of our workflow.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following two paragraphs.
 
 \begin{MyColorPar}{red}
@@ -548,18 +549,18 @@ several points should be manually investigated and cleaned.
 
 \begin{outline}
 \1 including null expressed genes, over 50\% of the cohort, 
-\1 After extended organizing, we found that the number of protein-coding genes in the TCGA RNA-Seq dataset should be corrected  (20499 -> 20500).
-{
-[main_marginSFP_HNSCC.R] line 1361
-=> osccT_2021 <- osccT[c(30,31)] # [30] "days_to_last_followup", [31] "days_to_last_known_alive" 
-OS_live_days /30 # derived from last followup [30]/ last known alive [31])
-event (alive) => censored (status 0) # to handle missing data of censored by OS_months imputation
+\1 After extended organizing, we found that the number of protein-coding genes in the TCGA RNA-Seq dataset should be corrected  (20499 to 20500).
+%
+
+%[main\_marginSFP\_HNSCC.R] line 1361
+osccT_2021 <- osccT[c(30,31)] %[30] "days_to_last_followup", [31] "days_to_last_known_alive" 
+OS\_live_days /30 % derived from last followup [30]/ last known alive [31])
+event (alive) to censored (status 0) % to handle missing data of censored by OS_months imputation
 R help from Jorge I Velez
 [line 1654]
-=> gene correction (20499 -> 20500) from SLC35E2A to 2 genes:
-# SLC35E2A: 9906
-# SLC35E2B: 728661
-}
+for gene correction (20499 to 20500) from SLC35E2A to 2 genes:
+% SLC35E2A: 9906
+% SLC35E2B: 728661
 \end{outline}
 
 Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
