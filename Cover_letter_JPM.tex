@@ -204,15 +204,16 @@ I myself think this manuscript is very interesting, however, I do not find the d
 https://www.researchsquare.com/article/rs-80673/v1
 
 \subsection*{1-1}
+\begin{MyColorPar}{blue}
 First of all, please describe the difference between the two manuscripts.
-
+\end{MyColorPar}
 %The authors have described the effectiveness of RNA sequencing as a tool for exploring prognostic factors; they have also performed a large-scale analysis using the TCGA cohort, which is a very attractive analysis method. I have a few minor questions.
 
 %This is an attractive analysis method and I would like to know more details.
 
 %It is generally known that high expression of EGFR is a poor prognostic factor in head and neck cancers, however, why is it that RNA sequencing does not identify RNA coding for EGFR as a poor prognostic factor?
 
-\begin{MyColorPar}{blue}
+
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement with our analysis using the TCGA cohort.
@@ -228,7 +229,7 @@ We also reviewed literature that supports the prognostic impact of these candida
 Supplementary;
 Discussion:
 ([ok] 3.2, 3.3 只留下 validated by GSE2837)
-(ok)Figure_4_CAMK2N1_IL19.pdf  KM plots
+(ok) Figure_4_CAMK2N1_IL19.pdf  KM plots
 (ok)table 1 (6 genes), (ok) table 2 (4 genes)
 
 \resizebox{\linewidth}{!}{ % adjust table size to fit the page width
@@ -236,9 +237,11 @@ Table 3: CAMK2N1 (ok)
 Table 4: IL19  (ok)
 \label
 }
+
 six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
 four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
 }
+
 2) Since that revision, we extended holistic cancer care in the discussion section (please see Answer 1-2).
 
 %[我的 candidate 中為什麼沒有 EGFR];  
@@ -258,19 +261,20 @@ four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA168
 %HNSCC_survivalAnalysis_marginS_EGFR.xlsx
 %https://github.com/texchi2/pvalueTex/blob/master/file20500_list.txt
 %analysis_export.R to generate https://github.com/texchi2/pvalueTex/blob/master/HNSCC_OS_marginS_6429.csv
-\end{MyColorPar}
+%\end{MyColorPar}
 
 
 \subsection*{1-2}
+\begin{MyColorPar}{blue}
 Half of the discussion part was occupied with holistic and spiritual influence on patient’s survival.
 The latter half of the discussion may not be appropriate for this manuscript. Many people aware of the relationship between prognosis and mental/financial/familial situations. Unfortunately, almost all authors do not understand why half of the discussion part was occupied with spiritual something. Isn’t it a totally different theme from biomarkers of HNSCC?
 Stress may affect the expression level of these biomarkers, which may result in an unexpected prognosis, the main theme of this manuscript is different. If you want to describe spiritual something, please submit it as a brand new manuscript.
 Please remember my opinion does not intend to insult your religion because I am also a Buddhist and morning meditation always allow me to start a wonderful day.
-
+\end{MyColorPar}
 %DNA alteration (mutation/amplification) is also an influential prognostic factor, but I would like to know if DNA alteration is considered in this analysis.
 %[如果加入 DNA alteration 又會如何? 不佳; 選擇 mRNA 的原因是? interpretability and drugable: EGFR]
 
-\begin{MyColorPar}{blue}
+%\begin{MyColorPar}{blue}
 Answer
 
 One day in February 2021, after meditation in the morning, the first author (Dr. Chi) has raised this idea then wrote it in discussion section with comprehensive references. Dr. Chi want to say "Stress is also be a kind of biomarker of HNSCC in the future study".
@@ -279,9 +283,11 @@ We appreciate the reviewer for the agreement about mindfulness meditation and ho
 % modify on main.tex, marked with
 %\begin{MyColorPar}{red}
 %\end{MyColorPar}
-The summary of holistic cancer care in this revised manuscript could be:
+The summary of holistic cancer care in this revised manuscript could be on the paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129). Also, it was shown here in the following paragraph.
+\begin{MyColorPar}{red}
 "
-".
+"
+\end{MyColorPar}
 
 %Those different types of omics data measured for the same patients (called multi-omics data) are currently under investigation across several disciplines such as genomics (i.e., DNA mutation/amplification, single nucleotide polymorphisms), %copy number variation), 
 %epigenomics, transcriptomics (i.e., RNA expression), proteomics, metabolomics, and microbiomics.
@@ -306,11 +312,12 @@ Exploring all possible expression cutoffs is also usable but should only be used
 
 
 \subsection*{2-1}
+\begin{MyColorPar}{blue}
 Exploring all possible expression cutoffs is controversial. A robust expression biomarker should be effective and detectable at most major cutoffs. Compared to a fixed quantile cutoff, a sliding window cutoff selection of cutoffs would capture more genes whose p-values just reach the significant level (p=0.05). For example, a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 0.04 at 70\% quantile cutoff. But it is not expected that a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 1e-5 at 70\% quantile cutoff. This strategy only identifies more weak “biomarkers,” and it also captures more false positives. 
 Adjustment of multiple test p-values should be applied here, which is missing in the current manuscript.
+\end{MyColorPar}
 
-
-\begin{MyColorPar}{blue}
+%
 Answer
 
 We appreciate the reviewer for kind instruction of expression cutoff in detail.\\
@@ -319,10 +326,10 @@ We appreciate the reviewer for kind instruction of expression cutoff in detail.\
 We modified the last paragraph of "Cutoff Finder Core Engine" in the Material and Methods section.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
 \\[0.3cm]
-%as follows:
-%\begin{MyColorPar}
+
+\begin{MyColorPar}{red}
 The \acrfull{fdr} ($< 0.05$) correction has been applied to ensure the control of type I error of multiple test \textit{P} values during our cutoff finding procedure.
-%\end{MyColorPar}
+\end{MyColorPar}
 
 %***=> Bonferroni correction should be used in final decision.
 
@@ -330,12 +337,14 @@ The \acrfull{fdr} ($< 0.05$) correction has been applied to ensure the control o
 
 
 
-\end{MyColorPar}
+%
 
 \subsection*{2-2}
-I recommend the authors weaken their statement of the workflow but focus on the identified biomarkers in neck squamous cell carcinoma and use as much as possible evidence to support or validate them. % new Title, abstract, change tone
-
 \begin{MyColorPar}{blue}
+I recommend the authors weaken their statement of the workflow but focus on the identified biomarkers in neck squamous cell carcinoma and use as much as possible evidence to support or validate them. % new Title, abstract, change tone
+\end{MyColorPar}
+
+%
 Answer
 
 We appreciate the reviewer for the critical comment.
@@ -343,16 +352,19 @@ We changed title as "Transcriptomic Analysis of Expressions of Ten genes and The
 
 * more evidence to support or validate them
 
-\end{MyColorPar}
+%
 
 
 
 
 \subsection*{2-3}
+\begin{MyColorPar}{blue}
 % strategy should changing
 In the independent test, half genes have p-values less than 0.05, and most of them have p-values >0.01. Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. The p-values are affected by the sample size, which should be described in the main text. As I mentioned above, the authors should look for more data to verify these biomarkers.
+\end{MyColorPar}
 
-\begin{MyColorPar}{blue}
+
+%
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
@@ -361,9 +373,9 @@ We appreciate the reviewer for the critical comments and thanks for the agreemen
 as following:
 
 *the authors should look for more data to verify these biomarkers.
-% ???
+???
 
-% x
+% xxxxx
 \begin{outline}
 The data from TCGA database or other databases could be applied by this workflow, since modification of the R script is necessary to adapt the difference structure among datasets (e.x. data schema, table size, definition of features, number of features and their location on the table column).\\
 In short, the elements of the workflow with the \{codes\} shows:\\
@@ -407,15 +419,11 @@ In short, the elements of the workflow with the \{codes\} shows:\\
 %Currently, less HNSCC dataset is available worldwide (Indian?) => 
 %能否套用在別的 database，可以，需要標準化(fpkm or RSEM)
 %It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.?)
-Moreover, we are planning to extend this workflow applied to other studies, such as TCGA CRC (colorectal cancer), TCGA LUAD (lung adenocarcinoma), or TCGA BRCA (breast cancer).
-Then it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=14cm]{Figure_1_manuscript_workflow_modify.pdf}
-    \caption{A workflow of \acrshort{hnscc} biomarker discovery, step 1 (blue line: main procedure) and step 2 (orange line: analysis export). The portion of "data process/cleaning"(red rectangled) should be modified aggressively according to different sources of databases, e.x. The NCI's TCGA Genomic Data Commons (GDC) porting to Broad Firehose, or other databases.}
-    \label{fig:workflow}
-\end{figure}
+%Moreover, we are planning to extend this workflow applied to other studies, such as TCGA CRC (colorectal cancer), TCGA LUAD (lung adenocarcinoma), or TCGA BRCA (breast cancer).
+%Then it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
+
+
 %(other cancer types in the TCGA database). 
 %TCGA HNSCC -> TCGA CRC, TCGA LUAD, TCGA BRCA cohorts -> GEO or other uploaded cancer cohort
 
@@ -458,25 +466,26 @@ Then it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.co
 %Our strategy still has the strength to explore the more possible biomarkers from \acrshort{rnaseq} datasets in cancer research.
 % second limitation:
 %In line with tumor-agnostic research, we plan to explore more TCGA diseases to find common biomarkers. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, we needed to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. It should be carefully curated to confirm the data integrity with the correct definition. We also plan to upgrade our plain R script at the Rstudio platform to program in the C++ language and source it in R. The high performance of C++ could speed up the cutoff finding engine in this workflow involving heavy computations\cite{Woodward2020}. Thus, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web application of the "pvalueTex" packaged with our workflow in the future.
-\end{MyColorPar}
+%\end{MyColorPar}
 
 
 % #####################
 \subsection*{2-4}
-How univariable and multivariable tests work should be clearly described in the main text. In a multivariable test, which variables were used?
-
-
-
-
 \begin{MyColorPar}{blue}
+How univariable and multivariable tests work should be clearly described in the main text. In a multivariable test, which variables were used?
+\end{MyColorPar}
+
+
+
+%
 Answer
 
 We appreciate the reviewer for the critical comment and modified the Materials and Methods accordingly.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
 \\[0.3cm]
-%\begin{MyColorPar}{red}
-%The Cox proportional hazards regression is the widely accepted approach for modeling survival while 
 
+\begin{MyColorPar}{red}
+%The Cox proportional hazards regression is the widely accepted approach for modeling survival while 
 The Cox proportional-hazards model\cite{Cox1972} is commonly used for modeling survival analysis data. It allows to analyze survival with respect to one or more predictor variables and to provides the effect size (hazard) for them\cite{Bradburn2003b}. % Classification trees and artificial neural networks in survival analysis
 The Cox model is also accounting for confounding factors\cite{Magen2019}.
 It is expressed by the hazard function denoted by h(t). Briefly, the hazard function can be interpreted as the risk of a specific event (e.x. death) at time t. It can be estimated as follow:
@@ -503,7 +512,7 @@ Thus, the biomarker discovery strategy is survival modeling through collection o
 Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the overall survival (OS).
 
 In a multivariate test, those variables used include the clinicopathological features (gender, age at diagnosed separated by 65 year-old, clinical tumor size [T1-2/T3-4], clinical nodal status [N0/N+], clinical distant metastasis [M0/M1], TNM staging [stage 1-2/stage 3-4], surgical margin status [negative/positive] and tobacco exposure [low/high]), and gene expression level [low/high] defined by the cutoff.
-%\end{MyColorPar}
+\end{MyColorPar}
 
 
 % x
@@ -514,15 +523,10 @@ In a multivariate test, those variables used include the clinicopathological fea
 
 
 
-\end{MyColorPar}
-
-%\begin{MyColorPar}{red}
-
 
 %"The Cancer Genome Atlas (TCGA) project\cite{Weinstein2013} is developed and supervised by the National Cancer Institute's (NCI) Center for Cancer Genomics and the National Human Genome Research Institute (NHGRI), funded by the US government since 2005."
 
 
-%\end{MyColorPar}   % marked in red above
 
 
 
@@ -532,10 +536,13 @@ In a multivariate test, those variables used include the clinicopathological fea
 %The \acrshort{gdc} Data Portal provided \acrshort{tcga} data has been harmonized and re-aligned \acrlong{rnaseq} data against an official reference genome build (\acrlong{grch38}, \acrshort{grch38}). \acrshort{rnaseq} expression level read counts produced by Illumina HiSeq have been normalized using the \acrfull{fpkm} method, as described in reference\cite{FPKM2017}.
 %The \acrshort{rnaseq} preprocessor of Broad \acrshort{gdac} picked the \acrfull{rsem} value from Illumina HiSeq/GA2 messenger \acrshort{rnaseq} level\_3 (v2) dataset of \acrshort{nci} \acrshort{gdc}. It made the messenger \acrshort{rnaseq} matrix with log2 transformed for the downstream analysis, as described in their reference\cite{RSEM2016}.
 
-\subsection*{2-5}
-Here is another suggestion. To maximize the use of continuous expression values, the author can build a multivariable model (e.g., logistic regression) integrating multiple genes.
 
+
+\subsection*{2-5}
 \begin{MyColorPar}{blue}
+Here is another suggestion. To maximize the use of continuous expression values, the author can build a multivariable model (e.g., logistic regression) integrating multiple genes.
+\end{MyColorPar}
+%
 Answer
 
 We appreciate the reviewer for the critical comments.
@@ -544,10 +551,11 @@ https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
 
 https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
 
-\end{MyColorPar}
+%
 
 
 \subsection*{2-6}
+\begin{MyColorPar}{blue}
 [Minor comments]
 The background should be revised extensively. For example, the description of the linear model should be removed. X1...Xn should be removed. 
 More introduction to how other researchers used TCGA to find expression biomarkers should be presented. 
@@ -556,9 +564,9 @@ In line 154 paragraph, what does unclean data mean, missing values or zero expre
 In Figure 1, the diagram should have direction. 
 The file names are not interesting. RNAseq (20500 genes) should be gene expression values (20500 genes)
 In Figure 2, unlabeled scales on the x-axis.
+\end{MyColorPar}
 
-
-\begin{MyColorPar}{blue}
+%
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
@@ -568,8 +576,15 @@ We made a new Figure 1 with clear direction of the workflow.
 A "gene expression values (20500 genes)", instead of "RNAseq", indicates the expression data obtained from the TCGA.
 In Figure 2, the ticks and labels on the x-axis were corrected.
 
-***More introduction to how other researchers used TCGA to find expression biomarkers should be presented in the Introduction section. 
+
+%%
+\begin{MyColorPar}{blue} % minor comment
+***More introduction to how other researchers used TCGA to find expression biomarkers should be presented in the Introduction section.
+\end{MyColorPar}
+
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
+
+\begin{MyColorPar}{red}
 %\subsubsection{utility of TCGA}
 %%%
 Usually, researchers used TCGA to find expression biomarkers...
@@ -584,20 +599,29 @@ Tutorial: Survival analysis of TCGA patients
 #from Mary Goldman and Jing Zhu, UCSC Cancer Browser
 #https://genome-cancer.ucsc.edu/
 %%%%%%%%%
+\end{MyColorPar}
 
-***[latex line 410]
+
+
+%%%***[latex line 410]
+\begin{MyColorPar}{blue} % minor comment
 In line 154 paragraph, what does "unclean data" mean, missing values or zero expression? 
-=> First, although \acrshort{tcga} genomics data was harmonized, there is unclean data, including null expressed genes, over 50\% of the cohort, should be manually investigated and cleaned. 
-After extended organizing, we found that the number of protein-coding genes in the TCGA RNA-Seq dataset should be corrected  (20499 -> 20500).
-%% The three challenges are not "challenges" at all. The authors exaggerated the difficulties here. 
-%不要誇大說明 謙虛道歉，修改說法
+The three challenges are not "challenges" at all. The authors exaggerated the difficulties here.
+\end{MyColorPar}
+
+% 不要誇大說明 謙虛道歉
 => We are apology for exaggerating the difficulties of our workflow.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following two paragraphs.
 
+\begin{MyColorPar}{red}
 %%%
 There are three steps of biomarker discovery from survival analysis.
-First, although \acrshort{tcga} genomics data was harmonized, there is unclean data, including null expressed genes, over 50\% of the cohort, should be manually investigated and cleaned.
-%%% 
+First, although \acrshort{tcga} genomics data was harmonized, there are 
+several points should be manually investigated and cleaned.
+
+\begin{outline}
+\1 including null expressed genes, over 50\% of the cohort, 
+\1 After extended organizing, we found that the number of protein-coding genes in the TCGA RNA-Seq dataset should be corrected  (20499 -> 20500).
 {
 [main_marginSFP_HNSCC.R] line 1361
 => osccT_2021 <- osccT[c(30,31)] # [30] "days_to_last_followup", [31] "days_to_last_known_alive" 
@@ -609,8 +633,8 @@ R help from Jorge I Velez
 # SLC35E2A: 9906
 # SLC35E2B: 728661
 }
+\end{outline}
 
-%%%
 Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
 
 % risk of 
@@ -621,7 +645,7 @@ However, this strategy might identify more weak "biomarkers". Thus, the false po
 
 
 
-% the end of response rebuttal
+% the end of response rebuttal %%%%%%%%%%%%
 
 
 
