@@ -404,33 +404,63 @@ The whole-genome sequencing data has been harmonized across all GDACs.  Many dat
 \end{outline}
 
 \begin{MyColorPar}{red}
-\subsubsection{utility of TCGA}
-%%%
-Usually, how researchers used TCGA to find expression biomarkers
-%%%%%%
+\subsubsection{From TCGA to expression biomarkers}
+%%% https://www.biostars.org/p/153013/
+%% download data with offline analysis
+Usually, investigators could download the TCGA data in order to analyze and find expression biomarkers.
+A number of genes of interested could be differentially expressed between tumor samples obtained from those patients with better/worse survival of HNSCC.
+A brief overview of steps:
+\begin{outlin}
+\1 obtain the data (RNA-Seq and clinicopathological data): go to FireBrowse (firebrowse.org) or FireHose (http://gdac.broadinstitute.org/), select "Clinical" and "mRNASeq" data of \acrfull{hnscc}
+\1 prepare the data for the analysis
+\1 run the analysis under the R package "survival", and interpret the results
+\end{outlin}
+
+%%%%%% web-based tools
+%Usually, 
+The other investigators should get the rationale or revelation of the genes of interest on a specific cancer type. They should upload those genes manually onto bioinformatics tools, such as SurvExpress (http://bioinformatica.mty.itesm.mx:8080/Biomatec/ \newline
+SurvivaX.jsp\cite{Aguirre-Gamboa2013}, which has been lost since Oct/2019 and currently out of funds), and analyze the cohort (e.x. \acrshort{tcga}). After downloading the survival results, they could curate plots and tables carefully.
+It is not possible to scan the whole human protein-coding genome in this way.
+The web-based tools might set a cutpoint at the median, 1/4 quantile, or 3/4 quantile for subsequent analyses. There are several visualization software or R packages which deal with cutoff determination, such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, Human protein atlas\cite{Uhlen2017}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/cutpointr), and cutoffR (available at https://cran.r-project.org/web/
+packages/cutoffR). However, non of them could combine the scanning of the protein-coding genes and cutoff optimization programmatically.
+
 \end{MyColorPar}
 
 
 %%% ***
 In summary, identifying predictive biomarkers for selecting standard-of-care or advanced systemic therapy\cite{Cristina2019} in \acrshort{hnscc} is crucial.
 \begin{MyColorPar}{red} %%%
-There are three steps of biomarker discovery from survival analysis.
-First, although \acrshort{tcga} genomics data was harmonized, there is unclean data, including null expressed genes, over 50\% of the cohort, should be manually investigated and cleaned.
-%%% *** with more
-Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
+There are two key-points of biomarker discovery from survival analysis of TCGA HNSCC dataset.
+First, although \acrshort{tcga} genomics data has been harmonized, two things were found during our investigating and data cleaning:
+
+\begin{outline}
+\1 null expressed genes over 50\% of the cohort have been excluded in the workflow
+\1 after extended organizing, the number of protein-coding genes in the  RNA-Seq dataset should be corrected  (from 20499 to 20500);
+%
+that is because of ...
+%[main\_marginSFP\_HNSCC.R] line 1361
+osccT_2021 <- osccT[c(30,31)] %[30] "days_to_last_followup", [31] "days_to_last_known_alive" 
+OS\_live_days /30 % derived from last followup [30]/ last known alive [31])
+event (alive) to censored (status 0) % to handle missing data of censored by OS_months imputation
+R help from Jorge I Velez
+[line 1654]
+for gene correction (20499 to 20500) from SLC35E2A to 2 genes:
+% SLC35E2A: 9906
+% SLC35E2B: 728661
+\end{outline}
+%Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
+
+
+%Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
 \end{MyColorPar} %%%
-Usually, the investigators should get the rationale or revelation of the genes of interest on a specific cancer type. They should upload those genes manually onto bioinformatics tools, such as SurvExpress (http://bioinformatica.mty.itesm.mx:8080/Biomatec/ \newline
-SurvivaX.jsp\cite{Aguirre-Gamboa2013}, which has been lost since Oct/2019 and currently out of funds), and analyze the cohort (e.x. \acrshort{tcga}). After downloading the survival results, they could curate plots and tables carefully.
-It is not possible to scan the whole human protein-coding genome in this way.
+
 \begin{MyColorPar}{red} %%% %%%
 % risk of 
-Third, we try to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage.
-However, this strategy might identify more weak "biomarkers". Thus, the false positives and adjustment of multiple comparison should be corrected by \acrfull{fdr}.
+Second, trying to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage, this strategy might identify more but weak "biomarkers". 
+Thus, the false positives and adjustment of multiple comparisons should be corrected by \acrfull{fdr}.
 %Exploring all possible expression cutoffs is controversial. A robust expression biomarker should be effective and detectable at most major cutoffs. 
 %Compared to a fixed quantile cutoff, a sliding window cutoff selection of cutoffs would capture more genes whose p-values just reach the significant level (p=0.05). For example, a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 0.04 at 70\% quantile cutoff. But it is not expected that a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 1e-5 at 70\% quantile cutoff. 
 \end{MyColorPar} %%%
-The above mentioned web-based tools might set a cutpoint at the median, 1/4 quantile, or 3/4 quantile for subsequent analyses. There are several visualization software or R packages which deal with cutoff determination, such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, Human protein atlas\cite{Uhlen2017}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/cutpointr), and cutoffR (available at https://cran.r-project.org/web/
-packages/cutoffR). However, non of them could combine the scanning of the protein-coding genes and cutoff optimization programmatically.
 
 Our approach describes a comprehensive workflow implemented in the R script, which runs on the Rstudio server.
 Its function includes data retrieval, data preprocessing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard modeling, and biomarker selection.

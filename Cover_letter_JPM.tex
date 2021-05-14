@@ -364,7 +364,7 @@ We changed title as "Transcriptomic Analysis of Expressions of Ten genes and The
 
 \subsection*{2-3}
 
-% strategy should changing
+% strategy should changing; run GCP Rstudio? hard work to do
 In the independent test, half genes have p-values less than 0.05, and most of them have p-values >0.01. Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. The p-values are affected by the sample size, which should be described in the main text. As I mentioned above, the authors should look for more data to verify these biomarkers.
 
 
@@ -429,6 +429,9 @@ Thus, the biomarker discovery strategy is survival modeling through collection o
 
 Univariate Cox proportional regression model, using the "coxph" function in R package "survival", was applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features and gene expression to the overall survival (OS) individually.
 
+% dimension reduction? feature selection for further multivariate Cox modeling =>
+%Least absolute shrinkage and selection operator (LASSO) is a biased estimation tool for data with complex collinearity. It can select variables and estimate parameter simultaneously and better solve the multicollinearity problem in regression analysis [19]. Thus, we used the LASSO Cox regression analysis to decrease the number of IRGPs by R package glmnet.
+
 In a multivariate test, those covariates used include the clinicopathological features (gender, age at diagnosed separated by 65 year-old, clinical tumor size [T1-2/T3-4], clinical nodal status [N0/N+], clinical distant metastasis [M0/M1], TNM staging [stage 1-2/stage 3-4], surgical margin status [negative/positive] and tobacco exposure [low/high]), and gene expression level [low/high] defined by the cutoff.
 All covariates has been pool in the hazard function h(t) to estimate their impact on the overall survival.
 \end{MyColorPar}
@@ -469,11 +472,21 @@ Here is another suggestion. To maximize the use of continuous expression values,
 Answer
 
 We appreciate the reviewer for the critical comments.
-*** => a gene signature with deep learning CNN
+***  a gene signature with deep learning CNN,
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
 
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
 
+or
+Prognostic gene signature:\\ % https://www.hindawi.com/journals/jir/2020/5494858/
+
+The risk score for each HNSCC sample was calculated based on the IRGP prognostic signature using the following formula:\\[0.5cm]
+risk score = $expression_{gene1} \times \beta_{gene1} + expression_{gene2} \times \beta_{gene2} + ... + expression_{geneX} \times \beta_{geneX}$\\
+
+, in which $X$ was the number of IRGPs and $\beta$ was coefficient value for each IRGPs. Taking the median value of risk score as the threshold, we divided all the HCC samples into high-risk or low-risk groups. The accuracy and sensitivity of survival prediction based on the risk score were verified by receiver operating characteristic (ROC) curve analysis and determined by the value of area under the curve (AUC) in 1, 3, and 5 years. Kaplan–Meier (KM) survival curves analysis () was used to analyze the over survival (OS) of the high-risk and low-risk groups. We then integrated IRGPs with existing clinical and pathologic features for multivariate Cox regression analysis. Tumor TNM, stage, grade, age, and body mass index (BMI) were regarded as continuous variables. The association between IRGPs risk score, clinical, and pathologic features was determined by KM analysis. Prognostic risk models of tumor TNM, grade, age, and stage were constructed. Subsequently, a Cox proportional hazards regression model was constructed by combined the Tumor TNM, grade, age, stage, and risk scored. The R package rms was used to compare these models with the IRGP prognostic signature. Concordance index (C-index) was used to assess the accuracy of the prognostic biomarkers. Also, the comparison between IRGPs and clinical/pathologic features was performed by forest and nomogram plots to determine the effectiveness of the prognostic value. The statistical difference of IRGPs in the clinical/pathologic features was compared using the Kruskal–Wallis test.
+
+ 
+***Ultimately, the gene expression profile from the GEO and OSCC cell lines and tissues were used to verify these primitive biomarkers. In addition, a combination of two or more biomarkers was performed to predict OSCC overall survival according to the gene expression in TCGA\cite{Huang2019}.
 
 \end{MyColorPar}
 %
@@ -509,11 +522,36 @@ In Figure 2, the ticks and labels on the x-axis were corrected.
 \end{MyColorPar}
 
 Answer
-
+We placed more descriptions about researcher's work using TCGA to find expression biomarkers in the Introduction.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
 
 \begin{MyColorPar}{red}
-%\subsubsection{utility of TCGA} 
+% EdgeR
+Some researchers\cite{Xu2021a} tried to find DEGs of gene expression data (without survival information) for HNSCC biomarker discovery.
+RNA-Seq data were downloaded from The Cancer Genome Atlas (TCGA) database or other GSE datasets (e.x. GSE30784: 167 OSCC samples and 45 normal controls) from the Gene Expression Omnibus. 
+We employed DAVID (https://david.ncifcrf.gov/) to obtain information for Gene Ontology (GO) including biological processes, the cellular component and molecular function. The Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway analysis was used to annotate the potential functions.
+%Subsequently, comprehensive bioinformatics analysis incorporating gene ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG),
+and the protein-protein interaction (PPI) network was conducted to identify differentially expressed genes (DEGs) closely associated with HNSCC.
+the pathway enrichment analysis of DEGs was performed by DAVID, String, and Sytoscape software programs\cite{Huang2019}\cite{Shen2019}.
+The DEmRNAs were enrolled in a protein-protein interaction (PPI) network through the STRING database (https://string-db.org/) with a confidence score >0.9, and the PPI network was visualized in Cytoscape (Version 3.7.1) software. Moreover, genes with degree> = 25 were selected as hub genes. Subsequently, module analysis (16) of the PPI network was performed using the Molecular Complex Detection (MCODE) tool of Cytoscape software, and GO and KEGG analysis of the modules was carried out using the DAVID database.
+
+.. by integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software. GOfunctional annotation and KEGG pathway analyses were performed using the Database for Annotation, Visualization, and Integrated Discovery. Hub genes were validated via the Gene Expression Profiling Interactive Analysis tool (GEPIA) and the Human Protein Atlas (HPA) website.
+
+DEGs to hub: The 230 differentially expressed genes and 12 hub genes were subjected to functional and pathway enrichment analyses.
+Then hub genes for survival analyses.
+
+% Cox Risk Regression Establishment and Validation with lncRNA data
+OSCC samples were randomly divided into a training set and a validation set. Univariate Cox regression was used to select prognosis-associated genes (p < 0.05). Subsequently, we performed "Least Absolute Shrinkage and Selection Operator" (LASSO) Cox regression model to do feature selection\cite{Tibshirani1996};
+establish a prognostic risk score model, and the penalty regularization parameter lambda (λ) was chosen through cross-validation with an n-fold equal to 10 by using the R package glmnet (21). 
+%https://glmnet.stanford.edu/articles/glmnet.html
+Lambda.min was identified to pick out the variables. According to these variables, a stepwise regression was performed to establish the Cox model. 
+%Least Absolute Shrinkage and Selection Operator (LASSO) cox regression model along with 10-fold cross-validation
+Finally, a validation set and Kaplan–Meier survival curves along with a logrank p test were applied to validate its accuracy. In addition, receiver operating characteristic (ROC) analysis was used to estimate the predictive power of this signature\cite{Huang2019}.
+Biomarkers Screening and Validation
+The status and survival time of OSCC patients were extracted. Subsequently, the mRNA was enrolled in the PPI and ceRNA networks, and lncRNA and miRNA identified in ceRNA were selected for screening biomarkers. We used univariate Cox regression to screen prognostic factors (p < 0.05), and those prognostic factors whose expression levels were significantly relevant to patients' overall survival (p < 0.01) were selected as primitive biomarkers. 
+Ultimately, the gene expression profile from the GEO and OSCC cell lines and tissues were used to verify these biomarkers. In addition, a combination of two or more biomarkers was performed to predict OSCC overall survival according to the gene expression in TCGA\cite{Huang2019}.
+
+%\subsubsection{from TCGA to expression biomarkers} 
 %%% how other researchers used TCGA to find expression biomarkers
 Usually, researchers used TCGA to find expression biomarkers...
 % reference https://www.biostars.org/p/153013/
@@ -526,6 +564,8 @@ Tutorial: Survival analysis of TCGA patients
 % https://groups.google.com/forum/m/#!msg/ucsc-cancer-genomics-browser/YvKnWZSsw1Q/3IAkkEMyFa4J
 % from Mary Goldman and Jing Zhu, UCSC Cancer Browser
 % https://genome-cancer.ucsc.edu/
+
+
 %%%%%%%%%
 \end{MyColorPar}
 
@@ -546,11 +586,14 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 \begin{MyColorPar}{red}
 %%%
 There are two key-points of biomarker discovery from survival analysis of TCGA HNSCC dataset.
-First, although \acrshort{tcga} genomics data has been harmonized, two things were found during our investigating and data cleaning:
+First, although \acrshort{tcga} genomics data has been harmonized, 
+%two things were found during our investigating and data cleaning:
+the preprocessing of TCGA RNA-Seq is as follows: 
 
 \begin{outline}
-\1 null expressed genes over 50\% of the cohort have been excluded in the workflow
-\1 after extended organizing, the number of protein-coding genes in the  RNA-Seq dataset should be corrected  (from 20499 to 20500);
+\1 HNSCC samples without complete clinical information have been removed;
+\1 null expressed genes in more than half of the HNSCC samples have been excluded;
+\1 after extended organizing, the number of protein-coding genes in the  RNA-Seq dataset should be updated from 20499 to 20500;
 %
 that is because of ...
 %[main\_marginSFP\_HNSCC.R] line 1361
