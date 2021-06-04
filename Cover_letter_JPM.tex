@@ -422,8 +422,9 @@ We appreciate the reviewer for the critical comments and thanks for the agreemen
 as following:
 
 *the authors should look for more data to verify these biomarkers.
-???
-
+by TMA IHC of HNSCC (provided by Prof. Michael Hsiao)
+or CPTAC (digital TMA, not HPA)
+or more GEO datasets (GEO2837, GSE40774, GSE65858, GSE148944)
 
 \end{MyColorPar}
 
@@ -652,7 +653,12 @@ we found that different expression value of gene SLC35E2.
 %HNSCC.mRNA.Exp.SLC35E2.Fire.Rda
 %[line 1654]
 %for gene correction (20499 to 20500) from SLC35E2 to 2 genes:
+NCBI Reference Sequences (RefSeq)
 According to the Human Gene Database (available at https://www.genecards.org/Search\\/Keyword?queryString=SLC35E2), SLC35E2A(Gene ID: 9906) and\\ SLC35E2B (Gene ID: 728661) should be the correct entities in TCGA HNSCC dataset.
+% https://www.ncbi.nlm.nih.gov/gene/?term=(SLC35E2)+AND+%22Homo+sapiens%22
+% keyword: (SLC35E2) AND "Homo sapiens" 
+SLC35E2 is the previous symbols of SLC35E2A (Ref: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:20863).
+We made reassignment of the expression value as SLC35E2A and SLC35E2B. % according to what?
 % updated on 18-May-2021
 \end{outline}
 
@@ -661,6 +667,8 @@ According to the Human Gene Database (available at https://www.genecards.org/Sea
 % risk of 
 Second, trying to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage, this strategy might identify more but weak "biomarkers". 
 Thus, the false positives and adjustment of multiple comparisons should be corrected by \acrfull{fdr}.
+And further validation of those candidate is required in the other independent dataset.% in larger patient populations.
+%warrant.
 
 \end{MyColorPar} % end of red
 
