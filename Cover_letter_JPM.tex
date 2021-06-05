@@ -646,19 +646,18 @@ the preprocessing of TCGA RNA-Seq is as follows:
 
 \1 Null expressed genes in more than 30\% or 50\% of the HNSCC samples have been excluded;
 
-\1 After investigation of mRNA expression dataset, the number of protein-coding genes in the TCGA HNSCC should be updated as 20500 (instead of 20499);
-%
-we found that different expression value of gene SLC35E2.
+\1 After investigation of mRNA expression dataset obtained through Firehose API, we found that gene ID (9906), gene ID (728661), and their expression values were saved together under the entity of gene symbol "SLC35E2".
+The expression file of SLC35E2 has almost double size than those of SLC35E1 or SLC35E3.
 % [line 1549]
 %HNSCC.mRNA.Exp.SLC35E2.Fire.Rda
 %[line 1654]
 %for gene correction (20499 to 20500) from SLC35E2 to 2 genes:
-NCBI Reference Sequences (RefSeq)
-According to the Human Gene Database (available at https://www.genecards.org/Search\\/Keyword?queryString=SLC35E2), SLC35E2A(Gene ID: 9906) and\\ SLC35E2B (Gene ID: 728661) should be the correct entities in TCGA HNSCC dataset.
+%NCBI Reference Sequences (RefSeq)
+According to the Human Gene Database (available at https://www.genecards.org/Search\\/Keyword?queryString=SLC35E2), SLC35E2A(Gene ID: 9906) and\\ SLC35E2B (Gene ID: 728661) should be the correct entities for TCGA HNSCC dataset.
 % https://www.ncbi.nlm.nih.gov/gene/?term=(SLC35E2)+AND+%22Homo+sapiens%22
 % keyword: (SLC35E2) AND "Homo sapiens" 
-SLC35E2 is the previous symbols of SLC35E2A (Ref: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:20863).
-We made reassignment of the expression value as SLC35E2A and SLC35E2B. % according to what?
+SLC35E2 is the previous symbol of SLC35E2A (Ref: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:20863).
+Thus, we made reassignment of the expression value as SLC35E2A and SLC35E2B, and updated the number of protein-coding genes in the TCGA HNSCC as 20500.
 % updated on 18-May-2021
 \end{outline}
 
