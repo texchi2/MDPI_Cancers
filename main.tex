@@ -114,6 +114,8 @@
 
 \makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
 
+\newacronym{degs}{DEGs}{differentially expressed genes}
+
 \newacronym{ihc}{IHC}{immunohistochemistry}
 \newacronym{fdr}{FDR}{false discovery rate}
 
@@ -410,18 +412,19 @@ The whole-genome sequencing data has been harmonized across all GDACs.  Many dat
 Usually, investigators could download the TCGA data in order to analyze and find expression biomarkers.
 A number of genes of interested could be differentially expressed between tumor samples obtained from those patients with better/worse survival of HNSCC.
 A brief overview of steps:
-\begin{outlin}
+\begin{outline}
 \1 obtain the data (RNA-Seq and clinicopathological data): go to FireBrowse (firebrowse.org) or FireHose (http://gdac.broadinstitute.org/), select "Clinical" and "mRNASeq" data of \acrfull{hnscc}
 \1 prepare the data for the analysis
 \1 run the analysis under the R package "survival", and interpret the results
-\end{outlin}
+\end{outline}
 
 %%%%%% web-based tools
 %Usually, 
 The other investigators should get the rationale or revelation of the genes of interest on a specific cancer type. They should upload those genes manually onto bioinformatics tools, such as SurvExpress (http://bioinformatica.mty.itesm.mx:8080/Biomatec/ \newline
 SurvivaX.jsp\cite{Aguirre-Gamboa2013}, which has been lost since Oct/2019 and currently out of funds), and analyze the cohort (e.x. \acrshort{tcga}). After downloading the survival results, they could curate plots and tables carefully.
 It is not possible to scan the whole human protein-coding genome in this way.
-The web-based tools might set a cutpoint at the median, 1/4 quantile, or 3/4 quantile for subsequent analyses. There are several visualization software or R packages which deal with cutoff determination, such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, Human protein atlas\cite{Uhlen2017}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/cutpointr), and cutoffR (available at https://cran.r-project.org/web/
+The web-based tools might set a cutpoint at the median, 1/4 quantile, or 3/4 quantile for subsequent analyses. There are several visualization software or R packages which deal with cutoff determination\cite{Abel1984}, %CRITLEVEL
+such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, Human protein atlas\cite{Uhlen2017}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/cutpointr), and cutoffR (available at https://cran.r-project.org/web/
 packages/cutoffR). However, non of them could combine the scanning of the protein-coding genes and cutoff optimization programmatically.
 
 \end{MyColorPar}

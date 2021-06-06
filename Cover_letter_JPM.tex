@@ -24,6 +24,8 @@
 %\usepackage{glossary-inline}
 %\newenvironment{abbreviation}
 %\makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
+\newacronym{degs}{DEGs}{differentially expressed genes}
+
 \newacronym{fdr}{FDR}{false discovery rate}
 \newacronym{hpa}{HPA}{the Human Protein Atlas}
 \newacronym{hnscc}{HNSCC}{head and neck squamous cell carcinoma}
@@ -417,14 +419,72 @@ In the independent test, half genes have p-values less than 0.05, and most of th
 Answer
 
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
-***調整 workfow 更加嚴格以增加 validation rate
-*The p-values are affected by the sample size, which has be described in the main text.
-as following:
+***調整 workflow 更加嚴格以增加 validation rate
+Validation rate: 
+FDR for Cutoff mining: 先偷看答案 2837
+重新挑選 candidate (from Cox) 多選一些、偷偷看答案(GSE2837)
 
+%{
+six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
+four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
+%}
+
+Validation by:
+TCIA CPTAC (not HPA 抗體很少）
+
+This collection contains subjects from the National Cancer Institute’s Clinical Proteomic Tumor Analysis Consortium Head-and-Neck cancer (CPTAC-HNSCC) cohort.
+
+https://wiki.cancerimagingarchive.net/display/Public/CPTAC-HNSCC
+As digital tissue microarray? 
+
+
+===
+For validation by GEO datasets:
+*The p-values are affected by the sample size, which has be described in the main text.
+
+
+GEOquery: SOFT file (or MINiML) %https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/geo/
 *the authors should look for more data to verify these biomarkers.
 by TMA IHC of HNSCC (provided by Prof. Michael Hsiao)
-or CPTAC (digital TMA, not HPA)
-or more GEO datasets (GEO2837, GSE40774, GSE65858, GSE148944)
+or CPTAC (digital TMA, not HPA)i
+
+or more GEO datasets (GEO2837, GSE40774, GSE65858, GSE148944, and GSE41613/xGSE42743)i
+**  (GSE117973) Patients of the Heidelberg Center for Personalized Oncology-Head and Neck Cancer (HIPO-HNC) cohort (n = 87, GSE117973) were treated between 2012 and 2016 at the University Hospital Heidelberg, Germany.
+*** \cite{Zhao2018} used GSE41613 (with survival data of 97 HNSCC cohort) for DEGs.
+GEO2R: GSE41613 and GSE42743 has only 131 genes of the Affymetrix array data % https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE41613
+from 97 HPV-negative OSCC patients %on the 131 gene 
+to identify a model for prediction of OSCC-specific survival\cite{Lohavanichbutr2013}.
+
+as following: % search by StarGEO
+StarGEO http://stargeo.org/ searching: HNSCC + survival (n>100]
+GSE 2837 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837
+
+and more
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40774
+n=134; Agilent-026652 Whole Human Genome Microarray 4x44K v2 (Probe Name version)
+supplementary data:
+https://clincancerres.aacrjournals.org/content/21/4/870.figures-only#fig-data-additional-files
+# Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma getGEO("GSE40774", GSEMatrix =TRUE, cex=1.5)library("maptools") 
+
+
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65858GSE65858
+https://onlinelibrary.wiley.com/doi/full/10.1002/ijc.29649
+
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE148944
+   784 probes (gene）
+n=40; 110 FFPE samples were collected from a retrospective cohort of 67 OTSCC patients and 10 non-cancerous tongue samples. Targets including CD4, CD8, FOXP3, PD-L1 and PD-1 were analyzed by immunohistochemistry. The Nanostring PanCancer Immune Profiling Panel was used for gene expression profiling. Data were externally validated in the TCGA head and neck (HNSCC), melanoma and lung squamous cell carcinoma (LSCC) cohorts.
+GPL28285
+NanoString nCounter PanCancer Immune Profiling Panel
+
+
+https://onlinelibrary.wiley.com/doi/full/10.1002/cam4.3106
+.................
+
+
+
+% *** how to do? ROC
+% https://compgenomr.github.io/book/assessing-the-performance-of-our-model.html
+In addition, receiver operating characteristic (ROC) analysis was used to estimate the predictive power of this signature\cite{Huang2019}.
 
 \end{MyColorPar}
 
@@ -509,7 +569,7 @@ All covariates has been pool in the hazard function h(t) to estimate their impac
 
 
 \subsection*{2-5}
-
+% gene signature
 Here is another suggestion. To maximize the use of continuous expression values, the author can build a multivariable model (e.g., logistic regression) integrating multiple genes.
 
 
@@ -519,11 +579,14 @@ Answer
 
 We appreciate the reviewer for the critical comments.
 ***  a gene signature with deep learning CNN,
+or http://gepia2.cancer-pku.cn/#index
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
-
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
+or 
+Statistical methods: Development of a 13-gene signature prediction model for survival in HPV-negative OSCC patients.
+To build a prediction model for OSCC-specific survival unique to the patients with HPV-negative OSCCs\cite{Lohavanichbutr2013}.
 
-or
+or \cite{Zhao2018}
 Prognostic gene signature:\\ % https://www.hindawi.com/journals/jir/2020/5494858/
 
 The risk score for each HNSCC sample was calculated based on the IRGP prognostic signature using the following formula:\\[0.5cm]
@@ -553,7 +616,7 @@ In Figure 2, unlabeled scales on the x-axis.
 \begin{MyColorPar}{blue}
 Answer
 
-% (ok)
+% (ok) minor comments1
 We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
 The description of the linear model has been removed. 
 Detailed introduction of TCGA-related tools has been moved to the Materials and Methods.
@@ -563,63 +626,86 @@ In Figure 2, the ticks and labels on the x-axis were corrected.\\[0.5cm]
 
 
 %%
-\begin{MyColorPar}{black} % minor comment
+\begin{MyColorPar}{black} % minor comment2
 \subsubsection*{[Minor comments]}
 
 More introduction to how other researchers used TCGA to find expression biomarkers should be presented in the Introduction section.
 \end{MyColorPar}
 
 Answer
-We placed more descriptions about researcher's work using TCGA to find expression biomarkers in the Introduction.
+
+We placed more descriptions about researcher's work using TCGA to find expression biomarkers in the Introduction section.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.\\[0.3cm]
 
 \begin{MyColorPar}{red}
+
 % EdgeR
+% GEPIA2: most differential survival gene = pvalueTex
 "
-Some researchers\cite{Xu2021a} tried to find DEGs of gene expression data (without survival information) for HNSCC biomarker discovery.
-RNA-Seq data were downloaded from The Cancer Genome Atlas (TCGA) database or other GSE datasets (e.x. GSE30784: 167 OSCC samples and 45 normal controls) from the Gene Expression Omnibus. 
-They employed DAVID (https://david.ncifcrf.gov/) to obtain information for Gene Ontology (GO) including biological processes, the cellular component and molecular function. 
-The Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway analysis was used to annotate the potential functions.
-%Subsequently, comprehensive bioinformatics analysis incorporating gene ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG),
-The protein-protein interaction (PPI) network was conducted to identify differentially expressed genes (DEGs) closely associated with HNSCC.
-The pathway enrichment analysis of DEGs was performed by DAVID, String, and Sytoscape software programs\cite{Huang2019}\cite{Shen2019}.
-The DEmRNAs were enrolled in a protein-protein interaction (PPI) network through the STRING database (https://string-db.org/) with a confidence score $> 0.9$, and the PPI network was visualized in Cytoscape (Version 3.7.1) software. Moreover, genes with degree $>= 25$ were selected as hub genes. Subsequently, module analysis (16) of the PPI network was performed using the Molecular Complex Detection (MCODE) tool of Cytoscape software, and GO and KEGG analysis of the modules was carried out using the DAVID database.
-
-By integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software. GOfunctional annotation and KEGG pathway analyses were performed using the Database for Annotation, Visualization, and Integrated Discovery. Hub genes were validated via the Gene Expression Profiling Interactive Analysis tool (GEPIA) and the Human Protein Atlas (HPA) website.
-
-DEGs to hub: The 230 differentially expressed genes and 12 hub genes were subjected to functional and pathway enrichment analyses.
-Then hub genes for survival analyses.
-
-% Cox Risk Regression Establishment and Validation with lncRNA data
-HNSCC samples were randomly divided into a training set and a validation set. Univariate Cox regression was used to select prognosis-associated genes (\textit{p} value $< 0.05$). Subsequently, we performed "Least Absolute Shrinkage and Selection Operator" (LASSO) Cox regression model to do feature selection\cite{Tibshirani1996};
-establish a prognostic risk score model, and the penalty regularization parameter lambda ($\lambda$) was chosen through cross-validation with an n-fold equal to 10 by using the R package glmnet (21). 
-%https://glmnet.stanford.edu/articles/glmnet.html
-Lambda.min was identified to pick out the variables. According to these variables, a stepwise regression was performed to establish the Cox model. 
-%Least Absolute Shrinkage and Selection Operator (LASSO) cox regression model along with 10-fold cross-validation
-Finally, a validation set and Kaplan–Meier survival curves along with a logrank p test were applied to validate its accuracy. In addition, receiver operating characteristic (ROC) analysis was used to estimate the predictive power of this signature\cite{Huang2019}.
-Biomarkers Screening and Validation
-The status and survival time of HNSCC patients were extracted. Subsequently, the mRNA was enrolled in the PPI and ceRNA networks, and lncRNA and miRNA identified in ceRNA were selected for screening biomarkers. We used univariate Cox regression to screen prognostic factors (p $< 0.05$), and those prognostic factors whose expression levels were significantly relevant to patients' overall survival (\textit{p} value < 0.01) were selected as primitive biomarkers. 
-Ultimately, the gene expression profile from the GEO and HNSCC cell lines and tissues were used to verify these biomarkers. In addition, a combination of two or more biomarkers was performed to predict HNSCC overall survival according to the gene expression in TCGA\cite{Huang2019}.
-
 %\subsubsection{from TCGA to expression biomarkers} 
 %%% how other researchers used TCGA to find expression biomarkers
-Usually, researchers used TCGA to find expression biomarkers:\\
+Usually, researchers developed in-house workflow of gene expression analysis to find HNSCC biomarkers.
+%Workflow of GDCRNATool
 % reference https://www.biostars.org/p/153013/
-Tutorial: Survival analysis of TCGA patients
-#integrating gene expression (RNASeq) data Why would you want to do survival
-#analysis based on gene expression data? Well, let's say you have a number of
-#genes that you are interested in and they are differentially expressed between
-#tumor and normal samples, it would be very powerful to show that alteration in
-#gene expression correlates with worse survival or earlier tumor recurrence.
+%Tutorial: Survival analysis of TCGA patients
+%integrating gene expression (RNASeq) data.
+%Why would you want to do survival analysis based on gene expression data? Well, let's say you
+% **** DEGs is a different concept with cutoff finding survival analysis of individual gene expression
+They have a number of genes that are differentially expressed between tumor and normal samples.
+It would be useful to show that alteration in gene expression correlates with phenotypes of HNSCC.
 % https://groups.google.com/forum/m/#!msg/ucsc-cancer-genomics-browser/YvKnWZSsw1Q/3IAkkEMyFa4J
 % from Mary Goldman and Jing Zhu, UCSC Cancer Browser
 % https://genome-cancer.ucsc.edu/
+%Here are the summarized techniques currently used: from 2000 to 2017\cite{Tonella2017a}
+%Gene expression profiling is applied for HNSCC to help in early diagnosis, prediction of recurrence or metastasis, prediction of prognosis or response to some therapies.
+% Rstudio\cite{Loraine2015a}
+Some researchers\cite{Loraine2015a}\cite{Tonella2017a}\cite{Zhao2018}\cite{Li2018a}\cite{Huang2019}\cite{Shen2019}\cite{Schmitt2019}\cite{Xu2021a} tried to find \acrfull{degs} of the HNSCC samples at both genotypic and phenotypic levels (without survival information) for biomarker discovery.
+Gene expression data was downloaded from the TCGA or Gene Expression Omnibus (GEO) database (e.x. GSE117973\cite{Schmitt2019}, HIPO-HNC cohort has n = 87).
+% IRB: Patient samples were obtained under the protocol S-206/2011, approved by the Ethics Committee of Heidelberg University, with written informed consent from all participants.
+%e.x. GSE30784: 167 HNSCC samples and 45 normal controls). 
+They employed the Database for Annotation, Visualization and Integrated Discovery (DAVID, available at https://david.ncifcrf.gov/) to obtain information for Gene Ontology (GO) including biological processes, the cellular component and molecular function. 
+The Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway analysis was also used to annotate the potential functions.
+%Subsequently, comprehensive bioinformatics analysis incorporating gene ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG),
+The protein-protein interaction (PPI) network was conducted by STRING (availalbe at https://string-db.org).
+The pathway enrichment analysis of \acrshort{degs} was also performed by DAVID, String, or Cytoscape software programs\cite{Huang2019}\cite{Shen2019}.
+Li\cite{Li2018a} and his colleagues made a R package (GDCRNATool) for the implementation of those workflow on gene expression analyses of the TCGA.
+%The DEmRNAs were enrolled in a protein-protein interaction (PPI) network through the STRING database (https://string-db.org/) with a confidence score $> 0.9$, and the PPI network was visualized in Cytoscape (Version 3.7.1) software. Moreover, genes with degree $>= 25$ were selected as hub genes. Subsequently, module analysis (16) of the PPI network was performed using the Molecular Complex Detection (MCODE) tool of Cytoscape software, and GO and KEGG analysis of the modules was carried out using the DAVID database.
+%a validation set and
+%Then, Kaplan–Meier survival curves along with a log-rank test were applied to select candidates\cite{Xu2021a}.
+Xu and his collegues\cite{Xu2021a} also used Kaplan–Meier survival curves along with a log-rank test or univariate Cox regression to screen prognostic factors (\textit{p} value $< 0.05$), and those prognostic factors whose expression levels were significantly relevant to patients' overall survival (\textit{p} value $< 0.01$) were selected as primitive biomarkers.
+%By integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software.
+The candidate genes were validated via the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
+%, datasets from projects of the TCGA and the Genotype-Tissue Expression, GTEx
+), GEPIA2021\cite{Li2021} (available at http://\\gepia2021.cancer-pku.cn/), or the Human Protein Atlas (HPA) website.
+% GTEx https://gtexportal.org/home/; non-disease 54 tissues/organs
+% GEPIA1/2 contact us: tangzefang@pku.edu.cn
+Finally, the gene expression profile from the GEO and HNSCC cell lines and tissues were used to verify these biomarkers.\\
+
+%DEGs to hub: The 230 differentially expressed genes and 12 hub genes were subjected to functional and pathway enrichment analyses. Then hub genes for survival analyses.
+
+% Cox Risk Regression Establishment and Validation with lncRNA data
+%HNSCC samples were randomly divided into a training set and a validation set. Univariate Cox regression was used to select prognosis-associated genes (\textit{p} value $< 0.05$). Subsequently, we performed "Least Absolute Shrinkage and Selection Operator" (LASSO) Cox regression model to do feature selection\cite{Tibshirani1996};
+%establish a prognostic risk score model, and the penalty regularization parameter lambda ($\lambda$) was chosen through cross-validation with an n-fold equal to 10 by using the R package glmnet (21). 
+%https://glmnet.stanford.edu/articles/glmnet.html
+%Lambda.min was identified to pick out the variables. According to these variables, a stepwise regression was performed to establish the Cox model. 
+%Least Absolute Shrinkage and Selection Operator (LASSO) cox regression model along with 10-fold cross-validation
+
+
+
+
+%Biomarkers Screening and Validation
+%The status and survival time of HNSCC patients were extracted. Subsequently, the mRNA was enrolled in the PPI and ceRNA networks, and lncRNA and miRNA identified in ceRNA were selected for screening biomarkers. 
+
+
+%
 "
 
 %%%%%%%%%
 \end{MyColorPar}
 
-\begin{MyColorPar}{black} % minor comment
+
+% ok
+\begin{MyColorPar}{black} % minor comment3
 \subsubsection*{[Minor comments]}
 %%%***[latex line 410]
 
@@ -642,22 +728,24 @@ First, although \acrshort{tcga} genomics data has been harmonized,
 the preprocessing of TCGA RNA-Seq is as follows: 
 
 \begin{outline}
-\1 HNSCC samples without complete clinical information have been removed;
+\1 HNSCC samples without complete clinical information have been removed;\\
+% or 50\%
+\1 Null expressed genes in more than 30\% of the HNSCC samples have been excluded;\\
 
-\1 Null expressed genes in more than 30\% or 50\% of the HNSCC samples have been excluded;
-
-\1 After investigation of mRNA expression dataset obtained through Firehose API, we found that gene ID (9906), gene ID (728661), and their expression values were saved together under the entity of gene symbol "SLC35E2".
-The expression file of SLC35E2 has almost double size than those of SLC35E1 or SLC35E3.
+\1 Updated number of protein-coding genes in the TCGA HNSCC is 20500.\\
+After investigation of mRNA expression dataset obtained through NCI's Firehose API, we found that gene ID (9906), gene ID (728661), and their expression values were saved together under the entity of gene symbol "SLC35E2".
+The expression file of SLC35E2 has almost double in size than those of SLC35E1 or SLC35E3.
+% http://gepia2.cancer-pku.cn/#survival is SLC35E2; 證明 TCGA has error
 % [line 1549]
 %HNSCC.mRNA.Exp.SLC35E2.Fire.Rda
 %[line 1654]
 %for gene correction (20499 to 20500) from SLC35E2 to 2 genes:
 %NCBI Reference Sequences (RefSeq)
-According to the Human Gene Database (available at https://www.genecards.org/Search\\/Keyword?queryString=SLC35E2), SLC35E2A(Gene ID: 9906) and\\ SLC35E2B (Gene ID: 728661) should be the correct entities for TCGA HNSCC dataset.
+According to the Human Gene Database (available at https://www.genecards.org/Search\\/Keyword?queryString=SLC35E2), SLC35E2A (Gene ID: 9906) and\\ SLC35E2B (Gene ID: 728661) should be the correct entities for TCGA HNSCC dataset.
 % https://www.ncbi.nlm.nih.gov/gene/?term=(SLC35E2)+AND+%22Homo+sapiens%22
 % keyword: (SLC35E2) AND "Homo sapiens" 
-SLC35E2 is the previous symbol of SLC35E2A (Ref: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:20863).
-Thus, we made reassignment of the expression value as SLC35E2A and SLC35E2B, and updated the number of protein-coding genes in the TCGA HNSCC as 20500.
+SLC35E2 is the previous symbol of SLC35E2A (reference at https://www.genenames.org/data/gene-symbol-report/\#!\\/hgnc\_id/HGNC:20863).
+Thus, we made reassignment of the expression value of SLC35E2A and SLC35E2B, and updated the number of protein-coding genes in the TCGA HNSCC from 20499 to 20500.
 % updated on 18-May-2021
 \end{outline}
 
