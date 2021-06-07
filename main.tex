@@ -114,6 +114,7 @@
 
 \makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
 
+\newacronym{ncbi}{NCBI}{National Center for Biotechnology Information}
 \newacronym{degs}{DEGs}{differentially expressed genes}
 
 \newacronym{ihc}{IHC}{immunohistochemistry}
@@ -243,11 +244,11 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{Transcriptomic Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma}
+\Title{Transcriptomics Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma}
 %\Title{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
 
 % MDPI internal command: Title for citation in the left column
-\TitleCitation{Transcriptomic Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma}
+\TitleCitation{Transcriptomics Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma}
 %\TitleCitation{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
 
 % Author Orchid ID: enter ID or remove command
@@ -482,7 +483,7 @@ The workflow, shown in Figure \ref{fig:figure1}, scanned 20,500 human protein-co
 %Step 3 (purple line: dealing with surgical margin).
 \bcaption{A workflow of \acrshort{hnscc} biomarker discovery}
 {The workflow includes data retrieval from TCGA GDC data portal, data process with merging and cleaning,% should be modified aggressively according to different sources of database)
-then performing the survival analyses (within \textcolor{yellow}{yellow} square). The Cutoff engine (in R script: cutofFinder\_func.HNSCC.R, a serial cut for grouping patients with \textcolor{asparagus}{low} or \textcolor{red}{high} expression of a specific gene, to yield a collection of \textit{P} values; please see Materials and Methods section for details) might calculate all possible Kaplan-Meier \textit{P} value to find the optimal cutoff value of gene expression for subsequent Cox modeling. The candidate selection performs dissecting and selection of candidate genes by Bonferroni adjusted \textit{P} value as well as a hazard ratio of Cox model, based on the results from the survival analyses. The selected genes will be validated by a independent HNSCC cohort (GSE2837).
+then performing the survival analyses (within \textcolor{yellow}{yellow} square). The Cutoff engine (in R script: cutofFinder\_func.HNSCC.R, a serial cut for grouping patients with \textcolor{asparagus}{low} or \textcolor{red}{high} expression of a specific gene, to yield a collection of \textit{P} values; please see Materials and Methods section for details) might calculate all possible Kaplan-Meier \textit{P} value (corrected by \acrlong{fdr}, FDR, method) to find the optimal cutoff value of gene expression for subsequent Cox modeling. The candidate selection performs dissecting and selection of candidate genes by Bonferroni adjusted \textit{P} value as well as a hazard ratio of Cox model, based on the results from the survival analyses. The selected genes will be validated by a independent HNSCC cohort (GSE2837).
 (HNSCC: head and neck squamous cell carcinoma; TCGA: the Cancer Genome Atlas; RNA-Seq: RNA sequencing; GDC: Genomic Data Commons.)}
 \label{fig:figure1}
 \end{figure}
@@ -542,7 +543,7 @@ Thus, these 10 candidates have been confirmed by a comparative study using the G
 \begin{table}
 %\begin{sidewaystable}[hp]
 \centering
-\caption{ The top 10 genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by Bonferroni adjusted \textit{P} value) }
+\caption{ The top 10 genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by adjusted \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
 \resizebox{\linewidth}{!}{
 %\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
@@ -575,7 +576,7 @@ DKC1                                           & dyskeratosis congenita 1, dyske
 \hline
 \multicolumn{1}{|l!{\color{black}\vrule}}{}    & \multicolumn{1}{l!{\color{black}\vrule}}{}                 & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}                                      & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}  \\ 
 \arrayrulecolor{black}\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier Bonferroni adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate$ HR >= 1.5$ \end{tabular}}                                                                                                                                                                                                                                                              \\ 
+\multicolumn{9}{|l!{\color{black}\vrule}}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier \acrshort{fdr}-adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate$ HR >= 1.5$ \end{tabular}}                                                                                                                                                                                                                                                              \\ 
 \hline
 \multicolumn{9}{|l!{\color{black}\vrule}}{* Cox's model: \textit{P} $< 0.001$ }                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
 \hline
@@ -596,7 +597,7 @@ DKC1                                           & dyskeratosis congenita 1, dyske
 %Table3. The 10 candidate genes overexpressed with better prognosis in HNSCC (ranked by Bonferroni corrected Kaplan-Meier P-value).
 \begin{table}[hp]
 \centering
-\caption{The other top 10 genes overexpressed with better prognosis in \acrshort{hnscc} (ranked by Bonferroni corrected \textit{P} value) }
+\caption{The other top 10 genes overexpressed with better prognosis in \acrshort{hnscc} (ranked by corrected \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
 \resizebox{\linewidth}{!}{%
 \begin{tabular}{|l|l|l|l|l|l|l|l|c|} 
@@ -627,7 +628,7 @@ NPB                                            & neuropeptide B                 
 \hline
                                                &                                                        &                                                                                    &                                                                                                      &                                                 &                                                       &                                                 &                                                       & \multicolumn{1}{l|}{}                         \\ 
 \hline
-\multicolumn{9}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier Bonferroni adjusted \textit{P} value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textgreater{}= 1.5\\ * Cox's model: \textit{P} value \textless{} 0.001\\lncRNA: Long non-coding RNA\\Remark: \checkmark Validated by GSE2837 ~\end{tabular}}                                                                                                                                                                                                                 \\
+\multicolumn{9}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier \acrshort{fdr}-adjusted \textit{P} value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textgreater{}= 1.5\\ * Cox's model: \textit{P} value \textless{} 0.001\\lncRNA: Long non-coding RNA\\Remark: \checkmark Validated by GSE2837 ~\end{tabular}}                                                                                                                                                                                                                 \\
 \hline
 \end{tabular}
 }
@@ -1663,19 +1664,21 @@ All covariates has been pool in the hazard function h(t) to estimate their impac
 Results were considered statistically significant when a two-sided \textit{P} $<$ 0.05, or a lower threshold if indicated.
 The \acrfull{fdr} ($< 0.05$) could be used to pick up the optimal \textit{P} value to ensure the control for type I error of the Kaplan-Meier survival test during the cutoff finding procedure.
 %statistical inference problems in biomedical and genomic data analysis routinely involve the simultaneous test of thousands, or even millions, of null hypotheses. Examples
-There were also multiple correlated tests of null hypotheses in the Kaplan-Meier family during our global scanning of protein-coding genes. The stringent Bonferroni correction could result in an adjusted \textit{P} value to ensure the control for type I error. 
+There were also multiple correlated tests of null hypotheses 
+%in the Kaplan-Meier family 
+during our global scanning of 205,00 protein-coding genes. The stringent Bonferroni correction could result in an adjusted \textit{P} value to ensure the control for type I error. 
 %There were multiple correlated tests in the family of Kaplan-Meier survival hypotheses during our global scanning of protein-coding genes. The stringent Bonferroni correction could result in an adjusted P-value to ensure the control for type I error. 
 
 The resulting data, including Kaplan-Meier curves, cumulative \textit{P} value plots, and Cox regression tables, were exported to ".xlsx" and ".Rda" files (by R package "r2excel") for subsequent biomarker selection.
 
 
 \subsection{Biomarker Selection and Validation}
-
+% Figure 1, Table 1, 2 correction: Kaplan-Meier FDR correction 才對
 Those genes with prognostic impact, whose hazard ratio $>=1.5$ or $<=0.5$ in both Cox's univariate/multivariate model, were assigned as provisional candidates.
 Bonferroni adjusted (Kaplan-Meier) \textit{P} value was used to make a ranking of candidates for the final decision (see Figure \ref{fig:figure1}, candidate selection).
 
 Since high correlation between RNA-Seq and microarray results using TCGA data\cite{Guo2013}\cite{Chen2017c},
-we analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/\\PrognoScan/)\cite{Mizuno2009a}.
+we analysed GSE2837 dataset (\acrfull{ncbi} GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/\\PrognoScan/)\cite{Mizuno2009a}.
 %??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
 %https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
 The GSE2837 carries out % VUMC, VAMC, UTMDACC (1992-2005)

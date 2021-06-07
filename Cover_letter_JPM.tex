@@ -24,6 +24,7 @@
 %\usepackage{glossary-inline}
 %\newenvironment{abbreviation}
 %\makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
+\newacronym{ncbi}{NCBI}{National Center for Biotechnology Information}
 \newacronym{degs}{DEGs}{differentially expressed genes}
 
 \newacronym{fdr}{FDR}{false discovery rate}
@@ -353,32 +354,59 @@ Moreover, the revised portions in the manuscript are indicated in \textcolor{red
 Comments and Suggestions for Authors from the reviewer \#2 % 善意提醒、指導
 
 The authors introduced a workflow to identify gene-expression biomarkers based on TCGA data and applied it to head and neck squamous cell carcinoma. The authors tried to highlight their workflow and present it as a new tool, however, their workflow is very common, and I cannot see its novelty. 
-The selection of gene expression cutoff is not well handled statistically (see below my first comment). 
+The selection of gene expression cutoff is not well handled statistically (see below my first comment). % FDR
 Therefore, I recommend the authors weaken their statement of the workflow but focus on the identified biomarkers in neck squamous cell carcinoma and use as much as possible evidence to support or validate them. % new Title, abstract, change tone
 Exploring all possible expression cutoffs is also usable but should only be used for established biomarkers. Once it is known that a gene is a strong biomarker (e.g., from a genome-wide test using fixed cutoffs), one can fine-tune the cutoffs utilizing this strategy.
 
 
-\subsection*{2-1}
-%
-Exploring all possible expression cutoffs is controversial. A robust expression biomarker should be effective and detectable at most major cutoffs. Compared to a fixed quantile cutoff, a sliding window cutoff selection of cutoffs would capture more genes whose p-values just reach the significant level (p=0.05). For example, a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 0.04 at 70\% quantile cutoff. But it is not expected that a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 1e-5 at 70\% quantile cutoff. This strategy only identifies more weak “biomarkers,” and it also captures more false positives. 
+\subsection*{2-1}%(ok)
+% sliding window cutoff selection with FDR corrected
+Exploring all possible expression cutoffs is controversial. 
+A robust expression biomarker should be effective and detectable at most major cutoffs. Compared to a fixed quantile cutoff, a sliding window cutoff selection of cutoffs would capture more genes whose p-values just reach the significant level (p=0.05). 
+For example, a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 0.04 at 70\% quantile cutoff. % might be false positive
+But it is not expected that a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 1e-5 at 70\% quantile cutoff. % true positive
+This strategy only identifies more weak “biomarkers,” and it also captures more false positives. 
 Adjustment of multiple test p-values should be applied here, which is missing in the current manuscript.
-
+% PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity
 
 %
 \begin{MyColorPar}{blue}
 Answer
+%(ok)
 
-% ***We modified the workflow as ...(not yet)
-% and FDR (done)
-We appreciate the reviewer for kind instruction of expression cutoff in detail.\\
-***We modified the workflow as ...
+% 1) ***We modified the workflow as ...(本來就有計算 FDR and excluding >= 0.05)
+% 2) and FDR (done)
+We appreciate the reviewer to kindly advise us about the principle of sliding window cutoff selection in detail.
+% and give us this nomenclature as "sliding window"
+We correct our statement of this workflow (please see Answer 2-2).
+There is more evidence to validate them (please see Answer 2-3).
 
+
+%\begin{MyColorPar}{red}
+%\end{MyColorPar}
+
+
+% and FDR (done; ok)
 We also modified the last paragraph of "Cutoff Finder Core Engine" in the Material and Methods section.
+%Figure 1, Table 1, 2 correction: Kaplan-Meier FDR correction
+The caption of Figure 1, Table 1, and Table 2 has description about 1) FDR correction of Kaplan-Meier \textit{P} values during Cutoff finding; and 2) Bonferroni correction of Kaplan-Meier \textit{P} values after Cox modeling for candidate selection.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
 \\[0.3cm]
 
 \begin{MyColorPar}{red}
-The \acrfull{fdr} ($< 0.05$) correction has been applied to ensure the control of type I error of multiple test \textit{P} values during our cutoff finding procedure.
+% TCGA_HNSCC_marginSFP.R [line 111] cutoffReturn <- cutofFinder_func_HNSCC.R
+% retrieving optimized (minimal) p value of each Kaplan-Meier plot 
+% **A summary table of P-value, Z-score standardization from all HNSCC_survival*.Rda 
+% 不必每次重 run (saved at HNSCC_OS_marginS_pvalueKM_candidate_cox.Rda)
+% variable name: candidate_sample (with gene symbol and KM p value), candidate_cox, n_percent_Bonferroni
+%=> FDR() or p.adjust() The FDR function uses the Benjamini & Hochberg (\cite{Benjamini1995a}) ("BH", alias "fdr") correction by default.
+% analysis_export.R [line 197] has FDR < 0.05 for filtering (done)
+% [line 196] OS_pvalueS$p_value_adj_FDR <- p.adjust(OS_pvalue$p_OS, method='fdr')
+
+% (stored at HNSCC_survivalAnalysis_marginS_[gene].Rda; file20500_list.txt)
+The \acrfull{fdr} ($< 0.05$) correction\cite{Benjamini1995a} has been be applied and shows which genes should be retained for further univariate and multivariate analysis.
+% of Cox modeling
+It is ensure the control of type I error of multiple test \textit{P} values during our cutoff finding procedure.
 \end{MyColorPar}
 
 
@@ -401,7 +429,7 @@ I recommend the authors weaken their statement of the workflow but focus on the 
 Answer
 %(OK)
 We appreciate the reviewer for the critical comment.
-We changed title as "Transcriptomic Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma", and abstract; we also changed the tone in our manuscript to focus on the identified biomarkers in the head and neck squamous cell carcinoma.
+We changed title as "Transcriptomics Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma", and abstract; we also changed the tone in our manuscript to focus on the identified biomarkers in the head and neck squamous cell carcinoma.
 There is more evidence to validate them (please see Answer 2-3).
 
 %
@@ -410,9 +438,12 @@ There is more evidence to validate them (please see Answer 2-3).
 
 
 \subsection*{2-3}
-
+% PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity
 % strategy should changing; run GCP Rstudio? hard work to do
-In the independent test, half genes have p-values less than 0.05, and most of them have p-values $> 0.01$. Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. The p-values are affected by the sample size, which should be described in the main text. As I mentioned above, the authors should look for more data to verify these biomarkers.
+In the independent test, half genes have p-values less than 0.05, and most of them have p-values $> 0.01$. % table 1
+Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. % the validation rate 
+The p-values are affected by the sample size, which should be described in the main text. % writing
+As I mentioned above, the authors should look for more data to verify these biomarkers. % GEO
 
 
 
@@ -420,12 +451,15 @@ In the independent test, half genes have p-values less than 0.05, and most of th
 \begin{MyColorPar}{blue}
 Answer
 
+
+% the validation rate
+% more GSE datasets
 % using  receiver operating characteristic (ROC) analysis and more GEO datasets
-We appreciate the reviewer for the critical comments and thanks for the agreement of our workflow in cancer research.
-***調整 workflow 更加嚴格以增加 validation rate
-Validation rate: 
-FDR for Cutoff mining: 先偷看答案 2837
-重新挑選 candidate (from Cox) 多選一些、偷偷看答案(GSE2837)
+We appreciate the reviewer for the critical comments and thanks for the agreement of our work in cancer research.
+
+%***調整 workflow 更加嚴格以增加 validation rate
+Validation rate:\\
+%重新挑選 candidate (from Cox) 多選一些、偷偷看答案(GSE2837 and GSE65858)
 
 %{
 six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
@@ -433,51 +467,73 @@ four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA168
 %}
 
 Validation by:
-TCIA CPTAC (not HPA 抗體很少）
+%TCIA CPTAC (not HPA 抗體很少）
 
 This collection contains subjects from the National Cancer Institute’s Clinical Proteomic Tumor Analysis Consortium Head-and-Neck cancer (CPTAC-HNSCC) cohort.
-
-https://wiki.cancerimagingarchive.net/display/Public/CPTAC-HNSCC
+%https://wiki.cancerimagingarchive.net/display/Public/CPTAC-HNSCC
 As digital tissue microarray? 
 
 
-===
+%%%
 For validation by GEO datasets:
-*The p-values are affected by the sample size, which has be described in the main text.
+
+% National Center for Biotechnology Information Reference Sequence (NCBI) RefSeq Release 38 (November 7, 2009) 
 
 
-GEOquery: SOFT file (or MINiML) %https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/geo/
+GEOquery\cite{Sean2007}: SOFT file (or MINiML)
+the NCBI GEO repositories
+%https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/geo/
 *the authors should look for more data to verify these biomarkers.
 by TMA IHC of HNSCC (provided by Prof. Michael Hsiao)
 or CPTAC (digital TMA, not HPA)i
 
-or more GEO datasets (GEO2837, GSE40774, GSE65858, GSE148944, and GSE41613/xGSE42743)i
+or more GEO datasets (*GEO2837, GSE40774, ***GSE65858, *GSE117973, GSE148944, and GSE41613/xGSE42743)
+* GSE2837 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837
+
+*** https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65858 GSE65858
+https://onlinelibrary.wiley.com/doi/full/10.1002/ijc.29649
+OS event and RFS event and survival time
+n=270\cite{Wichmann2015}
+Each array on the HumanHT-12 v4 Expression BeadChip targets more than 31,000 annotated genes with more than 47,000 probes derived from the \acrfull{ncbi} Reference Sequence (RefSeq) Release 38 (November 7, 2009) and other sources.
+% https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL10558
+
 **  (GSE117973) Patients of the Heidelberg Center for Personalized Oncology-Head and Neck Cancer (HIPO-HNC) cohort (n = 87, GSE117973) were treated between 2012 and 2016 at the University Hospital Heidelberg, Germany.
-*** \cite{Zhao2018} used GSE41613 (with survival data of 97 HNSCC cohort) for DEGs.
-GEO2R: GSE41613 and GSE42743 has only 131 genes of the Affymetrix array data % https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE41613
+PFS and DSS event and months
+
+*x* \cite{Zhao2018} used GSE41613 (with survival data of 97 HNSCC cohort) for DEGs.
+GEO2R: GSE41613 and GSE42743 可是*** has only 131 genes of the Affymetrix array data % https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE41613
 from 97 HPV-negative OSCC patients %on the 131 gene 
 to identify a model for prediction of OSCC-specific survival\cite{Lohavanichbutr2013}.
 
-as following: % search by StarGEO
-StarGEO http://stargeo.org/ searching: HNSCC + survival (n>100]
-GSE 2837 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837
+x 7. Integration of molecular gene signatures with clinicopathological variables improves staging and outcome prediction of oral cancer.
+(Submitter supplied) The aim of this study is to identify and validate clinically implementable gene signatures for outcome prediction of patients with oral squamous cell carcinoma.
+Organism:	Homo sapiens
+Type:		Expression profiling by array
+Platform: GPL6480 99 Samples
+FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE84nnn/GSE84846/
+Series		Accession: GSE84846	ID: 200084846
+only alive or death (no survival time) => Similarly preprocessed VUmc (GSE84846) and UMCU (GSE30788) microarray datasets (https://www.oncotarget.com/article/19576/text/)
+\cite{Mes2017}
 
-and more
-https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40774
+%as following: % search by StarGEO ===========
+StarGEO http://stargeo.org/ searching: HNSCC + survival (n>100]
+* GSE2837 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837
+
+
+x https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40774
 n=134; Agilent-026652 Whole Human Genome Microarray 4x44K v2 (Probe Name version)
 supplementary data:
 https://clincancerres.aacrjournals.org/content/21/4/870.figures-only#fig-data-additional-files
+n=134 (no survival)
 # Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma getGEO("GSE40774", GSEMatrix =TRUE, cex=1.5)library("maptools") 
 
 
-https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65858GSE65858
-https://onlinelibrary.wiley.com/doi/full/10.1002/ijc.29649
 
-https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE148944
+
+x https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE148944
    784 probes (gene）
 n=40; 110 FFPE samples were collected from a retrospective cohort of 67 OTSCC patients and 10 non-cancerous tongue samples. Targets including CD4, CD8, FOXP3, PD-L1 and PD-1 were analyzed by immunohistochemistry. The Nanostring PanCancer Immune Profiling Panel was used for gene expression profiling. Data were externally validated in the TCGA head and neck (HNSCC), melanoma and lung squamous cell carcinoma (LSCC) cohorts.
-GPL28285
-NanoString nCounter PanCancer Immune Profiling Panel
+GPL28285 NanoString nCounter PanCancer Immune Profiling Panel
 
 
 https://onlinelibrary.wiley.com/doi/full/10.1002/cam4.3106
@@ -488,8 +544,20 @@ https://onlinelibrary.wiley.com/doi/full/10.1002/cam4.3106
 % *** how to do? ROC
 % https://compgenomr.github.io/book/assessing-the-performance-of-our-model.html
 In addition, receiver operating characteristic (ROC) analysis was used to estimate the predictive power of this signature\cite{Huang2019}.
+%---
 
-\end{MyColorPar}
+We also modified the last paragraph in the Material and Methods section, and also described "the p-values are affected by the sample size" in the Discussion section.
+The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it was shown here in the following paragraph.
+\\[0.3cm]
+
+\begin{MyColorPar}{red}
+validation rate
+...the \textit{P} value is affected by the sample size. % TCGA has the most HNSCC sample size
+
+\end{MyColorPar} % red
+
+
+\end{MyColorPar} % blue
 
 
 
@@ -676,7 +744,7 @@ Li\cite{Li2018a} and his colleagues made a R package (GDCRNATool) for the implem
 %The DEmRNAs were enrolled in a protein-protein interaction (PPI) network through the STRING database (https://string-db.org/) with a confidence score $> 0.9$, and the PPI network was visualized in Cytoscape (Version 3.7.1) software. Moreover, genes with degree $>= 25$ were selected as hub genes. Subsequently, module analysis (16) of the PPI network was performed using the Molecular Complex Detection (MCODE) tool of Cytoscape software, and GO and KEGG analysis of the modules was carried out using the DAVID database.
 %a validation set and
 %Then, Kaplan–Meier survival curves along with a log-rank test were applied to select candidates\cite{Xu2021a}.
-Xu and his collegues\cite{Xu2021a} also used Kaplan–Meier survival curves along with a log-rank test or univariate Cox regression to screen prognostic factors (\textit{p} value $< 0.05$), and those prognostic factors whose expression levels were significantly relevant to patients' overall survival (\textit{p} value $< 0.01$) were selected as primitive biomarkers.
+Xu and his collegues\cite{Xu2021a} also used Kaplan–Meier survival curves along with a log-rank test or univariate Cox regression to screen prognostic factors (\textit{P} value $< 0.05$), and those prognostic factors whose expression levels were significantly relevant to patients' overall survival (\textit{P} value $< 0.01$) were selected as primitive biomarkers.
 %By integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software.
 The candidate genes were validated via the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
 %, datasets from projects of the TCGA and the Genotype-Tissue Expression, GTEx
@@ -688,7 +756,7 @@ Finally, the gene expression profile from the GEO and HNSCC cell lines and tissu
 %DEGs to hub: The 230 differentially expressed genes and 12 hub genes were subjected to functional and pathway enrichment analyses. Then hub genes for survival analyses.
 
 % Cox Risk Regression Establishment and Validation with lncRNA data
-%HNSCC samples were randomly divided into a training set and a validation set. Univariate Cox regression was used to select prognosis-associated genes (\textit{p} value $< 0.05$). Subsequently, we performed "Least Absolute Shrinkage and Selection Operator" (LASSO) Cox regression model to do feature selection\cite{Tibshirani1996};
+%HNSCC samples were randomly divided into a training set and a validation set. Univariate Cox regression was used to select prognosis-associated genes (\textit{P} value $< 0.05$). Subsequently, we performed "Least Absolute Shrinkage and Selection Operator" (LASSO) Cox regression model to do feature selection\cite{Tibshirani1996};
 %establish a prognostic risk score model, and the penalty regularization parameter lambda ($\lambda$) was chosen through cross-validation with an n-fold equal to 10 by using the R package glmnet (21). 
 %https://glmnet.stanford.edu/articles/glmnet.html
 %Lambda.min was identified to pick out the variables. According to these variables, a stepwise regression was performed to establish the Cox model. 
@@ -744,7 +812,7 @@ The expression file of SLC35E2 has almost double in size than those of SLC35E1 o
 %HNSCC.mRNA.Exp.SLC35E2.Fire.Rda
 %[line 1654]
 %for gene correction (20499 to 20500) from SLC35E2 to 2 genes:
-%NCBI Reference Sequences (RefSeq)
+%NCBI Reference Sequences (RefSeq) National Center for Biotechnology Information Reference Sequence (NCBI) RefSeq Release 38 (November 7, 2009) 
 According to the Human Gene Database (available at https://www.genecards.org/Search\\/Keyword?queryString=SLC35E2), SLC35E2A (Gene ID: 9906) and\\ SLC35E2B (Gene ID: 728661) should be the correct entities for TCGA HNSCC dataset.
 % https://www.ncbi.nlm.nih.gov/gene/?term=(SLC35E2)+AND+%22Homo+sapiens%22
 % keyword: (SLC35E2) AND "Homo sapiens" 
@@ -993,7 +1061,7 @@ Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the 
 %\subsubsection*{GSE2837} % non-TCGA
 % from Anwser2-2
 %by GEO GSE2837 HNSCC dataset (PrognoScan)
-We analysed GSE2837 dataset (NCBI GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from online tools: PrognoScan (availalbe at http://dna00.\\bio.kyutech.ac.jp/PrognoScan/)\cite{Mizuno2009a}.
+We analysed GSE2837 dataset (\acrfull{ncbi} GEO database\cite{Chung2006}, HNSCC cohort has 28 participants) from online tools: PrognoScan (availalbe at http://dna00.\\bio.kyutech.ac.jp/PrognoScan/)\cite{Mizuno2009a}.
 %??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
 %https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
 The GSE2837 carries % VUMC, VAMC, UTMDACC (1992-2005)
