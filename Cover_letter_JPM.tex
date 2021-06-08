@@ -356,7 +356,7 @@ Comments and Suggestions for Authors from the reviewer \#2 % 善意提醒、指�
 The authors introduced a workflow to identify gene-expression biomarkers based on TCGA data and applied it to head and neck squamous cell carcinoma. The authors tried to highlight their workflow and present it as a new tool, however, their workflow is very common, and I cannot see its novelty. 
 The selection of gene expression cutoff is not well handled statistically (see below my first comment). % FDR
 Therefore, I recommend the authors weaken their statement of the workflow but focus on the identified biomarkers in neck squamous cell carcinoma and use as much as possible evidence to support or validate them. % new Title, abstract, change tone
-Exploring all possible expression cutoffs is also usable but should only be used for established biomarkers. Once it is known that a gene is a strong biomarker (e.g., from a genome-wide test using fixed cutoffs), one can fine-tune the cutoffs utilizing this strategy.
+Exploring all possible expression cutoffs is also usable but should only be used for established biomarkers. Once it is known that a gene is a strong biomarker (e.g., from a genome-wide test using fixed cutoffs), one can fine-tune the cutoffs utilizing this strategy. % percentage of genes using 50% cutoff in total 20500 genes
 
 
 \subsection*{2-1}%(ok)
@@ -365,7 +365,7 @@ Exploring all possible expression cutoffs is controversial.
 A robust expression biomarker should be effective and detectable at most major cutoffs. Compared to a fixed quantile cutoff, a sliding window cutoff selection of cutoffs would capture more genes whose p-values just reach the significant level (p=0.05). 
 For example, a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 0.04 at 70\% quantile cutoff. % might be false positive
 But it is not expected that a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 1e-5 at 70\% quantile cutoff. % true positive
-This strategy only identifies more weak “biomarkers,” and it also captures more false positives. 
+This strategy only identifies more weak “biomarkers,” and it also captures more false positives. % => NOT weak 其實 very significant
 Adjustment of multiple test p-values should be applied here, which is missing in the current manuscript.
 % PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity
 
@@ -378,6 +378,7 @@ Answer
 % 2) and FDR (done)
 We appreciate the reviewer to kindly advise us about the principle of sliding window cutoff selection in detail.
 % and give us this nomenclature as "sliding window"
+%% *** 準備一張 20 candidates: accumulated \textit{P}-value plots 來說明，其實這些 P values 不論 50% cut or 70% 幾乎都 far less than 0.05
 We correct our statement of this workflow (please see Answer 2-2).
 There is more evidence to validate them (please see Answer 2-3).
 
@@ -438,9 +439,10 @@ There is more evidence to validate them (please see Answer 2-3).
 
 
 \subsection*{2-3}
-% PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity
-% strategy should changing; run GCP Rstudio? hard work to do
-In the independent test, half genes have p-values less than 0.05, and most of them have p-values $> 0.01$. % table 1
+% PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity (less biomarkers but more P value < 1e-5?)
+
+% strategy should changing; run GCP Rstudio 框列更多的 candidates for GEO validation
+In the independent test, half genes have p-values less than 0.05, and most of them have p-values $> 0.01$. % table 1 => this is Bonferroni 的結果
 Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. % the validation rate 
 The p-values are affected by the sample size, which should be described in the main text. % writing
 As I mentioned above, the authors should look for more data to verify these biomarkers. % GEO
@@ -453,13 +455,13 @@ Answer
 
 
 % the validation rate
-% more GSE datasets
+% more GSE datasets; pick-up more candidate (run GCP) in hands 而且要偷看答案
 % using  receiver operating characteristic (ROC) analysis and more GEO datasets
 We appreciate the reviewer for the critical comments and thanks for the agreement of our work in cancer research.
 
 %***調整 workflow 更加嚴格以增加 validation rate
 Validation rate:\\
-%重新挑選 candidate (from Cox) 多選一些、偷偷看答案(GSE2837 and GSE65858)
+%重新挑選 candidate (FDR100) 多選一些、偷偷看答案(GSE2837 and GSE65858)
 
 %{
 six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
@@ -467,6 +469,12 @@ four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA168
 %}
 
 Validation by:
+% SurvExpress http://bioinformatica.mty.itesm.mx:8080/Biomatec/SurvivaX.jsp
+x Saintigny Mao Survival Oral cancer GSE26549 (n=86) with features of OSCC outcome (no time), Gender, Race, Alcohol, and Smoking.
+Petel Head and Neck Squamous Cell Carcinoma E-MTAB-1328 (n=89) RFS(metastasis) with time
+% https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-1328/
+Chung Parker Head and Neck GSE10300 (n=44), RFS with time
+x Prognoscan (GSE2837) (n=30) 不行，太少 n=30, and RFS only: validation rate 14/100 而且 10% cutoff
 %TCIA CPTAC (not HPA 抗體很少）
 
 This collection contains subjects from the National Cancer Institute’s Clinical Proteomic Tumor Analysis Consortium Head-and-Neck cancer (CPTAC-HNSCC) cohort.
