@@ -365,16 +365,16 @@ Exploring all possible expression cutoffs is controversial.
 A robust expression biomarker should be effective and detectable at most major cutoffs. Compared to a fixed quantile cutoff, a sliding window cutoff selection of cutoffs would capture more genes whose p-values just reach the significant level (p=0.05). 
 For example, a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 0.04 at 70\% quantile cutoff. % might be false positive
 But it is not expected that a gene with a p-value of 0.1 at 25\% or 50\% quantile cutoff could achieve a p-value of 1e-5 at 70\% quantile cutoff. % true positive
-This strategy only identifies more weak “biomarkers,” and it also captures more false positives. % => NOT weak 其實 very significant
+This strategy only identifies more weak “biomarkers,” and it also captures more false positives. % defense (ok) => NOT weak 其實 very significant; 欠一張圖
 Adjustment of multiple test p-values should be applied here, which is missing in the current manuscript.
-% PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity
+% (ok) PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity
 
 %
 \begin{MyColorPar}{blue}
 Answer
 %(ok)
 
-% 1) ***We modified the workflow as ...(本來就有計算 FDR and excluding >= 0.05)
+% 1) 本來就有計算 FDR and excluding >= 0.05 (ok)
 % 2) and FDR (done)
 We appreciate the reviewer to kindly advise us about the principle of sliding window cutoff selection in detail.
 % and give us this nomenclature as "sliding window"
@@ -382,6 +382,10 @@ We appreciate the reviewer to kindly advise us about the principle of sliding wi
 We correct our statement of this workflow (please see Answer 2-2).
 There is more evidence to validate them (please see Answer 2-3).
 
+We understand that the sliding-window selection of cutoffs would capture more genes whose \textit{P} values just reach the significant level (p=0.05).
+*** According to our results, all of preliminary biomarkers have FDR-corrected \textit{P} values from 1e-4 to 0.04 whatever grouped by cutoffs at 50\% quantile cutoff or at 70\% quantile cutoff (Please see supplementary Figure SXXX).
+There is so many thing we could find during the data mining from so many 20500 protein-coding genes.
+Thus we also performed the FDR correction applied on cutoff finding procedure as well as Bonferroni adjustment in candidate filtering.
 
 %\begin{MyColorPar}{red}
 %\end{MyColorPar}
@@ -441,7 +445,7 @@ There is more evidence to validate them (please see Answer 2-3).
 \subsection*{2-3}
 % PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity (less biomarkers but more P value < 1e-5?)
 
-% strategy should changing; run GCP Rstudio 框列更多的 candidates for GEO validation
+% strategy should changing; run GCP Rstudio 框列更多的 candidates for GEO (GSE65858) validation
 In the independent test, half genes have p-values less than 0.05, and most of them have p-values $> 0.01$. % table 1 => this is Bonferroni 的結果
 Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. % the validation rate 
 The p-values are affected by the sample size, which should be described in the main text. % writing
@@ -483,26 +487,34 @@ As digital tissue microarray?
 
 
 %%%
+*the authors should look for more data to verify these biomarkers.
 For validation by GEO datasets:
 
-% National Center for Biotechnology Information Reference Sequence (NCBI) RefSeq Release 38 (November 7, 2009) 
+% 
+National Center for Biotechnology Information Reference Sequence (NCBI) 
+%RefSeq Release 38 (November 7, 2009) 
+Gene Expression Omnibus (GEO)
+[Dataset]
+The NCBI GEO repositories is a public repository supporting MIAME-compliant data submissions of microarray and sequence-based experiments.
+R package of GEOquery\cite{Sean2007}: SOFT file (or MINiML) was used to
+download RNA-Seq dataset of HNSCC, GSE65858, from the GEO database (available at https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE65858). 
+GSE65858\cite{Wichmann2015} has OS event and RFS event and survival time.
+%n=270 n= 273 = ?? + 168(alive) + 88(dead) = 256
+The expression data was generated using the HumanHT-12 v4 Expression BeadChip, which targets on more than 31,000 annotated genes (47,000 probes) derived from the \acrfull{ncbi} Reference Sequence (RefSeq) Release 38 (November 7, 2009).
+% an Affymetrix Human Genome U133A microarray (HG-U133A). 
+It was used as a validation dataset. 
 
 
-GEOquery\cite{Sean2007}: SOFT file (or MINiML)
-the NCBI GEO repositories
 %https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/geo/
-*the authors should look for more data to verify these biomarkers.
+
 by TMA IHC of HNSCC (provided by Prof. Michael Hsiao)
 or CPTAC (digital TMA, not HPA)i
 
-or more GEO datasets (*GEO2837, GSE40774, ***GSE65858, *GSE117973, GSE148944, and GSE41613/xGSE42743)
+or more GEO datasets (*GEO2837, GSE40774, ***GSE65858, **GSE117973, GSE148944, and GSE41613/xGSE42743)
 * GSE2837 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837
 
 *** https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65858 GSE65858
 https://onlinelibrary.wiley.com/doi/full/10.1002/ijc.29649
-OS event and RFS event and survival time
-n=270\cite{Wichmann2015}
-Each array on the HumanHT-12 v4 Expression BeadChip targets more than 31,000 annotated genes with more than 47,000 probes derived from the \acrfull{ncbi} Reference Sequence (RefSeq) Release 38 (November 7, 2009) and other sources.
 % https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL10558
 
 **  (GSE117973) Patients of the Heidelberg Center for Personalized Oncology-Head and Neck Cancer (HIPO-HNC) cohort (n = 87, GSE117973) were treated between 2012 and 2016 at the University Hospital Heidelberg, Germany.
@@ -836,6 +848,9 @@ Second, trying to find an optimal cutpoint of that \acrshort{rna} expression dat
 Thus, the false positives and adjustment of multiple comparisons should be corrected by \acrfull{fdr}.
 And further validation of those candidate is required in the other independent dataset.% in larger patient populations.
 %warrant.
+
+***
+Third, dissection of ZSWIM2\_archive.Rda % 其實最困難的在於 unknown error (ZSWIM2) due to heterogeneity of 20500 RNA-Seq expression data files.
 
 \end{MyColorPar} % end of red
 
