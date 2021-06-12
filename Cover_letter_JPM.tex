@@ -467,30 +467,69 @@ We appreciate the reviewer for the critical comments and thanks for the agreemen
 Validation rate:\\
 %重新挑選 candidate (FDR100) 多選一些、偷偷看答案(GSE2837 and GSE65858)
 
-%{
+*** Table 1/2 caption, Fig KP plot: FDR P value (要改為真的FDR) [line 196]
+
+% [2021/06/11]決議;
+***  PvalueTex consensus with GSE2837 to yield 9 candidates
+% problem of it (少 n=30, and RFS only: validation rate 14/100 而且 10% cutoff)
+x Prognoscan (GSE2837) (n=30 less)  RFS only:  10\% cutoff to yield a \textit{P}-value < 0.05.\\
+%找出  9 candidates
+listed as
 six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
 four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
 %}
 
-Validation by:
-% SurvExpress http://bioinformatica.mty.itesm.mx:8080/Biomatec/SurvivaX.jsp
-x Saintigny Mao Survival Oral cancer GSE26549 (n=86) with features of OSCC outcome (no time), Gender, Race, Alcohol, and Smoking.
-Petel Head and Neck Squamous Cell Carcinoma E-MTAB-1328 (n=89) RFS(metastasis) with time
-% https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-1328/
-Chung Parker Head and Neck GSE10300 (n=44), RFS with time
-x Prognoscan (GSE2837) (n=30) 不行，太少 n=30, and RFS only: validation rate 14/100 而且 10% cutoff
-%TCIA CPTAC (not HPA 抗體很少）
+We further
+validate them by using a independent HNSCC cohort (GSE65858, with RNA-Seq expression data): 
+% (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002      Gene.Symbol KM.Pvalue FDR.KMpvalue uni_HR   FDR.Pvalue
+1524     CAMK2N1   0.00687   0.03782500  1.814 1.628308e-05
+3967       FCGBP   0.01020   0.03886709  0.573 4.827833e-05
+5262        IL19   0.03390   0.04738901  0.630 6.543871e-06
+5264        IL19   0.00269   0.03068073  0.630 6.543871e-06
 
-This collection contains subjects from the National Cancer Institute’s Clinical Proteomic Tumor Analysis Consortium Head-and-Neck cancer (CPTAC-HNSCC) cohort.
+CAMK2N1, IL19, and FCGBP
+%candidate_fdr100
+(please see Figure \ref{fig:hazards534}).
+
+%Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
+% by Validation_GSE65858_survival.R
+% Rplot_GSE65858_CoxHR_CAMK2N1_validated.pdf
+
+\begin{figure}
+    \centering
+    \includegraphics[width=13cm]{Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf}
+    \bcaption{Validation cohort (GSE65858)}{
+    This HNSCC cohort has been applied for validation of our candidate genes: "CAMK2N1", "IL19" (two probes), and "FCGBP".
+    There are 270 HNSCC participants involved in this cohort.
+    The number of genes (or probes of RNA-Seq in platform GPL10558, Illumina HumanHT-12 V4.0 expression beadchip) is 30330.
+    Total 534 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05
+    (\textcolor{red}{Red spots}: hazard ratio is greater than 1.0;
+    \textcolor{green}{Green spots}: hazard ratio is under than 1.0).\\
+    The 22 gene symbol listed on the side: hazard ratio $> 1.8$ or $< 0.6$.\\
+    (X-axis: Kaplan-Meier survival estimates, with \acrshort{fdr}-adjusted \textit{P} value (log10 transformed);
+    Y-axis: the hazard ratio (HR) under Cox proportional hazard regression model)
+    }
+    \label{fig:hazards534}
+\end{figure}
+
+
+% SurvExpress http://bioinformatica.mty.itesm.mx:8080/Biomatec/SurvivaX.jsp
+%x Saintigny Mao Survival Oral cancer GSE26549 (n=86) with features of OSCC outcome (no time), Gender, Race, Alcohol, and Smoking.
+%Petel Head and Neck Squamous Cell Carcinoma E-MTAB-1328 (n=89) RFS(metastasis) with time
+% https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-1328/
+%Chung Parker Head and Neck GSE10300 (n=44), RFS with time
+
+%TCIA CPTAC (not HPA 抗體很少）
+%This collection contains subjects from the National Cancer Institute’s Clinical Proteomic Tumor Analysis Consortium Head-and-Neck cancer (CPTAC-HNSCC) cohort.
 %https://wiki.cancerimagingarchive.net/display/Public/CPTAC-HNSCC
-As digital tissue microarray? 
+%As digital tissue microarray? 
 
 
 %%%
 *the authors should look for more data to verify these biomarkers.
 For validation by GEO datasets:
 
-% 
+[materials and methods]
 National Center for Biotechnology Information Reference Sequence (NCBI) 
 %RefSeq Release 38 (November 7, 2009) 
 Gene Expression Omnibus (GEO)
@@ -502,63 +541,11 @@ GSE65858\cite{Wichmann2015} has OS event and RFS event and survival time.
 %n=270 n= 273 = ?? + 168(alive) + 88(dead) = 256
 The expression data was generated using the HumanHT-12 v4 Expression BeadChip, which targets on more than 31,000 annotated genes (47,000 probes) derived from the \acrfull{ncbi} Reference Sequence (RefSeq) Release 38 (November 7, 2009).
 % an Affymetrix Human Genome U133A microarray (HG-U133A). 
-It was used as a validation dataset. 
+It was used as a validation dataset. \\
 
-
-%https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/geo/
-
-by TMA IHC of HNSCC (provided by Prof. Michael Hsiao)
-or CPTAC (digital TMA, not HPA)i
-
-or more GEO datasets (*GEO2837, GSE40774, ***GSE65858, **GSE117973, GSE148944, and GSE41613/xGSE42743)
-* GSE2837 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837
-
-*** https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65858 GSE65858
-https://onlinelibrary.wiley.com/doi/full/10.1002/ijc.29649
-% https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL10558
-
+GSE117973
 **  (GSE117973) Patients of the Heidelberg Center for Personalized Oncology-Head and Neck Cancer (HIPO-HNC) cohort (n = 87, GSE117973) were treated between 2012 and 2016 at the University Hospital Heidelberg, Germany.
-PFS and DSS event and months
-
-*x* \cite{Zhao2018} used GSE41613 (with survival data of 97 HNSCC cohort) for DEGs.
-GEO2R: GSE41613 and GSE42743 可是*** has only 131 genes of the Affymetrix array data % https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE41613
-from 97 HPV-negative OSCC patients %on the 131 gene 
-to identify a model for prediction of OSCC-specific survival\cite{Lohavanichbutr2013}.
-
-x 7. Integration of molecular gene signatures with clinicopathological variables improves staging and outcome prediction of oral cancer.
-(Submitter supplied) The aim of this study is to identify and validate clinically implementable gene signatures for outcome prediction of patients with oral squamous cell carcinoma.
-Organism:	Homo sapiens
-Type:		Expression profiling by array
-Platform: GPL6480 99 Samples
-FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE84nnn/GSE84846/
-Series		Accession: GSE84846	ID: 200084846
-only alive or death (no survival time) => Similarly preprocessed VUmc (GSE84846) and UMCU (GSE30788) microarray datasets (https://www.oncotarget.com/article/19576/text/)
-\cite{Mes2017}
-
-%as following: % search by StarGEO ===========
-StarGEO http://stargeo.org/ searching: HNSCC + survival (n>100]
-* GSE2837 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837
-
-
-x https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40774
-n=134; Agilent-026652 Whole Human Genome Microarray 4x44K v2 (Probe Name version)
-supplementary data:
-https://clincancerres.aacrjournals.org/content/21/4/870.figures-only#fig-data-additional-files
-n=134 (no survival)
-# Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma getGEO("GSE40774", GSEMatrix =TRUE, cex=1.5)library("maptools") 
-
-
-
-
-x https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE148944
-   784 probes (gene）
-n=40; 110 FFPE samples were collected from a retrospective cohort of 67 OTSCC patients and 10 non-cancerous tongue samples. Targets including CD4, CD8, FOXP3, PD-L1 and PD-1 were analyzed by immunohistochemistry. The Nanostring PanCancer Immune Profiling Panel was used for gene expression profiling. Data were externally validated in the TCGA head and neck (HNSCC), melanoma and lung squamous cell carcinoma (LSCC) cohorts.
-GPL28285 NanoString nCounter PanCancer Immune Profiling Panel
-
-
-https://onlinelibrary.wiley.com/doi/full/10.1002/cam4.3106
-.................
-
+PFS and DSS event and months.
 
 
 % *** how to do? ROC
@@ -660,8 +647,9 @@ All covariates has been pool in the hazard function h(t) to estimate their impac
 
 
 \subsection*{2-5}
-% gene signature
+% gene signature or cluster of genes
 Here is another suggestion. To maximize the use of continuous expression values, the author can build a multivariable model (e.g., logistic regression) integrating multiple genes.
+% to avoid a cutoff: a good idea
 
 
 %
@@ -687,6 +675,10 @@ risk score = $expression_{gene1} \times \beta_{gene1} + expression_{gene2} \time
 
  
 ***Ultimately, the gene expression profile from the GEO and OSCC cell lines and tissues were used to verify these primitive biomarkers. In addition, a combination of two or more biomarkers was performed to predict OSCC overall survival according to the gene expression in TCGA\cite{Huang2019}.
+
+** or using %Rplot_GSE65858_CoxHR1.5_top19.pdf
+KM estimate and Cox modeling to yield a geographically closed gene cluster:
+CAMK2N1, TIMM10, TNFAIP6, SPP1, ADAMTSL2.
 
 \end{MyColorPar}
 %
@@ -851,6 +843,19 @@ And further validation of those candidate is required in the other independent d
 
 ***
 Third, dissection of ZSWIM2\_archive.Rda % 其實最困難的在於 unknown error (ZSWIM2) due to heterogeneity of 20500 RNA-Seq expression data files.
+# deal with return(1), return(2) and return(3) errors, try to solve it
+32.2\% error01, ZSWIM2 skip from contingencyTCGA(), it is one group issue in Melt() function.
+21.05\% errors in  one group in survdiff on KM cutofFinder_func.R.
+0.78\%(159 genes) for unknown reason
+%# _marginS_
+%n_percent_Bonferroni <- ZSWIM2_2$Freq[1]/sum(ZSWIM2_2$Freq) # 0.4593171 -> 0.4581951
+%error01_sample <- which(ZSWIM2$X3==1) #  32.2\% error01: "ZSWIM2 skip from contingencyTCGA()"): one group issue in Melt()
+%# => *** re-run
+%error02_sample <- which(ZSWIM2$X3==2) # 14.2\% error02: There has only one group in survdiff.
+%error03_sample <- which(ZSWIM2$X3==3) # 6.85\% error03: There has only one group in survdiff on KM cutofFinder_func.R.
+%#=> Test for difference (log-rank test is multiple Chi-square alone survival time) with P-value; or Test for different KM curve between two groups (seperated by PMM1_median 0 vs 1)
+% error05_sample <- which(ZSWIM2$X3==5) # 0.78\%(159 genes) error05: for why?
+
 
 \end{MyColorPar} % end of red
 
