@@ -512,6 +512,32 @@ CAMK2N1, IL19, and FCGBP
     \label{fig:hazards534}
 \end{figure}
 
+2021/06/13
+CAMK2N1, IL19, and FCGBP is validated?
+%candidate_fdr100
+
+(please see Figure \ref{fig:hazards3}).
+
+%Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
+% by Validation_GSE65858_survival.R
+% Rplot_GSE65858_CoxHR_CAMK2N1_validated.pdf
+
+\begin{figure}
+    \centering
+    \includegraphics[width=13cm]{Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_top3FDRKM.pdf}
+    \bcaption{Validation cohort (TCGA HNSCC)}{
+    This HNSCC cohort has been applied for validation of our candidate genes: "CAMK2N1", "IL19", and "FCGBP".
+    There are 270 HNSCC participants involved in this cohort.
+    The number of genes (or probes of RNA-Seq in platform GPL10558, Illumina HumanHT-12 V4.0 expression beadchip) is 30330.
+    Total 534 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05
+    (\textcolor{red}{Red spots}: hazard ratio is greater than 1.0;
+    \textcolor{green}{Green spots}: hazard ratio is under than 1.0).\\
+    The 22 gene symbol listed on the side: hazard ratio $> 1.8$ or $< 0.6$.\\
+    (X-axis: Kaplan-Meier survival estimates, with \acrshort{fdr}-adjusted \textit{P} value (log10 transformed);
+    Y-axis: the hazard ratio (HR) under Cox proportional hazard regression model)
+    }
+    \label{fig:hazards3}
+\end{figure}
 
 % SurvExpress http://bioinformatica.mty.itesm.mx:8080/Biomatec/SurvivaX.jsp
 %x Saintigny Mao Survival Oral cancer GSE26549 (n=86) with features of OSCC outcome (no time), Gender, Race, Alcohol, and Smoking.

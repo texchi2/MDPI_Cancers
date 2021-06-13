@@ -443,7 +443,7 @@ First, although \acrshort{tcga} genomics data has been harmonized, two things we
 %
 that is because of ...
 %[main\_marginSFP\_HNSCC.R] line 1361
-osccT_2021 <- osccT[c(30,31)] %[30] "days_to_last_followup", [31] "days_to_last_known_alive" 
+osccT\_2021 <- osccT[c(30,31)] %[30] "days_to_last_followup", [31] "days_to_last_known_alive" 
 OS\_live_days /30 % derived from last followup [30]/ last known alive [31])
 event (alive) to censored (status 0) % to handle missing data of censored by OS_months imputation
 R help from Jorge I Velez
@@ -484,7 +484,9 @@ The workflow, shown in Figure \ref{fig:figure1}, scanned 20,500 human protein-co
 \bcaption{A workflow of \acrshort{hnscc} biomarker discovery}
 {The workflow includes data retrieval from TCGA GDC data portal, data process with merging and cleaning,% should be modified aggressively according to different sources of database)
 then performing the survival analyses (within \textcolor{yellow}{yellow} square). The Cutoff engine (in R script: cutofFinder\_func.HNSCC.R, a serial cut for grouping patients with \textcolor{asparagus}{low} or \textcolor{red}{high} expression of a specific gene, to yield a collection of \textit{P} values; please see Materials and Methods section for details) might calculate all possible Kaplan-Meier \textit{P} values (corrected by \acrlong{fdr}, FDR, method) to find the optimal cutoff value of gene expression for subsequent Cox modeling.
-The candidate selection performs dissecting and selection of candidate genes by further Bonferroni adjusted \textit{P} values as well as a hazard ratio of Cox model, based on the results from the survival analyses. The selected genes will be validated by a independent HNSCC cohort (GSE2837).
+The candidate selection performs 1) dissecting and selection of candidate genes by further Bonferroni adjusted \textit{P} values as well as a hazard ratio of Cox model, based on the results from the survival analyses;
+2) survival analyses of the other HNSCC dataset (GSE6585) using Kaplan-Meier estimate (KM, with FDR correction) and Cox modeling (CoxHR).\\
+The selected genes have been validated by third HNSCC cohort (GSE2837).
 (HNSCC: head and neck squamous cell carcinoma; TCGA: the Cancer Genome Atlas; RNA-Seq: RNA sequencing; GDC: Genomic Data Commons.)}
 \label{fig:figure1}
 % Description:1) FDR correction of Kaplan-Meier \textit{P} values during Cutoff finding; and 2) Bonferroni correction of Kaplan-Meier \textit{P} values after Cox modeling for candidate selection.
@@ -504,8 +506,8 @@ The 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate ta
 The 967 genes were kept by criteria of uncorrected \textit{P} value (below 0.05) and \acrfull{hr} (greater than 1.5 or less than 0.5) (see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b) multivariate plots). 
 At the final step, a stringent criteria (Bonferroni \textit{P} value correction) was used to yield twenty candidates (see Figure \ref{fig:figure2}(c), (d)). 
 % before validation
-Among these candidates, ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of  \acrshort{os} (see Table \ref{table:table1}). 
-The other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{table:table3}, with their gene name).
+Among these candidates, ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of  \acrshort{os} (see Table \ref{tab:newTable1}). 
+The other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{tab:newTable1}, with their gene name).
 We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot reveals that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
 % => after validation: The result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
 
@@ -544,107 +546,69 @@ Thus, these 10 candidates have been confirmed by a comparative study using the G
 % wide table \usepackage{tabularx}
 % makecell{}
 
-\begin{table}
-%\begin{sidewaystable}[hp]
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+
+\begin{table}[ht]
 \centering
-\caption{ The top 10 genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by adjusted \textit{P} value) }
-\arrayrulecolor[rgb]{0.255,0.255,0.255}
-\resizebox{\linewidth}{!}{
-%\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
-\begin{tabularx}{\textwidth}{|l|p{3.5cm}|l|l|l|l|l|l|c|} % *** capital X or p{2cm}
-% p{2cm}
+\caption{The top 3 genes with prognostic impact in HNSCC (ranked by Bonferroni-adjusted \textit{P} values}
+\label{tab:newTable1}
+\resizebox{\linewidth}{!}{% \textwidth
+\begin{tabular}{|l|l|l|c|c|c|c|c|c|}
 \hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}}     & \multicolumn{2}{c|}{Kaplan-Meier survival}                                                                                   & \multicolumn{2}{c|}{Univariate~}                                                        & \multicolumn{2}{c|}{Multivariate}                                                       & \multirow{2}{*}{Remark}                     \\ 
-\cline{3-8}
-\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                      & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}FDR \\\textit{P} value\end{tabular}}               & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Bonferroni \\\textit{P} value\end{tabular}} & \multicolumn{1}{c|}{HR*}                   & 95\% CI                                    & HR*                                        & 95\% CI                                    &                                             \\ 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{2}{c|}{} &
+  \multicolumn{2}{c|}{Kaplan-Meier survival} &
+  \multicolumn{2}{c|}{Univariate} &
+  \multicolumn{2}{c|}{Multivariate} \\ \cline{4-9} 
+\multicolumn{1}{|c|}{\multirow{-2}{*}{Gene ID}} &
+  \multicolumn{2}{c|}{\multirow{-2}{*}{Gene Description}} &
+  \begin{tabular}[c]{@{}c@{}}FDR\\ \textit{P} value\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}Bonferroni\\ \textit{P} value\end{tabular} &
+  HR* &
+  95\% CI &
+  HR* &
+  95\% CI \\ \hline
+CAMK2N1 &
+  \multicolumn{2}{l|}{\begin{tabular}[c]{@{}l@{}}calcium/calmodulin-\\ dependent protein\\ kinase II inhibitor 1\end{tabular}} &
+  \num{2.9e-7} &
+  0.002 &
+  2.101 &
+  1.572-2.809 &
+  2.007 &
+  1.490-2.704 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+{\color[HTML]{333333} IL19} &
+  \multicolumn{2}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{333333} interleukin 19}} &
+  {\color[HTML]{333333} \num{3.7e-7}} &
+  {\color[HTML]{333333} 0.002} &
+  {\color[HTML]{333333} 0.472} &
+  {\color[HTML]{333333} 0.351-0.635} &
+  {\color[HTML]{333333} 0.459} &
+  {\color[HTML]{333333} 0.340-0.619} \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+{\color[HTML]{333333} FCGBP} &
+  \multicolumn{2}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{333333} \begin{tabular}[c]{@{}l@{}}Fc fragment of\\  IgG binding protein\end{tabular}}} &
+  {\color[HTML]{333333} \num{1.2e-6}} &
+  {\color[HTML]{333333} 0.008} &
+  {\color[HTML]{333333} 0.484} &
+  {\color[HTML]{333333} 0.359-0.653} &
+  {\color[HTML]{333333} 0.496} &
+  {\color[HTML]{333333} 0.366-0.674} \\ \hline
+\multicolumn{9}{|l|}{} \\
+\multicolumn{9}{|l|}{\multirow{-2}{*}{\begin{tabular}[c]{@{}l@{}}Selection criteria:
+1) Kaplan-Meier Bonferroni-adjusted \textit{P} \textless 0.05;
+2) Cox’s univariate and multivariate HR \textgreater{}= 1.8 or \textless{}= 0.5\end{tabular}}} \\ 
+%\hline
 \hline
-DKK1                                           & dickkopf WNT signaling pathway inhibitor 1                 & \num{8.9e-8}                               & 0.001                                                                           & 2.266                                      & 1.666-3.082                                & 2.135                                      & 1.559-2.924                                &                                           \\ 
-\hline
-CAMK2N1                                        & calcium/calmodulin-dependent protein kinase II inhibitor 1 & \num{2.9e-7}                               & 0.002                                                                           & 2.101                                      & 1.572-2.809                                & 2.007                                      & 1.490-2.704                                & \checkmark                                          \\ 
-\hline
-STC2                                           & stanniocalcin 2                                            & \num{6.5e-7}                               & 0.004                                                                           & 2.147                                      & 1.578-2.921                                & 2.075                                      & 1.515-2.843                                &                                           \\ 
-\hline
-PGK1                                           & phosphoglycerate kinase 1                                  & \num{9.1e-7}                               & 0.006                                                                           & 2.127                                      & 1.563-2.895                                & 2.046                                      & 1.498-2.795                                & \checkmark                                          \\ 
-\hline
-SURF4                                          & surfeit 4                                                  & \num{9.6e-7}                               & 0.006                                                                           & 2.055                                      & 1.531-2.757                                & 2.089                                      & 1.543-2.829                                & \checkmark                                           \\ 
-\hline
-USP10                                          & ubiquitin specific peptidase 10                            & \num{1.7e-6}                               & 0.012                                                                           & 2.083                                      & 1.532-2.834                                & 2.119                                      & 1.551-2.895                                & \checkmark                                         \\ 
-\hline
-NDFIP1                                         & Nedd4 family interacting protein 1                         & \num{2.6e-6}                               & 0.017                                                                           & 2.031                                      & 1.502-2.746                                & 2.027                                      & 1.483-2.771                                & \checkmark                                           \\ 
-\hline
-FOXA2                                          & forkhead box A2                                            & \num{2.7e-6}                               & 0.018                                                                           & 1.976                                      & 1.479-2.640                                & 1.914                                      & 1.426-2.569                                & \checkmark                                          \\ 
-\hline
-STIP1                                          & stress-induced-phosphoprotein 1                            & \num{4.3e-6}                              & 0.029                                                                           & 1.958                                      & 1.463-2.621                                & 1.957                                      & 1.451-2.640                                &                                           \\ 
-\hline
-DKC1                                           & dyskeratosis congenita 1, dyskerin                         & \num{6.3e-6}                               & 0.042                                                                           & 2.046                                      & 1.490-2.808                                & 1.837                                      & 1.332-2.534                                &                                           \\ 
-\hline
-\multicolumn{1}{|l!{\color{black}\vrule}}{}    & \multicolumn{1}{l!{\color{black}\vrule}}{}                 & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}                                      & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}  \\ 
-\arrayrulecolor{black}\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier Bonferroni-adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate$ HR >= 1.5$ \end{tabular}}                                                                                                                                                                                                                                                              \\ 
-\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{* Cox's model: \textit{P} $< 0.001$ }                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
-\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{Remark: \checkmark validated by GSE2837}                                                                                                                                                                                                                                                                                                                                                             \\
-\hline
-\end{tabularx}
+\end{tabular}%
 }
-\arrayrulecolor{black}
-\label{table:table1}
-
-%\end{sidewaystable}
 \end{table}
-
-
 
 
 %\subsubsection{Table3/legend} or Table 2
-%Table2. The 10 candidate genes overexpressed with better prognosis in HNSCC (ranked by Bonferroni corrected Kaplan-Meier P-value).
-\begin{table}[hp]
-\centering
-\caption{The other top 10 genes overexpressed with better prognosis in \acrshort{hnscc} (ranked by corrected \textit{P} value) }
-\arrayrulecolor[rgb]{0.255,0.255,0.255}
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{|l|l|l|l|l|l|l|l|c|} 
-\hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}} & \multicolumn{2}{l|}{Kaplan-Meier survival}                                                                                                                                                & \multicolumn{2}{c|}{Univariate~}                                                                        & \multicolumn{2}{c|}{Multivariate}                                                                       & \multicolumn{1}{l|}{\multirow{2}{*}{Remark}}  \\ 
-\cline{3-8}
-\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}FDR\\~\textit{P} value\end{tabular}}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}Bonferroni\\~\textit{P} value\end{tabular}} & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{l|}{}                         \\ 
-\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
-ZNF557                                         & zinc finger protein 557                                & \multicolumn{1}{l!{\color{black}\vrule}}{\textcolor[rgb]{0,0,0.471}{\num{8.6e-8}}} & \multicolumn{1}{l!{\color{black}\vrule}}{0.001}                                                      & \multicolumn{1}{l!{\color{black}\vrule}}{0.465} & \multicolumn{1}{l!{\color{black}\vrule}}{0.348-0.619} & \multicolumn{1}{l!{\color{black}\vrule}}{0.499} & \multicolumn{1}{l!{\color{black}\vrule}}{0.372-0.669} &                                              \\ 
-\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
-ZNF266                                         & zinc finger protein 266                                & \textcolor[rgb]{0,0,0.471}{\num{2.2e-7}}                                           & 0.001                                                                                                & 0.474                                           & 0.355-0.632                                           & 0.453                                           & 0.338-0.607                                           &                                              \\ 
-\hline
-IL19                                           & interleukin 19                                         & \textcolor[rgb]{0,0,0.471}{}\num{3.7e-7}\textcolor[rgb]{0,0,0.471}{}               & 0.002                                                                                                & 0.472                                           & 0.351-0.635                                           & 0.459                                           & 0.340-0.619                                           & \checkmark                                            \\ 
-\hline
-MYO1H                                          & myosin 1H                                              & \textcolor[rgb]{0,0,0.471}{}\num{3.8e-7}\textcolor[rgb]{0,0,0.471}{}               & 0.003                                                                                                & 0.468                                           & 0.347-0.632                                           & 0.467                                           & 0.344-0.634                                           &                                              \\ 
-\hline
-FCGBP                                          & Fc fragment of IgG binding protein                     & \textcolor[rgb]{0,0,0.471}{}\num{1.2e-6}\textcolor[rgb]{0,0,0.471}{}               & 0.008                                                                                                & 0.484                                           & 0.359-0.653                                           & 0.496                                           & 0.366-0.674                                           &  \checkmark                                           \\ 
-\hline
-LOC148709                                      & LncRNA LOC148709                                       & \textcolor[rgb]{0,0,0.471}{\num{1.5e-6}}                                           & 0.010                                                                                                & 0.499                                           & 0.374-0.666                                           & 0.485                                           & 0.361-0.652                                           &                                              \\ 
-\hline
-EVPLL                                          & envoplakin-like protein                                & \textcolor[rgb]{0,0,0.471}{\num{2.0e-6}}                                           & 0.013                                                                                                & 0.490                                           & 0.363-0.661                                           & 0.494                                           & 0.364-0.672                                           &                                              \\ 
-\hline
-PNMA5                                          & paraneoplastic antigen like 5                          & \textcolor[rgb]{0,0,0.471}{\num{2.6e-6}}                                           & 0.017                                                                                                & 0.499                                           & 0.371-0.671                                           & 0.481                                           & 0.357-0.650                                           &                                              \\ 
-\hline
-KIAA1683                                       & new name as IQ Motif Containing N (IQCN)                           & \textcolor[rgb]{0,0,0.471}{\num{3.1e-6}}                                           & 0.020                                                                                                & 0.500                                           & 0.371-0.673                                           & 0.483                                           & 0.356-0.654                                           &   \checkmark                                           \\ 
-\hline
-NPB                                            & neuropeptide B                                         & \textcolor[rgb]{0,0,0.471}{\num{4.0e-6}}                                           & 0.027                                                                                                & 0.460                                           & 0.328-0.646                                           & 0.457                                           & 0.324-0.646                                           &      \checkmark                                        \\ 
-\hline
-                                               &                                                        &                                                                                    &                                                                                                      &                                                 &                                                       &                                                 &                                                       & \multicolumn{1}{l|}{}                         \\ 
-\hline
-\multicolumn{9}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier Bonferroni-adjusted \textit{P} value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textgreater{}= 1.5\\
-%\hline
-%\multicolumn{9}{|l!{\color{black}\vrule}}{
-* Cox's model: \textit{P} $< 0.001$ \\
-%}                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
-%\hline
-lncRNA: Long non-coding RNA\\Remark: \checkmark Validated by GSE2837 ~\end{tabular}}                                                                                                                                                                                                                 \\
-\hline
-\end{tabular}
-}
-\arrayrulecolor{black}
-\label{table:table3}
-\end{table}
 
 
 
@@ -683,7 +647,8 @@ Conversely, the most associated gene with better survival is \acrfull{IL19}. In 
 
 \clearpage
 
-Table \ref{table:table1} shows ten overexpressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value.
+Table %\ref{table:table1}
+\ref{tab:newTable1} shows ten overexpressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value.
 Six out of ten genes has been validated by using GSE2837.
 We found those six candidates have the Cox's univariate and multivariate HR above 1.914.
 %There were few published articles of \acrfull{SURF4} and \acrfull{NDFIP1} (\acrshort{NEDD4}: \acrlong{NEDD4}), which were related to cancer research.
@@ -761,7 +726,8 @@ The M stage could be ignored in this cohort due to only 3 out of 414 patients wi
 
 
 
-In Table \ref{table:table3}, the other ten overexpressed genes have been found in better prognosis of \acrshort{hnscc} patients. Cox's univariate and multivariate HR is under 0.5.
+In Table \ref{tab:newTable1}, %{table:table3}, 
+the other ten overexpressed genes have been found in better prognosis of \acrshort{hnscc} patients. Cox's univariate and multivariate HR is under 0.5.
 Four out of ten has been validated by using GSE2837.
 In Table \ref{table:table4},
 after adjustment of confounders, prognosis is influenced by advance clinical T Status (HR 1.961 [95\% CI: 1.035-3.714, \textit{P} = 0.039] ), positive surgical margin involvement (HR 1.631 [95\% CI: 1.18-2.254, \textit{P} = 0.003]) , and higher tobacco exposure (HR 1.453 [95\% CI: 1.055-2.000, \textit{P} = 0.022]).
