@@ -41,6 +41,7 @@
 % The option pdftex is for use with pdfLaTeX. If eps figures are used, remove the option pdftex and use LaTeX and dvi2pdf.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Tex
+\usepackage{tikz-imagelabels} % for  tikz
 \usepackage[]{caption} % bf
 \newcommand{\bcaption}[2]{\caption{\textbf{#1} #2}}
 \usepackage{outlines}
@@ -508,7 +509,8 @@ At the final step, a stringent criteria (Bonferroni \textit{P} value correction)
 % before validation
 Among these candidates, ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of  \acrshort{os} (see Table \ref{tab:newTable1}). 
 The other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{tab:newTable1}, with their gene name).
-We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot reveals that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
+We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:hazards3}). %{fig:figure3}). 
+The plot reveals that the top 20 genes (Bonferroni-adjusted \textit{P} $< 0.05$) are located on the peaks. At the same time, Cox's HR separated them on the two-side with prognostic impact.
 % => after validation: The result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
 
 %注意 強調GSE2837: 
@@ -535,14 +537,14 @@ Thus, these 10 candidates have been confirmed by a comparative study using the G
 \begin{figure}[hp]
 \centering
 \includegraphics[width=14cm]{Figure2.pdf}
-\bcaption{\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.}
+\bcaption{TCGA \acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.}
 {(a) Univariate HR versus uncorrected \textit{P} value; (b) Multivariate HR versus uncorrected \textit{P} value; (c) Univariate HR versus Bonferroni corrected \textit{P} value; and (d) Multivariate HR versus Bonferroni corrected \textit{P} value.}
 \label{fig:figure2}
 \end{figure}
 
 % tables 1  3
 %%% tables
-% Table1
+% Table1 = merged table 1and2
 % wide table \usepackage{tabularx}
 % makecell{}
 
@@ -551,9 +553,9 @@ Thus, these 10 candidates have been confirmed by a comparative study using the G
 % \usepackage{graphicx}
 % \usepackage[table,xcdraw]{xcolor}
 
-\begin{table}[ht]
+\begin{table}[hp]
 \centering
-\caption{The top 3 genes with prognostic impact in HNSCC (ranked by Bonferroni-adjusted \textit{P} values}
+\caption{The top 3 genes with prognostic impact in HNSCC}% (ranked by Bonferroni-adjusted \textit{P} values}
 \label{tab:newTable1}
 \resizebox{\linewidth}{!}{% \textwidth
 \begin{tabular}{|l|l|l|c|c|c|c|c|c|}
@@ -561,8 +563,8 @@ Thus, these 10 candidates have been confirmed by a comparative study using the G
 \multicolumn{1}{|c|}{} &
   \multicolumn{2}{c|}{} &
   \multicolumn{2}{c|}{Kaplan-Meier survival} &
-  \multicolumn{2}{c|}{Univariate} &
-  \multicolumn{2}{c|}{Multivariate} \\ \cline{4-9} 
+  \multicolumn{2}{c|}{Cox Univariate} &
+  \multicolumn{2}{c|}{Cox Multivariate} \\ \cline{4-9} 
 \multicolumn{1}{|c|}{\multirow{-2}{*}{Gene ID}} &
   \multicolumn{2}{c|}{\multirow{-2}{*}{Gene Description}} &
   \begin{tabular}[c]{@{}c@{}}FDR\\ \textit{P} value\end{tabular} &
@@ -579,30 +581,35 @@ CAMK2N1 &
   1.572-2.809 &
   2.007 &
   1.490-2.704 \\ \hline
-\rowcolor[HTML]{FFFFFF} 
-{\color[HTML]{333333} IL19} &
-  \multicolumn{2}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{333333} interleukin 19}} &
-  {\color[HTML]{333333} \num{3.7e-7}} &
-  {\color[HTML]{333333} 0.002} &
-  {\color[HTML]{333333} 0.472} &
-  {\color[HTML]{333333} 0.351-0.635} &
-  {\color[HTML]{333333} 0.459} &
-  {\color[HTML]{333333} 0.340-0.619} \\ \hline
-\rowcolor[HTML]{FFFFFF} 
-{\color[HTML]{333333} FCGBP} &
-  \multicolumn{2}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{333333} \begin{tabular}[c]{@{}l@{}}Fc fragment of\\  IgG binding protein\end{tabular}}} &
-  {\color[HTML]{333333} \num{1.2e-6}} &
-  {\color[HTML]{333333} 0.008} &
-  {\color[HTML]{333333} 0.484} &
-  {\color[HTML]{333333} 0.359-0.653} &
-  {\color[HTML]{333333} 0.496} &
-  {\color[HTML]{333333} 0.366-0.674} \\ \hline
+IL19 &
+  \multicolumn{2}{l|} {interleukin 19} &
+   \num{3.7e-7} &
+   0.002 &
+   0.472 &
+   0.351-0.635 &
+   0.459 &
+   0.340-0.619 \\ \hline
+FCGBP &
+  \multicolumn{2}{l|}{\begin{tabular}[c]{@{}l@{}}Fc fragment of\\  IgG binding protein\end{tabular}} &
+   \num{1.2e-6} &
+   0.008 &
+   0.484 &
+   0.359-0.653 &
+   0.496 &
+   0.366-0.674 \\ \hline
 \multicolumn{9}{|l|}{} \\
-\multicolumn{9}{|l|}{\multirow{-2}{*}{\begin{tabular}[c]{@{}l@{}}Selection criteria:
-1) Kaplan-Meier Bonferroni-adjusted \textit{P} \textless 0.05;
-2) Cox’s univariate and multivariate HR \textgreater{}= 1.8 or \textless{}= 0.5\end{tabular}}} \\ 
-%\hline
+\multicolumn{9}{|l|}%{\multirow{-0}{*}
+{\begin{tabular}[c]{@{}l@{}}
+Selection criteria (fit all):\\
+1) Kaplan-Meier Bonferroni-adjusted \textit{P} \textless 0.05;\\
+2) Cox’s univariate and multivariate HR \textgreater{}= 1.8 or \textless{}= 0.5 in TCGA cohort;\\
+3) Cox’s univariate and multivariate HR \textgreater{}= 1.8 or \textless{}= 0.5 in GSE65858 cohort
+\end{tabular}
+%}\\ % within \multirow
+} \\ % within \multicolumn
 \hline
+\multicolumn{9}{|l|}{* Cox’s model: \textit{P} \textless 0.001} \\ \hline
+
 \end{tabular}%
 }
 \end{table}
@@ -614,15 +621,25 @@ CAMK2N1 &
 
 
 %\subsubsection{Figure 3:h}
-\begin{figure}[hp]
-\centering
-\includegraphics[width=14cm]{TCGA_HNSC_Optimal_Overall_allPlot_unKM_P_multiHR-Figure3.pdf} % .png from PvalueplotKM_20genes_Bonf.pdf
-\bcaption{Volcano plot of genes under survival analyses.}
-{X axis: unadjusted \textit{P} value of Kaplan-Meier survival (-log10 transformed).
-Y axis: multivariate hazard ratio from Cox proportional regression model.
-Dotted line: significant Bonferroni corrected \textit{P} value. 
-\textcolor{red}{Red dots} mark 10 genes (unvalidated), which impact on poor prognosis ($HR>=1.5$). \textcolor{green}{Green dots} mark 10 genes (unvalidated), which affect on better survival ($HR<=0.5$).}
-\label{fig:figure3}
+\begin{figure}
+    \centering
+    \includegraphics[width=13cm]{Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_top3FDRKM.pdf}
+    \bcaption{Volcano plot of genes under survival analyses of TCGA HNSCC.}{
+%X axis: unadjusted \textit{P} value of Kaplan-Meier survival (-log10 transformed).
+%Y axis: multivariate hazard ratio from Cox proportional regression model.
+%Dotted line: significant Bonferroni corrected \textit{P} value. 
+%\textcolor{red}{Red dots} mark 10 genes (unvalidated), which impact on poor prognosis ($HR>=1.5$). \textcolor{green}{Green dots} mark 10 genes (unvalidated), which affect on better survival ($HR<=0.5$).
+    This cohort has been applied for exploration of the candidate biomarkers.
+    Total 9416 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05.
+    \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19}, \textcolor{red}{FCGBP} and the other 17 genes (marked in \textcolor{black}{black square}) have hazard ratio (HR) $> 1.8$ or $< 0.6$.\\
+    Remarks:\\
+    \textcolor{red}{Red spots}: $HR > 1.0$;
+    \textcolor{green}{Green spots}: $HR < 1.0$;\\
+    X-axis: Kaplan-Meier survival estimates, with \acrshort{fdr}-adjusted \textit{P} value (log10 transformed);\\
+    Y-axis: HR of Cox proportional hazard regression model\\
+    }
+%\label{fig:figure3}
+\label{fig:hazards3} %TCGA volcano
 \end{figure}
 % new figure of volcano plot: TCGA_HNSC_Optimal_Overall_allPlot_unKM_P_multiHR.pdf, -log10(raw KM P-value) vs Cox multivariate HR
 % X axis: "frequency" (number of uncorrected P-values less than 0.05 during Kaplan-Meier cutoff finding procedure). X axis: adjusted Kaplan-Meier P-value.
@@ -637,11 +654,42 @@ Conversely, the most associated gene with better survival is \acrfull{IL19}. In 
 %\subsubsection{Tables} in main article
 
 %\subsubsection{Figure 4:h}
+% *** Adjusted P value = 0.002 ; drawing by tikz
+% https://tex.stackexchange.com/questions/9559/drawing-on-an-image-with-tikz
+
+%font code: Computer Modern Sans Serif		cmss
+
 \begin{figure}[hp]
+
+% TCGA FDR Pvalue of CAMK2N1 (1.628308e-05), IL19 ( 6.543871e-06), FCGBP (4.827833e-05)
+\setlength{\unitlength}{1cm}
+\begin{picture}(15, 20) %(1,0.55038404)%
 \centering
-\includegraphics[width=15cm]{Figure_4_CAMK2N1_IL19.pdf}
+  \put(0,0){\includegraphics[width=14cm]{Figure_4_CAMK2N1_IL19_FCGBP.pdf}}%
+  \put(2.5, 14.3){\fontfamily{qcr}\selectfont
+  \tiny *\textit{P} = \num{1.63e-05}}%CAMK2N1
+    \put(2.5, 9.45){\fontfamily{qcr}\selectfont
+  \tiny *\textit{P} = \num{6.54e-06}}%IL19
+    \put(2.5, 4.55){\fontfamily{qcr}\selectfont
+  \tiny *\textit{P} = \num{4.83e-05}}%FCGBP
+
+%\begin{annotationimage}{width=15cm}{Figure_4_CAMK2N1_IL19_FCGBP.pdf}
+%\includegraphics[width=15cm]{Figure_4_CAMK2N1_IL19.pdf}
+%\draw[annotation left = {Aries at 0.3}]
+
+%\end{annotationimage}
+\end{picture}%
+
 \bcaption{Kaplan-Meier survival analyses, by cutoff finding.}
-{(a) Kaplan-Meier plot of CAMK2N1 under optimal \textit{P} value, and (b) the cutoff is derived from cumulative \textit{P} value plot of CAMK2N1. (c) Kaplan-Meier plot of IL19 under optimal \textit{P} value, and (d) the cutoff is derived from cumulative \textit{P} value plot of IL19.}
+{The Kaplan-Meier curves of (a) CAMK2N1, (c) IL19, and (e) FCGBP under optimal \textit{P} value. 
+%((b) the cutoffs derived from it's cumulative \textit{P} value plot).
+%(c) Kaplan-Meier plot of IL19 under optimal \textit{P} value;
+%((d) the cutoffs derived from it's cumulative \textit{P} value plot).
+%(e) Kaplan-Meier plot of FCGBP under optimal \textit{P} value.\\
+The cutoffs, in the cumulative \textit{P} value plots of (b) CAMK2N1, (d) IL19, and (f) FCGBP, respectively,
+shows that over 50\% of those unadjusted \textit{P} values are below 0.001 derived by sliding-window cutoff finding procedure.\\
+* \textit{P}: Adjusted \textit{P} value by \acrfull{fdr}
+}
 \label{fig:figure4}
 \end{figure}
 
