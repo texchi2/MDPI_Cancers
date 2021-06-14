@@ -360,7 +360,7 @@ Therefore, I recommend the authors weaken their statement of the workflow but fo
 Exploring all possible expression cutoffs is also usable but should only be used for established biomarkers. Once it is known that a gene is a strong biomarker (e.g., from a genome-wide test using fixed cutoffs), one can fine-tune the cutoffs utilizing this strategy. % percentage of genes using 50% cutoff in total 20500 genes
 
 
-\subsection*{2-1}%(ok)
+\subsection*{2-1}%(ok) [2021/06/14]
 % sliding window cutoff selection with FDR corrected
 Exploring all possible expression cutoffs is controversial. 
 A robust expression biomarker should be effective and detectable at most major cutoffs. Compared to a fixed quantile cutoff, a sliding window cutoff selection of cutoffs would capture more genes whose p-values just reach the significant level (p=0.05). 
@@ -484,11 +484,11 @@ There is more evidence to validate them (please see Answer 2-3).
 \subsection*{2-3}
 % PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity (less biomarkers but more P value < 1e-5?)
 
-% strategy should changing; run GCP Rstudio 框列更多的 candidates for GEO (GSE65858) validation
+% strategy should changing; run GCP Rstudio 框列更多的 candidates for GEO (GSE65858) during candidate selection
 In the independent test, half genes have p-values less than 0.05, and most of them have p-values $> 0.01$. % table 1 => this is Bonferroni 的結果
 Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. % the validation rate 
 The p-values are affected by the sample size, which should be described in the main text. % writing
-As I mentioned above, the authors should look for more data to verify these biomarkers. % GEO
+As I mentioned above, the authors should look for more data to verify these biomarkers. % GEO GSE65858(ok) or even GSE117973?
 
 
 
@@ -499,27 +499,22 @@ Answer
 
 % the validation rate
 % more GSE datasets; pick-up more candidate (run GCP) in hands 而且要偷看答案
-% using  receiver operating characteristic (ROC) analysis and more GEO datasets
-We appreciate the reviewer for the critical comments and thanks for the agreement of our work in cancer research.
+% x using  receiver operating characteristic (ROC) analysis and more GEO datasets
+We appreciate the reviewer for the critical comments and thanks for the guidance of our work in cancer research.
 
 %***調整 workflow 更加嚴格以增加 validation rate
-Validation rate:\\
+%Validation rate:\\
 %重新挑選 candidate (FDR100) 多選一些、偷偷看答案(GSE2837 and GSE65858)
 
-*** Table 1/2 caption, Fig KP plot: FDR P value (要改為真的FDR) [line 196]
+%*** Table 1/2 caption, Fig KP plot: FDR P value (要改為真的FDR) [line 196]
 
 % [2021/06/11]決議;
-***  PvalueTex consensus with GSE2837 to yield 9 candidates
-% problem of it (少 n=30, and RFS only: validation rate 14/100 而且 10% cutoff)
-x Prognoscan (GSE2837) (n=30 less)  RFS only:  10\% cutoff to yield a \textit{P}-value < 0.05.\\
-%找出  9 candidates
-listed as
-six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
-four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
-%}
+We introduce an independent HNSCC cohort (GSE65858) for helping in candidate selection.
+
 
 We further
 validate them by using a independent HNSCC cohort (GSE65858, with RNA-Seq expression data): 
+ to yield 3 candidates
 % (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002      Gene.Symbol KM.Pvalue FDR.KMpvalue uni_HR   FDR.Pvalue
 1524     CAMK2N1   0.00687   0.03782500  1.814 1.628308e-05
 3967       FCGBP   0.01020   0.03886709  0.573 4.827833e-05
@@ -552,9 +547,16 @@ CAMK2N1, IL19, and FCGBP
 \end{figure}
 
 2021/06/13
-CAMK2N1, IL19, and FCGBP is validated?
+CAMK2N1, IL19, and FCGBP is validated by
 %candidate_fdr100
-
+PvalueTex consensus with GSE2837 to yield 3 candidates
+% problem of it (少 n=30, and RFS only: validation rate 14/100 而且 10% cutoff)
+%x Prognoscan (GSE2837) (n=30 less)  RFS only:  10\% cutoff to yield a \textit{P}-value < 0.05.\\
+%找出  3 candidates
+listed as
+six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
+four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
+%}
 (please see Figure \ref{fig:hazards3}).
 
 %Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
@@ -593,9 +595,28 @@ CAMK2N1, IL19, and FCGBP is validated?
 %As digital tissue microarray? 
 
 
+%GSE117973
+%***  (GSE117973) Patients of the Heidelberg Center for Personalized Oncology-Head and Neck Cancer (HIPO-HNC) cohort (n = 87, GSE117973) were treated between 2012 and 2016 at the University Hospital Heidelberg, Germany.
+%PFS and DSS event and months.
+
+
+% *** how to do? ROC
+% https://compgenomr.github.io/book/assessing-the-performance-of-our-model.html
+%In addition, receiver operating characteristic (ROC) analysis was used to estimate the predictive power of this signature\cite{Huang2019}.
+%---
+
+We also modified the last paragraph in the Material and Methods section, and also described "the p-values are affected by the sample size" in the Discussion section.
+The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
+\\[0.3cm]
+
+\begin{MyColorPar}{red}
+validation rate
+***...the \textit{P} value is affected by the sample size. % TCGA has the most HNSCC sample size
+
+
 %%%
-*the authors should look for more data to verify these biomarkers.
-For validation by GEO datasets:
+% (OK)*the authors should look for more data to verify these biomarkers.
+%For validation by GEO datasets:
 
 [materials and methods]
 National Center for Biotechnology Information Reference Sequence (NCBI) 
@@ -610,24 +631,6 @@ GSE65858\cite{Wichmann2015} has OS event and RFS event and survival time.
 The expression data was generated using the HumanHT-12 v4 Expression BeadChip, which targets on more than 31,000 annotated genes (47,000 probes) derived from the \acrfull{ncbi} Reference Sequence (RefSeq) Release 38 (November 7, 2009).
 % an Affymetrix Human Genome U133A microarray (HG-U133A). 
 It was used as a validation dataset. \\
-
-GSE117973
-**  (GSE117973) Patients of the Heidelberg Center for Personalized Oncology-Head and Neck Cancer (HIPO-HNC) cohort (n = 87, GSE117973) were treated between 2012 and 2016 at the University Hospital Heidelberg, Germany.
-PFS and DSS event and months.
-
-
-% *** how to do? ROC
-% https://compgenomr.github.io/book/assessing-the-performance-of-our-model.html
-In addition, receiver operating characteristic (ROC) analysis was used to estimate the predictive power of this signature\cite{Huang2019}.
-%---
-
-We also modified the last paragraph in the Material and Methods section, and also described "the p-values are affected by the sample size" in the Discussion section.
-The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
-\\[0.3cm]
-
-\begin{MyColorPar}{red}
-validation rate
-...the \textit{P} value is affected by the sample size. % TCGA has the most HNSCC sample size
 
 \end{MyColorPar} % red
 
