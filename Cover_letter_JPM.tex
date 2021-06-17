@@ -384,7 +384,6 @@ We have corrected our statement of this workflow (please see Answer 2-2).
 We provide more evidence to validate them (please see Answer 2-3).
 
 We understand that the sliding-window selection of cutoffs would capture more genes whose \textit{P} values just reach the significant level (\textit{P}=0.05).
-(  )  Answer 2-1
 %http://bioinformatica.mty.itesm.mx:8080/Biomatec/SurvivaX.jsp run TCGA2016 in median (median cutoff; not case number 50\% 50\%)
 %=> defense: 
 %% *** 準備一張 20 candidates: accumulated \textit{P}-value plots 來(like Figure 4: (Please see supplementary Figure SXXX))
@@ -394,22 +393,26 @@ We understand that the sliding-window selection of cutoffs would capture more ge
 %[2] "HNSCC_OS_marginFree_pvalueBonferroni_sorted"
 %[3] "HNSCC_OS_marginPlus_pvalueBonferroni_sorted"
 According to our results, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 whatever grouped by cutoffs at 50\% quantile cutoff or at 70\% quantile cutoff (Please see Figure \ref{fig:figure4} in this cover letter; it is also shown in manuscript as updated "Figure 4").
-Moreover, 
-Rplot_pvaluePlot_NDFIP1.pdf
+
+Moreover, in the special case, one of our 20 preliminary candidates, gene "NDFIP1", 
+%Rplot_pvaluePlot_NDFIP1.pdf
 %  to find cases_OS outside of range 180-220 (== cutoff not at median)
 %# pvalue plot as 倒V字形 "^" or W p_OS pvalues plots (with local minials)
 % # 99 genes have one p_OS >= 0.05, in OS_pvalueTex005
-# 3641 genes have one p_OS >= 0.02, in OS_pvalueTex002
-# special case: HNSCC_survivalAnalysis_marginS_NDFIP1.xlsx
-# NDFIP1 (within our 20 candidatte biomarkers), median cut will let NDFIP1 to be kik-out prematurely
-# show it's pvalue plot
-supplementary Figure \ref{fig:pvaluePlot_NDFIP1} as Rplot_pvaluePlot_NDFIP1.pdf
+%# 3641 genes have one p_OS >= 0.02, in OS_pvalueTex002
+%# special case: HNSCC_survivalAnalysis_marginS_NDFIP1.xlsx
+%# NDFIP1 (within our 20 preliminary candidates), 
+will be kick-out prematurely in "median cutoff" of survival analysis.
+In the \textit{P} value plot (Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
+supplementary figure ??), we could see a sliding-window selection with cutoff finding might collect more candidate (\textit{P} $<0.05$) for further Cox's modeling.
+Indeed, it needs to be validated by the other independent cohort.
+%as Rplot_pvaluePlot_NDFIP1.pdf
 
 % supplementary figure
 \begin{figure}
     \centering
-    \includegraphics{Rplot_pvaluePlot_NDFIP1.pdf}
-    \caption{Caption}
+    \includegraphics[width=10cm]{Rplot_pvaluePlot_NDFIP1.pdf}
+    \caption{Under cutoff-finding procedure of Kaplan-Meier analysis, the \textit{P}-value plot of gene "NDFIP1" shows: 1) 70\% of \textit{P} value is $<0.05$; 2) the middle part (zoom-in and revealed in inset box) has a "W" curve; 3) sliding-window cutoff selection could find it's optimized \textit{P} values while a median cut might yield \textit{P} value $<0.05$ or $>0.05$ by chance.}
     \label{fig:pvaluePlot_NDFIP1}
 \end{figure}
 
@@ -510,6 +513,7 @@ There is more evidence to validate them (please see Answer 2-3).
 
 
 \subsection*{2-3}
+% [2021/06/17]
 % PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity (less biomarkers but more P value < 1e-5?)
 
 % strategy should changing; run GCP Rstudio 框列更多的 candidates for GEO (GSE65858) during candidate selection
@@ -533,64 +537,26 @@ We appreciate the reviewer for the critical comments and thanks for the guidance
 %***調整 workflow 更加嚴格以增加 validation rate
 %Validation rate:\\
 %重新挑選 candidate (FDR100) 多選一些、偷偷看答案(GSE2837 and GSE65858)
+% => answer is: consensus top3 genes
 
-%*** Table 1/2 caption, Fig KP plot: FDR P value (要改為真的FDR) [line 196]
+% (ok) Table 1/2 caption, Fig KP plot: FDR P value (要改為真的FDR) [line 196]
 
 % [2021/06/11]決議;
-We introduce an independent HNSCC cohort (GSE65858) for helping in candidate selection.
+We have introduced an independent HNSCC cohort (GSE65858, with RNA-Seq expression data) for helping in candidate selection.
+%We further
+%validate them by using a independent HNSCC cohort (GSE65858, with RNA-Seq expression data)
 
-
-We further
-validate them by using a independent HNSCC cohort (GSE65858, with RNA-Seq expression data): 
- to yield 3 candidates
-% (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002      Gene.Symbol KM.Pvalue FDR.KMpvalue uni_HR   FDR.Pvalue
-1524     CAMK2N1   0.00687   0.03782500  1.814 1.628308e-05
-3967       FCGBP   0.01020   0.03886709  0.573 4.827833e-05
-5262        IL19   0.03390   0.04738901  0.630 6.543871e-06
-5264        IL19   0.00269   0.03068073  0.630 6.543871e-06
-
-CAMK2N1, IL19, and FCGBP
-%candidate_fdr100
-(please see Figure \ref{fig:hazards534}).
-
-%Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
-% by Validation_GSE65858_survival.R
-% Rplot_GSE65858_CoxHR_CAMK2N1_validated.pdf
-
-\begin{figure}
-    \centering
-    \includegraphics[width=13cm]{Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf}
-    \bcaption{Validation cohort (GSE65858)}{
-    This HNSCC cohort has been applied for validation of our candidate genes: "CAMK2N1", "IL19" (two probes), and "FCGBP".
-    There are 270 HNSCC participants involved in this cohort.
-    The number of genes (or probes of RNA-Seq in platform GPL10558, Illumina HumanHT-12 V4.0 expression beadchip) is 30330.
-    Total 534 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05
-    (\textcolor{red}{Red spots}: hazard ratio is greater than 1.0;
-    \textcolor{green}{Green spots}: hazard ratio is under than 1.0).\\
-    The 22 gene symbol listed on the side: hazard ratio $> 1.8$ or $< 0.6$.\\
-    (X-axis: Kaplan-Meier survival estimates, with \acrshort{fdr}-adjusted \textit{P} value (log10 transformed);
-    Y-axis: the hazard ratio (HR) under Cox proportional hazard regression model)
-    }
-    \label{fig:hazards534}
-\end{figure}
-
-2021/06/13
-CAMK2N1, IL19, and FCGBP is validated by
-%candidate_fdr100
-PvalueTex consensus with GSE2837 to yield 3 candidates
 % problem of it (少 n=30, and RFS only: validation rate 14/100 而且 10% cutoff)
 %x Prognoscan (GSE2837) (n=30 less)  RFS only:  10\% cutoff to yield a \textit{P}-value < 0.05.\\
 %找出  3 candidates
-listed as
-six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
-four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
+Even the top 20 genes listed
+%six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
+%four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
 %}
-(please see Figure \ref{fig:hazards3}).
-
+in Figure \ref{fig:hazards3}, have significant FDR-adjusted \textit{P} values in Kaplan-Meier estimate, and survival impact on HR ($> 1.8$ or $< 0.6$) in Cox's model. 
 %Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
 % by Validation_GSE65858_survival.R
 % Rplot_GSE65858_CoxHR_CAMK2N1_validated.pdf
-
 \begin{figure}
     \centering
     \includegraphics[width=13cm]{Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_top3FDRKM.pdf}
@@ -610,6 +576,67 @@ four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA168
     }
     \label{fig:hazards3}
 \end{figure}
+
+% [2021/06/13-17]
+%CAMK2N1, IL19, and FCGBP is validated by
+%candidate_fdr100
+%PvalueTex consensus with GSE2837 to yield 3 candidates
+In GSE65858 cohorts, CAMK2N1, IL19, and FCGBP, have FDR-corrected \textit{P} value ($< 0.05$), and Cox'HR ($>1.8$ or $<0.65$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
+% (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002 
+% Consensus 3 genes in Kaplan-Meier survival and Cox's model (dataset: GSE65858)
+%Gene.Symbol KM.Pvalue   FDR.KMpvalue    uni_HR  FDR.Pvalue(in TCGA)
+%CAMK2N1 0.00687 0.03782500  1.814   1.628308e-05
+%FCGBP   0.01020 0.03886709  0.573   4.827833e-05
+%IL19    0.03390   0.04738901    0.630   6.543871e-06
+%IL19    0.00269  0.03068073 0.630  6.543871e-06
+%candidate_fdr100
+and also see Figure \ref{fig:hazards534}), however, the "rank" of other 17 genes are replaced by genes such as DUSP6, MSMB, and RBM11.
+In the consensus of TCGA and GSE65858 cohorts, we suggest that CAMK2N1, IL19, and FCGBP are still significant candidates.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[ht]
+\centering
+\caption{GSE65858 and TCGA Consensus genes in Kaplan-Meier survival and Cox's model}
+\label{tab:table_top3_GSE65858}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llll}
+Gene Symbol & KM \textit{P} value & FDR-adjusted \textit{P} value & Cox’s univariate HR \\
+\hline
+CAMK2N1 & \num{6.87e-3} & 0.038 & 1.814 \\
+FCGBP   & 0.01 & 0.039 & 0.573 \\
+IL19    & 0.03 & 0.047 & 0.63  \\
+IL19    & \num{2.69e-3} & 0.031 & 0.63\\
+\hline
+(values shown in dataset: GSE65858)\\
+(IL19 has two probes in RNA-Seq experiment)\\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+%Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
+% by Validation_GSE65858_survival.R
+% Rplot_GSE65858_CoxHR_CAMK2N1_validated.pdf
+
+\begin{figure}
+    \centering
+    \includegraphics[width=13cm]{Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf}
+    \bcaption{Volcano plot of genes under survival analyses of GSE65858 cohort}{
+    This HNSCC cohort has been applied for filtering of our candidate genes: "CAMK2N1", "IL19" (two probes), and "FCGBP".
+    There are 270 HNSCC participants involved in this cohort.
+    The number of genes (or probes of RNA-Seq in platform GPL10558, Illumina HumanHT-12 V4.0 expression beadchip) is 30330.
+    Total 534 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05
+    (\textcolor{red}{Red spots}: hazard ratio is greater than 1.0;
+    \textcolor{green}{Green spots}: hazard ratio is under than 1.0).\\
+    The 22 gene symbol listed on the side: hazard ratio $> 1.8$ or $< 0.6$.\\
+    (X-axis: Kaplan-Meier survival estimates, with \acrshort{fdr}-adjusted \textit{P} value (log10 transformed);
+    Y-axis: the hazard ratio (HR) under Cox proportional hazard regression model)
+    }
+    \label{fig:hazards534}
+\end{figure}
+
+
 
 % SurvExpress http://bioinformatica.mty.itesm.mx:8080/Biomatec/SurvivaX.jsp
 %x Saintigny Mao Survival Oral cancer GSE26549 (n=86) with features of OSCC outcome (no time), Gender, Race, Alcohol, and Smoking.
@@ -634,7 +661,7 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 \\[0.3cm]
 
 \begin{MyColorPar}{red}
-validation rate
+
 ***...the \textit{P} value is affected by the sample size. % TCGA has the most HNSCC sample size
 
 
@@ -654,7 +681,7 @@ GSE65858\cite{Wichmann2015} has OS event and RFS event and survival time.
 %n=270 n= 273 = ?? + 168(alive) + 88(dead) = 256
 The expression data was generated using the HumanHT-12 v4 Expression BeadChip, which targets on more than 31,000 annotated genes (47,000 probes) derived from the \acrfull{ncbi} Reference Sequence (RefSeq) Release 38 (November 7, 2009).
 % an Affymetrix Human Genome U133A microarray (HG-U133A). 
-It was used as a validation dataset. \\
+It has been used as a dataset for candidate selection. \\
 
 \end{MyColorPar} % red
 
@@ -955,6 +982,10 @@ Third, dissection of ZSWIM2\_archive.Rda % 其實最困難的在於 unknown erro
 %error03_sample <- which(ZSWIM2$X3==3) # 6.85\% error03: There has only one group in survdiff on KM cutofFinder_func.R.
 %#=> Test for difference (log-rank test is multiple Chi-square alone survival time) with P-value; or Test for different KM curve between two groups (seperated by PMM1_median 0 vs 1)
 % error05_sample <- which(ZSWIM2$X3==5) # 0.78\%(159 genes) error05: for why?
+
+more in discussion
+2-3 supplementary figure Rplot_pvaluePlot_NDFIP1.pdf
+iscussion about sliding-window pvalueTex to find the more potential candidate (weak or not weak could be double-checked by GSE65858)
 
 
 \end{MyColorPar} % end of red
