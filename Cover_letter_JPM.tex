@@ -377,11 +377,11 @@ Answer
 
 % 1) 本來就有計算 FDR and excluding >= 0.05 (ok)
 % 2) and FDR (done)
-We appreciate the reviewer to kindly advise us about the principle of sliding window cutoff selection in detail.
+We appreciate the reviewer to kindly advise us about statistical consideration of sliding window cutoff selection in detail.
 % and give us this nomenclature as "sliding window"
 %% *** 準備一張 3/20 candidates: accumulated \textit{P}-value plots 來說明，其實這些 P values 不論 50% cut or 70% 幾乎都 far less than 0.05, even < 0.001
 We have corrected our statement of this workflow (please see Answer 2-2).
-We provide more evidence to validate them (please see Answer 2-3).
+We also provide more evidence to validate them by an independent HNSCC cohort (GSE65858) (please see Answer 2-3).
 
 We understand that the sliding-window selection of cutoffs would capture more genes whose \textit{P} values just reach the significant level (\textit{P}=0.05).
 %http://bioinformatica.mty.itesm.mx:8080/Biomatec/SurvivaX.jsp run TCGA2016 in median (median cutoff; not case number 50\% 50\%)
@@ -392,9 +392,8 @@ We understand that the sliding-window selection of cutoffs would capture more ge
 %[1] "HNSCC_OS_marginS_pvalueBonferroni_sorted"   
 %[2] "HNSCC_OS_marginFree_pvalueBonferroni_sorted"
 %[3] "HNSCC_OS_marginPlus_pvalueBonferroni_sorted"
-According to our results, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 whatever grouped by cutoffs at 50\% quantile cutoff or at 70\% quantile cutoff (Please see Figure \ref{fig:figure4} in this cover letter; it is also shown in manuscript as updated "Figure 4").
-
-Moreover, in the special case, one of our 20 preliminary candidates, gene "NDFIP1", 
+According to our results, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs at 50\% or at 70\% quantile cutoff (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4").
+Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a p-value of \num{1e-6} at 70\% quantile cutoff. After the FDR correction, NDFIP1 still has \textit{P} value of \num[3]{0.0001074233}.
 %Rplot_pvaluePlot_NDFIP1.pdf
 %  to find cases_OS outside of range 180-220 (== cutoff not at median)
 %# pvalue plot as 倒V字形 "^" or W p_OS pvalues plots (with local minials)
@@ -402,22 +401,11 @@ Moreover, in the special case, one of our 20 preliminary candidates, gene "NDFIP
 %# 3641 genes have one p_OS >= 0.02, in OS_pvalueTex002
 %# special case: HNSCC_survivalAnalysis_marginS_NDFIP1.xlsx
 %# NDFIP1 (within our 20 preliminary candidates), 
-will be kick-out prematurely in "median cutoff" of survival analysis.
 In the \textit{P} value plot (Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
 supplementary figure ??), we could see a sliding-window selection with cutoff finding might collect more candidate (\textit{P} $<0.05$) for further Cox's modeling.
+%Some useful biomarkers might be kick-out prematurely in "median cutoff" of survival analysis.
 Indeed, it needs to be validated by the other independent cohort.
-%as Rplot_pvaluePlot_NDFIP1.pdf
 
-% supplementary figure
-\begin{figure}
-    \centering
-    \includegraphics[width=10cm]{Rplot_pvaluePlot_NDFIP1.pdf}
-    \caption{Under cutoff-finding procedure of Kaplan-Meier analysis, the \textit{P}-value plot of gene "NDFIP1" shows: 1) 70\% of \textit{P} value is $<0.05$; 2) the middle part (zoom-in and revealed in inset box) has a "W" curve; 3) sliding-window cutoff selection could find it's optimized \textit{P} values while a median cut might yield \textit{P} value $<0.05$ or $>0.05$ by chance.}
-    \label{fig:pvaluePlot_NDFIP1}
-\end{figure}
-
-%There is so many thing we could find during the data mining from so many 20500 protein-coding genes.
-Thus we performed the FDR correction applied on cutoff finding procedure as well as Bonferroni adjustment in candidate filtering.
 
 % and a new Figure 4
 \begin{figure}[hp]
@@ -453,6 +441,25 @@ shows that over 50\% of those unadjusted \textit{P} values are below 0.001 deriv
 }
 \label{fig:figure4}
 \end{figure}
+
+
+
+%as Rplot_pvaluePlot_NDFIP1.pdf
+%Moreover, in the special case, one of our 20 preliminary candidates, gene "NDFIP1", 
+
+
+
+% supplementary figure
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{Rplot_pvaluePlot_NDFIP1.pdf}
+    \caption{Under cutoff-finding procedure of Kaplan-Meier analysis, the \textit{P}-value plot of gene "NDFIP1" shows: 1) 70\% of \textit{P} value is $<0.05$; 2) the median-cut zone (zoom-in and revealed in inset box) has a "W"-like distribution; 3) sliding-window cutoff selection could find it's optimized \textit{P} values (far less than 0.001) while a median cut might yield \textit{P} value $>=0.05$.\\
+    (x-axis: grouping by person number; y-axis: \textit{P} value in log10 transformed)}
+    \label{fig:pvaluePlot_NDFIP1}
+\end{figure}
+
+%There is so many thing we could find during the data mining from so many 20500 protein-coding genes.
+Thus we performed the FDR correction applied on cutoff finding procedure as well as Bonferroni adjustment in candidate filtering.
 
 %\begin{MyColorPar}{red}
 %\end{MyColorPar}
