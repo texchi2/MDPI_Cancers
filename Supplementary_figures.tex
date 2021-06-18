@@ -140,8 +140,8 @@
 \begin{document}
 %%%%%%%%% title
 % Full title of the paper (Capitalized)
-%\Title{
-x Title: A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma\\[2cm]
+\Title{Transcriptomic Analysis of Expressions of Biomarkers and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma}\\[2cm]
+%x Title: A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma\\[2cm]
 %}
 
 %==================
@@ -162,7 +162,7 @@ Supplementary Table \ref{table:table3}\\
 
 % tables below %%%%
 % table1
-\begin{table}
+\begin{table}[ht]
 %\begin{sidewaystable}[hp]
 \centering
 \caption{ The top 10 genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by adjusted \textit{P} value) }
@@ -215,7 +215,7 @@ DKC1                                           & dyskeratosis congenita 1, dyske
 
 %%%
 %Table2. The 10 candidate genes overexpressed with better prognosis in HNSCC (ranked by Bonferroni corrected Kaplan-Meier P-value).
-\begin{table}[hp]
+\begin{table}[ht]
 \centering
 \caption{The other top 10 genes overexpressed with better prognosis in \acrshort{hnscc} (ranked by corrected \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
@@ -262,30 +262,45 @@ lncRNA: Long non-coding RNA\\Remark: \checkmark Validated by GSE2837 ~\end{tabul
 \label{table:table3}
 \end{table}
 
+\clearpage
 
-
-%%
+%%%%%%%%%%%%
 
 \section{SFigures}
 \underline{Supplementary figure legends}\\[1cm]
 %S1
+Supplementary figure \ref{fig:pvaluePlot_NDFIP1}\\
+The gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see supplementary Figure S1). After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures,
+scientific-notation=true]{0.0001074233}.
+However, NDFIP1 could not pass the validation by using GSE65858 cohort.
+
+%S2
 Supplementary Figure \ref{fig:fig_GSE2837}\\
 GSE2837 query results from PrognoScan: Kaplan-Meier plots of 10 genes (the cutoff of high risk and low risk groups, which is derived from cumulative P-value plots). The poor prognostic genes are marked as red; the better prognostic genes are marked as green.
 
 
 % x S2
-Supplementary Figure \ref{fig:fig_SurvExpress}\\
-The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of high risk and low risk groups, which is derived from risk groups optimization. %cumulative P-value plots).
-Inset color scale shows risk groups (high/low) and corresponded RNA expression in high/low.
-Thus, the poor prognostic genes are marked as red; the better prognostic genes are marked as orange.
+%Supplementary Figure \ref{fig:fig_SurvExpress}\\
+%The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of high risk and low risk groups, which is derived from risk groups optimization. %cumulative P-value plots).
+%Inset color scale shows risk groups (high/low) and corresponded RNA expression in high/low. Thus, the poor prognostic genes are marked as red; the better prognostic genes are marked as orange.
 
-%x S3
-Supplementary Figure \ref{fig:fig_HPA_USP10}\\
-The query results from HPA: Kaplan-Meier plots of  ubiquitin-specific peptidase 10 (USP10) with cutoff by mRNA high expression and low expression groups (P-value = 0.0018).
-Over-expression of USP10 has poor prognosis on HNSCC.
+% x S3
+%Supplementary Figure \ref{fig:fig_HPA_USP10}\\
+%The query results from HPA: Kaplan-Meier plots of  ubiquitin-specific peptidase 10 (USP10) with cutoff by mRNA high expression and low expression groups (P-value = 0.0018). Over-expression of USP10 has poor prognosis on HNSCC.
 
 %%%%%
 % S1
+% supplementary figure
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{Rplot_pvaluePlot_NDFIP1.pdf}
+    \caption{Under cutoff-finding procedure of Kaplan-Meier analysis, the \textit{P}-value plot of gene "NDFIP1" shows: 1) 70\% of \textit{P} values is $<0.05$; 2) the median-cut zone (zoom-in and revealed in inset box) has a "W"-like distribution; 3) sliding-window cutoff selection could find it's optimized \textit{P} values (far less than 0.001) while a median cut might yield \textit{P} value $>=0.05$.\\
+    (x-axis: grouping by person number; y-axis: \textit{P} value in log10 transformed)}
+    \label{fig:pvaluePlot_NDFIP1}
+\end{figure}
+
+
+% S2
 % from Answer2-2 GSE2837; 
 \begin{figure}
 \raggedleft
@@ -294,29 +309,6 @@ Over-expression of USP10 has poor prognosis on HNSCC.
 \label{fig:fig_GSE2837}
 \end{figure}
 
-
-% SFigure 2, SurvExpress
-% red or green is NOT by expression level
-\begin{figure}
-\raggedleft
-\includegraphics[width=10cm]{Answer_3-1.pdf}
-\caption{The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{green}{low risk} groups, which is derived from risk groups optimization. %cumulative P-value plots).
-Inset color scale shows risk groups (\textcolor{red}{high}/\textcolor{green}{low}) and corresponded RNA expression in \textcolor{red}{high}/\textcolor{green}{low}.
-Thus, the poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{orange}{orange}.}
-\label{fig:fig_SurvExpress}
-\end{figure}
-\clearpage
-
-%%
-% S3
-\begin{figure}
-\raggedleft
-\includegraphics[width=12cm]{Answer_3-1_USP10.pdf}
-\caption{The query results from HPA: Kaplan-Meier plots of  ubiquitin specific peptidase 10 (USP10) with cutoff by mRNA \textcolor{red}{high expression} and \textcolor{blue}{low expression} groups (P-value = 0.0018).
-Overexpression of USP10 has poor prognosis on HNSCC.}
-\label{fig:fig_HPA_USP10}
-\end{figure}
-%\clearpage
 
 
 
@@ -367,3 +359,29 @@ $^{4}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Sc
 Correspondence: Hsiao: mhsiao@gate.sinica.edu.tw; Li: jaak88@gmail.com\\[1cm]
 }
 %(optional; include country code; if there are multiple corresponding authors, add author initials) +xx-xxxx-xxx-xxxx (F.L.)}
+
+
+%%
+
+% x SFigure 2, SurvExpress
+% red or green is NOT by expression level
+\begin{figure}
+\raggedleft
+\includegraphics[width=10cm]{Answer_3-1.pdf}
+\caption{The query results from SurvExpress: Kaplan-Meier plots of 12 genes (the cutoff of \textcolor{red}{high risk} and \textcolor{green}{low risk} groups, which is derived from risk groups optimization. %cumulative P-value plots).
+Inset color scale shows risk groups (\textcolor{red}{high}/\textcolor{green}{low}) and corresponded RNA expression in \textcolor{red}{high}/\textcolor{green}{low}.
+Thus, the poor prognostic genes are marked as \textcolor{red}{red}; the better prognostic genes are marked as \textcolor{orange}{orange}.}
+\label{fig:fig_SurvExpress}
+\end{figure}
+\clearpage
+
+%%
+%x S3
+\begin{figure}
+\raggedleft
+\includegraphics[width=12cm]{Answer_3-1_USP10.pdf}
+\caption{The query results from HPA: Kaplan-Meier plots of  ubiquitin specific peptidase 10 (USP10) with cutoff by mRNA \textcolor{red}{high expression} and \textcolor{blue}{low expression} groups (P-value = 0.0018).
+Overexpression of USP10 has poor prognosis on HNSCC.}
+\label{fig:fig_HPA_USP10}
+\end{figure}
+%\clearpage

@@ -147,7 +147,7 @@ May 16, 2021
 
 Dear Ms. Sonia Sun:
 
-Enclosed, please find our revised manuscript (jpm-1174473) entitled "Transcriptomic Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma" by Chi et al., which we wish to be considered for publishing as a research article in Journal of Personalized Medicine. We appreciate your time serving as the editor handling this manuscript and thank the reviewers for their critical comments and suggestions on our manuscript.
+Enclosed, please find our revised manuscript (jpm-1174473) entitled "Transcriptomic Analysis of Expressions of Biomarkers and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma" by Chi et al., which we wish to be considered for publishing as a research article in Journal of Personalized Medicine. We appreciate your time serving as the editor handling this manuscript and thank the reviewers for their critical comments and suggestions on our manuscript.
 
 We have since revised the manuscript accordingly to address their critical comments and suggestions in a point-by-point manner, 
 
@@ -228,7 +228,7 @@ We appreciate the reviewer for the critical comments and thanks for the agreemen
 
 The manuscript posted in the preprint server, ResearchSqaure, is our first version (2020/09/28) of current manuscript. 
 Since previous reviewer's suggestion, we made a major revision on the followings:
-1) suggested  candidates of biomarker has been modified  by additional validation using an independent patient cohort (GSE2837).
+1) suggested candidates of biomarker has been modified  by additional validation using an independent patient cohort (GSE2837).
 We also reviewed literature that supports the prognostic impact of these candidate genes. The resulting Figure 4, Table 3 and Table 4 is different between the two manuscripts.
 2) Since that revision, we added holistic cancer care in the discussion section (please see Answer 1-2).% \ref{page:1-2}).
 
@@ -383,7 +383,7 @@ We appreciate the reviewer to kindly advise us about statistical consideration o
 We have corrected our statement of this workflow (please see Answer 2-2).
 We also provide more evidence to validate them by an independent HNSCC cohort (GSE65858) (please see Answer 2-3).
 
-We understand that the sliding-window selection of cutoffs would capture more genes whose \textit{P} values just reach the significant level (\textit{P}=0.05).
+We also think that the sliding-window selection of cutoffs would capture more genes whose \textit{P} values just reach the significant level (\textit{P}=0.05).
 %http://bioinformatica.mty.itesm.mx:8080/Biomatec/SurvivaX.jsp run TCGA2016 in median (median cutoff; not case number 50\% 50\%)
 %=> defense: 
 %% *** 準備一張 20 candidates: accumulated \textit{P}-value plots 來(like Figure 4: (Please see supplementary Figure SXXX))
@@ -392,8 +392,10 @@ We understand that the sliding-window selection of cutoffs would capture more ge
 %[1] "HNSCC_OS_marginS_pvalueBonferroni_sorted"   
 %[2] "HNSCC_OS_marginFree_pvalueBonferroni_sorted"
 %[3] "HNSCC_OS_marginPlus_pvalueBonferroni_sorted"
-According to our results, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs at 50\% or at 70\% quantile cutoff (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4").
-Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a p-value of \num{1e-6} at 70\% quantile cutoff. After the FDR correction, NDFIP1 still has \textit{P} value of \num[3]{0.0001074233}.
+However, according to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
+Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
+supplementary figure S1). After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures,
+scientific-notation=true]{0.0001074233}.
 %Rplot_pvaluePlot_NDFIP1.pdf
 %  to find cases_OS outside of range 180-220 (== cutoff not at median)
 %# pvalue plot as 倒V字形 "^" or W p_OS pvalues plots (with local minials)
@@ -401,14 +403,13 @@ Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P
 %# 3641 genes have one p_OS >= 0.02, in OS_pvalueTex002
 %# special case: HNSCC_survivalAnalysis_marginS_NDFIP1.xlsx
 %# NDFIP1 (within our 20 preliminary candidates), 
-In the \textit{P} value plot (Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
-supplementary figure ??), we could see a sliding-window selection with cutoff finding might collect more candidate (\textit{P} $<0.05$) for further Cox's modeling.
+In those \textit{P}-value plots, we could see that the sliding-window selection of cutoff finding might collect more potential candidates (\textit{P} values far less than $0.001$) for further Cox's modeling.
 %Some useful biomarkers might be kick-out prematurely in "median cutoff" of survival analysis.
 Indeed, it needs to be validated by the other independent cohort.
 
 
 % and a new Figure 4
-\begin{figure}[hp]
+\begin{figure}[ht]
 
 % TCGA FDR Pvalue of CAMK2N1 (1.628308e-05), IL19 ( 6.543871e-06), FCGBP (4.827833e-05)
 \setlength{\unitlength}{1cm}
@@ -453,22 +454,19 @@ shows that over 50\% of those unadjusted \textit{P} values are below 0.001 deriv
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{Rplot_pvaluePlot_NDFIP1.pdf}
-    \caption{Under cutoff-finding procedure of Kaplan-Meier analysis, the \textit{P}-value plot of gene "NDFIP1" shows: 1) 70\% of \textit{P} value is $<0.05$; 2) the median-cut zone (zoom-in and revealed in inset box) has a "W"-like distribution; 3) sliding-window cutoff selection could find it's optimized \textit{P} values (far less than 0.001) while a median cut might yield \textit{P} value $>=0.05$.\\
+    \caption{Under cutoff-finding procedure of Kaplan-Meier analysis, the \textit{P}-value plot of gene "NDFIP1" shows: 1) 70\% of \textit{P} values is $<0.05$; 2) the median-cut zone (zoom-in and revealed in inset box) has a "W"-like distribution; 3) sliding-window cutoff selection could find it's optimized \textit{P} values (far less than 0.001) while a median cut might yield \textit{P} value $>=0.05$.\\
     (x-axis: grouping by person number; y-axis: \textit{P} value in log10 transformed)}
     \label{fig:pvaluePlot_NDFIP1}
 \end{figure}
 
 %There is so many thing we could find during the data mining from so many 20500 protein-coding genes.
-Thus we performed the FDR correction applied on cutoff finding procedure as well as Bonferroni adjustment in candidate filtering.
-
+We performed the FDR correction applied on the Kaplan-Meier \textit{P} values of cutoff finding procedure, then Bonferroni adjustment of those \textit{P} values for candidate selection.
 %\begin{MyColorPar}{red}
 %\end{MyColorPar}
-
-
 % and FDR (done; ok)
-We also modified the last paragraph of "Cutoff Finder Core Engine" in the Material and Methods section.
+We modified the last paragraph of "Cutoff Finder Core Engine" in the Material and Methods section.
 %Figure 1, Table 1, 2 correction: Kaplan-Meier FDR correction
-***The caption of Figure 1 and Table 1 has description about 1) FDR correction of Kaplan-Meier \textit{P} values during Cutoff finding; and 2) Bonferroni correction of Kaplan-Meier \textit{P} values after Cox modeling for candidate selection.
+%***The caption of Figure 1 and Table 1 has description about 1) FDR correction of Kaplan-Meier \textit{P} values during Cutoff finding; and 2) Bonferroni correction of Kaplan-Meier \textit{P} values after Cox modeling for candidate selection.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
 \\[0.3cm]
 
@@ -486,6 +484,7 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 The \acrfull{fdr} ($< 0.05$) correction\cite{Benjamini1995a} has been be applied and shows which genes should be retained for further univariate and multivariate analysis.
 % of Cox modeling
 It is ensure the control of type I error of multiple test \textit{P} values during our cutoff finding procedure.
+Then Bonferroni adjustment of those \textit{P} values has been used for candidate selection.
 \end{MyColorPar}
 
 
@@ -500,7 +499,7 @@ It is ensure the control of type I error of multiple test \textit{P} values duri
 
 
 %
-
+\clearpage
 \subsection*{2-2}
 %(OK)
 I recommend the authors weaken their statement of the workflow but focus on the identified biomarkers in neck squamous cell carcinoma and use as much as possible evidence to support or validate them. % new Title, abstract, change tone
@@ -511,7 +510,7 @@ I recommend the authors weaken their statement of the workflow but focus on the 
 Answer
 %(OK)
 We appreciate the reviewer for the critical comment.
-We changed title as "Transcriptomics Analysis of Expressions of Ten genes and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma", and abstract; we also changed the tone in our manuscript to focus on the identified biomarkers in the head and neck squamous cell carcinoma.
+We changed title as "Transcriptomic Analysis of Expressions of Biomarkers and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma", and abstract; we also changed the tone in our manuscript to focus on the identified biomarkers in the head and neck squamous cell carcinoma.
 There is more evidence to validate them (please see Answer 2-3).
 
 %
