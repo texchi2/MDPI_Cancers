@@ -526,7 +526,11 @@ There is more evidence to validate them (please see Answer 2-3).
 In the independent test, half genes have p-values less than 0.05, and most of them have p-values $> 0.01$. % table 1 => this is Bonferroni 的結果
 Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. % the validation rate 
 The p-values are affected by the sample size, which should be described in the main text. % writing
-As I mentioned above, the authors should look for more data to verify these biomarkers. % GEO GSE65858(ok) or even GSE117973?
+As I mentioned above, the authors should look for more data to verify these biomarkers. % GEO GSE65858(ok) 
+%or even GSE117973? GPL10558	Illumina HumanHT-12 V4.0 expression beadchip; https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE117973
+% Progression-free survival (PFS) is "the length of time during and after the treatment of a disease, such as cancer, that a patient lives with the disease but it does not get worse".[1] In oncology, PFS usually refers to situations in which a tumor is present, as demonstrated by laboratory testing, radiologic testing, or clinically. Similarly, "disease-free survival" is when patients have received treatment and are left with no detectable disease.
+% disease-specific survival rate: The percentage of people in a study group who have not died from a specific disease in a defined period of time. The time period usually begins at the time of diagnosis of the disease and ends at the time of death from the disease. 
+%Patients who died from causes other than the disease being studied are not counted in this measurement.
 
 
 
@@ -539,14 +543,11 @@ Answer
 % more GSE datasets; pick-up more candidate (run GCP) in hands 而且要偷看答案
 % x using  receiver operating characteristic (ROC) analysis and more GEO datasets
 We appreciate the reviewer for the critical comments and thanks for the guidance of our work in cancer research.
-
-%***調整 workflow 更加嚴格以增加 validation rate
+% workflow 更加嚴格以增加 validation rate
 %Validation rate:\\
-%重新挑選 candidate (FDR100) 多選一些、偷偷看答案(GSE2837 and GSE65858)
+%x重新挑選 candidate (FDR100) (GSE2837 and GSE65858)
 % => answer is: consensus top3 genes
-
 % (ok) Table 1/2 caption, Fig KP plot: FDR P value (要改為真的FDR) [line 196]
-
 % [2021/06/11]決議;
 We have introduced an independent HNSCC cohort (GSE65858, with RNA-Seq expression data) for helping in candidate selection.
 %We further
@@ -555,11 +556,30 @@ We have introduced an independent HNSCC cohort (GSE65858, with RNA-Seq expressio
 % problem of it (少 n=30, and RFS only: validation rate 14/100 而且 10% cutoff)
 %x Prognoscan (GSE2837) (n=30 less)  RFS only:  10\% cutoff to yield a \textit{P}-value < 0.05.\\
 %找出  3 candidates
-Even the top 20 genes listed
+During our exploration phase with TCGA cohort, the 20 genes, listed
 %six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
 %four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
 %}
-in Figure \ref{fig:hazards3}, have significant FDR-adjusted \textit{P} values in Kaplan-Meier estimate, and survival impact on HR ($> 1.8$ or $< 0.6$) in Cox's model. 
+in Figure \ref{fig:hazards3}, have FDR-adjusted \textit{P} values ($<0.001$) in Kaplan-Meier estimate, and survival impact on HR ($> 1.8$ or $< 0.6$) in Cox's model.
+%
+% [2021/06/13-17]
+%CAMK2N1, IL19, and FCGBP is validated by
+%candidate_fdr100
+%PvalueTex consensus with GSE2837 to yield 3 candidates
+In the study of GSE65858 cohort, CAMK2N1, IL19, and FCGBP, keep ahead of the curve by FDR-corrected \textit{P} value ($< 0.05$), and Cox'HR ($>1.8$ or $<0.65$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
+% (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002 
+% Consensus 3 genes in Kaplan-Meier survival and Cox's model (dataset: GSE65858)
+%Gene.Symbol KM.Pvalue   FDR.KMpvalue    uni_HR  FDR.Pvalue(in TCGA)
+%CAMK2N1 0.00687 0.03782500  1.814   1.628308e-05
+%FCGBP   0.01020 0.03886709  0.573   4.827833e-05
+%IL19    0.03390   0.04738901    0.630   6.543871e-06
+%IL19    0.00269  0.03068073 0.630  6.543871e-06
+%candidate_fdr100
+and also see Figure \ref{fig:hazards534}).
+However, the "top rank" of the other 17 genes is replaced by genes such as DUSP6, MSMB, and RBM11.
+There is consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19, and FCGBP are significant candidates for the biomarker.
+%In the consensus of TCGA and GSE65858 cohorts, 
+
 %Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
 % by Validation_GSE65858_survival.R
 % Rplot_GSE65858_CoxHR_CAMK2N1_validated.pdf
@@ -583,42 +603,42 @@ in Figure \ref{fig:hazards3}, have significant FDR-adjusted \textit{P} values in
     \label{fig:hazards3}
 \end{figure}
 
-% [2021/06/13-17]
-%CAMK2N1, IL19, and FCGBP is validated by
-%candidate_fdr100
-%PvalueTex consensus with GSE2837 to yield 3 candidates
-In GSE65858 cohorts, CAMK2N1, IL19, and FCGBP, have FDR-corrected \textit{P} value ($< 0.05$), and Cox'HR ($>1.8$ or $<0.65$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
-% (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002 
-% Consensus 3 genes in Kaplan-Meier survival and Cox's model (dataset: GSE65858)
-%Gene.Symbol KM.Pvalue   FDR.KMpvalue    uni_HR  FDR.Pvalue(in TCGA)
-%CAMK2N1 0.00687 0.03782500  1.814   1.628308e-05
-%FCGBP   0.01020 0.03886709  0.573   4.827833e-05
-%IL19    0.03390   0.04738901    0.630   6.543871e-06
-%IL19    0.00269  0.03068073 0.630  6.543871e-06
-%candidate_fdr100
-and also see Figure \ref{fig:hazards534}), however, the "rank" of other 17 genes are replaced by genes such as DUSP6, MSMB, and RBM11.
-In the consensus of TCGA and GSE65858 cohorts, we suggest that CAMK2N1, IL19, and FCGBP are still significant candidates.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
+% Please add the following required packages to your document preamble:
 \begin{table}[ht]
 \centering
-\caption{GSE65858 and TCGA Consensus genes in Kaplan-Meier survival and Cox's model}
+\caption{The consensus between the TCGA and GSE65858 cohorts in Kaplan-Meier survival and Cox's model}
 \label{tab:table_top3_GSE65858}
 \resizebox{\linewidth}{!}{%
-\begin{tabular}{llll}
-Gene Symbol & KM \textit{P} value & FDR-adjusted \textit{P} value & Cox’s univariate HR \\
+\begin{tabular}{llllclc}
 \hline
-CAMK2N1 & \num{6.87e-3} & 0.038 & 1.814 \\
-FCGBP   & 0.01 & 0.039 & 0.573 \\
-IL19    & 0.03 & 0.047 & 0.63  \\
-IL19    & \num{2.69e-3} & 0.031 & 0.63\\
+%\multirow{2}{*}{}
+Gene Symbol &
+  \multicolumn{2}{c}{KM \textit{P} value} &
+  \multicolumn{2}{c}{FDR-adjusted \textit{P} value} &
+  \multicolumn{2}{c}{Cox’s univariate HR} \\
+%  \hline
+ &
+  \multicolumn{1}{c}{TCGA} &
+  \multicolumn{1}{c}{GSE65858} &
+  \multicolumn{1}{c}{TCGA} &
+  \multicolumn{1}{c}{GSE65858} &
+  \multicolumn{1}{c}{TCGA} &
+  \multicolumn{1}{c}{GSE65858} \\
+  \hline
+  \hline
+CAMK2N1 & \num{2.97e-7} & \num{6.87e-3} & \num{1.63e-5} & 0.038 & 2.101 & 1.814 \\
+IL19    & n/a           & 0.03          & n/a           & 0.047 & n/a   & 0.630  \\
+IL19    & \num{3.73e-7} & \num{2.69e-3} & \num{6.54e-6} & 0.031 & 0.472 & 0.630  \\
+FCGBP   & \num{1.21e-6} & 0.01          & \num{4.83e-5} & 0.039 & 0.484 & 0.573\\
 \hline
-(values shown in dataset: GSE65858)\\
-(IL19 has two probes in RNA-Seq experiment)\\
+  \multicolumn{7}{l}{(IL19 has two probes in RNA-Seq experiment of GSE65858)}\\
+  \multicolumn{7}{l}{(FDR: \acrlong{fdr})}\\
 \hline
 \end{tabular}%
-}
+} % end of \resizebox
 \end{table}
 
 %Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
@@ -629,6 +649,7 @@ IL19    & \num{2.69e-3} & 0.031 & 0.63\\
     \centering
     \includegraphics[width=13cm]{Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf}
     \bcaption{Volcano plot of genes under survival analyses of GSE65858 cohort}{
+    % GSE117973 using the same platform GPL10558
     This HNSCC cohort has been applied for filtering of our candidate genes: "CAMK2N1", "IL19" (two probes), and "FCGBP".
     There are 270 HNSCC participants involved in this cohort.
     The number of genes (or probes of RNA-Seq in platform GPL10558, Illumina HumanHT-12 V4.0 expression beadchip) is 30330.
