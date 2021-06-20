@@ -519,6 +519,7 @@ There is more evidence to validate them (please see Answer 2-3).
 
 
 \subsection*{2-3}
+% (OK)
 % [2021/06/17]
 % PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity (less biomarkers but more P value < 1e-5?)
 
@@ -729,6 +730,7 @@ How univariable and multivariable tests work should be clearly described in the 
 \begin{MyColorPar}{blue}
 Answer
 %(OK)
+
 We appreciate the reviewer for the critical comment and modified the Materials and Methods accordingly.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
 \\[0.3cm]
@@ -806,13 +808,35 @@ Here is another suggestion. To maximize the use of continuous expression values,
 Answer
 
 We appreciate the reviewer for the critical comments.
+feature selection => includes gene signature that are related to a grouping structures with similar biological functions tend to have similar expressions. 
+# For example, a group of co-regulated genes that are preferable to be taken into consideration in select features.
+ Scientists are often interested in selecting certain genes that are related to a categorical response variable, such as the onset or progression of cancer. These genes are known as signatures in the life sciences literature; for the purposes of our paper, we will call them features.
+ 
+%Bayesian Hyper-LASSO Classification for Feature Selection with Application to HNSCC RNA-seq Data\cite{Jiang2020} -> citing \cite{Li2018d}
+***We apply Bayesian Logistic Regression with Heavy-tailed Priors\cite{Li2018d} by R package HTLR (available at https://github.com/cran/HTLR) in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
+HTLR utilize an Markov chain Monte Carlo (MCMC) method for learning multinomial logistic regression with hyper-LASSO priors. The MCMC algorithm uses Hamiltonian Monte Carlo in a restricted Gibbs sampling framework.
+
+%X Bayesian Robit regression method with Hyper-LASSO priors (shortened by BayesHL) for feature selection in high dimensional genomic data with grouping structure.
+%We apply BayesHL in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
+*** However, the LASSO has been criticized for being biased in gene selection, because it penalizes all the gene coefficients equally\cite{Fan2014}.
+% BayesHL is immune to the problem of correlation bias. Other convex and non-convex methods may not be able to identify significant features when there is a high number of correlated features, due to the problem of correlation bias
+
+%coxlogit: https://www.info.ucl.ac.be/~pdupont/pdupont/pdf/MCDM_14.pdf
+The Cox proportional hazard regression and logistic regression are standard models for their respective tasks: either fitting survival times or classifying samples.
+Here we make use of both tasks by the Coxlogit mixed model.
+As such this approach outperforms a Cox proportional hazard model or a logistic regression, each of those models being efficient essentially on their own task\cite{Branders2014}.
+*** However, the LASSO has been criticized for being biased in gene selection, because it penalizes all the gene coefficients equally\cite{Fan2014}.
+It could be overcame by assigning a consistent weight to each gene, which has been implemented in the adaptive LASSO (APLR)\cite{Algamal2015}\cite{Wu2018}.% was originally proposed to. 
+accuracy from 95\% to 97\% :-)
+
 ***  a gene signature with deep learning CNN,
 or http://gepia2.cancer-pku.cn/#index
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
-or 
-Statistical methods: Development of a 13-gene signature prediction model for survival in HPV-negative OSCC patients.
-To build a prediction model for OSCC-specific survival unique to the patients with HPV-negative OSCCs\cite{Lohavanichbutr2013}.
+or
+% PCA of gene signature => L1/L2 penalized Cox model; L1-penalized (Lasso) Cox proportional hazard regression model (R package glmnet)
+%x Statistical methods: Development of a 13-gene signature prediction model for survival in HPV-negative OSCC patients.
+%To build a prediction model for OSCC-specific survival unique to the patients with HPV-negative OSCCs\cite{Lohavanichbutr2013}.
 
 or \cite{Zhao2018}
 Prognostic gene signature:\\ % https://www.hindawi.com/journals/jir/2020/5494858/
