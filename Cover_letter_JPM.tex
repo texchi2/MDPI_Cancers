@@ -9,6 +9,7 @@
 \usepackage[bf]{caption}
 \newcommand{\bcaption}[2]{\caption{\textbf{#1} #2}}
 
+\usepackage{subcaption} % for figure  side by side
 
 % mark in blue or red
 \usepackage{xcolor}
@@ -810,11 +811,37 @@ Answer
 We appreciate the reviewer for the critical comments.
 feature selection => includes gene signature that are related to a grouping structures with similar biological functions tend to have similar expressions. 
 # For example, a group of co-regulated genes that are preferable to be taken into consideration in select features.
- Scientists are often interested in selecting certain genes that are related to a categorical response variable, such as the onset or progression of cancer. These genes are known as signatures in the life sciences literature; for the purposes of our paper, we will call them features.
+Scientists are often interested in selecting certain genes that are related to a categorical response variable, such as the onset or progression of cancer. These genes are known as signatures in the life sciences literature; for the purposes of our paper, we will call them features.
  
-%Bayesian Hyper-LASSO Classification for Feature Selection with Application to HNSCC RNA-seq Data\cite{Jiang2020} -> citing \cite{Li2018d}
-***We apply Bayesian Logistic Regression with Heavy-tailed Priors\cite{Li2018d} by R package HTLR (available at https://github.com/cran/HTLR) in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
+***The RLassoCox\cite{Liu2021} (bioconductor package, available at https://github.com/weiliu123/RLassoCox) trains the RLasso-Cox model based on gene expression profiles, survival information and gene interaction networks.
+It is based on the hypothesis that topologically important genes in the gene interaction network tend to have stable expression changes. The RLasso-Cox model uses random walk to evaluate the topological weight of genes, and then highlights topologically important genes to identify survival biomarkers for HNSCC.
+dGMMirGraph The KEGG network\cite{Simon2011}\cite{Liu2021}.
+ 
+%x Bayesian Hyper-LASSO Classification for Feature Selection with Application to HNSCC RNA-seq Data\cite{Jiang2020} -> citing \cite{Li2018d}
+RLassoCox\\
+We apply Bayesian Logistic Regression with Heavy-tailed Priors\cite{Li2018d} by R package HTLR (available at https://github.com/cran/HTLR) in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
 HTLR utilize an Markov chain Monte Carlo (MCMC) method for learning multinomial logistic regression with hyper-LASSO priors. The MCMC algorithm uses Hamiltonian Monte Carlo in a restricted Gibbs sampling framework.
+
+% **** [2021/06/22] by Bayes_survival.R
+The results shows
+%Rplot_GSE65858_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
+% Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
+cv.mod.candidate 62 genes are not performed well either in GSE65858 HNSCC or TCGA HNSCC (please see Figure \ref{fig:Bayes62}).\\
+
+\begin{figure}[!tbp]
+%     % two PDF side by side \usepackage{subcaption}
+  \begin{subfigure}[b]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf}
+        \caption{TCGA HNSCC cohort}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+       \includegraphics[width=\textwidth]{Rplot_GSE65858_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf} 
+       \caption{GSE65858 HNSCC cohort}
+  \end{subfigure}
+  \caption{side by side}
+  \label{fig:Bayes62}
+\end{figure}
 
 %X Bayesian Robit regression method with Hyper-LASSO priors (shortened by BayesHL) for feature selection in high dimensional genomic data with grouping structure.
 %We apply BayesHL in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
@@ -829,22 +856,21 @@ As such this approach outperforms a Cox proportional hazard model or a logistic 
 It could be overcame by assigning a consistent weight to each gene, which has been implemented in the adaptive LASSO (APLR)\cite{Algamal2015}\cite{Wu2018}.% was originally proposed to. 
 accuracy from 95\% to 97\% :-)
 
-***  a gene signature with deep learning CNN,
-or http://gepia2.cancer-pku.cn/#index
+%***  a gene signature with deep learning CNN,
+%or http://gepia2.cancer-pku.cn/#index
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
-or
+%or
 % PCA of gene signature => L1/L2 penalized Cox model; L1-penalized (Lasso) Cox proportional hazard regression model (R package glmnet)
 %x Statistical methods: Development of a 13-gene signature prediction model for survival in HPV-negative OSCC patients.
 %To build a prediction model for OSCC-specific survival unique to the patients with HPV-negative OSCCs\cite{Lohavanichbutr2013}.
 
-or \cite{Zhao2018}
-Prognostic gene signature:\\ % https://www.hindawi.com/journals/jir/2020/5494858/
+%or \cite{Zhao2018} Prognostic gene signature:\\ % https://www.hindawi.com/journals/jir/2020/5494858/
 
 The risk score for each HNSCC sample was calculated based on the IRGP prognostic signature using the following formula:\\[0.5cm]
 risk score = $expression_{gene1} \times \beta_{gene1} + expression_{gene2} \times \beta_{gene2} + ... + expression_{geneX} \times \beta_{geneX}$\\
 
-*** how to do? ROC
+%*** how to do? ROC
 % https://compgenomr.github.io/book/assessing-the-performance-of-our-model.html
 %In addition, receiver operating characteristic (ROC) analysis was used to estimate the predictive power of this signature\cite{Huang2019}.
 %---
@@ -852,11 +878,11 @@ risk score = $expression_{gene1} \times \beta_{gene1} + expression_{gene2} \time
 , in which $X$ was the number of IRGPs and $\beta$ was coefficient value for each IRGPs. Taking the median value of risk score as the threshold, we divided all the HCC samples into high-risk or low-risk groups. The accuracy and sensitivity of survival prediction based on the risk score were verified by receiver operating characteristic (ROC) curve analysis and determined by the value of area under the curve (AUC) in 1, 3, and 5 years. Kaplan–Meier (KM) survival curves analysis () was used to analyze the over survival (OS) of the high-risk and low-risk groups. We then integrated IRGPs with existing clinical and pathologic features for multivariate Cox regression analysis. Tumor TNM, stage, grade, age, and body mass index (BMI) were regarded as continuous variables. The association between IRGPs risk score, clinical, and pathologic features was determined by KM analysis. Prognostic risk models of tumor TNM, grade, age, and stage were constructed. Subsequently, a Cox proportional hazards regression model was constructed by combined the Tumor TNM, grade, age, stage, and risk scored. The R package rms was used to compare these models with the IRGP prognostic signature. Concordance index (C-index) was used to assess the accuracy of the prognostic biomarkers. Also, the comparison between IRGPs and clinical/pathologic features was performed by forest and nomogram plots to determine the effectiveness of the prognostic value. The statistical difference of IRGPs in the clinical/pathologic features was compared using the Kruskal–Wallis test.
 
  
-***Ultimately, the gene expression profile from the GEO and OSCC cell lines and tissues were used to verify these primitive biomarkers. In addition, a combination of two or more biomarkers was performed to predict OSCC overall survival according to the gene expression in TCGA\cite{Huang2019}.
+%***Ultimately, the gene expression profile from the GEO and OSCC cell lines and tissues were used to verify these primitive biomarkers. In addition, a combination of two or more biomarkers was performed to predict OSCC overall survival according to the gene expression in TCGA\cite{Huang2019}.
 
-** or using %Rplot_GSE65858_CoxHR1.5_top19.pdf
-KM estimate and Cox modeling to yield a geographically closed gene cluster:
-CAMK2N1, TIMM10, TNFAIP6, SPP1, ADAMTSL2.
+%** or using %Rplot_GSE65858_CoxHR1.5_top19.pdf
+%KM estimate and Cox modeling to yield a geographically closed gene cluster:
+%CAMK2N1, TIMM10, TNFAIP6, SPP1, ADAMTSL2.
 
 \end{MyColorPar}
 %
