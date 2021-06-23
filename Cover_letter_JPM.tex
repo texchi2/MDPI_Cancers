@@ -867,17 +867,22 @@ Finally, we use gene signature, HK1, EZR, RRAGA, and DUSP16 to predict their sur
 However, # 4 gene signature: #### 
 # "EZR" has \textit{P} value $>0.05$
 
+Conclusion, we might build a Lasso regression model with L1 regularization to maximize the use of continuous gene expression values (without a cutoff).
+The gene signature integrating multiple genes is also a good approach for biomarker discovery.
 
 \begin{figure}
 %    \centering
   \begin{subfigure}[b]{0.4\textwidth}
     \includegraphics[width=8cm]{rplot_KMplot_HK1.pdf}
+    \caption{Kaplan-Meier plot}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.4\textwidth}
     \includegraphics[width=8cm]{Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_signature4_FDRKM.pdf}  
+    \caption{Volcano plot}
   \end{subfigure}
-    \caption{OS in TCGA for a gene signature including HK1, EZR, RRAGA, and DUSP16. Those genes have not significant survival impact if calculated individually.}
+  
+  \caption{(a) OS in TCGA HNSCC for a gene signature including HK1, EZR, RRAGA, and DUSP16; (b) Those genes have not significant survival impact if calculated individually (EZR is not shown on volcano plot due to it's \textit{P} value $>0.05$)}
     \label{fig:signature4}
 \end{figure}
 
