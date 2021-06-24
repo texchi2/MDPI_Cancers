@@ -527,7 +527,7 @@ There is more evidence to validate them (please see Answer 2-3).
 % strategy should changing; run GCP Rstudio 框列更多的 candidates for GEO (GSE65858) during candidate selection
 In the independent test, half genes have p-values less than 0.05, and most of them have p-values $> 0.01$. % table 1 => this is Bonferroni 的結果
 Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. % the validation rate 
-The p-values are affected by the sample size, which should be described in the main text. % writing
+The p-values are affected by the sample size, which should be described in the main text. % writing; also affecting the over-fitting during a model training
 As I mentioned above, the authors should look for more data to verify these biomarkers. % GEO GSE65858(ok) 
 %or even GSE117973? GPL10558	Illumina HumanHT-12 V4.0 expression beadchip; https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE117973
 % Progression-free survival (PFS) is "the length of time during and after the treatment of a disease, such as cancer, that a patient lives with the disease but it does not get worse".[1] In oncology, PFS usually refers to situations in which a tumor is present, as demonstrated by laboratory testing, radiologic testing, or clinically. Similarly, "disease-free survival" is when patients have received treatment and are left with no detectable disease.
@@ -691,7 +691,8 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 
 \begin{MyColorPar}{red}
 
-***...the \textit{P} value is affected by the sample size. % TCGA has the most HNSCC sample size
+***...the \textit{P} value is affected by the sample size. % TCGA has the most HNSCC sample size, if combine several GSE65858 and with TCGA HNSCC 
+An increase of the sample size will decrease overfitting.
 
 
 %%%
@@ -809,24 +810,90 @@ Here is another suggestion. To maximize the use of continuous expression values,
 Answer
 
 We appreciate the reviewer for the critical comments.
-feature selection => includes gene signature that are related to a grouping structures with similar biological functions tend to have similar expressions. 
-# For example, a group of co-regulated genes that are preferable to be taken into consideration in select features.
-Scientists are often interested in selecting certain genes that are related to a categorical response variable, such as the onset or progression of cancer. These genes are known as signatures in the life sciences literature; for the purposes of our paper, we will call them features.
+ %=> includes gene signature that are related to a grouping structures with similar biological functions tend to have similar expressions. 
+A group of co-regulated genes that are preferable to be taken into consideration in a gene signature.
+In the data science literature, feature selection has been usually applied for a group of genes which are contributing as independent variables for building model such as logistic regression. %The dependent variables are the survival data.
+%Scientists are often interested in selecting certain genes that are related to a categorical response variable, such as the onset or progression of cancer. These genes are known as signatures in the life sciences literature; for the purposes of our paper, we will call them features.
+Least Absolute Shrinkage and Selection Operation (LASSO):
+The feature selection (subsets of gene) could be done by the $L_{1}$-regularized path algorithm in LASSO regression. That is suggested by Branders and his colleagues\cite{Branders2014} applying on those high-dimensional data i.e., twenty thousands of features (genes) and only hundreds of sample size.
+LASSO is suitable at picking up a small signal (gene signature) through lots of noise (all protein-coding genes).
+% R code by https://www4.stat.ncsu.edu/~post/josh/LASSO_Ridge_Elastic_Net_-_Examples.html
+
+% feature selection by lasso (L1 regularization)
+% LASSO, shrinkage coefficients to zero, for selection the features
+Cross-validation is perhaps the simplest and most widely used method for select one of models at specific \lambda. % k-fold Cross-validation
+As the coefficients of logistic regression are reduced to zero by LASSO, the useless features associated with those coefficients will be omitted.
+The important features that contribute much to the model will be selected.
+Cross-validation error is calculated to find the optimal value of the regularization rate (i.e., lambda, \lambda). \lambda could control the size of a small amount of bias.
+% over-fitting causes problem
+During fitting of logistic model, it is necessary to add that small amount of bias for getting a significant drop in the variance to prevent it's over-fitting.  
+%(over-fitting is called high-variance)
+In case with over-fitting, this trained model will only perfect match every individual cases, while has higher variability to predict what it never see.
+Over-fitting could be controlled well by using both LASSO $L_{1}$-regularization and cross validation.
+
+%RLassoCox\\
+We utilized the RLassoCox\cite{Simon2011}\cite{Liu2021} (RLasso-Cox model, implemented in a bioconductor package, available at https://\\github.com/weiliu123/RLassoCox) for training the Cox proportional hazard regression and multinomial logistic regression models in gene expression analysis to identify a group of genes that contribute to the survival outcome of HNSCC patient. %and gene interaction networks (The KEGG network\cite{Simon2011}).
+% data(dGMMirGraph) # The KEGG network constructed by the R package iSubpathwayMiner.
+% based on gene expression profiles,
+The Cox and logistic regression are standard models for their respective tasks: either fitting survival times or classifying samples.
+The RLassoCox make use of both tasks for gene-expression based survival analysis.
+
+% medium: https://towardsdatascience.com/regularization-machine-learning-891e9a62c58d
+
+
+
+%in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
+%It is based on the hypothesis that topologically important genes in the gene interaction network tend to have stable expression changes. The RLasso-Cox model uses random walk to evaluate the topological weight of genes, and then highlights topologically important genes to identify survival biomarkers for HNSCC.
+%dGMMirGraph The KEGG network\cite{Simon2011}\cite{Liu2021}.
  
-***The RLassoCox\cite{Liu2021} (bioconductor package, available at https://github.com/weiliu123/RLassoCox) trains the RLasso-Cox model based on gene expression profiles, survival information and gene interaction networks.
-It is based on the hypothesis that topologically important genes in the gene interaction network tend to have stable expression changes. The RLasso-Cox model uses random walk to evaluate the topological weight of genes, and then highlights topologically important genes to identify survival biomarkers for HNSCC.
-dGMMirGraph The KEGG network\cite{Simon2011}\cite{Liu2021}.
- 
-%x Bayesian Hyper-LASSO Classification for Feature Selection with Application to HNSCC RNA-seq Data\cite{Jiang2020} -> citing \cite{Li2018d}
-RLassoCox\\
-We apply Bayesian Logistic Regression with Heavy-tailed Priors\cite{Li2018d} by R package HTLR (available at https://github.com/cran/HTLR) in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
-HTLR utilize an Markov chain Monte Carlo (MCMC) method for learning multinomial logistic regression with hyper-LASSO priors. The MCMC algorithm uses Hamiltonian Monte Carlo in a restricted Gibbs sampling framework.
+%HTLR\\
+%x Bayesian Hyper-LASSO Classification for Feature Selection with Application to HNSCC RNA-seq Data ***\cite{Jiang2020} -> citing *** \cite{Li2018d} HTLR
+%We apply Bayesian Logistic Regression with Heavy-tailed Priors\cite{Li2018d} by R package HTLR (available at https://github.com/cran/HTLR) in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
+%HTLR utilize an Markov chain Monte Carlo (MCMC) method for learning multinomial logistic regression with hyper-LASSO priors. The MCMC algorithm uses Hamiltonian Monte Carlo in a restricted Gibbs sampling framework.
+
+%coxlogit\\ 只是 Cox + LR 依照不同比例相加
+%https://www.info.ucl.ac.be/~pdupont/pdupont/pdf/MCDM_14.pdf
+%The Cox proportional hazard regression and logistic regression are standard models for their respective tasks: either fitting survival times or classifying samples.
+%Here we make use of both tasks by the Coxlogit mixed model.
+%As such this approach outperforms a Cox proportional hazard model or a logistic regression, each of those models being efficient essentially on their own task\cite{Branders2014}.
+
+
+% BayesHL (implementation is not found so far)
+%X Bayesian Robit regression method with Hyper-LASSO priors (shortened by BayesHL) for feature selection in high dimensional genomic data with grouping structure.
+%We apply BayesHL in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
+%*** However, the LASSO has been criticized for being biased in gene selection, because it penalizes all the gene coefficients equally\cite{Fan2014}.
+%=> Ridge regression 才是
+%L2 regularization or Ridge regression. As the parameters "tend to zero" 不是 feature selection (all preserved)
+%It could be overcame by assigning a consistent weight to each gene, which has been implemented in the adaptive LASSO (APLR)\cite{Algamal2015}\cite{Wu2018}.% was originally proposed to. 
+% only boost accuracy from 95\% to 97\% :-)
+% BayesHL is immune to the problem of correlation bias. Other convex and non-convex methods may not be able to identify significant features when there is a high number of correlated features, due to the problem of correlation bias
+
+
+%***  a gene signature with deep learning CNN, convolutional neural network
+%or http://gepia2.cancer-pku.cn/#index
+
+%# Logistics Regression
+%# family = binomial 
+%# it assumes a linear relationship between link function (***maximum likelihood; likelihood = odds) and independent variables in logit model
+%# p(X)(1−p(X)) the odds ratio
+%# logit = log(P(x)/(1-P(x))) = β0+β1X
+%# l(β0,β1)=p(X)(1−p(X))
+
+
+
 
 % **** [2021/06/22] by Bayes_survival.R
 The results shows
+%[line 403] cv.mod <- cvRLassoCox(x=x.train, y=y.train, globalGraph=dGMMirGraph, nfolds = 10) 
+#Calculating Cox p-value...Done [2021/06/22] 19:42
+#Performing directed random walk...Done
+#Performing cv.glmnet...Done
+#code inside: fit.lasso <- glmnet(x.train, y.train, family="gaussian", alpha=1) # L1-regularization, LASSO
 %Rplot_GSE65858_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
 % Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
-cv.mod.candidate 62 genes are not performed well either in GSE65858 HNSCC or TCGA HNSCC (please see Figure \ref{fig:Bayes62}).\\
+the selected features (62 genes) are selected by their (non-zero) coefficients. 
+%cv.mod.candidate 62 genes 
+However, they are not performed well either in GSE65858 HNSCC or TCGA HNSCC (please see Figure \ref{fig:Bayes62}).\\
 
 \begin{figure}[!tbp]
 %     % two PDF side by side \usepackage{subcaption}
@@ -843,26 +910,24 @@ cv.mod.candidate 62 genes are not performed well either in GSE65858 HNSCC or TCG
   \label{fig:Bayes62}
 \end{figure}
 
-%X Bayesian Robit regression method with Hyper-LASSO priors (shortened by BayesHL) for feature selection in high dimensional genomic data with grouping structure.
-%We apply BayesHL in gene expression analysis to identify subsets of genes that contribute to the overall survival outcome of HNSCC patients.
-*** However, the LASSO has been criticized for being biased in gene selection, because it penalizes all the gene coefficients equally\cite{Fan2014}.
-% BayesHL is immune to the problem of correlation bias. Other convex and non-convex methods may not be able to identify significant features when there is a high number of correlated features, due to the problem of correlation bias
+% accuracy for the classification in case-control study (or ROC, AUC)
+% **** C-index, concordance index for survival data (with censoring)
+the Harrell concordance index (C-index) (1996) is the standard performance metric for model assessment in survival analysis with censored data.
+%The predictive performances are computed in terms of C-index for the survival prediction. 
 
-%coxlogit: https://www.info.ucl.ac.be/~pdupont/pdupont/pdf/MCDM_14.pdf
-The Cox proportional hazard regression and logistic regression are standard models for their respective tasks: either fitting survival times or classifying samples.
-Here we make use of both tasks by the Coxlogit mixed model.
-As such this approach outperforms a Cox proportional hazard model or a logistic regression, each of those models being efficient essentially on their own task\cite{Branders2014}.
-*** However, the LASSO has been criticized for being biased in gene selection, because it penalizes all the gene coefficients equally\cite{Fan2014}.
-It could be overcame by assigning a consistent weight to each gene, which has been implemented in the adaptive LASSO (APLR)\cite{Algamal2015}\cite{Wu2018}.% was originally proposed to. 
-accuracy from 95\% to 97\% :-)
-
-%***  a gene signature with deep learning CNN,
-%or http://gepia2.cancer-pku.cn/#index
-
+% Y-axis of the cross-validation error curve (red dotted line) (partial likelihood deviance)
+the left vertical line in the plot shows us where the cross-validation error curve hits its minimum. 
+The right vertical line shows us the most regularized model with the cross-validation error within 1 standard deviation of the minimum.
+% in lambda 1se
 %cv.mod$glmnetRes$lambda.1se
 the most regularized model with cross-validation error within 1 standard deviation of the minimum.
+It selects 14 genes,
+according to the \textit{P} value, 4 gene signature: HK1, EZR, RRAGA, and DUSP16.
 
-Finally, we use gene signature, HK1, EZR, RRAGA, and DUSP16 to predict their survival impact on TCGA HNSCC cohort (please see Figure \ref{fig:signature4}).
+
+
+% lasso 就是要找出 coefficient of regression non-zero 的基因: selected features
+Finally, we found a gene signature, HK1, EZR, RRAGA, and DUSP16 to predict their survival impact on TCGA HNSCC cohort (please see Figure \ref{fig:signature4}).
 
 However, # 4 gene signature: #### 
 # "EZR" has \textit{P} value $>0.05$
