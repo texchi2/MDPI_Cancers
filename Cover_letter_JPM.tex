@@ -811,33 +811,42 @@ Answer
 
 We appreciate the reviewer for the critical comments.
  %=> includes gene signature that are related to a grouping structures with similar biological functions tend to have similar expressions. 
-A group of co-regulated genes that are preferable to be taken into consideration in a gene signature.
-In the data science literature, feature selection has been usually applied for a group of genes which are contributing as independent variables for building model such as logistic regression. %The dependent variables are the survival data.
+Since we have tried to integrate multiple genes in survival analysis, a group of co-regulated genes that are preferable to be taken into consideration in a gene signature.
+Searching about the data science literature, feature selection has been usually applied for a group of genes which are contributing as independent variables for building model such as logistic regression. %The dependent variables are the survival data.
 %Scientists are often interested in selecting certain genes that are related to a categorical response variable, such as the onset or progression of cancer. These genes are known as signatures in the life sciences literature; for the purposes of our paper, we will call them features.
-Least Absolute Shrinkage and Selection Operation (LASSO):
-The feature selection (subsets of gene) could be done by the $L_{1}$-regularized path algorithm in LASSO regression. That is suggested by Branders and his colleagues\cite{Branders2014} applying on those high-dimensional data i.e., twenty thousands of features (genes) and only hundreds of sample size.
-LASSO is suitable at picking up a small signal (gene signature) through lots of noise (all protein-coding genes).
+%Least Absolute Shrinkage and Selection Operation (LASSO):
+Branders and his colleagues\cite{Branders2014} have suggested that regularization of regression model should be applied on analysis of the high-dimensional data, i.e. twenty thousands of features (genes) and only hundreds of sample size.
+The $L_{1}$-regularized path algorithm by Least Absolute Shrinkage and Selection Operation (LASSO) regression could perform feature selection (a subset of gene).
+LASSO is suitable at picking up a small signal (gene signature) through lots of noise (twenty thousands of protein-coding genes).
 % R code by https://www4.stat.ncsu.edu/~post/josh/LASSO_Ridge_Elastic_Net_-_Examples.html
-
+Our approach is to build a logistic regression model for the prediction of patient's survival.
+% over-fitting causes problem
+% During fitting of logistic model, 
+Beside feature selection,
+it is also necessary to add that small amount of bias (lambda, $\lambda$) for getting a significant drop in the variance to prevent over-fitting of the model.
+$\lambda$ could control the amount of bias dealing with over-fitting.
+%(over-fitting is called high-variance)
+In such a case, over-fitted model will only perfectly match every individual cases, and has higher variability to predict what it never see.
+Over-fitting will limit usefulness of the model in it's generalization, and could be controlled well by using both LASSO $L_{1}$-regularization and cross validation.
 % feature selection by lasso (L1 regularization)
 % LASSO, shrinkage coefficients to zero, for selection the features
-Cross-validation is perhaps the simplest and most widely used method for select one of models at specific \lambda. % k-fold Cross-validation
-As the coefficients of logistic regression are reduced to zero by LASSO, the useless features associated with those coefficients will be omitted.
-The important features that contribute much to the model will be selected.
-Cross-validation error is calculated to find the optimal value of the regularization rate (i.e., lambda, \lambda). \lambda could control the size of a small amount of bias.
-% over-fitting causes problem
-During fitting of logistic model, it is necessary to add that small amount of bias for getting a significant drop in the variance to prevent it's over-fitting.  
-%(over-fitting is called high-variance)
-In case with over-fitting, this trained model will only perfect match every individual cases, while has higher variability to predict what it never see.
-Over-fitting could be controlled well by using both LASSO $L_{1}$-regularization and cross validation.
+% perhaps the simplest and 
+Cross-validation error is calculated to find the optimal value of $\lambda$.
+%Cross-validation is most widely used method for select one of models at specific regularization rate (i.e. lambda, \lambda) during the model fitting.
+% k-fold Cross-validation
+As the coefficients of logistic regression are reduced to zero by LASSO, %the useless features (genes) associated with those coefficients will be omitted.
+the important features that contribute much to the model will be selected under that optimal value of $\lambda$.
+ 
 
+% multinomial
 %RLassoCox\\
-We utilized the RLassoCox\cite{Simon2011}\cite{Liu2021} (RLasso-Cox model, implemented in a bioconductor package, available at https://\\github.com/weiliu123/RLassoCox) for training the Cox proportional hazard regression and multinomial logistic regression models in gene expression analysis to identify a group of genes that contribute to the survival outcome of HNSCC patient. %and gene interaction networks (The KEGG network\cite{Simon2011}).
+We have utilized the RLassoCox\cite{Simon2011}\cite{Liu2021} (RLasso-Cox model, implemented in a bioconductor package, available at https://github.com/weiliu123/\\RLassoCox) for training the Cox proportional hazard regression and logistic regression models in gene expression analysis to identify a group of genes that contribute to survival outcome of HNSCC patient. 
+%and gene interaction networks (The KEGG network\cite{Simon2011}).
 % data(dGMMirGraph) # The KEGG network constructed by the R package iSubpathwayMiner.
 % based on gene expression profiles,
-The Cox and logistic regression are standard models for their respective tasks: either fitting survival times or classifying samples.
-The RLassoCox make use of both tasks for gene-expression based survival analysis.
-
+%The Cox and logistic regression are standard models for their respective tasks: either fitting survival times or classifying samples.
+The RLassoCox make use of both Cox and LASSO logistic regression for gene-expression based survival analysis.
+The model training has been performed under 10-fold cross-validation.
 % medium: https://towardsdatascience.com/regularization-machine-learning-891e9a62c58d
 
 
@@ -884,16 +893,17 @@ The RLassoCox make use of both tasks for gene-expression based survival analysis
 
 % **** [2021/06/22] by Bayes_survival.R
 The results shows
+% k-fold Cross-validation
 %[line 403] cv.mod <- cvRLassoCox(x=x.train, y=y.train, globalGraph=dGMMirGraph, nfolds = 10) 
 #Calculating Cox p-value...Done [2021/06/22] 19:42
 #Performing directed random walk...Done
 #Performing cv.glmnet...Done
-#code inside: fit.lasso <- glmnet(x.train, y.train, family="gaussian", alpha=1) # L1-regularization, LASSO
+#code inside: fit.lasso <- cv.glmnet(x.train, y.train, family="gaussian", alpha=1) # L1-regularization, LASSO
 %Rplot_GSE65858_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
 % Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
 the selected features (62 genes) are selected by their (non-zero) coefficients. 
-%cv.mod.candidate 62 genes 
-However, they are not performed well either in GSE65858 HNSCC or TCGA HNSCC (please see Figure \ref{fig:Bayes62}).\\
+%cv.mod.candidate has 62 genes 
+However, they are performed poor either in GSE65858 HNSCC or TCGA HNSCC (please see Figure \ref{fig:Bayes62}).\\
 
 \begin{figure}[!tbp]
 %     % two PDF side by side \usepackage{subcaption}
@@ -1176,7 +1186,7 @@ iscussion about sliding-window pvalueTex to find the more potential candidate (w
 %\externalbibliography{yes}
 %\bibliography{your_external_BibTeX_file}
 \bibliographystyle{unsrt} %model1-num-names}
-\bibliography{TCGA_margin_cutoff.bib}
+\bibliography{TCGA_margin_cutoff.bib, Deep_Learning.bib}
 
 
 \section{end_document}
