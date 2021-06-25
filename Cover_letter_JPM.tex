@@ -13,7 +13,7 @@
 
 % mark in blue or red
 \usepackage{xcolor}
-
+%\usepackage[table,xcdraw]{xcolor}
 \newenvironment{MyColorPar}[1]{%
     \leavevmode\color{#1}\ignorespaces%
 }{%
@@ -810,7 +810,6 @@ Here is another suggestion. To maximize the use of continuous expression values,
 Answer
 
 We appreciate the reviewer for the critical comments.
- %=> includes gene signature that are related to a grouping structures with similar biological functions tend to have similar expressions. 
 Since we have tried to integrate multiple genes in survival analysis, a group of co-regulated genes that are preferable to be taken into consideration in a gene signature.
 Searching about the data science literature, feature selection has been usually applied for a group of genes which are contributing as independent variables for building model such as logistic regression. %The dependent variables are the survival data.
 %Scientists are often interested in selecting certain genes that are related to a categorical response variable, such as the onset or progression of cancer. These genes are known as signatures in the life sciences literature; for the purposes of our paper, we will call them features.
@@ -841,7 +840,8 @@ the important features that contribute much to the model will be selected under 
 % multinomial
 %RLassoCox\\
 We have utilized the RLassoCox\cite{Simon2011}\cite{Liu2021} (RLasso-Cox model, implemented in a bioconductor package, available at https://github.com/weiliu123/\\RLassoCox) for training the Cox proportional hazard regression and logistic regression models in gene expression analysis to identify a group of genes that contribute to survival outcome of HNSCC patient. 
-%and gene interaction networks (The KEGG network\cite{Simon2011}).
+% RLassoCox includes gene signature that are related to a grouping structures with similar biological functions tend to have similar expressions. 
+% gene interaction networks (The KEGG network\cite{Simon2011}).
 % data(dGMMirGraph) # The KEGG network constructed by the R package iSubpathwayMiner.
 % based on gene expression profiles,
 %The Cox and logistic regression are standard models for their respective tasks: either fitting survival times or classifying samples.
@@ -892,18 +892,17 @@ The model training has been performed under 10-fold cross-validation.
 
 
 % **** [2021/06/22] by Bayes_survival.R
-The results shows
 % k-fold Cross-validation
 %[line 403] cv.mod <- cvRLassoCox(x=x.train, y=y.train, globalGraph=dGMMirGraph, nfolds = 10) 
-#Calculating Cox p-value...Done [2021/06/22] 19:42
-#Performing directed random walk...Done
-#Performing cv.glmnet...Done
-#code inside: fit.lasso <- cv.glmnet(x.train, y.train, family="gaussian", alpha=1) # L1-regularization, LASSO
+%#Calculating Cox p-value...Done [2021/06/22] 19:42
+%#Performing directed random walk...Done
+%#Performing cv.glmnet...Done
+%#code inside: fit.lasso <- cv.glmnet(x.train, y.train, family="gaussian", alpha=1) # L1-regularization, LASSO
 %Rplot_GSE65858_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
 % Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
-the selected features (62 genes) are selected by their (non-zero) coefficients. 
 %cv.mod.candidate has 62 genes 
-However, they are performed poor either in GSE65858 HNSCC or TCGA HNSCC (please see Figure \ref{fig:Bayes62}).\\
+The results shows the selected features (62 genes) distributing on our previous volcano plots (please see Figure \ref{fig:Bayes62}; comparing with Figure \ref{fig:hazards3} and Figure \ref{fig:hazards534}).
+
 
 \begin{figure}[!tbp]
 %     % two PDF side by side \usepackage{subcaption}
@@ -916,50 +915,86 @@ However, they are performed poor either in GSE65858 HNSCC or TCGA HNSCC (please 
        \includegraphics[width=\textwidth]{Rplot_GSE65858_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf} 
        \caption{GSE65858 HNSCC cohort}
   \end{subfigure}
-  \caption{side by side}
+  \caption{The 62 genes (listed on the right) have been discovered by LASSO regression in (a) TCGA HNSCC and (b) GSE65858 HNSCC cohort. \textcolor{red}{Red}-square marked genes are our 3 candidates.}
   \label{fig:Bayes62}
 \end{figure}
 
-% accuracy for the classification in case-control study (or ROC, AUC)
+% C-index = 0.68 in this model fitting
+%accuracy for the classification in case-control study (or ROC, AUC)
 % **** C-index, concordance index for survival data (with censoring)
-the Harrell concordance index (C-index) (1996) is the standard performance metric for model assessment in survival analysis with censored data.
+%the Harrell concordance index (C-index) (1996) is the standard performance metric for model assessment in survival analysis with censored data.
 %The predictive performances are computed in terms of C-index for the survival prediction. 
 
 % Y-axis of the cross-validation error curve (red dotted line) (partial likelihood deviance)
-the left vertical line in the plot shows us where the cross-validation error curve hits its minimum. 
-The right vertical line shows us the most regularized model with the cross-validation error within 1 standard deviation of the minimum.
+%the left vertical line in the plot shows us where the cross-validation error curve hits its minimum.
+%The final gene signature has been selected, including 4 genes, named HK1, EZR, RRAGA, and DUSP16 .; fentastic4
+% lasso 就是要找出 coefficient of regression non-zero 的基因: selected features
+LASSO calculate the (non-zero) coefficients of features, while the 62 genes hit the minimum of cross-validation error.
 % in lambda 1se
 %cv.mod$glmnetRes$lambda.1se
-the most regularized model with cross-validation error within 1 standard deviation of the minimum.
-It selects 14 genes,
-according to the \textit{P} value, 4 gene signature: HK1, EZR, RRAGA, and DUSP16.
+We have further limited gene selection (13 out of 62) by the most regularized model under cross-validation error within 1 standard deviation of the minimum.
+According to their \textit{P} values (please see Table \ref{tab:signature4}), 
+we found a gene signature, HK1, EZR, RRAGA, and DUSP16 to predict their survival impact on TCGA HNSCC cohort (please see Figure \ref{fig:signature4}).
+DUSP16 has negative coefficient in the LASSO regression model, compatible with HR less than 1 in volcano plot of TCGA HNSCC.
 
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% {\color[HTML]{FE0000} 0.002}  
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% Please add the following required packages to your document preamble:
 
+\begin{table}[ht]
+\centering
+\caption{The most LASSO regularized logistic model under cross-validation. Genes with positive coefficient will increase the patient's risk, while negative reduce it.\\
+    (\textcolor{red}{red}-marked logistic \textit{P} value $< 0.05$)}
+\label{tab:signature4}
+\begin{tabular}{lrr}
+\textbf{Gene Symbol} & \textbf{Coefficients} &  \textbf{\textit{P} value} \\ \hline
+\textbf{POLR2C}      & 0.870                 & 0.150                              \\
+\textbf{EFNB2}       & 0.189                 & 0.521                              \\
+\textbf{PLAU}        & -0.189                & 0.408                              \\
+\textbf{HK1}         & 1.413                 & \textcolor{red}{0.002}       \\
+\textbf{WNT7A}       & 0.211                 & 0.111                              \\
+\textbf{HPRT1}       & 0.620                 & 0.113                              \\
+\textbf{APP}         & 0.219                 & 0.538                              \\
+\textbf{SC5DL}       & 0.262                 & 0.367                              \\
+\textbf{EZR}         & 0.973                 & \textcolor{red}{0.017}       \\
+\textbf{RRAGA}       & 0.925                 & \textcolor{red}{0.022}       \\
+\textbf{S1PR4}       & -0.368                & 0.052                              \\
+\textbf{DUSP16}      & -0.745                & \textcolor{red}{0.035}       \\
+\textbf{SH3BP2}      & -0.606                & 0.107                             
+\end{tabular}
+\end{table}
 
-% lasso 就是要找出 coefficient of regression non-zero 的基因: selected features
-Finally, we found a gene signature, HK1, EZR, RRAGA, and DUSP16 to predict their survival impact on TCGA HNSCC cohort (please see Figure \ref{fig:signature4}).
+%%%
 
-However, # 4 gene signature: #### 
-# "EZR" has \textit{P} value $>0.05$
-
-Conclusion, we might build a Lasso regression model with L1 regularization to maximize the use of continuous gene expression values (without a cutoff).
-The gene signature integrating multiple genes is also a good approach for biomarker discovery.
-
-\begin{figure}
+\begin{figure}[ht]
 %    \centering
-  \begin{subfigure}[b]{0.4\textwidth}
-    \includegraphics[width=8cm]{rplot_KMplot_HK1.pdf}
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=6cm]{rplot_KMplot_HK1.pdf}
     \caption{Kaplan-Meier plot}
   \end{subfigure}
   \hfill
-  \begin{subfigure}[b]{0.4\textwidth}
+  \begin{subfigure}[b]{0.5\textwidth}
     \includegraphics[width=8cm]{Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_signature4_FDRKM.pdf}  
     \caption{Volcano plot}
   \end{subfigure}
-  
-  \caption{(a) OS in TCGA HNSCC for a gene signature including HK1, EZR, RRAGA, and DUSP16; (b) Those genes have not significant survival impact if calculated individually (EZR is not shown on volcano plot due to it's \textit{P} value $>0.05$)}
+%However, # 4 gene signature: #### 
+%# "EZR" has \textit{P} value $>0.05$
+  \caption{(a) OS in TCGA HNSCC for a gene signature including HK1, EZR, RRAGA, and DUSP16 (Kaplan-Meier \textit{P} value = \num{1.31e-6}); (b) Those genes (listed on the rigth side) have not significant hazard ratio (HR) if calculated individually (EZR is not shown on volcano plot due to it's Kaplan-Meier \textit{P} value $>0.05$)}
     \label{fig:signature4}
 \end{figure}
+
+
+
+In conclusion, we might build a Lasso regression model with LASSO regularization to maximize the use of continuous gene expression values (without the need of a cutoff).
+The gene signature integrating multiple genes is also a good approach for biomarker discovery.
+However, the resulting candidates could be influenced by proper "gene interaction network" applied for model building.
+% gene signature
+RLassoCox package works on the basis of gene signature that are related to a grouping structures with similar biological functions tend to have similar expressions. 
+RLassoCox utilizes Kyoto Encyclopedia of Genes and Genomes (KEGG) network\cite{Simon2011} as the reference of gene interaction networks, constructed by the R package "iSubpathwayMiner".
+% data(dGMMirGraph) # The KEGG network constructed by the R package iSubpathwayMiner.
 
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03544-z
 %https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04040-8
