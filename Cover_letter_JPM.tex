@@ -520,14 +520,14 @@ There is more evidence to validate them (please see Answer 2-3).
 
 
 \subsection*{2-3}
-% (OK)
+% ( ) not yet for discussion 1) sample size/effect size; 2) ***NDFIP1
 % [2021/06/17]
 % PPV positive prediction value => prevalence-sensitive (COVID-19 盛行率的觀念一致) ROC from sensitivity and specificity (less biomarkers but more P value < 1e-5?)
 
 % strategy should changing; run GCP Rstudio 框列更多的 candidates for GEO (GSE65858) during candidate selection
 In the independent test, half genes have p-values less than 0.05, and most of them have p-values $> 0.01$. % table 1 => this is Bonferroni 的結果
 Purely based on the number of genes and their p-values, the validation rate is relatively low, and the usability of the biomarkers is questionable. % the validation rate 
-The p-values are affected by the sample size, which should be described in the main text. % writing; also affecting the over-fitting during a model training
+The p-values are affected by the sample size, which should be described in the main text. % writing (ok) [2021/06/26]; also affecting the over-fitting during a model training
 As I mentioned above, the authors should look for more data to verify these biomarkers. % GEO GSE65858(ok) 
 %or even GSE117973? GPL10558	Illumina HumanHT-12 V4.0 expression beadchip; https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE117973
 % Progression-free survival (PFS) is "the length of time during and after the treatment of a disease, such as cancer, that a patient lives with the disease but it does not get worse".[1] In oncology, PFS usually refers to situations in which a tumor is present, as demonstrated by laboratory testing, radiologic testing, or clinically. Similarly, "disease-free survival" is when patients have received treatment and are left with no detectable disease.
@@ -552,6 +552,7 @@ We appreciate the reviewer for the critical comments and thanks for the guidance
 % (ok) Table 1/2 caption, Fig KP plot: FDR P value (要改為真的FDR) [line 196]
 % [2021/06/11]決議;
 We have introduced an independent HNSCC cohort (GSE65858, with RNA-Seq expression data) for helping in candidate selection.
+We have also performed Kaplan-Meier and Cox survival analyses, under the cutoff of each gene expression at their median value.
 %We further
 %validate them by using a independent HNSCC cohort (GSE65858, with RNA-Seq expression data)
 
@@ -700,37 +701,36 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 %RefSeq Release 38 (November 7, 2009) 
 
 %[Dataset]
-The Gene Expression Omnibus (GEO) database, founded by National Center for Biotechnology Information Reference Sequence (NCBI), is a public repository supporting MIAME-compliant data submissions of microarray and sequence-based experiments.
+The Gene Expression Omnibus (GEO) database, founded by \acrfull{ncbi}, is a public repository supporting MIAME-compliant data submissions of microarray and sequence-based experiments.
 R package of GEOquery\cite{Sean2007} was used to
-download RNA-Seq dataset (in SOFT or MINiML format) of a HNSCC cohort, GSE65858, from the GEO database (available at https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE65858). 
+download RNA-Seq dataset (in SOFT or MINiML format) of a HNSCC cohort, GSE65858, from the GEO database (available at https://www.ncbi.nlm.nih.gov/geo/geo2r/?\\acc=GSE65858). 
 GSE65858\cite{Wichmann2015} has OS event, RFS event and survival time.
 There are 270 HNSCC participants involved in this cohort.
 %The number of genes (or probes of RNA-Seq in platform GPL10558, Illumina HumanHT-12 V4.0 expression beadchip) is 30,330.
 %n=270 n= 273 = ?? + 168(alive) + 88(dead) = 256
-The expression data was generated using the platform GPL10558 (Illumina HumanHT-12 v4.0 Expression BeadChip), which targets on more than 30,330 annotated genes (47,000 probes, derived from the \acrfull{ncbi} Reference Sequence, release 38 on November 7, 2009). % (RefSeq) 
-GSE65858 has been used as a dataset for selection of our candidates. \\
+The expression data was generated using the platform GPL10558 (Illumina HumanHT-12 v4.0 Expression BeadChip), which targets on more than 30,330 annotated genes (47,000 probes, derived from the \acrshort{ncbi} Reference Sequence, release 38 on November 7, 2009). % (RefSeq) 
+GSE65858 is a dataset for candidate selection in our workflow.
+We have also performed Kaplan-Meier and Cox survival analyses, under the cutoff of each gene expression at their median value.\\
 
 
 
 [Results]
-TCGA HNSCC cohort has been applied for exploration of the candidate biomarkers.
+TCGA HNSCC cohort has been applied for exploration of the biomarker candidate
 Total 9416 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05.
-The 10 genes, named as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, are significantly associated with the poor prognosis of overall survival (OS). 
-The other ten genes were over-expressed in the better survival patients (with hazard ratio <=0.5), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
-
-CAMK2N1, IL19, FCGBP and the other 17 genes have hazard ratio (HR) $> 1.8$ or $< 0.6$.
-
+%The 10 genes, named as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, are significantly associated with the poor prognosis of overall survival (OS). 
+%The other ten genes are over-expressed in the better survival group (with hazard ratio $<=0.6$), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
+Furthermore, CAMK2N1, IL19, FCGBP and the other 17 genes (DKK1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, ZNF557, ZNF266, MYO1H, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB) have significant FDR-adjusted \textit{P} values ($<0.0003$) in Kaplan-Meier estimate, and greater hazard ratio (HR) ($> 1.8$ or $< 0.6$) in Cox's model (please see Figure \ref{fig:hazards3}; $log_{10}(0.0003)=-3.5$).
 %During our exploration phase with TCGA cohort, the 20 genes, listed
 %six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
 %four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
 %}
-in Figure \ref{fig:hazards3}, have FDR-adjusted \textit{P} values ($<0.001$) in Kaplan-Meier estimate, and survival impact on HR ($> 1.8$ or $< 0.6$) in Cox's model.
-%
+%in Figure \ref{fig:hazards3}, have FDR-adjusted \textit{P} values ($<0.001$) in Kaplan-Meier estimate, and survival impact on HR ($> 1.8$ or $< 0.6$) in Cox's model.
+
 % [2021/06/13-17] GSE65858
 %CAMK2N1, IL19, and FCGBP is validated by
 %candidate_fdr100
 %PvalueTex consensus with GSE2837 to yield 3 candidates
-In the study of GSE65858 cohort, CAMK2N1, IL19, and FCGBP, keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox'HR ($>1.8$ or $<0.65$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
+In the study of GSE65858 cohort with median cutoffs, CAMK2N1, IL19, and FCGBP (3 of the 20 genes), keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox'HR ($>1.8$ or $<0.65$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
 % (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002 
 % Consensus 3 genes in Kaplan-Meier survival and Cox's model (dataset: GSE65858)
 %Gene.Symbol KM.Pvalue   FDR.KMpvalue    uni_HR  FDR.Pvalue(in TCGA)
@@ -740,20 +740,110 @@ In the study of GSE65858 cohort, CAMK2N1, IL19, and FCGBP, keep ahead of the cur
 %IL19    0.00269  0.03068073 0.630  6.543871e-06
 %candidate_fdr100
 and also see Figure \ref{fig:hazards534}).
-However, the "top rank" of the other 17 genes is replaced by genes such as DUSP6, MSMB, and RBM11 (please see Figure \ref{fig:hazards534}).
-This HNSCC cohort has been applied for filtering of our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
-    Total 534 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05
-    (\textcolor{red}{Red spots}: hazard ratio is greater than 1.0);
-    (\textcolor{green}{Green spots}: hazard ratio is under than 1.0).\\
-    The 22 genes, listed on the side, have hazard ratio $> 1.8$ or $< 0.6$.\\
-However, these 22 genes have hazard ratio between 0.6 and 1.5 in the study of TCGA HNSCC.
-There is consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19, and FCGBP are significant candidates for the biomarker.
-The consensus between the TCGA and GSE65858 cohorts in Kaplan-Meier survival and Cox's model
+However, the significance of the other 17 genes is replaced by genes such as DUSP6, MSMB, and RBM11 (please see Figure \ref{fig:hazards534}).
+This GSE65858 cohort has been applied for selection to generate our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
+Moreover, there are 22 genes, which have greater hazard ratio ($> 1.8$ or $< 0.6$) in GSE65858 cohort (Figure \ref{fig:hazards534}), drop their hazard ratio between 0.6 and 1.5 in the study of TCGA HNSCC (Figure \ref{fig:hazards3}).
+Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19, and FCGBP are significant candidates for the HNSCC biomarker.
+%The consensus between the TCGA and GSE65858 cohorts in Kaplan-Meier survival and Cox's model
 
 
 [Discussion]
-***...the \textit{P} value is affected by the sample size. % TCGA has the most HNSCC sample size, if combine several GSE65858 and with TCGA HNSCC 
-An increase of the sample size will decrease overfitting.
+[more in the discussion section]
+1) 
+Statistical significance (\textit{P} value) is affected by both sample size, error, effect size (substantive significance)\cite{Sullivan2012}\cite{Thiese2016}, and cutoff. 
+The effect size is the magnitude of the difference (or relationship) among comparing groups.
+%A \textit{P} value is a tool to help interpret findings from biomedical research.
+%In reporting and interpreting studies, both 
+%the substantive significance (effect size) and statistical significance (P value) are essential results to be reported.
+While statistical significance can inform the researcher whether an effect exists, 
+the \textit{P} value will not directly tell the effect size.
+%The effect size is the main finding of a quantitative study.
+%Statistical significance depends upon both sample size and effect size. 
+The effect size is independent of the sample size\cite{Sullivan2012}.
+
+
+%When we increase the sample size, the standard error decrease
+%, or increase the difference between the sample statistic and hypothesized parameter, the p value decreases, thus making it more likely that we reject the null hypothesis.
+The larger the sample the more likely a difference to be accepted (i.e. \textit{P} value $< 0.05$), due to the decrease of the standard error\cite{Sullivan2012}.
+However, the small effect size (non-zero) is often meaningless (substantive insignificance).
+%With a sufficiently large sample, a statistical test will always reveal a significant difference, unless the effect size is exactly zero.
+%, that is, when the effect size is exactly zero; 
+%yet very small differences, even if significant, are often meaningless. 
+%Thus, reporting only the significant P value for an analysis is not adequate for readers to fully understand the results.
+%If the magnitude of effect is small and clinically unimportant, the p-value can be "significant" if the sample size is large.
+Conversely, an effect size can be large, but fail to get statistical significance if the sample size is small. In this scenario, the \textit{P} value tells the effect does not exist.
+
+The \textit{P} value could be also impacted by error.
+\begin{outline}
+\1 A random error, defined as variability in data, is not considered a bias but rather occurs random across the entire study population and can distort the measurement process (e.x. RNA-Seq experiments).
+The larger sample size could reduce the random error. 
+\1 A systematic error is a bias, which includes selection bias, information bias, and confounding.
+It could deleteriously impact the statistical significance.
+The larger sample size could not affect the systematic error.
+\end{outline}
+Thus, if there is no error in two study groups, and the sample size is the same, the group, which has a larger effect size, will has small \textit{P} value\cite{Thiese2016}.
+
+As skewed cutoff that split 425 vs 75 between the two groups, it will also get statistical significance by increasing effect size intentionally.
+% https://stats.stackexchange.com/questions/162359/how-can-you-have-p-0-0001-with-a-sample-size-of-89-and-a-control-group-of-52
+%As you can see, even with only 12 events (fustat = 1) that split 10 vs 2 between the two dummy groups you get a log-rank p-value < 0.0001.
+%effect size, sample size, cutoff 影響 p value!
+
+% [preserved] ***
+%An increase in the sample size will decrease over-fitting of model[Frank Harrell].
+% https://hbiostat.org/rms/
+
+% definition of P value
+%Statistical significance is the probability that the observed difference between two groups is due to chance. If the P value is larger than the alpha level chosen (e.x. 0.05), any observed difference is assumed to be explained by sampling variability.
+%The most commonly used α level is 0.05, as proposed by Fischer, is the amount of type I error you are willing to accept.
+%Fisher suggested 5\% (α=0.05) level could be used for concluding that fairly strong evidence exists against H0, that is 1 out of 20 times you will be wrong and by random chance there is no difference between your groups, but the data you have suggests that there is (2).
+
+%power: Power analysis is the name given to the process for determining the sample size for a research study. The technical definition of power is that it is the probability of detecting a "true" effect when it exists. Many students think that there is a simple formula for determining sample size for every research situation.
+%As the sample size gets larger, the z value increases therefore we will more likely to reject the null hypothesis; less likely to fail to reject the null hypothesis, thus the power of the test increases.
+
+
+
+ 
+
+%the confidence interval of the P value (second generation P value?)
+
+
+
+%%%%
+
+2)
+cutoff at optimal by sliding-window or just median:
+when \textit{P} value $<0.05$, the gene number: 9416 , 534 %差別很大，張大網
+run code: if median cut for TCGA KM Cox (by pvalueTex or *** RLassoCox Bayes code) 9416 -> ???
+discussion about sliding-window pvalueTex to find the more potential candidate, while small effect size could be double-checked by GSE65858.
+(  )2-3 put in supplementary figure Rplot_pvaluePlot_NDFIP1.pdf
+%列入 workflow in materials and methods;
+
+***NDFIP1
+a special case of NDFIP1 gene; % 給他們一個機會
+(ok) Answer 2-1 %加入 discussion
+( )  Answer 2-3 supplementary  %圖就好 figure Rplot_pvaluePlot_NDFIP1.pdf
+
+For example, a gene NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile cutoff, could achieve a \textit{P} value of \num{1e-6} at 70\% quantile cutoff.
+NDFIP1 has the FDR-corrected \textit{P} value as \num[round-precision=3, round-mode=figures,
+scientific-notation=true]{0.0001074233}.
+However, it fails as the candidate by inadequate effect size (HR = ??).
+% (ok) Answer 2-1 加入 discussion
+According to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
+Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
+supplementary figure S1). After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures,
+scientific-notation=true]{0.0001074233}.
+%Rplot_pvaluePlot_NDFIP1.pdf
+%  to find cases_OS outside of range 180-220 (== cutoff not at median)
+%# pvalue plot as 倒V字形 "^" or W p_OS pvalues plots (with local minials)
+% # 99 genes have one p_OS >= 0.05, in OS_pvalueTex005
+%# 3641 genes have one p_OS >= 0.02, in OS_pvalueTex002
+%# special case: HNSCC_survivalAnalysis_marginS_NDFIP1.xlsx
+%# NDFIP1 (within our 20 preliminary candidates), 
+In those \textit{P}-value plots, we could see that the sliding-window selection of cutoff finding might collect more potential candidates (\textit{P} values far less than $0.001$) for further Cox's modeling.
+%Some useful biomarkers might be kick-out prematurely in "median cutoff" of survival analysis.
+Indeed, it needs to be validated by the other independent cohort (e.x. GSE65858).
+
+
 
 \end{MyColorPar} % red
 
@@ -1250,9 +1340,6 @@ It might be due to heterogeneity of 20500 RNA-Seq expression data.
 %#=> Test for difference (log-rank test is multiple Chi-square alone survival time) with P-value; or Test for different KM curve between two groups (seperated by PMM1_median 0 vs 1)
 % error05_sample <- which(ZSWIM2$X3==5) # 0.78\%(159 genes) error05: for why?
 
-more in discussion section:
-from Answer 2-3 supplementary figure Rplot_pvaluePlot_NDFIP1.pdf
-discussion about sliding-window pvalueTex to find the more potential candidate (weak or not weak could be double-checked by GSE65858)
 
 
 \end{MyColorPar} % end of red
@@ -1644,7 +1731,7 @@ The 9 out of 20 positive and negative prognostic genes underlined has also been 
 %There is 374 genes in the oral cancer gene database of Indian HNSCC; http://www.bioinformation.net/006/97320630006169.pdf
 %http://www.actrec.gov.in/OCDB/index.htm
 
-Although other databases carrying HNSCC genomics and clinical data we found, such as MSKCC (151 cases), Broad (74 cases), Johns Hopkins (32 cases), MD Anderson (40 cases), and NCBI Gene Expression Omnibus (GEO) datasets (e.x. GSE2837, 40 cases; GSE6631, 22 cases; GSE31056, 23 cases)\cite{Cerami2012b}\cite{Gao2013a}. However, the MSKCC, Broad, and Johns Hopkins databases were processed through whole-exome sequencing instead of whole-genome sequencing in the TCGA database.
+Although other databases carrying HNSCC genomics and clinical data we found, such as MSKCC (151 cases), Broad (74 cases), Johns Hopkins (32 cases), MD Anderson (40 cases), and \acrshort{ncbi} Gene Expression Omnibus (GEO) datasets (e.x. GSE2837, 40 cases; GSE6631, 22 cases; GSE31056, 23 cases)\cite{Cerami2012b}\cite{Gao2013a}. However, the MSKCC, Broad, and Johns Hopkins databases were processed through whole-exome sequencing instead of whole-genome sequencing in the TCGA database.
 
 There is several useful web-tools for survival analysis, such as cBioportal\cite{Cerami2012b}\cite{Gao2013a}, KM-Plotter\cite{Gyorffy2010},  SurvExpress\cite{Aguirre-Gamboa2013}, UALCAN (available at http://ualcan\\.path.uab.edu/)\cite{Chandrashekar2017a} and Gene Expression Profiling Interactive Analysis (GEPIA, GEPIA2)\cite{Tang2019}. According to the citing articles\cite{Wu2020} and their online documents, the back-end databases of those web-tools were collected from TCGA, the European Genome-phenome Archive (EGA)\cite{Lappalainen2015} and NCBI GEO datasets (available at https://www.ncbi.nlm.nih.gov/gds). Furthermore, almost all of their survival data came from the TCGA database.
 %GEO (few survival features, less than 100 participate in each GSE dataset)
