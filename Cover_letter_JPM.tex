@@ -742,9 +742,9 @@ In the study of GSE65858 cohort with median cutoffs, CAMK2N1, IL19, and FCGBP (3
 %candidate_fdr100
 and also see Figure \ref{fig:hazards534}).
 However, the significance of the other 17 genes is replaced by genes such as DUSP6, MSMB, and RBM11 (please see Figure \ref{fig:hazards534}).
-This GSE65858 cohort has been applied for selection to generate our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
+%This GSE65858 cohort has been applied for selection to generate our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
 Moreover, there are 22 genes, which have greater hazard ratio ($> 1.8$ or $< 0.6$) in GSE65858 cohort (Figure \ref{fig:hazards534}), drop their hazard ratio between 0.6 and 1.5 in the study of TCGA HNSCC (Figure \ref{fig:hazards3}).
-Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19, and FCGBP are significant candidates for the HNSCC biomarker.
+Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19 (two probes), and FCGBP are significant candidates for the HNSCC biomarker.
 %The consensus between the TCGA and GSE65858 cohorts in Kaplan-Meier survival and Cox's model
 
 
@@ -765,16 +765,17 @@ The effect size is independent of the sample size\cite{Sullivan2012}.
 
 %When we increase the sample size, the standard error decrease
 %, or increase the difference between the sample statistic and hypothesized parameter, the p value decreases, thus making it more likely that we reject the null hypothesis.
-The larger the sample the more likely a difference to be accepted (i.e. \textit{P} value $< 0.05$), due to the decrease of the standard error\cite{Sullivan2012}.
+The larger the sample the more likely a difference to be noticed (i.e. \textit{P} value $< 0.05$), due to the decrease of the standard error\cite{Sullivan2012}.
 However, the small effect size (non-zero) is often meaningless (substantive insignificance).
 %With a sufficiently large sample, a statistical test will always reveal a significant difference, unless the effect size is exactly zero.
 %, that is, when the effect size is exactly zero; 
 %yet very small differences, even if significant, are often meaningless. 
 %Thus, reporting only the significant P value for an analysis is not adequate for readers to fully understand the results.
 %If the magnitude of effect is small and clinically unimportant, the p-value can be "significant" if the sample size is large.
-Conversely, an effect size can be large, but fail to get statistical significance if the sample size is small. In this scenario, the \textit{P} value tells the effect does not exist.
+Conversely, an effect size can be large, but fail to get statistical significance if the sample size is small. 
+%In this scenario, the \textit{P} value tells the effect does not exist.
 
-The \textit{P} value could be also impacted by error.
+The \textit{P} value could be also impacted by error, which includes:
 \begin{outline}
 \1 A random error, defined as variability in data, is not considered a bias but rather occurs random across the entire study population and can distort the measurement process (e.x. RNA-Seq experiments).
 The larger sample size could reduce the random error. 
@@ -782,8 +783,8 @@ The larger sample size could reduce the random error.
 It could deleteriously impact the statistical significance.
 The larger sample size could not affect the systematic error.
 \end{outline}
+% effect size is large (whatever is true or artificial), the p value is small
 Thus, if there is no error in two study groups, and the sample size is the same, the group, which has a larger effect size, will has small \textit{P} value\cite{Thiese2016}.
-
 If a skewed cutoff that split, for example, 425 vs 75 between the two groups, it will also get statistical significance by increasing effect size artificially.
 % https://stats.stackexchange.com/questions/162359/how-can-you-have-p-0-0001-with-a-sample-size-of-89-and-a-control-group-of-52
 %As you can see, even with only 12 events (fustat = 1) that split 10 vs 2 between the two dummy groups you get a log-rank p-value < 0.0001.
@@ -801,25 +802,17 @@ If a skewed cutoff that split, for example, 425 vs 75 between the two groups, it
 %power: Power analysis is the name given to the process for determining the sample size for a research study. The technical definition of power is that it is the probability of detecting a "true" effect when it exists. Many students think that there is a simple formula for determining sample size for every research situation.
 %As the sample size gets larger, the z value increases therefore we will more likely to reject the null hypothesis; less likely to fail to reject the null hypothesis, thus the power of the test increases.
 
-
-
- 
-
 %the confidence interval of the P value (second generation P value?)
-
-
 
 %%%%
 %(ok)2-3 put in supplementary figure S1 %Rplot_pvaluePlot_NDFIP1.pdf
 %from Answer 2-3 supplementary Figure S1  %圖就好 figure Rplot_pvaluePlot_NDFIP1.pdf
 
-2) \\
-( ) % pvalueTex is essential
-There is benefit of using sliding-window cutoff method in survival analysis of TCGA HNSCC cohort.
-We have compared the results of cutoff at optimal by sliding-window or just at median of gene expression.
-It shows
-the gene number with unadjusted \textit{P} value $<0.05$, which is 6284 vs. 3118, respectively.
-After FDR-correction, it shows 967 vs. 209, respectively.
+%2) \\
+%(ok) % pvalueTex is essential
+There is a benefit for using sliding-window cutoff method (avoiding a skewed cutoff) in Kaplan-Meier analysis of TCGA HNSCC cohort at the beginning.
+We have compared the results of cutoff at optimal \textit{P} value by sliding-window or just at median of gene expression.
+It shows that the number of genes with unadjusted \textit{P} value $<0.05$, which is 6284 vs. 3118, respectively. After FDR-correction, it has reduced as 967 vs. 209, respectively.
 % HNSCC_OS_marginS_THREE_pvalue005_noCancerGene
 %Result by optimal cutoff: total 9416 plots,
 %6284 are raw KM P value < 0.05
@@ -828,8 +821,9 @@ After FDR-correction, it shows 967 vs. 209, respectively.
 %Result by median cutoff: total 20080 genes, 
 %3118 are raw KM P value < 0.05; 
 %209 genes are FDR KM P value <0.05
-The sliding-window cutoff method could catch more potential candidates (\textit{P} values far less than $0.001$) for Cox's modeling at next stage in our workflow.
-These preliminary candidates must be validated by Bonferroni correction and the other independent cohorts (GSE65858, GSE2837) to prevent the false discovery.
+The sliding-window cutoff method could catch more potential candidates, which have \textit{P} values far less than $0.001$, for subsequent Cox's modeling.
+That is because of proper selected cutoff improving the statistical significance.
+Then, these preliminary candidates will have an opportunity to be carefully selected by Bonferroni correction, their effect size (HR), and the other independent cohorts (GSE65858, GSE2837) to prevent the false discovery.
 
 %small effect size could be double-checked by GSE65858.
 %差別很大，張大網
@@ -839,13 +833,13 @@ These preliminary candidates must be validated by Bonferroni correction and the 
 We will explain above mentioned by two examples.
 %***NDFIP1  % 給他們一個機會
 Reviewing the special cases of gene, such as NDFIP1, DKC1, PNMA5, and NPB,
-we have noticed that NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile cutoff, could achieve a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff.
+we have noticed that NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile (median) cutoff, could achieve a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff.
 NDFIP1 has the FDR-corrected \textit{P} value as \num[round-precision=3, round-mode=figures,
-scientific-notation=true]{0.0001074233} (please see supplementary figure S1). % it is \ref{fig:pvaluePlot_NDFIP1
+scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "W"-shaped \textit{P} value plot). % it is \ref{fig:pvaluePlot_NDFIP1
 %Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in supplementary figure S1).
 %After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures, scientific-notation=true]{0.0001074233}.
 % the effect size
-Although it has failed to compete as a candidate by less effect size (HR = 1.33) in GSE65858 cohort, compared with one (HR = 2.027) in TCGA cohort%.
+Then it has been excluded as a candidate by less effect size (HR = 1.33) in GSE65858 cohort, compared with one (HR = 2.027) in TCGA cohort%.
 , and the other (HR = 1.42) in GSE2837 cohort.
 % (ok) Answer 2-1 加入 discussion
 %According to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
@@ -864,13 +858,14 @@ Although it has failed to compete as a candidate by less effect size (HR = 1.33)
 % ****** IL19 必須要靠 pvalueTex 才能發現
 %*** IL19 is excluded by this way :-) (special S-curve P value plot)
 The other example is one of our candidate: IL19.
-It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-KM \textit{P} value has large difference between median cutoff (\num[round-precision=3, round-mode=figures,
-scientific-notation=true]{0.1154315}) and optimal cutoff (\num{6.54e-6}).
-The sliding-window selection of cutoffs could boost their statistic significance to pass the correction by both FDR and Bonferroni methods.
+It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-adjusted \textit{P} value has large difference between 50\% quantile cutoff (FDR 0.115)
+%(\num[round-precision=3, round-mode=figures, scientific-notation=true]{0.1154315}) 
+and optimal 48\% quantile cutoff (FDR \num{6.54e-6}).
+This optimal cutoff method could boost it's statistic significance to pass the correction by both FDR and Bonferroni methods.
 %> gene_labeled_golden[!gene_labeled_golden %in% fdr100_KMsurvival$Gene.Symbol[fdr100_KMsurvival$FDR.Pvalue<0.05]]
 %[1] "IL19"
-Fortunately, IL19 has passed to become a candidate by better effect size (HR = 0.472 in TCGA cohort), and also by the validation with the other independent cohort (HR = 0.630 in GSE65858 cohort%).
-, and HR = 0.84 in GSE2837).
+Fortunately, IL19 has competed to become a candidate by its better effect size (HR = 0.472 in TCGA cohort), and also by the validation with the other independent cohort (HR = 0.630 in GSE65858 cohort).
+%, and HR = 0.84 in GSE2837).
 
 % ***using GSE2837 or not??? ***
 %(x)
