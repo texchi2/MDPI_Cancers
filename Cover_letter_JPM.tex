@@ -697,10 +697,8 @@ The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (l
 % (OK)*the authors should look for more data to verify these biomarkers.
 %For validation by GEO datasets:
 
-[materials and methods]
-
+[materials and methods]\\
 %RefSeq Release 38 (November 7, 2009) 
-
 %[Dataset]
 The Gene Expression Omnibus (GEO) database, founded by \acrfull{ncbi}, is a public repository supporting MIAME-compliant data submissions of microarray and sequence-based experiments.
 R package of GEOquery\cite{Sean2007} was used to
@@ -715,7 +713,7 @@ We have also performed Kaplan-Meier and Cox survival analyses, under the cutoff 
 
 
 
-[Results]
+[Results]\\
 TCGA HNSCC cohort has been applied for exploration of the biomarker candidate
 Total 9416 genes has %\acrshort{fdr}-
 unadjusted \textit{P} value less than 0.05.
@@ -750,9 +748,9 @@ Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, I
 %The consensus between the TCGA and GSE65858 cohorts in Kaplan-Meier survival and Cox's model
 
 
-[Discussion]
-[more in the discussion section]
-1) % (ok)
+[Discussion]\\
+%[more in the discussion section]
+1) \\% (ok)
 Statistical significance (\textit{P} value) is affected by both sample size, error, effect size (substantive significance)\cite{Sullivan2012}\cite{Thiese2016}, and cutoff. 
 The effect size is the magnitude of the difference (or relationship) among comparing groups.
 %A \textit{P} value is a tool to help interpret findings from biomedical research.
@@ -812,46 +810,46 @@ If a skewed cutoff that split, for example, 425 vs 75 between the two groups, it
 
 
 %%%%
+%(ok)2-3 put in supplementary figure S1 %Rplot_pvaluePlot_NDFIP1.pdf
+%from Answer 2-3 supplementary Figure S1  %圖就好 figure Rplot_pvaluePlot_NDFIP1.pdf
 
-2) in TCGA HNSCC cohort, 
-cutoff at optimal by sliding-window or just median:
-when unadjusted \textit{P} value $<0.05$, the gene number: 6284 vs. 3118, 967 vs. 209.
+2) \\
+( ) % pvalueTex is essential
+There is benefit of using sliding-window cutoff method in survival analysis of TCGA HNSCC cohort.
+We have compared the results of cutoff at optimal by sliding-window or just at median of gene expression.
+It shows
+the gene number with unadjusted \textit{P} value $<0.05$, which is 6284 vs. 3118, respectively.
+After FDR-correction, it shows 967 vs. 209, respectively.
 % HNSCC_OS_marginS_THREE_pvalue005_noCancerGene
-Result by optimal cutoff: total 9416 plots,
-6284 are raw KM P value < 0.05
-534?? genes are FDR KM P value <0.05
-967 genes which HR is greater than 1.5 or less than 0.5.
-Result by median cutoff: total 20080 genes, 
-3118 are raw KM P value < 0.05; 
-209 genes are FDR KM P value <0.05
-*** IL19 is excluded by this way :-) (special S-curve P value plot)
+%Result by optimal cutoff: total 9416 plots,
+%6284 are raw KM P value < 0.05
+%534?? genes are FDR KM P value <0.05
+%967 genes which HR is greater than 1.5 or less than 0.5.
+%Result by median cutoff: total 20080 genes, 
+%3118 are raw KM P value < 0.05; 
+%209 genes are FDR KM P value <0.05
+The sliding-window cutoff method could catch more potential candidates (\textit{P} values far less than $0.001$) for Cox's modeling at next stage in our workflow.
+These preliminary candidates must be validated by Bonferroni correction and the other independent cohorts (GSE65858, GSE2837) to prevent the false discovery.
+
+%small effect size could be double-checked by GSE65858.
 %差別很大，張大網
 %([2021/06/27] run code: if median cut for TCGA KM Cox by *** pvalueTex code)
-discussion about sliding-window pvalueTex to find the more potential candidate, while small effect size could be double-checked by GSE65858.
-(  )2-3 put in supplementary figure %Rplot_pvaluePlot_NDFIP1.pdf
 %列入 workflow in materials and methods;
 
-
-% ****** IL19 必須要靠 pvalueTex 才能發現
-\textit{P} value plot with a acute S-curve bending on the median zone, it lets the FDR-KM \textit{P} value has large difference between median cutoff (\num[round-precision=3, round-mode=figures,
-scientific-notation=true]{0.1154315}) and optimal cutoff (\num{6.54e-6}).
-A sliding-window selection of cutoffs could boost their statistic significance to pass the correction by even FDR or Bonferroni methods.
-%> gene_labeled_golden[!gene_labeled_golden %in% fdr100_KMsurvival$Gene.Symbol[fdr100_KMsurvival$FDR.Pvalue<0.05]]
-[1] "IL19"
-***NDFIP1
-the special cases of gene, such as NDFIP1, DKC1, PNMA5, and NPB % ; % 給他們一個機會
-(ok) Answer 2-1 %加入 discussion
-( )  Answer 2-3 supplementary  %圖就好 figure Rplot_pvaluePlot_NDFIP1.pdf
-
-For example, a gene NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile cutoff, could achieve a \textit{P} value of \num{1e-6} at 70\% quantile cutoff.
+We will explain above mentioned by two examples.
+%***NDFIP1  % 給他們一個機會
+Reviewing the special cases of gene, such as NDFIP1, DKC1, PNMA5, and NPB,
+we have noticed that NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile cutoff, could achieve a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff.
 NDFIP1 has the FDR-corrected \textit{P} value as \num[round-precision=3, round-mode=figures,
-scientific-notation=true]{0.0001074233}.
-However, it fails as the candidate by less effect size (HR = 1.33 in GSE65858 cohort, comparing with HR = 2.027 in TCGA cohort).
+scientific-notation=true]{0.0001074233} (please see supplementary figure S1). % it is \ref{fig:pvaluePlot_NDFIP1
+%Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in supplementary figure S1).
+%After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures, scientific-notation=true]{0.0001074233}.
+% the effect size
+Although it has failed to compete as a candidate by less effect size (HR = 1.33) in GSE65858 cohort, compared with one (HR = 2.027) in TCGA cohort%.
+, and the other (HR = 1.42) in GSE2837 cohort.
 % (ok) Answer 2-1 加入 discussion
-According to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
-Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
-supplementary figure S1). After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures,
-scientific-notation=true]{0.0001074233}.
+%According to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
+
 %Rplot_pvaluePlot_NDFIP1.pdf
 %  to find cases_OS outside of range 180-220 (== cutoff not at median)
 %# pvalue plot as 倒V字形 "^" or W p_OS pvalues plots (with local minials)
@@ -859,10 +857,29 @@ scientific-notation=true]{0.0001074233}.
 %# 3641 genes have one p_OS >= 0.02, in OS_pvalueTex002
 %# special case: HNSCC_survivalAnalysis_marginS_NDFIP1.xlsx
 %# NDFIP1 (within our 20 preliminary candidates), 
-In those \textit{P}-value plots, we could see that the sliding-window selection of cutoff finding might collect more potential candidates (\textit{P} values far less than $0.001$) for further Cox's modeling.
+%In those \textit{P}-value plots, we could see that the sliding-window selection of cutoff finding might collect more potential candidates (\textit{P} values far less than $0.001$) for further Cox's modeling.
 %Some useful biomarkers might be kick-out prematurely in "median cutoff" of survival analysis.
-Indeed, it needs to be validated by the other independent cohort (e.x. GSE65858).
+%Indeed, it needs to be validated by the other independent cohort (e.x. GSE65858).
 
+% ****** IL19 必須要靠 pvalueTex 才能發現
+%*** IL19 is excluded by this way :-) (special S-curve P value plot)
+The other example is one of our candidate: IL19.
+It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-KM \textit{P} value has large difference between median cutoff (\num[round-precision=3, round-mode=figures,
+scientific-notation=true]{0.1154315}) and optimal cutoff (\num{6.54e-6}).
+The sliding-window selection of cutoffs could boost their statistic significance to pass the correction by both FDR and Bonferroni methods.
+%> gene_labeled_golden[!gene_labeled_golden %in% fdr100_KMsurvival$Gene.Symbol[fdr100_KMsurvival$FDR.Pvalue<0.05]]
+%[1] "IL19"
+Fortunately, IL19 has passed to become a candidate by better effect size (HR = 0.472 in TCGA cohort), and also by the validation with the other independent cohort (HR = 0.630 in GSE65858 cohort%).
+, and HR = 0.84 in GSE2837).
+
+% ***using GSE2837 or not??? ***
+%(x)
+%After the discovery by our workflow, we validated the those 20 genes in the other independent \acrshort{hnscc} cohort (GSE2837).
+%The survival significance (Kaplan-Meier \textit{P} value) is in the following probes among 10 genes:\\
+%=> Quantile normalization
+%1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758, HR= 1.42), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
+%=> no normalization
+%2) better prognosis: IL19 (0.049731, HR= 0.84), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
 
 
 \end{MyColorPar} % red
