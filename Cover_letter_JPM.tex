@@ -749,7 +749,7 @@ Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, I
 
 [Discussion]
 [more in the discussion section]
-1) 
+1) % (ok)
 Statistical significance (\textit{P} value) is affected by both sample size, error, effect size (substantive significance)\cite{Sullivan2012}\cite{Thiese2016}, and cutoff. 
 The effect size is the magnitude of the difference (or relationship) among comparing groups.
 %A \textit{P} value is a tool to help interpret findings from biomedical research.
@@ -783,7 +783,7 @@ The larger sample size could not affect the systematic error.
 \end{outline}
 Thus, if there is no error in two study groups, and the sample size is the same, the group, which has a larger effect size, will has small \textit{P} value\cite{Thiese2016}.
 
-As skewed cutoff that split 425 vs 75 between the two groups, it will also get statistical significance by increasing effect size intentionally.
+If a skewed cutoff that split, for example, 425 vs 75 between the two groups, it will also get statistical significance by increasing effect size artificially.
 % https://stats.stackexchange.com/questions/162359/how-can-you-have-p-0-0001-with-a-sample-size-of-89-and-a-control-group-of-52
 %As you can see, even with only 12 events (fustat = 1) that split 10 vs 2 between the two dummy groups you get a log-rank p-value < 0.0001.
 %effect size, sample size, cutoff 影響 p value!
@@ -810,23 +810,35 @@ As skewed cutoff that split 425 vs 75 between the two groups, it will also get s
 
 %%%%
 
-2)
+2) in TCGA HNSCC cohort, 
 cutoff at optimal by sliding-window or just median:
-when \textit{P} value $<0.05$, the gene number: 9416 , 534 %差別很大，張大網
-run code: if median cut for TCGA KM Cox (by pvalueTex or *** RLassoCox Bayes code) 9416 -> ???
+when unadjusted \textit{P} value $<0.05$, the gene number: 9416 to 3118, 534 to 209.
+Result by median cutoff: total 20080 genes 
+%3118 are raw KM P value < 0.05; 
+%209 genes are FDR KM P value <0.05
+*** IL19 is excluded by this way :-) (special S-curve P value plot)
+%差別很大，張大網
+%([2021/06/27] run code: if median cut for TCGA KM Cox by *** pvalueTex code)
 discussion about sliding-window pvalueTex to find the more potential candidate, while small effect size could be double-checked by GSE65858.
-(  )2-3 put in supplementary figure Rplot_pvaluePlot_NDFIP1.pdf
+(  )2-3 put in supplementary figure %Rplot_pvaluePlot_NDFIP1.pdf
 %列入 workflow in materials and methods;
 
+
+% ****** IL19 必須要靠 pvalueTex 才能發現
+\textit{P} value plot with a acute S-curve bending on the median zone, it lets the FDR-KM \textit{P} value has large difference between median cutoff (\num[round-precision=3, round-mode=figures,
+scientific-notation=true]{0.1154315}) and optimal cutoff (\num{6.54e-6}).
+A sliding-window selection of cutoffs could boost their statistic significance to pass the correction by even FDR or Bonferroni methods.
+%> gene_labeled_golden[!gene_labeled_golden %in% fdr100_KMsurvival$Gene.Symbol[fdr100_KMsurvival$FDR.Pvalue<0.05]]
+[1] "IL19"
 ***NDFIP1
-a special case of NDFIP1 gene; % 給他們一個機會
+the special cases of gene, such as NDFIP1, DKC1, PNMA5, and NPB % ; % 給他們一個機會
 (ok) Answer 2-1 %加入 discussion
 ( )  Answer 2-3 supplementary  %圖就好 figure Rplot_pvaluePlot_NDFIP1.pdf
 
 For example, a gene NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile cutoff, could achieve a \textit{P} value of \num{1e-6} at 70\% quantile cutoff.
 NDFIP1 has the FDR-corrected \textit{P} value as \num[round-precision=3, round-mode=figures,
 scientific-notation=true]{0.0001074233}.
-However, it fails as the candidate by inadequate effect size (HR = ??).
+However, it fails as the candidate by less effect size (HR = 1.33 in GSE65858 cohort, comparing with HR = 2.027 in TCGA cohort).
 % (ok) Answer 2-1 加入 discussion
 According to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
 Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
@@ -1318,15 +1330,27 @@ And further validation of those candidate is required in the other independent d
 % dissection
 %ZSWIM2\_archive.Rda % 其實最困難的在於 unknown error (ZSWIM2) 
 Third, we have analyzed the error log of the cutoff finding and Cox modeling, 
-the results shows that several situations could halt the program running.
+the results shows that several technique problems could halt the program running.
 It includes:
 \begin{outline}
-\1 32.2\% event has one group issue in confusion matrix of Chi-square test in Cox regression
-\1 21.05\% errors occur by one group issue in log-rank test (survdiff function in R package "survival") in Kaplan-Meier estimate
+
+\1 32.2\% event has "one group" issue in confusion matrix of Chi-square test in Cox regression
+\1 21.05\% error occurs by "one group" issue in log-rank test (survdiff or survdiff.fit function in R package "survival") in Kaplan-Meier estimate.
+%1) ok [1] "[ 4 / 20083 ] Generating median-cut KM plot of A1BG"
+%Error in survdiff.fit(y, groups, strata.keep, rho) : at A1CF
+% error at 16115 gene ""; why? 518 values all are -0.04203 at T
+%  There is only 1 group 
+%This is because of skewed distribution of the expression value. 
+% 67/518 =  13% cases >1, while 450 (87%) cases = -0.30949; so median is -0.30949; 
+% all cases belong to >= median => 改為 > median 即可
+% 2) % survfit 16114 has data set has no non-missing observations: NA's 113/518 cases
+% median = NaN :-); 
+% solved by cutoff <- median(gset_OS_mRNA2[, i], na.rm = TRUE)
+% and NaN imputation as median
 \1 0.78\% has unknown reason (so those 159 genes has been excluded in our workflow)
 \end{outline}
 , which could not be detected prior to the program running.
-It might be due to heterogeneity of 20500 RNA-Seq expression data.
+It might be due to skewed distribution of the expression value in 20500 RNA-Seq  data. % heterogeneity
 %# deal with return(1), return(2) and return(3) errors, try to solve it
 %32.2\% error01, ZSWIM2 skip from contingencyTCGA(), it is one group issue in Melt() function.
 %21.05\% errors in  one group in survdiff on KM cutofFinder_func.R.
