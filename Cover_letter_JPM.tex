@@ -595,7 +595,8 @@ There is consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19, and
 %Dotted line: significant Bonferroni corrected \textit{P} value. 
 %\textcolor{red}{Red dots} mark 10 genes (unvalidated), which impact on poor prognosis ($HR>=1.5$). \textcolor{green}{Green dots} mark 10 genes (unvalidated), which affect on better survival ($HR<=0.5$).
     This cohort has been applied for exploration of the candidate biomarkers.
-    Total 9416 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05.
+    Total 9416 genes has %\acrshort{fdr}-
+    unadjusted \textit{P} value less than 0.05.
     \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19}, \textcolor{red}{FCGBP} and the 17 genes (marked in \textcolor{black}{black square}) have hazard ratio (HR) $> 1.8$ or $< 0.6$.
     The 22 genes, listed on the side, have hazard ratio between 0.6 and 1.5.\\
     Remarks:\\
@@ -716,7 +717,9 @@ We have also performed Kaplan-Meier and Cox survival analyses, under the cutoff 
 
 [Results]
 TCGA HNSCC cohort has been applied for exploration of the biomarker candidate
-Total 9416 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05.
+Total 9416 genes has %\acrshort{fdr}-
+unadjusted \textit{P} value less than 0.05.
+The 967 genes were kept by criteria of uncorrected \textit{P} value (below 0.05) and \acrfull{hr} (greater than 1.8 or less than 0.6).
 %The 10 genes, named as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, are significantly associated with the poor prognosis of overall survival (OS). 
 %The other ten genes are over-expressed in the better survival group (with hazard ratio $<=0.6$), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
 Furthermore, CAMK2N1, IL19, FCGBP and the other 17 genes (DKK1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, ZNF557, ZNF266, MYO1H, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB) have significant FDR-adjusted \textit{P} values ($<0.0003$) in Kaplan-Meier estimate, and greater hazard ratio (HR) ($> 1.8$ or $< 0.6$) in Cox's model (please see Figure \ref{fig:hazards3}; $log_{10}(0.0003)=-3.5$).
@@ -812,10 +815,15 @@ If a skewed cutoff that split, for example, 425 vs 75 between the two groups, it
 
 2) in TCGA HNSCC cohort, 
 cutoff at optimal by sliding-window or just median:
-when unadjusted \textit{P} value $<0.05$, the gene number: 9416 to 3118, 534 to 209.
-Result by median cutoff: total 20080 genes 
-%3118 are raw KM P value < 0.05; 
-%209 genes are FDR KM P value <0.05
+when unadjusted \textit{P} value $<0.05$, the gene number: 6284 vs. 3118, 967 vs. 209.
+% HNSCC_OS_marginS_THREE_pvalue005_noCancerGene
+Result by optimal cutoff: total 9416 plots,
+6284 are raw KM P value < 0.05
+534?? genes are FDR KM P value <0.05
+967 genes which HR is greater than 1.5 or less than 0.5.
+Result by median cutoff: total 20080 genes, 
+3118 are raw KM P value < 0.05; 
+209 genes are FDR KM P value <0.05
 *** IL19 is excluded by this way :-) (special S-curve P value plot)
 %差別很大，張大網
 %([2021/06/27] run code: if median cut for TCGA KM Cox by *** pvalueTex code)
