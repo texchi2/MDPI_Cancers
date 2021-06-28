@@ -245,11 +245,11 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{Transcriptomic Analysis of Expressions of Biomarkers and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma}
+\Title{Transcriptomic Analysis for Prognostic Value in Head and Neck Squamous Cell Carcinoma}
 %\Title{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
 
 % MDPI internal command: Title for citation in the left column
-\TitleCitation{Transcriptomic Analysis of Expressions of Biomarkers and Their Prognostic Value in Head and Neck Squamous Cell Carcinoma}
+\TitleCitation{Transcriptomic Analysis for Prognostic Value in Head and Neck Squamous Cell Carcinoma}
 %\TitleCitation{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
 
 % Author Orchid ID: enter ID or remove command
@@ -305,10 +305,13 @@ No.172-1, Sec. 2, Keelung Rd.\unskip, Taipei 106\unskip, Taiwan\\
 
 % Abstract (Do not insert blank lines, i.e. \\) 
 \abstract{
-Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. We have used a workflow to perform biomarker discovery. It includes data retrieval, data pre-processing, feature selection, cutoff engine, Kaplan-Meier survival analysis, and Cox proportional hazard modeling.
-Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes and adjusted them with confounders, and Bonferroni corrected \textit{P} value. After validation with an independent \acrshort{hnscc} cohort (GSE2837), the result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. 
-Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
-We suggest these ten genes could be the candidates in biomarker discovery of HNSCC.
+The survival analysis of the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover the gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by the patients' dichotomization for the continuous gene expression in survival analysis. There is some optimization software for cutoff determination. However, the software's predetermined cutoffs are usually set at the median or quantiles of RNA sequencing value to perform the survival analyses. There are few clinicopathological features available on their pre-processed data sets.
+
+We developed a workflow that includes data retrieving and pre-processing, feature selection, sliding-window cutoff mining, Kaplan-Meier survival analysis, Cox proportional hazard modeling, and biomarker discovery.
+The independent HNSCC dataset has been used to validate this discovery.
+
+Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes. After adjustment with confounders, we found that the clinical tumor stage and the surgical margin involvement are independent risk factors in patient survival. According to the resulting tables with Bonferroni adjusted P-value under the optimal cutoff and the hazard ratio, three biomarker candidates, CAMK2N1, IL19, and FCGBP, are significantly associated with the patients' overall survival.
+We suggest the transcriptomic analysis could help for biomarker discovery.
 }
 
 %Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
@@ -325,9 +328,18 @@ We suggest these ten genes could be the candidates in biomarker discovery of HNS
 Head and Neck Squamous Cell Carcinoma (HNSCC);
 %Genome Database\sep
 the Cancer Genome Atlas (TCGA);
-RNA-sequencing;
+Transcriptomic Analysis;
+%RNA-sequencing;
 Survival Analysis;
 Optimal Cutoff;
+Effect Size;
+%Tobacco\sep
+%Cox Proportional Hazards\sep
+%Tumor Aggressiveness\sep
+%Rstudio\sep
+CAMK2N1;
+IL19;
+FCGBP;
 %Biomarker\sep % Discovery\sep
 %Tumor Type-agnostic Therapy\sep
 %Immuno-Oncology\sep
