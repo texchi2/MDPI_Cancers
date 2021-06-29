@@ -2,9 +2,10 @@
 %  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
 
 %=================================================================
-\documentclass[jpm,article,submit,moreauthors,pdftex]{Definitions/mdpi} 
 % pm-1174473
 % Journal of Personalized Medicine, JPM
+\documentclass[jpm,article,submit,moreauthors,pdftex]{Definitions/mdpi}
+\maxdeadcycles=1000 % Output loop---200 consecutive dead cycles.
 
 % For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal and change "submit" to "accept". The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
 
@@ -39,33 +40,7 @@
 %---------
 % The option pdftex is for use with pdfLaTeX. If eps figures are used, remove the option pdftex and use LaTeX and dvi2pdf.
 
-%=================================================================
-% MDPI internal commands
-\firstpage{1} 
-\makeatletter 
-\setcounter{page}{\@firstpage} 
-\makeatother
-\pubvolume{1}
-\issuenum{1}
-\articlenumber{0}
-\pubyear{2021}
-\copyrightyear{2021}
-%\externaleditor{Academic Editor: Firstname Lastname} % For journal Automation, please change Academic Editor to "Communicated by"
-\datereceived{} 
-\dateaccepted{} 
-\datepublished{} 
-%\hreflink{https://doi.org/} % If needed use \linebreak
-%------------------------------------------------------------------
-% The following line should be uncommented if the LaTeX file is uploaded to arXiv.org
-%\pdfoutput=1
-
-%=================================================================
-% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, lineno, float, amsmath, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, soul, multirow, microtype, tikz, totcount, changepage, paracol, attrib, upgreek, cleveref, amsthm, hyphenat, natbib, hyperref, footmisc, url, geometry, newfloat, caption
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Tex
-\maxdeadcycles=1000 % Output loop---200 consecutive dead cycles.
-
-\usepackage{amsmath,amsfonts}
 \usepackage{tikz-imagelabels} % for  tikz
 \usepackage[]{caption} % bf
 \newcommand{\bcaption}[2]{\caption{\textbf{#1} #2}}
@@ -79,7 +54,15 @@
 }{%
 }%
 
-\usepackage{hyperref}
+%\begin{MyColorPar}{red}
+%\end{MyColorPar}
+
+%\usepackage[upplemac]{inputenc} %applemac support if unicode package fails
+%\usepackage[latin1]{inputenc} %UNIX support if unicode package fails
+%...
+%\usepackage{graphicx}
+%\DeclareGraphicsExtensions{.pdf,.png} % for high-resolution PDF image
+%\usepackage{hyperref}
 \usepackage{xr}
 % for xr in your preamble
 % https://www.overleaf.com/learn/how-to/Cross_referencing_with_the_xr_package_in_Overleaf
@@ -98,6 +81,8 @@
 }
 % my external document I would like to reference the labels of. 
 \myexternaldocument{Supplementary_figures} %.tex .aux
+
+%\usepackage{url}
 
 \usepackage{array}
 \usepackage{ragged2e}
@@ -124,11 +109,10 @@
 %\renewcommand*{\glossarysection}[2][]{\textbf{#1}: }
 % for abbreviations environment
 %\newcommand{\abbrlabel}[1]{\makebox[3cm][l]{\textbf{#1}\ \dotfill}}
-\newenvironment{abbreviation}
+\newenvironment{abbreviation}%{\begin{list}{}{\renewcommand{\makelabel}{\abbrlabel}}}{\end{list}}
+% \newenvironment{<name>}[<number>][<default>]
 
 
-
-%%%%%%%%%%%%% Define abbreviation
 \makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
 
 \newacronym{ncbi}{NCBI}{National Center for Biotechnology Information}
@@ -233,6 +217,27 @@
 \newacronym{tmb}{TMB}{tumor mutational burden}
 
 
+%=================================================================
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2021}
+\copyrightyear{2021}
+%\externaleditor{Academic Editor: Firstname Lastname}
+\datereceived{} 
+\dateaccepted{} 
+\datepublished{} 
+
+%------------------------------------------------------------------
+% The following line should be uncommented if the LaTeX file is uploaded to arXiv.org
+%\pdfoutput=1
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, lineno, float, amsmath, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, soul, multirow, microtype, tikz, totcount, changepage, paracol, attrib, upgreek, cleveref, amsthm, hyphenat, natbib, hyperref, footmisc, url, geometry, newfloat, caption
 
 %=================================================================
 %% Please use the following mathematics environments: Theorem, Lemma, Corollary, Proposition, Characterization, Property, Problem, Example, ExamplesandDefinitions, Hypothesis, Remark, Definition, Notation, Assumption
@@ -241,9 +246,11 @@
 %=================================================================
 % Full title of the paper (Capitalized)
 \Title{Transcriptomic Analysis for Prognostic Value in Head and Neck Squamous Cell Carcinoma}
+%\Title{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
 
 % MDPI internal command: Title for citation in the left column
 \TitleCitation{Transcriptomic Analysis for Prognostic Value in Head and Neck Squamous Cell Carcinoma}
+%\TitleCitation{A Global Genome-wide Scan with Optimal Cutoff Mining for Emerging Biomarkers in Head and Neck Squamous Cell Carcinoma}
 
 % Author Orchid ID: enter ID or remove command
 \newcommand{\orcidauthorA}{0000-0002-4476-2600} % Add \orcidA{} behind the author's name
@@ -296,64 +303,79 @@ No.172-1, Sec. 2, Keelung Rd.\unskip, Taipei 106\unskip, Taiwan\\
 
 %\conference{} % An extended version of a conference paper
 
-
-%%%%%%%%%%
 % Abstract (Do not insert blank lines, i.e. \\) 
-\abstract{The survival analysis of the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover the gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by the patients' dichotomization for the continuous gene expression in survival analysis. There is some optimization software for cutoff determination. However, the software's predetermined cutoffs are usually set at the median or quantiles of RNA sequencing value to perform the survival analyses. There are few clinicopathological features available on their pre-processed data sets.
+\abstract{
+The survival analysis of the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover the gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by the patients' dichotomization for the continuous gene expression in survival analysis. There is some optimization software for cutoff determination. However, the software's predetermined cutoffs are usually set at the median or quantiles of RNA sequencing value to perform the survival analyses. There are few clinicopathological features available on their pre-processed data sets.
+
 We developed a workflow that includes data retrieving and pre-processing, feature selection, sliding-window cutoff mining, Kaplan-Meier survival analysis, Cox proportional hazard modeling, and biomarker discovery.
 The independent HNSCC dataset has been used to validate this discovery.
+
 Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes. After adjustment with confounders, we found that the clinical tumor stage and the surgical margin involvement are independent risk factors in patient survival. According to the resulting tables with Bonferroni adjusted P-value under the optimal cutoff and the hazard ratio, three biomarker candidates, CAMK2N1, IL19, and FCGBP, are significantly associated with the patients' overall survival.
-We suggest the transcriptomic analysis could help for biomarker discovery.}
+We suggest the transcriptomic analysis could help for biomarker discovery.
+}
+
+%Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
+%There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
+% validated by the other HNSCC cohort:
+%1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
+%2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
+
+% row 20: The result showed ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of overall survival. Furthermore, the other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+
 
 % Keywords
-\keyword{Head and Neck Squamous Cell Carcinoma (HNSCC);
-the Cancer Genome Atlas (TCGA); Transcriptomic Analysis; Survival Analysis; Optimal Cutoff; Effect Size; CAMK2N1; IL19; FCGBP; Mindfulness Meditation} 
-
+\keyword{
+Head and Neck Squamous Cell Carcinoma (HNSCC);
+%Genome Database\sep
+the Cancer Genome Atlas (TCGA);
+Transcriptomic Analysis;
+%RNA-sequencing;
+Survival Analysis;
+Optimal Cutoff;
+Effect Size;
+%Tobacco\sep
+%Cox Proportional Hazards\sep
+%Tumor Aggressiveness\sep
+%Rstudio\sep
+CAMK2N1;
+IL19;
+FCGBP;
+%Biomarker\sep % Discovery\sep
+%Tumor Type-agnostic Therapy\sep
+%Immuno-Oncology\sep
+%Targeted Therapy\sep
+%Systemic Therapy\sep
+%Surgical Margin
+%Holistic Cancer Care;
+%Therapeutic Relationship;
+Mindfulness Meditation
+}
 
 % I have a graphic abstract: graphic_abstract_pvalueTex.pdf
-%\globalcounter* % for paracol
-
-% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
-%\PACS{J0101}
-%\MSC{}
-%\JEL{}
-
+% National Cancer Institute. Changing the dressing on a patient’s neck. https://unsplash.com/photos/IrqLPsxemQ4?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink (1950).\cite{nci1950}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Diversity
-%\LSID{\url{http://}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Applied Sciences:
-%\featuredapplication{Authors are encouraged to provide a concise description of the specific application or a potential application of the work. This section is not mandatory.}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Data:
-%\dataset{DOI number or link to the deposited data set in cases where the data set is published or set to be published separately. If the data set is submitted and will be published as a supplement to this paper in the journal Data, this field will be filled by the editors of the journal. In this case, please make sure to submit the data set as a supplement when entering your manuscript into our manuscript editorial system.}
-
-%\datasetlicense{license under which the data set is made available (CC0, CC-BY, CC-BY-SA, CC-BY-NC, etc.)}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Toxins
-%\keycontribution{The breakthroughs or highlights of the manuscript. Authors can write one or two sentences to describe the most important part of the paper.}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Encyclopedia
-%\encyclopediadef{Instead of the abstract}
-%\entrylink{The Link to this entry published on the encyclopedia platform.}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\globalcounter* % for paracol
 
 \begin{document}
-%\begin{paracol}{2} % there is no this item here
+%\linenumbers
+%\begin{paracol}{2}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\setcounter{section}{-1} %% Remove this when starting to work on the template.
 %\section{How to Use this Template}
 
 %The template details the sections that can be used in a manuscript. Note that the order and names of article sections may differ from the requirements of the journal (e.g., the positioning of the Materials and Methods section). Please check the instructions on the authors' page of the journal to verify the correct order and names. For any questions, please contact the editorial office of the journal or support@mdpi.com. For LaTeX-related questions please contact latex@mdpi.com.
 %The order of the section titles is: Introduction, Materials and Methods, Results, Discussion, Conclusions for these journals: aerospace,algorithms,antibodies,antioxidants,atmosphere,axioms,biomedicines,carbon,crystals,designs,diagnostics,environments,fermentation,fluids,forests,fractalfract,informatics,information,inventions,jfmk,jrfm,lubricants,neonatalscreening,neuroglia,particles,pharmaceutics,polymers,processes,technologies,viruses,vision
+%%
+
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=14cm]{graphic_abstract_pvalueTex.pdf}
+%    \caption{(inset image courtesy of National Cancer Institute\cite{nci1950})}
+%    \label{fig:my_label}
+%\end{figure}
 
 \section{Introduction}
-
 
 Head and neck squamous cell carcinoma (\acrshort{hnscc}), including oral, oropharyngeal, and hypopharyngeal origin, is the fourth leading cancer causes of death for males in Taiwan\cite{MOHWdeath2017}. The age-standardized incidence rate of \acrshort{hnscc} in males is 42.43 per 100,000 persons\cite{MOHWincidence2018}. 
 % chemotherapy => systemic therapy
@@ -376,7 +398,7 @@ Until the immuno-oncology era, \acrfull{ici} was introduced since 2014 for treat
 The \acrshort{ici} works on immune checkpoint molecules, including \acrfull{pd1}, \acrfull{ctla4}, \acrfull{tim3}, \acrfull{lag3}, \acrfull{tigit}, \acrfull{gitr}, and \acrfull{vista}\cite{Mei2020}.
 The \acrshort{us} \acrshort{fda} has approved the anti-\acrshort{pd1} agents (e.g. pembrolizumab and nivolumab) as a monotherapy for the platinum-treated patients with recurrent or metastatic \acrshort{hnscc}\cite{Cramer2019}. 
 According to the phase 3 KEYNOTE-048 study, \acrshort{pdl1} is a validated biomarker used in clinical guidance for candidate selection of pembrolizumab\cite{Burtness2019}\cite{Gavrielatou2020}.
-However, due to the complexity of immune-tumor interaction, \acrshort{ici} has 20\% response rate to \acrfull{pdl1} expressed patients (over 50\% in \acrlong{ihc}, \acrshort{ihc} staining of \acrshort{hnscc})\cite{Swanson2015}\cite{Gavrielatou2020}.
+However, because of the complexity of immune-tumor interaction, \acrshort{ici} has 20\% response rate to \acrfull{pdl1} expressed patients (over 50\% in \acrlong{ihc}, \acrshort{ihc} staining of \acrshort{hnscc})\cite{Swanson2015}\cite{Gavrielatou2020}.
 
 According to our proteomic study between 2010 to 2017, \acrfull{tmsb4x} was reported to be related to tumor growth and metastasis of \acrshort{hnscc}\cite{Chi2017}. It was also reported by the subsequent investigations that \acrshort{tmsb4x} has engaged in tumor aggressiveness through \acrfull{emt} on pancreatic\cite{Zhang2008}, gastric\cite{Ryu2012}, colorectal\cite{Gemoll2015}, lung\cite{Huang2016}, ovarian\cite{Chu2019}, and melanoma\cite{Makowiecka2019} cancers. Thus, it might be suggested that \acrshort{tmsb4x}  is a candidate for tumor type-agnostic therapy\cite{Yan2018} as a common biomarker crossing several types of cancer.
 %TMSB4X proteins regulate intracellular signal transduction and has been proved to overexpress in various cancers, including colorectal, lung, gastric, pancreatic, and squamous cell cancers.\cite{Chi2017}
@@ -420,7 +442,7 @@ Li\cite{Li2018a} and his colleagues made an R package (GDCRNATool) for the imple
 %The DEmRNAs were enrolled in a protein-protein interaction (PPI) network through the STRING database (https://string-db.org/) with a confidence score $> 0.9$, and the PPI network was visualized in Cytoscape (Version 3.7.1) software. Moreover, genes with degree $>= 25$ were selected as hub genes. Subsequently, module analysis (16) of the PPI network was performed using the Molecular Complex Detection (MCODE) tool of Cytoscape software, and GO and KEGG analysis of the modules was carried out using the DAVID database.
 %a validation set and
 %Then, Kaplan–Meier survival curves along with a log-rank test were applied to select candidates\cite{Xu2021a}.
-Xu and his colleagues\cite{Xu2021a} also used Kaplan–Meier survival curves along with a log-rank test or univariate Cox regression to screen prognostic factors (\textit{P} value \begin{equation}< 0.05 \end{equation}).
+Xu and his colleagues\cite{Xu2021a} also used Kaplan–Meier survival curves along with a log-rank test or univariate Cox regression to screen prognostic factors (\textit{P} value $< 0.05$).
 The gene expression was used to select the preliminary biomarkers with a significant impact on patients' overall survival (\textit{P} value $< 0.01$).
 %By integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software.
 The candidate genes were validated via the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
@@ -550,17 +572,14 @@ The selected genes have been validated by third HNSCC cohort (GSE2837).
 
 % \definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
 
-\clearpage % end of Introduction
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Results}
 
 \begin{MyColorPar}{red}
 TCGA HNSCC cohort has been applied for exploration of the biomarker candidate.
-The 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated by Cox modeling (see Figure ~\ref{fig:figure1}) and justified by the ranking of hazard ratios.
+The 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated by Cox modeling (see Figure \ref{fig:figure1}) and justified by the ranking of hazard ratios.
 The 967 genes were kept by criteria of unadjusted \textit{P} value (below 0.05) and \acrfull{hr} (greater than 1.8 or less than 0.6).
 %The ten genes, named DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, are significantly associated with the poor prognosis of overall survival (OS). 
 %The other ten genes are over-expressed in the better survival group (with hazard ratio $<=0.6$), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
@@ -945,10 +964,7 @@ Thus, the prognosis model with coefficients is established from \acrshort{tcga} 
 %Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
 
 
-%%%%%%%%%%%%%
-\end{paracol}
-\nointerlineskip
-%%%%%%%%%%%%% give wide full-paged tables
+
 
 %\subsubsection{Table4/legend} Table 4
 \begin{table}[!hp]
@@ -1072,36 +1088,97 @@ Thus, the prognosis model with coefficients is established from \acrshort{tcga} 
 
 
 % end of result
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
+%Bulleted lists look like this:
+%\begin{itemize}
+%\item	First bullet;
+%\item	Second bullet;
+%\item	Third bullet.
+%\end{itemize}
+
+%Numbered lists can be added as follows:
+%\begin{enumerate}
+%\item	First item; 
+%\item	Second item;
+%\item	Third item.
+%\end{enumerate}
 
 
+
+%\subsection{Figures, Tables and Schemes}
+
+%All figures and tables should be cited in the main text as Figure~\ref{fig1}, Table~\ref{tab1}, etc.
+
+%\begin{figure}[H]
+%\includegraphics[width=10.5 cm]{Definitions/logo-mdpi}
+%\caption{This is a figure. Schemes follow the same formatting. If there are multiple panels, they should be listed as: (\textbf{a}) Description of what is contained in the first panel. (\textbf{b}) Description of what is contained in the second panel. Figures should be placed in the main text near to the first time they are cited. A caption on a single line should be centered.\label{fig1}}
+%\end{figure}   
+
+% The MDPI table float is called specialtable
+%\begin{specialtable}[H] 
+%\caption{This is a table caption. Tables %should be placed in the main text near to %the first time they are~cited.\label{tab1}}
+%%% \tablesize{} %% You can specify the fontsize here, e.g., \tablesize{\footnotesize}. If commented out \small will be used.
+%\begin{tabular}{ccc}
+%\toprule
+%\textbf{Title 1}	& \textbf{Title 2}	& %\textbf{Title 3}\\
+%\midrule
+%Entry 1		& Data			& Data\\
+%Entry 2		& Data			& Data\\
+%\bottomrule
+%\end{tabular}
+%\end{specialtable}
+
+%\begin{listing}[H]
+%\caption{Title of the listing}
+%\rule{\columnwidth}{1pt}
+%\raggedright Text of the listing. In font size footnotesize, small, or normalsize. Preferred format: left aligned and single spaced. Preferred border format: top border line and bottom border line.
+%\rule{\columnwidth}{1pt}
+%\end{listing}
+
+
+%\subsection{Formatting of Mathematical Components}
+
+%This is the example 1 of equation:
+
+%\begin{equation}
+%a = 1,
+%\end{equation}
+
+%the text following an equation need not be a new paragraph. Please punctuate equations as regular text.
 %% If the documentclass option "submit" is chosen, please insert a blank line before and after any math environment (equation and eqnarray environments). This ensures correct linenumbering. The blank line should be removed when the documentclass option is changed to "accept" because the text following an equation should not be a new paragraph.
 
-%This is the example 2 of equation:
+
+
+
+\end{paracol}
+\nointerlineskip
+
 
 %\begin{equation}
 %a = b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t + u + v + w + x + y + z
 %\end{equation}
 
 % Example of a figure that spans the whole page width (the commands \widefigure and \begin{paracol}{2}, \linenumbers, and\switchcolumn need to be present). The same concept works for tables, too.
-%\begin{figure}[H]	
-%\widefigure
-%\includegraphics[width=15 cm]{Definitions/logo-mdpi}
-%\caption{This is a wide figure.\label{fig2}}
-%\end{figure}  
-
+  
 \begin{paracol}{2}
 \linenumbers
-\switchcolumn
+\switchcolumn[1]
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Please punctuate equations as regular text. Theorem-type environments (including propositions, lemmas, corollaries etc.) can be formatted as follows:
+%% Example of a theorem:
+%\begin{Theorem}
+%Example text of a theorem.
+%\end{Theorem}
 
 
+%% Example of a proof:
+%\begin{proof}[Proof of Theorem 1]
+%Text of the proof. Note that the phrase ``of Theorem 1'' is optional if it is clear which theorem is being referred to.
+%\end{proof}
 
-%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 
 %%%% LASSO regression
@@ -1527,12 +1604,8 @@ Thus, we suggest electric healthcare records (EHR) include physical, pathologica
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\begin{quote}
-%This is an example of a quote.
-%\end{quote}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods} % 4
 
 \subsection{Patient Cohort} 
@@ -1694,11 +1767,7 @@ Using PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/\\PrognoScan/)\cit
 %The GSE2837 carries out % VUMC, VAMC, UTMDACC (1992-2005).
 %and relapse-free survival (RFS) data, instead of overall survival in TCGA dataset.
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%
 \section{Conclusions} % 5
 % Conclusions: This section is not mandatory, but can be added to the manuscript if the discussion is unusually long or complex.
 %The result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
@@ -1722,8 +1791,6 @@ Since mindfulness meditation will be helpful in cancer healthcare, we continuall
 % 多了解身心靈的關係，減少癌症對健康的損害
 
 %the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Patents}
 
@@ -1733,31 +1800,28 @@ Since mindfulness meditation will be helpful in cancer healthcare, we continuall
 \vspace{6pt} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% optional
 %% optional: The data presented in this study are available in supplementary material.
 \supplementary{The following are available online at \linksupplementary{Supplementary_figures.pdf}, 
-	Figure S1: \textit{P} value plot of the gene NDFIP1,
-	Figure S2: GSE2837 analysis by PrognoScan,  
-	Table S1: The GSE2837 query results from PrognoScan,
-	Table S2: 10 good guys, % ? don't keep it
-	Video S1: title. A supporting video article is available at doi: link} 
-
+Figure S1: GSE2837 analysis by PrognoScan, 
+Figure S2: The query results from SurvExpress, 
+Figure S3: The query results from HPA.}
+%Table S1: title, Video S1: title.}
+%S1
+%S2
+%S3
 
 % Only for the journal Methods and Protocols:
 % If you wish to submit a video article, please do so with any other supplementary material.
 % \supplementary{The following are available at \linksupplementary{s1}, Figure S1: title, Table S1: title, Video S1: title. A supporting video article is available at doi: link.} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\authorcontributions{Conceptualization, Yu-Chuan (Jack) Li; Data curation, Alexander TH Wu; Formal analysis, Li-Hsing Chi; Investigation, Michael Hsiao; Methodology, Michael Hsiao; Resources, Alexander TH Wu; Software, Li-Hsing Chi and Yu-Chuan (Jack) Li; Supervision, Michael Hsiao and Yu-Chuan (Jack) Li; Writing – original draft, Li-Hsing Chi; Writing – review and editing, Alexander TH Wu.
+\authorcontributions{
+%For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``
+%Conceptualization, Michael Hsiao; Funding acquisition, Yu-Chuan (Jack) Li; Methodology, Li-Hsing Chi; Resources, Alexander TH Wu; Software, Li-Hsing Chi; Supervision, Yu-Chuan (Jack) Li; Validation, Michael Hsiao; Writing - original draft, Li-Hsing Chi; Writing - review and editing, Alexander TH Wu. 
+Conceptualization, Yu-Chuan (Jack) Li; Data curation, Alexander TH Wu; Formal analysis, Li-Hsing Chi; Investigation, Michael Hsiao; Methodology, Michael Hsiao; Resources, Alexander TH Wu; Software, Li-Hsing Chi and Yu-Chuan (Jack) Li; Supervision, Michael Hsiao and Yu-Chuan (Jack) Li; Writing – original draft, Li-Hsing Chi; Writing – review and editing, Alexander TH Wu.
 All authors have read and agreed to the published version of the manuscript.}
+%'' please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.
 
-
-
-%\institutionalreview{In this section, please add the Institutional Review Board Statement and approval number for studies involving humans or animals. Please note that the Editorial Office might ask you for further information. Please add ``The study was conducted according to the guidelines of the Declaration of Helsinki, and approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).'' OR ``Ethical review and approval were waived for this study, due to REASON (please provide a detailed justification).'' OR ``Not applicable'' for studies not involving humans or animals. You might also choose to exclude this statement if the study did not involve humans or animals.}
-
-%\informedconsent{Any research article describing a study involving humans should contain this statement. Please add ``Informed consent was obtained from all subjects involved in the study.'' OR ``Patient consent was waived due to REASON (please provide a detailed justification).'' OR ``Not applicable'' for studies not involving humans. You might also choose to exclude this statement if the study did not involve humans.
-
-%Written informed consent for publication must be obtained from participating patients who can be identified (including by the patients themselves). Please state ``Written informed consent has been obtained from the patient(s) to publish this paper'' if applicable.}
 
 \funding{The APC was funded by Taipei Medical University}
 
@@ -1771,13 +1835,15 @@ The R script codes and datasets generated during the current study are available
 
 \acknowledgments{The results shown here are in whole based upon data generated by the \acrshort{tcga} Research Network: https://www.cancer.gov/tcga.
 The tables were generated by latex code with the help from https://www.tablesgenerator.com/latex_tables# and https://github.com/JDMCreator/LaTeXTableEditor (accessed at https://www.latex-tables.com/v1/index.html).
-We like to thank Dr. Wen-Chang Wang, %https://orcid.org/0000-0003-3124-2136
+We like to thank Dr. Wen-Chang Wang,
+%https://orcid.org/0000-0003-3124-2136
 College of Medical Science and Technology, Taipei Medical University, for bioinformatics consultation and helps. 
 We like to thank Sylvain Hall\'e, Department of Computer Science and Mathematics, Univerit\'e du Qu\'ebec \`a Chicoutimi, Canada, for latex technique help with his TeXtidote.
 %We also thank the statistical consultation and helps by Dr. Hsin-Chou Yang of the Institute of Statistical Science, Academia Sinica, Taipei, Taiwan.
 We sincerely want to express our thanks to the \acrshort{hnscc} patients who donated their data to \acrshort{tcga} affiliated biobanks.
 % *** URL Accessed 20 May 2013.
-The Mouse Tumor Biology Database. http://tumor.informatics.jax.org/mtbwi/index.do.  Accessed 20 May 2020.}
+The Mouse Tumor Biology Database. http://tumor.informatics.jax.org/\newline
+mtbwi/index.do. Accessed 20 May 2020.}
 
 %\subsection*{Authors' information} % Author details (automatic placed here)
 
@@ -1797,11 +1863,30 @@ The Mouse Tumor Biology Database. http://tumor.informatics.jax.org/mtbwi/index.d
 \abbreviations{The following abbreviations are used in this manuscript:
 \noindent 
 \renewcommand*{\glsinlinenameformat}[2]{\glstarget{#1} {\textsc{#2}},}
-\printglossary[type=\acronymtype, title= , nonumberlist, style=inline]}
+\printglossary[type=\acronymtype, title= , nonumberlist, style=inline]
 % Abbreviations
 
+%\begin{tabular}{@{}ll}
+%MDPI & Multidisciplinary Digital Publishing Institute\\
+%DOAJ & Directory of open access journals\\
+%TLA & Three letter acronym\\
+%LD & Linear dichroism
+%\end{tabular}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{paracol} % {2} column
+%% Optional
+%\appendixtitles{no} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
+%\appendix
+%\section{}
+%\subsection{}
+%The appendix is an optional section that can contain details and data supplemental to the main text---for example, explanations of experimental details that would disrupt the flow of the main text but nonetheless remain crucial to understanding and reproducing the research shown; figures of replicates for experiments of which representative data are shown in the main text can be added here if brief, or as Supplementary Data. Mathematical proofs of results not central to the paper can be added as an appendix.
+
+%\section{}
+%All appendix sections must be cited in the main text. In the appendices, Figures, Tables, etc. should be labeled, starting with ``A''---e.g., Figure A1, Figure A2, etc. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{paracol}% {2} column
 \reftitle{References}
 
 % Please provide either the correct journal abbreviation (e.g. according to the “List of Title Word Abbreviations” http://www.issn.org/services/online-services/access-to-the-ltwa/) or the full name of the journal.
@@ -1810,24 +1895,26 @@ The Mouse Tumor Biology Database. http://tumor.informatics.jax.org/mtbwi/index.d
 %=====================================
 % References, variant A: external bibliography
 %=====================================
-%\externalbibliography{yes}
-%\bibliography{your_external_BibTeX_file}
-
 \externalbibliography{yes}
 %\bibliography{your_external_BibTeX_file}
 %\bibliographystyle{model1-num-names}
 \bibliography{TCGA_margin_cutoff.bib, Holistic.bib, Deep_Learning.bib}
 
 
-% If authors have biography, please use the format below
-%\section*{Short Biography of Authors}
-%\bio
-%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author1.pdf}}}
-%{\textbf{Firstname Lastname} Biography of first author}
-%
-%\bio
-%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author2.jpg}}}
-%{\textbf{Firstname Lastname} Biography of second author}
+%=====================================
+% References, variant B: internal bibliography
+%=====================================
+%\begin{thebibliography}{999}
+% Reference 1
+%\bibitem[Author1(year)]{ref-journal}
+%Author~1, T. The title of the cited article. {\em Journal Abbreviation} {\bf 2008}, {\em 10}, 142--149.
+% Reference 2
+%\bibitem[Author2(year)]{ref-book1}
+%Author~2, L. The title of the cited contribution. In {\em The Book Title}; Editor1, F., Editor2, A., Eds.; Publishing House: City, Country, 2007; pp. 32--58.
+% Reference 8
+%\bibitem[Author8(year)]{ref-url}
+%Title of Site. Available online: URL (accessed on Day Month Year).
+%\end{thebibliography}
 
 % The following MDPI journals use author-date citation: Arts, Econometrics, Economies, Genealogy, Humanities, IJFS, JRFM, Laws, Religions, Risks, Social Sciences. For those journals, please follow the formatting guidelines on http://www.mdpi.com/authors/references
 % To cite two works by the same author: \citeauthor{ref-journal-1a} (\citeyear{ref-journal-1a}, \citeyear{ref-journal-1b}). This produces: Whittaker (1967, 1975)
@@ -1843,3 +1930,32 @@ The Mouse Tumor Biology Database. http://tumor.informatics.jax.org/mtbwi/index.d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 
+% moved from line 363
+
+%latex https://www.latex-tutorial.com/symbols/greek-alphabet/
+%\subsection*{Linear regression in biomarker discovery}
+Linear regression is useful as a concept in biomarker discovery.
+A linear regression equation that relates a Y-variable to n X-variables is written as\\[1cm]
+%\par
+%Highlights
+% https://quicklatex.com
+\begin{flushleft}
+% equation
+%\begin{math}
+
+ground truth Y (e.x. patient's survival):\\[0.5cm]
+%Y$:\\[0.3cm]
+$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$
+\linebreak
+\linebreak
+Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage, or even spiritual, emotional, and social status)
+\\[0.5cm]
+Coefficients $\beta_0...\beta_n$ (built in model)\\[0.5cm]
+A residual (error) term is calculated as $\epsilon=Y - \hat Y$\\
+Since the model established by survival analysis, predicted value $\hat Y$ is calculated as:\\[0.3cm]
+$\hat Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n$
+\linebreak
+%(predicted Y, output) intercept, slope, independent (input) \Times
+%\end{math}
+\end{flushleft}
+Thus, the biomarker discovery strategy is survival modeling through collections of $X_1...X_n$ features from cancer datasets.\\[1cm]
