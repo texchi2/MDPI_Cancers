@@ -4,6 +4,12 @@
 %Since April 19, 2021
 %Please resubmit your revised manuscript through the following link:
 % https://susy.mdpi.com/user/manuscripts/upload?pre_hash_key=6f6b5248032093559a0cdfda5026f51f
+
+\newenvironment{MyIndent}
+{\par\leftskip1cm\relax\rightskip1cm\relax}
+{\par\leftskip0cm\relax\rightskip0cm\relax}
+
+
 \usepackage{tikz-imagelabels} % for  tikz
 \usepackage{siunitx} % for  1e-10 scientific notation
 \usepackage[bf]{caption}
@@ -287,9 +293,11 @@ We appreciate the reviewer for the agreement about mindfulness meditation and ho
 %\end{MyColorPar}
 The summary of holistic cancer care in this revised manuscript could be on the paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129). Also, it is shown here in the following paragraph.
 
+
+\begin{MyIndent}
 \begin{MyColorPar}{red}
 " %discussion: the third limitation
-There are eighty-one physical, pathological and social conditions derived from participants available for survival modeling in the TCGA, % since it has comprehensive clinical features, 
+There are 81 physical, pathological and social conditions derived from participants available for survival modeling in the TCGA, % since it has comprehensive clinical features, 
 such as age, gender, residual tumor, vital status, days-to-last-followup, cancer stage, smoking duration, exposure to alcohol, asbestos, radioactive radon. 
 However, the TCGA did not collect other features related to holistic care.
 % Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage; emotional 情緒(心)
@@ -300,7 +308,8 @@ Holistic healthcare providers will engage his/her patients with eye-to-eye conta
 Thus, the healing resilience of patients will be induced by unconditional positive regard. % of healing.
 The patients will trust those who take care of them and have the confidence to increase the capacity to recover from diseases through a mind-brain-body connection manner (see Figure 5).%\ref{fig:figure5}).
 "
-
+\end{MyColorPar} %red
+\end{MyIndent}
 %身心靈全人醫療，展現魅力、慈悲心，靈性成熟的醫師，用藥物或手術來治療病患時，「他自己本身」就具有療癒效果
 %「把自己當藥方開出去」
 
@@ -325,7 +334,7 @@ The patients will trust those who take care of them and have the confidence to i
 %#正念 除了可以減壓，還可以治癒疼痛
 % modify the dark environment 改造患者的心，就能改造他的身體環境，有利消除癌症
 
-\end{MyColorPar} %red
+
 \end{MyColorPar} % blue
 
 
@@ -464,6 +473,8 @@ We modified the last paragraph of "Cutoff Finder Core Engine" in the Materials a
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
 \\[0.3cm]
 
+
+\begin{MyIndent}
 \begin{MyColorPar}{red}
 % TCGA_HNSCC_marginSFP.R [line 111] cutoffReturn <- cutofFinder_func_HNSCC.R
 % retrieving optimized (minimal) p value of each Kaplan-Meier plot 
@@ -482,7 +493,7 @@ It ensures the control of type I error of multiple test \textit{P} values during
 Then Bonferroni adjustment of that \textit{P} values has been used for candidate selection.
 "
 \end{MyColorPar} % red
-
+\end{MyIndent}
 
 \end{MyColorPar}
 %***=> Bonferroni correction should be used in final decision.
@@ -686,19 +697,20 @@ We also described "the \textit{P} values are affected by the sample size" in the
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
 \\[0.3cm]
 
+\begin{MyIndent}
 \begin{MyColorPar}{red}
 
 %%%
 % (OK)*the authors should look for more data to verify these biomarkers.
 %For validation by GEO datasets:
 
-(In the section of Materials and Methods)\\
+\textcolor{blue}{In the section of Materials and Methods}\\
 %RefSeq Release 38 (November 7, 2009)  GSE65858
 %[Dataset]
 "
 The Gene Expression Omnibus (GEO) database, founded by \acrfull{ncbi}, is a public repository supporting MIAME-compliant data submissions of microarray and sequence-based experiments.
-R package of GEOquery\cite{Sean2007} was used to
-download RNA-Seq dataset (in SOFT or MINiML format) of a HNSCC cohort, GSE65858, from the GEO database (available at https://www.ncbi.nlm.nih.gov/geo/geo2r/?\\acc=GSE65858). 
+R package of \\GEOquery\cite{Sean2007} was used to
+download RNA-Seq dataset (in SOFT or MINiML format) of a HNSCC cohort, GSE65858, from the GEO database (available at https://www.ncbi.nlm.nih.gov/geo/\\geo2r/?\\acc=GSE65858). 
 GSE65858\cite{Wichmann2015} has OS event, RFS event, and survival time.
 There are 270 HNSCC participants involved in this cohort.
 %The number of genes (or probes of RNA-Seq in platform GPL10558, Illumina HumanHT-12 V4.0 expression beadchip) is 30,330.
@@ -708,7 +720,7 @@ GSE65858 is a dataset for candidate selection in our workflow.
 We have also performed Kaplan-Meier and Cox survival analyses under the cutoff of each gene expression at their median value.\\
 "
 
-(In the section of Results)\\
+\textcolor{blue}{In the section of Results}\\
 "
 TCGA HNSCC cohort has been applied for exploration of the biomarker candidate.
 The 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated by Cox modeling (see Figure \ref{fig:figure1}) and justified by the ranking of hazard ratios.
@@ -743,7 +755,7 @@ However, the significance of the other 17 genes are replaced by genes such as DU
 Moreover, there are 22 genes, which have greater hazard ratio ($> 1.8$ or $< 0.6$) in GSE65858 cohort (Figure \ref{fig:hazards534}), drop their hazard ratio between 0.6 and 1.5 in the study of TCGA HNSCC (Figure \ref{fig:hazards3}).
 Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19 (two probes), and FCGBP are significant candidates for the HNSCC biomarker.
 Finally, these 3 candidates have also been confirmed by a HNSCC study using the GSE2837 dataset other than the TCGA cohort. Please see Kaplan-Meier plots in Supplementary Figure S2.%\ref{fig:fig_GSE2837}.
-"
+"\\[0.3cm]
 %The consensus between the TCGA and GSE65858 cohorts in Kaplan-Meier survival and Cox's model
 %by GEO GSE2837 HNSCC dataset (PrognoScan)
 %After the discovery by our workflow, we validated the those 20 genes in the other independent \acrshort{hnscc} cohort (GSE2837).
@@ -752,7 +764,8 @@ Finally, these 3 candidates have also been confirmed by a HNSCC study using the 
 %2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
 %17 out of 20 candidates
 
-(In the Discussions section)\\
+
+\textcolor{blue}{In the Discussions section}\\
 %[more in the discussion section]
 "  % (ok)
 Statistical significance (\textit{P} value) is affected by both sample size, error, effect size (substantive significance)\cite{Sullivan2012}\cite{Thiese2016}, and cutoff. 
@@ -881,7 +894,7 @@ Then it has been excluded as a candidate by small effect size (HR = 1.33 in GSE6
 
 
 \end{MyColorPar} % red
-
+\end{MyIndent}
 
 \end{MyColorPar} % blue
 
@@ -904,6 +917,7 @@ We appreciate the reviewer for the critical comment and modified the Materials a
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
 \\[0.3cm]
 
+\begin{MyIndent}
 \begin{MyColorPar}{red}
 %The Cox proportional hazards regression is the widely accepted approach for modeling survival while 
 "
@@ -939,7 +953,7 @@ In a multivariate test, those covariates used include the clinicopathological fe
 All covariates have been pooled in the hazard function h(t) to estimate their impact on the overall survival.
 "
 \end{MyColorPar} % red
-
+\end{MyIndent}
 
 \end{MyColorPar}% end of answer 2.4
 
@@ -1230,6 +1244,8 @@ Answer
 We placed more descriptions about researcher's work using TCGA to find expression biomarkers in the Introduction section.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.\\[0.3cm]
 
+
+\begin{MyIndent}
 \begin{MyColorPar}{red}
 % inserted at \subsubsection{From TCGA to expression biomarkers}
 
@@ -1278,8 +1294,8 @@ The candidate genes were validated via the Gene Expression Profiling Interactive
 ), GEPIA2021\cite{Li2021} (available at http://\\gepia2021.cancer-pku.cn/), or the Human Protein Atlas (HPA) website.
 % GTEx https://gtexportal.org/home/; non-disease 54 tissues/organs
 % GEPIA1/2 contact us: tangzefang@pku.edu.cn
-Finally, the gene expression profile from the GEO and HNSCC cell lines and tissues were used to verify these biomarkers.\\
-
+Finally, the gene expression profile from the GEO and HNSCC cell lines and tissues were used to verify these biomarkers.
+"
 %DEGs to hub: The 230 differentially expressed genes and 12 hub genes were subjected to functional and pathway enrichment analyses. Then hub genes for survival analyses.
 
 % Cox Risk Regression Establishment and Validation with lncRNA data
@@ -1297,11 +1313,11 @@ Finally, the gene expression profile from the GEO and HNSCC cell lines and tissu
 
 
 %
-"
+
 
 %%%%%%%%%
 \end{MyColorPar} % red
-
+\end{MyIndent}
 
 % ok
 \begin{MyColorPar}{black} % minor comment3
@@ -1318,6 +1334,8 @@ Answer
 We apologize for exaggerating the difficulties of our workflow.
 The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following two paragraphs.
 
+
+\begin{MyIndent}
 \begin{MyColorPar}{red}
 %%%
 "
@@ -1401,7 +1419,7 @@ It might be due to skewed distribution of the expression value or even random er
 
 
 \end{MyColorPar} % end of red
-
+\end{MyIndent}
 
 \end{MyColorPar} % end of blue answer 2-6
 % the end of response rebuttal %%%%%%%%%%%%
