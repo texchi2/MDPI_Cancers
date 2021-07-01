@@ -291,7 +291,8 @@ We appreciate the reviewer for the agreement about mindfulness meditation and ho
 % modify on main.tex, marked with
 %\begin{MyColorPar}{red}
 %\end{MyColorPar}
-The summary of holistic cancer care in this revised manuscript could be on the paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129). Also, it is shown here in the following paragraph.
+% from page (ok)
+The summary of holistic cancer care in this revised manuscript could be on the paragraphs marked in \textcolor{red}{Red} on page 13 (line 377 to line 392). Also, it is shown here in the following paragraph.
 
 
 \begin{MyIndent}
@@ -395,7 +396,7 @@ We also think that the sliding-window selection of cutoffs would capture more ge
 %[1] "HNSCC_OS_marginS_pvalueBonferroni_sorted"   
 %[2] "HNSCC_OS_marginFree_pvalueBonferroni_sorted"
 %[3] "HNSCC_OS_marginPlus_pvalueBonferroni_sorted"
-However, according to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
+However, according to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 5": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
 Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
 supplementary figure S1). After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures,
 scientific-notation=true]{0.0001074233}.
@@ -467,10 +468,10 @@ We performed the FDR correction applied on the Kaplan-Meier \textit{P} values of
 %\begin{MyColorPar}{red}
 %\end{MyColorPar}
 % and FDR (done; ok)
-We modified the last paragraph of "Cutoff Finder Core Engine" in the Materials and Methods section.
+We modified Figure 5 (with three candidates) and the last paragraph of "Cutoff Finder Core Engine" in the Materials and Methods section.
 %Figure 1, Table 1, 2 correction: Kaplan-Meier FDR correction
 %***The caption of Figure 1 and Table 1 has description about 1) FDR correction of Kaplan-Meier \textit{P} values during Cutoff finding; and 2) Bonferroni correction of Kaplan-Meier \textit{P} values after Cox modeling for candidate selection.
-The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
+The paragraphs marked in \textcolor{red}{Red} from page 16 (line 502 to line 505) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
 \\[0.3cm]
 
 
@@ -694,10 +695,12 @@ FCGBP   & \num{1.21e-6} & 0.01          & \num{4.83e-5} & 0.039 & 0.484 & 0.573\
 
 We modified the paragraphs in the "Materials and Methods" section, and "Results" section for the analysis of GSE65858.
 We also described "the \textit{P} values are affected by the sample size" in the "Discussions" section.
-The paragraphs in "Materials and Methods" marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129),
+% ok
+The paragraphs in "Materials and Methods" marked in \textcolor{red}{Red} on page 18 (line 560 to line 572),
 % results ok
-the paragraphs in "Results" marked in \textcolor{red}{Red} from page 5 (line 184) to page 6 (line 208), and
-the paragraphs in "Discussions" marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129)
+the paragraphs in "Results" marked in \textcolor{red}{Red} from page 5 (line 148) to page 6 (line 172) , and
+% ok
+the paragraphs in "Discussions" marked in \textcolor{red}{Red} from page 10 (line 236) to page 11 (line 280)
 are the part of the manuscript that has been revised. 
 Also, it is shown here in the following paragraph.
 \\[0.3cm]
@@ -774,14 +777,16 @@ Finally, these 3 candidates were also confirmed by a HNSCC study using the GSE28
 \textcolor{blue}{In the Discussions section}\\
 %[more in the discussion section]
 "  % (ok)
+Trying to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage, this strategy could identify more but sometimes weak "biomarkers".
+Thus, we should try our best to handle the effect size from Cox's modeling.
+And validation of those candidates is required by using other independent dataset.
+%%% Statistical significance (\textit{P} value) is affected by both sample size, error, effect size (substantive significance)\cite{Sullivan2012}\cite{Thiese2016}, and cutoff.
+%\subsection{The Purpose of a Sliding-window Cutoff Method}
 Statistical significance (\textit{P} value) is affected by both sample size, error, effect size (substantive significance)\cite{Sullivan2012}\cite{Thiese2016}, and cutoff. 
-The effect size is the magnitude of the difference (or relationship) among comparing groups.
+The effect size is the magnitude of the difference (e.g., \acrlong{hr}) among comparing groups.
 %A \textit{P} value is a tool to help interpret findings from biomedical research.
 %In reporting and interpreting studies, both 
 %the substantive significance (effect size) and statistical significance (P value) are essential results to be reported.
-While statistical significance can inform the researcher whether an effect exists, 
-the \textit{P} value will not directly tell the effect size.
-%The effect size is the main finding of a quantitative study.
 %Statistical significance depends upon both sample size and effect size. 
 The effect size is independent of the sample size\cite{Sullivan2012}.
 
@@ -795,20 +800,21 @@ However, the small effect size (non-zero) is often meaningless or substantive in
 %yet very small differences, even if significant, are often meaningless. 
 %Thus, reporting only the significant P value for an analysis is not adequate for readers to fully understand the results.
 %If the magnitude of effect is small and clinically unimportant, the p-value can be "significant" if the sample size is large.
-Conversely, the effect size can be significant but fail to get statistical significance if the sample size is small. 
+Conversely, the effect size can be large but fail to get statistical significance if the sample size is small. 
 %In this scenario, the \textit{P} value tells the effect does not exist.
-
 The following error could also impact the \textit{P} value:
 \begin{outline}
-\1 A random error, defined as the variability in data, is not considered a bias but rather occurs randomly across the entire study population and can distort the measurement process (e.x. RNA-Seq experiments).
+\1 A random error, defined as the variability in data, is not considered a bias but rather occurs randomly across the entire study population and can distort the measurement process (e.g., RNA-Seq experiments).
 The larger sample size could reduce the random error. 
 \1 A systematic error is a bias, which includes selection bias, information bias, and confounding.
 It could deleteriously impact the statistical significance.
 The larger sample size could not affect the systematic error.
 \end{outline}
 % effect size is large (whatever is true or artificial), the p value is small
-Thus, if there is no error in two study groups, and the sample size is the same, the group, which has a larger effect size, will has a small \textit{P} value\cite{Thiese2016}.
-If a skewed cutoff that split, for example, 425 vs. 75 between the two groups, it will also get statistical significance by increasing effect size artificially.
+While statistical significance can inform the researcher whether an effect exists, the \textit{P} value will not directly tell the effect size.
+Thus, if there is no error in two study groups, and the sample size is the same (not small), the group, which has a larger effect size, will has a small \textit{P} value\cite{Thiese2016}.
+%The effect size is the main finding of a quantitative study.
+If a skewed cutoff that split, for example, 425 versus 75 between the two groups, it will also get statistical significance by increasing effect size artificially.
 % https://stats.stackexchange.com/questions/162359/how-can-you-have-p-0-0001-with-a-sample-size-of-89-and-a-control-group-of-52
 %As you can see, even with only 12 events (fustat = 1) that split 10 vs 2 between the two dummy groups you get a log-rank p-value < 0.0001.
 %effect size, sample size, cutoff 影響 p value!
@@ -818,7 +824,7 @@ If a skewed cutoff that split, for example, 425 vs. 75 between the two groups, i
 % https://hbiostat.org/rms/
 
 % definition of P value
-%Statistical significance is the probability that the observed difference between two groups is due to chance. If the P value is larger than the alpha level chosen (e.x. 0.05), any observed difference is assumed to be explained by sampling variability.
+%Statistical significance is the probability that the observed difference between two groups is due to chance. If the P value is larger than the alpha level chosen (e.g., 0.05), any observed difference is assumed to be explained by sampling variability.
 %The most commonly used α level is 0.05, as proposed by Fischer, is the amount of type I error you are willing to accept.
 %Fisher suggested 5\% (α=0.05) level could be used for concluding that fairly strong evidence exists against H0, that is 1 out of 20 times you will be wrong and by random chance there is no difference between your groups, but the data you have suggests that there is (2).
 
@@ -832,10 +838,11 @@ If a skewed cutoff that split, for example, 425 vs. 75 between the two groups, i
 %from Answer 2-3 supplementary Figure S1  %圖就好 figure Rplot_pvaluePlot_NDFIP1.pdf
 
 %2) \\
-%(ok) % pvalueTex is essential
-There is a benefit for using sliding-window cutoff method (between $30\%-70\%$ quantile) in Kaplan-Meier analysis of TCGA HNSCC cohort at the beginning.
-We have compared the results of cutoff at optimal \textit{P} value by sliding window or just at the median of gene expression.
-It shows that the number of genes with unadjusted \textit{P} value $<0.05$, which is 6284 vs. 3118, respectively. After FDR correction, it has reduced as 967 vs. 209, respectively.
+%(ok) % pvalueTex is essential; find smaller P value to predict large effect size (HR)
+% The effect size is the main finding of a quantitative study.
+There is a benefit for using sliding-window cutoff method (between $30\% - 70\%$ quantile) in Kaplan-Meier analysis of TCGA HNSCC cohort at the beginning.
+We compared the results of cutoff at optimal \textit{P} value by sliding window or just at the median of gene expression.
+It shows that the number of genes with unadjusted \textit{P} value $< 0.05$, which is 6284 versus 3118, respectively. After FDR correction, it becomes 967 versus 209, respectively.
 % HNSCC_OS_marginS_THREE_pvalue005_noCancerGene
 %Result by optimal cutoff: total 9416 plots,
 %6284 are raw KM P value < 0.05
@@ -846,23 +853,25 @@ It shows that the number of genes with unadjusted \textit{P} value $<0.05$, whic
 %209 genes are FDR KM P value <0.05
 The sliding-window cutoff method could catch more potential candidates, which have \textit{P} values far less than $0.001$, for subsequent Cox's modeling.
 That is because of the properly selected cutoff improving the statistical significance.
-Then, these preliminary candidates will have an opportunity to be carefully selected by Bonferroni correction, their effect size (HR), and the other independent cohorts (GSE65858, GSE2837) to prevent the false discovery.
+To find a smaller \textit{P} value might predict large effect size (HR) associated biomarkers.
+Then, these preliminary candidates will have an opportunity to be carefully selected by using Bonferroni correction, their effect size (Cox's HR), and the other independent cohorts (GSE65858, GSE2837) to prevent the false discovery.
 
 %small effect size could be double-checked by GSE65858.
 %差別很大，張大網
 %([2021/06/27] run code: if median cut for TCGA KM Cox by *** pvalueTex code)
 %列入 workflow in materials and methods;
 
-We will explain the above mentioned by an example.
+We explain aforementioned situation by an example.
 %***NDFIP1  % 給他們一個機會
 Reviewing the special case of genes, such as NDFIP1, DKC1, PNMA5, and NPB,
-we have noticed that NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile (median) cutoff, could achieve a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff.
-NDFIP1 has the FDR-corrected \textit{P} value as \num[round-precision=3, round-mode=figures,
-scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "W"-shaped \textit{P} value plot). % it is \ref{fig:pvaluePlot_NDFIP1
+we noticed that NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile (median) cutoff, could achieve a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff.
+NDFIP1 has the FDR-adjusted \textit{P} value as \num[round-precision=3, round-mode=figures,
+scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "S"- or "W"-shaped \textit{P} value plot). % it is \ref{fig:pvaluePlot_NDFIP1
 %Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in supplementary figure S1).
 %After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures, scientific-notation=true]{0.0001074233}.
 % the effect size
-Then it has been excluded as a candidate by small effect size (HR = 1.33 in GSE65858 cohort and HR = 1.42 in GSE2837 cohort) less than 1.8.
+However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65858 and HR = 1.42 in GSE2837) less than 1.8.
+%%%
 "
 
 %compared with one (HR = 2.027) in TCGA cohort%.
@@ -920,7 +929,8 @@ Answer
 %(OK)
 
 We appreciate the reviewer for the critical comment and modified the Materials and Methods accordingly.
-The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
+% ok
+The paragraphs marked in \textcolor{red}{Red} on page 17 (line 518 to line 544) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.
 \\[0.3cm]
 
 \begin{MyIndent}
@@ -1248,7 +1258,8 @@ More introduction to how other researchers used TCGA to find expression biomarke
 Answer
 
 We placed more descriptions about researcher's work using TCGA to find expression biomarkers in the Introduction section.
-The paragraphs marked in \textcolor{red}{Red} from page 3 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.\\[0.3cm]
+% ok
+The paragraphs marked in \textcolor{red}{Red} on page 3 (line 98 to line 123) are the part of the manuscript that has been revised. Also, it is shown here in the following paragraph.\\[0.3cm]
 
 
 \begin{MyIndent}
@@ -1337,14 +1348,15 @@ Answer
 
 % 不要誇大說明 謙虛道歉
 We apologize for exaggerating the difficulties of our workflow.
-The paragraphs marked in \textcolor{red}{Red} from page 2 (line 77) to page 3 (line 129) are the part of the manuscript that has been revised. Also, it is shown here in the following two paragraphs.
+% ok
+The paragraphs marked in \textcolor{red}{Red} on page 11 (line 282 to line 310) are the part of the manuscript that has been revised. Also, it is shown here in the following two paragraphs.
 
 
 \begin{MyIndent}
 \begin{MyColorPar}{red}
 %%%
 "
-There are three essential points of biomarker discovery from survival analysis of the TCGA HNSCC dataset.
+There are two essential points of biomarker discovery from survival analysis of the TCGA HNSCC dataset.
 
 First, although \acrshort{tcga} genomics data were harmonized, 
 % three things were found during our investigating and data cleaning:
@@ -1373,16 +1385,16 @@ Thus, we made reassignment of the expression value of SLC35E2A and SLC35E2B and 
 %Second, we find a way to determine candidates from the expression level of 20,500 human protein-coding genes\cite{Clamp2007}.
 
 % risk of *** Answer 2-3 併入此
-Second, trying to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage, this strategy could identify more but sometimes weak "biomarkers".
-We have checked this issue in detail (in the Discussions section).
-Thus, the false positives and adjustment of multiple comparisons should be corrected by \acrfull{fdr}.
-Furthermore, validation of those candidates is required in the other independent dataset.
+%Second, trying to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage, this strategy could identify more but sometimes weak "biomarkers".
+%We have checked this issue in detail (in the Discussions section).
+%Thus, the false positives and adjustment of multiple comparisons should be corrected by \acrfull{fdr}.
+%Furthermore, validation of those candidates is required in the other independent dataset.
 % in larger patient populations.% in larger patient
 %warrant.
 
 % dissection
 %ZSWIM2\_archive.Rda % 其實最困難的在於 unknown error (ZSWIM2) 
-Third, we analyzed the error log during the cutoff finding and Cox modeling, 
+Second, we analyzed the error log during the cutoff finding and Cox modeling, 
 the result shows that program running could be halted by several technical problems.
 These include:
 \begin{outline}
