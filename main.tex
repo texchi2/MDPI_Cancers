@@ -127,9 +127,11 @@
 \newenvironment{abbreviation}
 
 
-
+%\section{abbreviation}
 %%%%%%%%%%%%% Define abbreviation
 \makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
+
+
 
 \newacronym{ncbi}{NCBI}{National Center for Biotechnology Information}
 \newacronym{degs}{DEGs}{differentially expressed genes}
@@ -154,6 +156,8 @@
 
 \newacronym{DKK1}{DKK1}{dickkopf WNT signaling pathway inhibitor 1} 
 \newacronym{CAMK2N1}{CAMK2N1}{calcium/calmodulin dependent protein kinase II inhibitor 1} 
+\newacronym{CALML5}{CALML5}{calmodulin like 5}
+
 \newacronym{STC2}{STC2}{stanniocalcin 2} 
 \newacronym{PGK1}{PGK1}{phosphoglycerate kinase 1} 
 \newacronym{SURF4}{SURF4}{surfeit 4} 
@@ -296,17 +300,17 @@ No.172-1, Sec. 2, Keelung Rd.\unskip, Taipei 106\unskip, Taiwan\\
 
 %\conference{} % An extended version of a conference paper
 
-
+%\section{abstract}
 %%%%%%%%%%
 % Abstract (Do not insert blank lines, i.e. \\) 
 \abstract{The survival analysis of the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover the gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by the patients' dichotomization for the continuous gene expression in survival analysis. There is some optimization software for cutoff determination. However, the software's predetermined cutoffs are usually set at the median or quantiles of RNA sequencing value to perform the survival analyses. There are few clinicopathological features available on their pre-processed data sets.
 We developed a workflow that includes data retrieving and pre-processing, feature selection, sliding-window cutoff mining, Kaplan-Meier survival analysis, Cox proportional hazard modeling, and biomarker discovery.
-Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes. After adjustment with confounders, we found that the clinical tumor stage and the surgical margin involvement are independent risk factors in patient survival. According to the resulting tables with Bonferroni adjusted P-value under the optimal cutoff and the hazard ratio, three biomarker candidates, CAMK2N1, IL19, and FCGBP, are significantly associated with the patients' overall survival. The other independent HNSCC data were also used to validate this discovery.
+Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes. After adjustment with confounders, we found that the clinical tumor stage and the surgical margin involvement are independent risk factors in patient survival. According to the resulting tables with Bonferroni adjusted P-value under the optimal cutoff and the hazard ratio, three biomarker candidates, CAMK2N1, CALML5, and FCGBP, are significantly associated with the patients' overall survival. The other independent HNSCC data were also used to validate this discovery.
 We suggest the transcriptomic analysis could help for biomarker discovery.}
 
 % Keywords
 \keyword{Head and Neck Squamous Cell Carcinoma (HNSCC);
-the Cancer Genome Atlas (TCGA); Transcriptomic Analysis; Survival Analysis; Optimal Cutoff; Effect Size; \acrfull{CAMK2N1}; \acrfull{IL19}; \acrfull{FCGBP}; Mindfulness Meditation} 
+the Cancer Genome Atlas (TCGA); Transcriptomic Analysis; Survival Analysis; Optimal Cutoff; Effect Size; \acrfull{CAMK2N1}; \acrfull{CALML5}; \acrfull{FCGBP}; Mindfulness Meditation} 
 
 
 % I have a graphic abstract: graphic_abstract_pvalueTex.pdf
@@ -510,7 +514,7 @@ After stringent criteria by Bonferroni-adjusted \textit{P} value, and the Cox's 
 %The ten genes, named DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, are significantly associated with the poor prognosis of overall survival (OS). 
 %The other ten genes are over-expressed in the better survival group (with hazard ratio $<=0.6$), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
 %em dash ---
-These CAMK2N1, IL19, FCGBP and the other 17 genes (DKK1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, ZNF557, ZNF266, MYO1H, LOC148709, EVPLL, PNMA5, IQCN---previous name as KIAA1683, and NPB) have significant FDR-adjusted \textit{P} values ($< 0.0003$) in Kaplan-Meier estimate, and greater hazard ratio (HR) ($> 1.8$ or $< 0.6$) in Cox's model (please see Figure \ref{fig:hazards3}; $log_{10}(0.0003) = -3.5$).
+These CAMK2N1, CALML5, FCGBP and the other 17 genes (DKK1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, ZNF557, ZNF266, MYO1H, LOC148709, EVPLL, PNMA5, IQCN---previous name as KIAA1683, and NPB) have significant FDR-adjusted \textit{P} values ($< 0.0003$) in Kaplan-Meier estimate, and greater hazard ratio (HR) ($> 1.8$ or $< 0.6$) in Cox's model (please see Figure \ref{fig:hazards3}; $log_{10}(0.0003) = -3.5$).
 %These genes have also passed a stringent criteria (Bonferroni \textit{P} value correction less than 0.05).
 The plot reveals that the top 20 genes (Bonferroni-adjusted \textit{P} $< 0.05$) are located on the peaks. At the same time, Cox's HR separates them on the two-side with significant prognostic impact.
 %During our exploration phase with TCGA cohort, the 20 genes, listed
@@ -523,7 +527,7 @@ The plot reveals that the top 20 genes (Bonferroni-adjusted \textit{P} $< 0.05$)
 %CAMK2N1, IL19, and FCGBP is validated by
 %candidate_fdr100
 %PvalueTex consensus with GSE2837 to yield 3 candidates
-In the study of GSE65858 cohort with median cutoffs, CAMK2N1, IL19, and FCGBP (3 out of those 20 genes discovered in the TCGA cohort), keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox's HR ($> 1.8$ or $< 0.65$) (please see Table \ref{tab:table_top3_GSE65858}).
+In the study of GSE65858 cohort with median cutoffs, CAMK2N1, CALML5, and FCGBP (3 out of those 20 genes discovered in the TCGA cohort), keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox's HR ($> 1.8$ or $<0.6$) (please see Table \ref{tab:table_top3_GSE65858}).
 % (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002
 % Consensus 3 genes in Kaplan-Meier survival and Cox's model (dataset: GSE65858)
 %Gene.Symbol KM.Pvalue   FDR.KMpvalue    uni_HR  FDR.Pvalue(in TCGA)
@@ -535,7 +539,7 @@ In the study of GSE65858 cohort with median cutoffs, CAMK2N1, IL19, and FCGBP (3
 However, the significance of the other 17 genes are replaced by genes such as DUSP6, MSMB, and RBM11 (please see Figure \ref{fig:hazards534}).
 %This GSE65858 cohort has been applied for selection to generate our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
 Conversly, there are 22 genes, which have greater hazard ratio ($> 1.8$ or $< 0.6$) in GSE65858 cohort (Figure \ref{fig:hazards534}), drop their hazard ratio between 0.6 and 1.5 in the study of TCGA HNSCC (Figure \ref{fig:hazards3}).
-Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19 (two probes), and FCGBP are significant candidates for the HNSCC biomarker.
+Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, CALML5, and FCGBP are significant candidates for the HNSCC biomarker.
 Finally, these 3 candidates have also been confirmed by a HNSCC study using the GSE2837 dataset. Please see the Kaplan-Meier plots in Supplementary Figure S2.%\ref{fig:fig_GSE2837}.
 \end{MyColorPar} % end red
 
@@ -560,7 +564,7 @@ Finally, these 3 candidates have also been confirmed by a HNSCC study using the 
     This cohort was applied for exploration of the candidate biomarkers.
     A total of 9416 genes have %\acrshort{fdr}-
     unadjusted \textit{P} value less than 0.05.
-    \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19}, \textcolor{red}{FCGBP} and the 17 genes (marked in \textcolor{black}{black square}) have hazard ratio (HR) $> 1.8$ or $< 0.6$.
+    \textcolor{red}{CAMK2N1}, \textcolor{red}{CALML5}, \textcolor{red}{FCGBP} and the 17 genes (marked in \textcolor{black}{black square}) have hazard ratio (HR) $> 1.8$ or $< 0.6$.
     The 22 genes, listed on the side, have hazard ratio between 0.6 and 1.5.\\
     (\textcolor{red}{Red spots}: $HR > 1.0$,
     \textcolor{green}{Green spots}: $HR < 1.0$);\\
@@ -597,12 +601,12 @@ Gene Symbol &
   \hline
   \hline
 CAMK2N1 & \num{2.97e-7} & \num{6.87e-3} & \num{1.63e-5} & 0.038 & 2.101 & 1.814 \\
-IL19    & n/a           & 0.03          & n/a           & 0.047 & n/a   & 0.630  \\
+CALML5    & \num{5.87e-6}  & \num{4.75e-3}          & \num{1.97e-4}          & 0.035 & 0.493   & 0.541  \\
 IL19    & \num{3.73e-7} & \num{2.69e-3} & \num{6.54e-6} & 0.031 & 0.472 & 0.630  \\
 FCGBP   & \num{1.21e-6} & 0.01          & \num{4.83e-5} & 0.039 & 0.484 & 0.573\\
 \hline
-  \multicolumn{7}{l}{(IL19 has two probes in RNA-Seq experiment of GSE65858)}\\
-  \multicolumn{7}{l}{(FDR: \acrlong{fdr})}\\
+%  \multicolumn{7}{l}{(IL19 has two probes in RNA-Seq experiment of GSE65858)}\\
+  \multicolumn{7}{l}{(FDR: \acrlong{fdr}; HR: hazard ratio)}\\
 \hline
 \end{tabular}%
 } % end of \resizebox
@@ -617,11 +621,11 @@ FCGBP   & \num{1.21e-6} & 0.01          & \num{4.83e-5} & 0.039 & 0.484 & 0.573\
     \includegraphics[width=13cm]{Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf}
     \bcaption{Volcano plot of genes under survival analyses of GSE65858 cohort}{
     % GSE117973 using the same platform GPL10558
-    This HNSCC cohort has been applied for filtering of our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
+    This HNSCC cohort has been applied for filtering of our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{CALML5}, and \textcolor{red}{FCGBP}.
     Total 534 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05
     (\textcolor{red}{Red spots}: hazard ratio is greater than 1.0);
     (\textcolor{green}{Green spots}: hazard ratio is under than 1.0).\\
-    The 22 genes, listed on the side, have hazard ratio $> 1.8$ or $< 0.6$.\\
+    The 22 genes, listed on the side, have hazard ratio $> 1.8$ or $<0.6$.\\
     (X-axis: Kaplan-Meier survival estimates, with \acrshort{fdr}-adjusted \textit{P} value with log10 transformed);
     (Y-axis: the hazard ratio (HR) under Cox proportional hazard regression model)
     }
@@ -658,9 +662,9 @@ FCGBP   & \num{1.21e-6} & 0.01          & \num{4.83e-5} & 0.039 & 0.484 & 0.573\
 Our top 1 candidate is \acrfull{CAMK2N1}. The Kaplan-Meier curve reveals that 152 patients bearing the higher expression of \acrshort{CAMK2N1} were suffered from only 35\% of 5-year \acrshort{os} rate. In comparison, the other 262 patients with lower expression had a better prognosis (Bonferroni-adjusted \textit{P} $= 0.002$) (see Figure \ref{fig:figure4}(a)).
 Figure \ref{fig:figure4}(b)'s cumulative \textit{P} value plot shows that the uncorrected 147 \textit{P} values ($< 0.05$) have been estimated by a serial cut from 144 to 290 persons for grouping the cohort in our cutoff finding procedure (cutofFinder\_func.R, see Figure \ref{fig:figure1}, cutoff engine). The smallest \textit{P} value (\num{2.97e-7}), when cut at n = 262 (63.3\% of total cohort 414, with the cutoff value 0.027 in \acrlong{rsem}, \acrshort{rsem}), has been defined as an optimal \textit{P} value.
 The plot in Figure \ref{fig:figure4}(b) shows a "backlash" curve with the half of values below \num{1.0e-3}.
-%IL19
-Conversely, the most associated gene with better survival is \acrfull{IL19}. In Figure \ref{fig:figure4}(c), a Kaplan-Meier curve reveals 215 patients bearing the higher expression of \acrshort{IL19} had 60\% of 5-year OS survival rate (Bonferroni-adjusted \textit{P} $ = 0.002$). The sliding-window cutoff selection generated cumulative \textit{P} value plot in Figure \ref{fig:figure4}(d). This plot reveals a special "S" curve with a acute bending on the middle portion (we will discuss this finding in the Discussions section).
-The 161 uncorrected \textit{P} values were estimated by a serial cut from 125 to 286 for grouping the cohort. The smallest \textit{P} value (\num{3.73e-7}), when cut at n = 199 (48.1\% of total cohort 414), has been defined as an optimal \textit{P} value with a cutoff value -0.147 \acrshort{rsem} of \acrshort{rnaseq}.
+%IL19 -> CALML5 Bonferroni 0.039
+Conversely, the most associated gene with better survival is \acrfull{CALML5}. In Figure \ref{fig:figure4}(c), a Kaplan-Meier curve reveals 200 patients bearing the higher expression of \acrshort{CALML5} had 60\% of 5-year OS survival rate (Bonferroni-adjusted \textit{P} $ = 0.039$). The sliding-window cutoff selection generated cumulative \textit{P} value plot in Figure \ref{fig:figure4}(d). This plot reveals a "V" curve with the minimum at middle portion.
+The 166 uncorrected \textit{P} values were estimated by a serial cut from 125 to 290 for grouping the cohort. The smallest \textit{P} value (\num{5.87e-6}), when cut at n = 214 (51.7\% of total cohort 414), has been defined as an optimal \textit{P} value with a cutoff value -0.359 \acrshort{rsem} of \acrshort{rnaseq}.
 % FCGBP
 The third candidate is \acrfull{FCGBP}.
 It relates with also better survival in both the TCGA and GSE65858 cohorts. In Figure \ref{fig:figure4}(e), a Kaplan-Meier curve reveals 282 patients bearing the higher expression of \acrshort{FCGBP} had 60\% of 5-year OS survival rate (Bonferroni-adjusted \textit{P} $ = 0.008$). The sliding-window cutoff selection generated cumulative \textit{P} value plot in Figure \ref{fig:figure4}(f). This plot has a "W-shaped" curve with the most majority of values far below \num{1.0e-3}.
@@ -678,15 +682,15 @@ The 166 uncorrected \textit{P} values were estimated by a serial cut from 125 to
 % and a new Figure 4
 \begin{figure}[hbt!]
 
-% TCGA FDR Pvalue of CAMK2N1 (1.628308e-05), IL19 ( 6.543871e-06), FCGBP (4.827833e-05)
+% TCGA FDR Pvalue of CAMK2N1 (1.628308e-05), IL19 ( 6.543871e-06), FCGBP (4.827833e-05), CALML5 (0.0001970348)
 \setlength{\unitlength}{1cm}
 \begin{picture}(15, 20) %(1,0.55038404)%
 \centering
-  \put(0,0){\includegraphics[width=14cm]{Figure_4_CAMK2N1_IL19_FCGBP.pdf}}%
+  \put(0,0){\includegraphics[width=14cm]{Figure_4_CAMK2N1_CALML5_FCGBP.pdf}}%
   \put(2.5, 14.3){\fontfamily{qcr}\selectfont
   \tiny *\textit{P} = \num{1.63e-05}}%CAMK2N1
     \put(2.5, 9.45){\fontfamily{qcr}\selectfont
-  \tiny *\textit{P} = \num{6.54e-06}}%IL19
+  \tiny *\textit{P} = \num{1.97e-4}}%IL19 6.54e-06 -> CALML5 0.0001970348
     \put(2.5, 4.55){\fontfamily{qcr}\selectfont
   \tiny *\textit{P} = \num{4.83e-05}}%FCGBP
 
@@ -698,13 +702,13 @@ The 166 uncorrected \textit{P} values were estimated by a serial cut from 125 to
 \end{picture}%
 
 \bcaption{Kaplan-Meier survival analyses, by cutoff finding.}
-{The Kaplan-Meier curves of (a) CAMK2N1, (c) IL19, and (e) FCGBP under optimal \textit{P} value. 
+{The Kaplan-Meier curves of (a) CAMK2N1, (c) CALML5, and (e) FCGBP under optimal \textit{P} value. 
 %((b) the cutoffs derived from it's cumulative \textit{P} value plot).
 %(c) Kaplan-Meier plot of IL19 under optimal \textit{P} value;
 %((d) the cutoffs derived from it's cumulative \textit{P} value plot).
 %(e) Kaplan-Meier plot of FCGBP under optimal \textit{P} value.\\
 %The optimal cutoff value for CAMK2N1 is 
-The cutoffs, in the cumulative \textit{P} value plots of (b) CAMK2N1, (d) IL19, and (f) FCGBP, respectively,
+The cutoffs, in the cumulative \textit{P} value plots of (b) CAMK2N1, (d) CALML5, and (f) FCGBP, respectively,
 shows that over 50\% of those unadjusted \textit{P} values are below 0.001 derived by sliding-window cutoff finding procedure.\\
 (* \textit{P}: \textit{P} value adjusted by \acrlong{fdr}, \acrshort{fdr})
 }
@@ -753,14 +757,14 @@ CAMK2N1 &
   1.572-2.809 &
   2.007 &
   1.490-2.704 \\ \hline
-IL19 &
-  \multicolumn{2}{l|} {interleukin 19} &
-   \num{6.54e-6} & %3.7e-7} &
-   0.002 &
-   0.472 &
-   0.351-0.635 &
-   0.459 &
-   0.340-0.619 \\ \hline
+CALML5 &
+  \multicolumn{2}{l|} {\acrlong{CALML5}} &
+   \num{1.97e-4} & %\num{6.54e-6} & %3.7e-7} &
+   0.039 &
+   0.51 &
+   0.379-0.686 &
+   0.493 &
+   0.364-0.667 \\ \hline
 FCGBP &
   \multicolumn{2}{l|}{\begin{tabular}[c]{@{}l@{}}Fc fragment of\\  IgG binding protein\end{tabular}} &
    \num{4.83e-5} & %1.2e-6} &
@@ -774,8 +778,8 @@ FCGBP &
 {\begin{tabular}[c]{@{}l@{}}
 Selection criteria (fit all):\\
 (1) Kaplan-Meier Bonferroni-adjusted \textit{P} \textless 0.05;\\
-(2) Cox’s univariate and multivariate HR \textgreater{}= 1.8 or \textless{}= 0.5 in TCGA cohort;\\
-(3) Cox’s univariate and multivariate HR \textgreater{}= 1.8 or \textless{}= 0.5 in GSE65858 cohort
+(2) Cox’s univariate and multivariate HR \textgreater{}= 1.8 or \textless{}= 0.6 in TCGA cohort;\\
+(3) Cox’s univariate and multivariate HR \textgreater{}= 1.8 or \textless{}= 0.6 in GSE65858 cohort
 \end{tabular}
 %}\\ % within \multirow
 } \\ % within \multicolumn
@@ -1030,7 +1034,7 @@ Then, these preliminary candidates will have an opportunity to be carefully sele
 %([2021/06/27] run code: if median cut for TCGA KM Cox by *** pvalueTex code)
 %列入 workflow in materials and methods;
 
-We explain aforementioned situation by an example.
+We explain aforementioned situation by examples.
 %***NDFIP1  % 給他們一個機會
 Reviewing the special case of genes, such as NDFIP1, DKC1, PNMA5, and NPB,
 we noticed that NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile (median) cutoff, could achieve a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff.
@@ -1041,6 +1045,9 @@ scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "
 % the effect size
 However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65858 and HR = 1.42 in GSE2837) less than 1.8.
 %%%
+
+The other example is IL19. It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-adjusted \textit{P} value has large difference between 50\% quantile cutoff (FDR 0.115) and optimal 48\% quantile cutoff (FDR \num{6.54e-6}). This optimal cutoff method could boost it's statistic significance to pass the correction by both FDR and Bonferroni methods. However, IL19 has competed as a candidate by its effect size (HR = 0.472 in TCGA cohort), but failed by the validation with GSE65858 cohort (HR = 0.630 and FDR-KM \textit{P} = 0.031).
+
 \end{MyColorPar} % red
 
 
@@ -1472,7 +1479,7 @@ Using PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/PrognoScan/)\cite{
 \section{Conclusions} % 5
 % Conclusions: This section is not mandatory, but can be added to the manuscript if the discussion is unusually long or complex.
 %The result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
-Our findings suggested 3 biomarker candidates---CAMK2N1, IL19, and FCGBP, are all heavily associated with the prognosis of \acrshort{os} under optimal cutoff with stringent Bonferroni \textit{P} values and proper effect size (HR). 
+Our findings suggested 3 biomarker candidates---CAMK2N1, CALML5, and FCGBP, are all heavily associated with the prognosis of \acrshort{os} under optimal cutoff with stringent Bonferroni \textit{P} values and proper effect size (HR). 
 %They also might be potential common biomarkers for subsequent study.
 % welcome for study
 %tumor-agnostic research, we plan to explore common biomarkers crossing TCGA diseases

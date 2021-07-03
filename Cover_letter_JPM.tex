@@ -53,6 +53,8 @@
 
 \newacronym{DKK1}{DKK1}{dickkopf WNT signaling pathway inhibitor 1} 
 \newacronym{CAMK2N1}{CAMK2N1}{calcium/calmodulin dependent protein kinase II inhibitor 1} 
+\newacronym{CALML5}{CALML5}{calmodulin like 5}
+
 \newacronym{STC2}{STC2}{stanniocalcin 2} 
 \newacronym{PGK1}{PGK1}{phosphoglycerate kinase 1} 
 \newacronym{SURF4}{SURF4}{surfeit 4} 
@@ -396,7 +398,7 @@ We also think that the sliding-window selection of cutoffs would capture more ge
 %[1] "HNSCC_OS_marginS_pvalueBonferroni_sorted"   
 %[2] "HNSCC_OS_marginFree_pvalueBonferroni_sorted"
 %[3] "HNSCC_OS_marginPlus_pvalueBonferroni_sorted"
-However, according to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 5": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
+However, according to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 5": top 3 candidate biomarkers, CAMK2N1, CALML5, and FCGBP).
 Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
 supplementary figure S1). After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures,
 scientific-notation=true]{0.0001074233}.
@@ -415,15 +417,15 @@ Indeed, it needs to be validated by the other independent cohort.
 % and a new Figure 4
 \begin{figure}[ht]
 
-% TCGA FDR Pvalue of CAMK2N1 (1.628308e-05), IL19 ( 6.543871e-06), FCGBP (4.827833e-05)
+% TCGA FDR Pvalue of CAMK2N1 (1.628308e-05), IL19 ( 6.543871e-06), FCGBP (4.827833e-05); CALML5 (1.97e-04)
 \setlength{\unitlength}{1cm}
 \begin{picture}(15, 20) %(1,0.55038404)%
 \centering
-  \put(0,0){\includegraphics[width=14cm]{Figure_4_CAMK2N1_IL19_FCGBP.pdf}}%
+  \put(0,0){\includegraphics[width=14cm]{Figure_4_CAMK2N1_CALML5_FCGBP.pdf}}%
   \put(2.5, 14.3){\fontfamily{qcr}\selectfont
   \tiny *\textit{P} = \num{1.63e-05}}%CAMK2N1
     \put(2.5, 9.45){\fontfamily{qcr}\selectfont
-  \tiny *\textit{P} = \num{6.54e-06}}%IL19
+  \tiny *\textit{P} = \num{1.97e-04}}%IL19 -> CALML5
     \put(2.5, 4.55){\fontfamily{qcr}\selectfont
   \tiny *\textit{P} = \num{4.83e-05}}%FCGBP
 
@@ -435,12 +437,12 @@ Indeed, it needs to be validated by the other independent cohort.
 \end{picture}%
 
 \bcaption{Kaplan-Meier survival analyses, by cutoff finding.}
-{The Kaplan-Meier curves of (a) CAMK2N1, (c) IL19, and (e) FCGBP under optimal \textit{P} value. 
+{The Kaplan-Meier curves of (a) CAMK2N1, (c) CALML5, and (e) FCGBP under optimal \textit{P} value. 
 %((b) the cutoffs derived from it's cumulative \textit{P} value plot).
 %(c) Kaplan-Meier plot of IL19 under optimal \textit{P} value;
 %((d) the cutoffs derived from it's cumulative \textit{P} value plot).
 %(e) Kaplan-Meier plot of FCGBP under optimal \textit{P} value.\\
-The cutoffs, in the cumulative \textit{P} value plots of (b) CAMK2N1, (d) IL19, and (f) FCGBP, respectively,
+The cutoffs, in the cumulative \textit{P} value plots of (b) CAMK2N1, (d) CALML5, and (f) FCGBP, respectively,
 shows that over 50\% of those unadjusted \textit{P} values are below 0.001 derived by sliding-window cutoff finding procedure.\\
 * \textit{P}: Adjusted \textit{P} value by \acrfull{fdr}
 }
@@ -576,7 +578,7 @@ in Figure \ref{fig:hazards3}, have FDR-adjusted \textit{P} values ($<0.001$) in 
 %CAMK2N1, IL19, and FCGBP is validated by
 %candidate_fdr100
 %PvalueTex consensus with GSE2837 to yield 3 candidates
-In the study of GSE65858 cohort, CAMK2N1, IL19, and FCGBP, keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox'HR ($>1.8$ or $<0.65$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
+In the study of GSE65858 cohort, CAMK2N1, CALML5, and FCGBP, keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox'HR ($>1.8$ or $<0.65$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
 % (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002 
 % Consensus 3 genes in Kaplan-Meier survival and Cox's model (dataset: GSE65858)
 %Gene.Symbol KM.Pvalue   FDR.KMpvalue    uni_HR  FDR.Pvalue(in TCGA)
@@ -587,7 +589,7 @@ In the study of GSE65858 cohort, CAMK2N1, IL19, and FCGBP, keep ahead of the cur
 %candidate_fdr100
 and also see Figure \ref{fig:hazards534}).
 However, the "top rank" of the other 17 genes is replaced by genes such as DUSP6, MSMB, and RBM11 (please see Figure \ref{fig:hazards534}).
-There is consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19, and FCGBP are significant candidates for the biomarker.
+There is consensus between the TCGA and GSE65858 cohorts that CAMK2N1, CALML5, and FCGBP are significant candidates for the biomarker.
 %In the consensus of TCGA and GSE65858 cohorts, 
 
 %Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
@@ -604,7 +606,7 @@ There is consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19, and
     This cohort has been applied for exploration of the candidate biomarkers.
     Total 9416 genes has %\acrshort{fdr}-
     unadjusted \textit{P} value less than 0.05.
-    \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19}, \textcolor{red}{FCGBP} and the 17 genes (marked in \textcolor{black}{black square}) have hazard ratio (HR) $> 1.8$ or $< 0.6$.
+    \textcolor{red}{CAMK2N1}, \textcolor{red}{CALML5}, \textcolor{red}{FCGBP} and the 17 genes (marked in \textcolor{black}{black square}) have hazard ratio (HR) $> 1.8$ or $< 0.6$.
     The 22 genes, listed on the side, have hazard ratio between 0.6 and 1.5.\\
     Remarks:\\
     \textcolor{red}{Red spots}: $HR > 1.0$;
@@ -642,12 +644,12 @@ Gene Symbol &
   \hline
   \hline
 CAMK2N1 & \num{2.97e-7} & \num{6.87e-3} & \num{1.63e-5} & 0.038 & 2.101 & 1.814 \\
-IL19    & n/a           & 0.03          & n/a           & 0.047 & n/a   & 0.630  \\
+CALML5    & \num{5.87e-6}  & \num{4.75e-3}          & \num{1.97e-4}          & 0.035 & 0.493   & 0.541  \\
 IL19    & \num{3.73e-7} & \num{2.69e-3} & \num{6.54e-6} & 0.031 & 0.472 & 0.630  \\
 FCGBP   & \num{1.21e-6} & 0.01          & \num{4.83e-5} & 0.039 & 0.484 & 0.573\\
 \hline
-  \multicolumn{7}{l}{(IL19 has two probes in RNA-Seq experiment of GSE65858)}\\
-  \multicolumn{7}{l}{(FDR: \acrlong{fdr})}\\
+%  \multicolumn{7}{l}{(IL19 has two probes in RNA-Seq experiment of GSE65858)}\\
+  \multicolumn{7}{l}{(FDR: \acrlong{fdr}; HR: hazard ratio)}\\
 \hline
 \end{tabular}%
 } % end of \resizebox
@@ -662,7 +664,7 @@ FCGBP   & \num{1.21e-6} & 0.01          & \num{4.83e-5} & 0.039 & 0.484 & 0.573\
     \includegraphics[width=13cm]{Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf}
     \bcaption{Volcano plot of genes under survival analyses of GSE65858 cohort}{
     % GSE117973 using the same platform GPL10558
-    This HNSCC cohort has been applied for filtering of our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
+    This HNSCC cohort has been applied for filtering of our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{CALML5}, and \textcolor{red}{FCGBP}.
     Total 534 genes has \acrshort{fdr}-adjusted \textit{P} value less than 0.05
     (\textcolor{red}{Red spots}: hazard ratio is greater than 1.0);
     (\textcolor{green}{Green spots}: hazard ratio is under than 1.0).\\
@@ -736,7 +738,7 @@ A total of 9416 Kaplan-Meier plots (under sliding-window cutoff selection) with 
 The 967 out of 9416 genes were kept by criteria of Kaplan-Meier \textit{P} value ($< 0.05$) and \acrfull{hr} derived from Cox's model (please see Figure 2(a), (b), initial trial).
 In the next step, a Bonferroni P-value correction was used to yield 20 genes, under the stringent criteria (see Figure 2(c), (d)).
 %em dash ---
-These CAMK2N1, IL19, FCGBP and the other 17 genes (DKK1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, ZNF557, ZNF266, MYO1H, LOC148709, EVPLL, PNMA5, IQCN---previous name as KIAA1683, and NPB) have significant FDR-adjusted \textit{P} values ($< 0.0003$) in Kaplan-Meier estimate, and greater hazard ratio (HR) ($> 1.8$ or $< 0.6$) in Cox's model (please see Figure \ref{fig:hazards3}; $log_{10}(0.0003) = -3.5$).
+These CAMK2N1, CALML5, FCGBP and the other 17 genes (DKK1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, ZNF557, ZNF266, MYO1H, LOC148709, EVPLL, PNMA5, IQCN---previous name as KIAA1683, and NPB) have significant FDR-adjusted \textit{P} values ($< 0.0003$) in Kaplan-Meier estimate, and greater hazard ratio (HR) ($> 1.8$ or $< 0.6$) in Cox's model (please see Figure \ref{fig:hazards3}; $log_{10}(0.0003) = -3.5$).
 %These genes have also passed a stringent criteria (Bonferroni \textit{P} value correction less than 0.05).
 The plot reveals that the top 20 genes (Bonferroni-adjusted \textit{P} $< 0.05$) are located on the peaks. At the same time, Cox's HR separates them on the two-side with significant prognostic impact.
 %During our exploration phase with TCGA cohort, the 20 genes, listed
@@ -749,7 +751,7 @@ The plot reveals that the top 20 genes (Bonferroni-adjusted \textit{P} $< 0.05$)
 %CAMK2N1, IL19, and FCGBP is validated by
 %candidate_fdr100
 %PvalueTex consensus with GSE2837 to yield 3 candidates
-In the study of GSE65858 cohort with median cutoffs, CAMK2N1, IL19, and FCGBP (3 of the 20 genes), keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox's HR ($>1.8$ or $<0.65$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
+In the study of GSE65858 cohort with median cutoffs, CAMK2N1, CALML5, and FCGBP (3 of the 20 genes), keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox's HR ($>1.8$ or $<0.6$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
 % (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002
 % Consensus 3 genes in Kaplan-Meier survival and Cox's model (dataset: GSE65858)
 %Gene.Symbol KM.Pvalue   FDR.KMpvalue    uni_HR  FDR.Pvalue(in TCGA)
@@ -761,8 +763,8 @@ In the study of GSE65858 cohort with median cutoffs, CAMK2N1, IL19, and FCGBP (3
 and also see Figure \ref{fig:hazards534}).
 However, the significance of the other 17 genes are replaced by genes such as DUSP6, MSMB, and RBM11 (please see Figure \ref{fig:hazards534}).
 %This GSE65858 cohort has been applied for selection to generate our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
-Conversely, there are 22 genes, which have greater hazard ratio ($> 1.8$ or $< 0.6$) in GSE65858 cohort (Figure \ref{fig:hazards534}), drop their hazard ratio between 0.6 and 1.5 in the study of TCGA HNSCC (Figure \ref{fig:hazards3}).
-Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, IL19 (two probes), and FCGBP are significant candidates for the HNSCC biomarker.
+Conversely, there are 22 genes, which have greater hazard ratio ($> 1.8$ or $<0.6$) in GSE65858 cohort (Figure \ref{fig:hazards534}), drop their hazard ratio between 0.6 and 1.5 in the study of TCGA HNSCC (Figure \ref{fig:hazards3}).
+Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, CALML5, and FCGBP are significant candidates for the HNSCC biomarker.
 Finally, these 3 candidates were also confirmed by a HNSCC study using the GSE2837 dataset. Please see the Kaplan-Meier plots in Supplementary Figure S2.%\ref{fig:fig_GSE2837}.
 "\\[0.3cm]
 %The consensus between the TCGA and GSE65858 cohorts in Kaplan-Meier survival and Cox's model
@@ -861,7 +863,7 @@ Then, these preliminary candidates will have an opportunity to be carefully sele
 %([2021/06/27] run code: if median cut for TCGA KM Cox by *** pvalueTex code)
 %列入 workflow in materials and methods;
 
-We explain aforementioned situation by an example.
+We explain aforementioned situation by examples.
 %***NDFIP1  % 給他們一個機會
 Reviewing the special case of genes, such as NDFIP1, DKC1, PNMA5, and NPB,
 we noticed that NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile (median) cutoff, could achieve a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff.
@@ -872,7 +874,7 @@ scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "
 % the effect size
 However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65858 and HR = 1.42 in GSE2837) less than 1.8.
 %%%
-"
+
 
 %compared with one (HR = 2.027) in TCGA cohort%.
 % (ok) Answer 2-1 加入 discussion
@@ -890,8 +892,8 @@ However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65
 %Indeed, it needs to be validated by the other independent cohort (e.x. GSE65858).
 
 % x****** IL19 必須要靠 pvalueTex 才能發現
-%The other example is one of our candidate: IL19. It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-adjusted \textit{P} value has large difference between 50\% quantile cutoff (FDR 0.115) and optimal 48\% quantile cutoff (FDR \num{6.54e-6}). This optimal cutoff method could boost it's statistic significance to pass the correction by both FDR and Bonferroni methods. Fortunately, IL19 has competed to become a candidate by its better effect size (HR = 0.472 in TCGA cohort), and also by the validation with the other independent cohort (HR = 0.630 and FDR-KM \textit{P} = 0.031 in GSE65858 cohort).
-
+The other example is IL19. It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-adjusted \textit{P} value has large difference between 50\% quantile cutoff (FDR 0.115) and optimal 48\% quantile cutoff (FDR \num{6.54e-6}). This optimal cutoff method could boost it's statistic significance to pass the correction by both FDR and Bonferroni methods. However, IL19 has competed as a candidate by its effect size (HR = 0.472 in TCGA cohort), but failed by the validation with GSE65858 cohort (HR = 0.630 and FDR-KM \textit{P} = 0.031).
+"
 %*** IL19 is excluded by this way :-) (special S-curve P value plot)
 %> gene_labeled_golden[!gene_labeled_golden %in% fdr100_KMsurvival$Gene.Symbol[fdr100_KMsurvival$FDR.Pvalue<0.05]]
 %[1] "IL19"
