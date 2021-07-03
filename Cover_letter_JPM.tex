@@ -230,8 +230,9 @@ We appreciate the reviewer for the critical comments and thanks for the agreemen
 
 The manuscript posted in the preprint server, ResearchSqaure, is our first version (2020/09/28) of current manuscript. 
 Since previous reviewer's suggestion, we made a major revision on the followings:
-1) suggested candidates of biomarker has been modified  by additional validation using an independent patient cohort (GSE2837).
-We also reviewed literature that supports the prognostic impact of these candidate genes. The resulting Figure 4, Table 3 and Table 4 is different between the two manuscripts.
+1) suggested candidates of biomarker has been modified  by additional validation using an independent patient cohort (GSE65858).
+%We also reviewed literature that supports the prognostic impact of these candidate genes. 
+The resulting Figure 4, and Table 3 are different between the two manuscripts.
 2) Since that revision, we added holistic cancer care in the discussions section (please see Answer 1-2).% \ref{page:1-2}).
 
 %%{
@@ -578,7 +579,7 @@ in Figure \ref{fig:hazards3}, have FDR-adjusted \textit{P} values ($<0.001$) in 
 %CAMK2N1, IL19, and FCGBP is validated by
 %candidate_fdr100
 %PvalueTex consensus with GSE2837 to yield 3 candidates
-In the study of GSE65858 cohort, CAMK2N1, CALML5, and FCGBP, keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox'HR ($>1.8$ or $<0.65$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
+In the study of GSE65858 cohort, CAMK2N1, CALML5, and FCGBP, keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox'HR ($>1.8$ or $<0.6$) (please see Table \ref{tab:table_top3_GSE65858} listed below,
 % (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002 
 % Consensus 3 genes in Kaplan-Meier survival and Cox's model (dataset: GSE65858)
 %Gene.Symbol KM.Pvalue   FDR.KMpvalue    uni_HR  FDR.Pvalue(in TCGA)
@@ -765,7 +766,7 @@ However, the significance of the other 17 genes are replaced by genes such as DU
 %This GSE65858 cohort has been applied for selection to generate our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
 Conversely, there are 22 genes, which have greater hazard ratio ($> 1.8$ or $<0.6$) in GSE65858 cohort (Figure \ref{fig:hazards534}), drop their hazard ratio between 0.6 and 1.5 in the study of TCGA HNSCC (Figure \ref{fig:hazards3}).
 Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, CALML5, and FCGBP are significant candidates for the HNSCC biomarker.
-Finally, these 3 candidates were also confirmed by a HNSCC study using the GSE2837 dataset. Please see the Kaplan-Meier plots in Supplementary Figure S2.%\ref{fig:fig_GSE2837}.
+%Finally, these 3 candidates were also confirmed by a HNSCC study using the GSE2837 dataset. Please see the Kaplan-Meier plots in Supplementary Figure S2.%\ref{fig:fig_GSE2837}.
 "\\[0.3cm]
 %The consensus between the TCGA and GSE65858 cohorts in Kaplan-Meier survival and Cox's model
 %by GEO GSE2837 HNSCC dataset (PrognoScan)
@@ -856,7 +857,7 @@ It shows that the number of genes with unadjusted \textit{P} value $< 0.05$, whi
 The sliding-window cutoff method could catch more potential candidates, which have \textit{P} values far less than $0.001$, for subsequent Cox's modeling.
 That is because of the properly selected cutoff improving the statistical significance.
 To find a smaller \textit{P} value might predict large effect size (HR) associated biomarkers.
-Then, these preliminary candidates will have an opportunity to be carefully selected by using Bonferroni correction, their effect size (Cox's HR), and the other independent cohorts (GSE65858, GSE2837) to prevent the false discovery.
+Then, these preliminary candidates will have an opportunity to be carefully selected by using Bonferroni correction, their effect size (Cox's HR), and the other independent cohort (GSE65858) to prevent the false discovery.
 
 %small effect size could be double-checked by GSE65858.
 %差別很大，張大網
@@ -872,7 +873,7 @@ scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "
 %Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in supplementary figure S1).
 %After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures, scientific-notation=true]{0.0001074233}.
 % the effect size
-However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65858 and HR = 1.42 in GSE2837) less than 1.8.
+However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65858) less than 1.8.
 %%%
 
 
@@ -1181,7 +1182,7 @@ DUSP16 has negative coefficient in the LASSO regression model, compatible with H
   \end{subfigure}
 %However, # 4 gene signature: #### 
 %# "EZR" has \textit{P} value $>0.05$
-  \caption{(a) OS in TCGA HNSCC for a gene signature including HK1, EZR, RRAGA, and DUSP16 (Kaplan-Meier \textit{P} value = \num{1.31e-6}); (b) Those genes (listed on the rigth side) have not significant hazard ratio (HR) if calculated individually (EZR is not shown on volcano plot due to it's Kaplan-Meier \textit{P} value $>0.05$)}
+  \caption{(a) Overall survival in TCGA HNSCC for a gene signature including HK1, EZR, RRAGA, and DUSP16 (Kaplan-Meier \textit{P} value = \num{1.31e-6}); (b) Those genes (listed on the right side) have not significant hazard ratio (HR) if calculated individually (EZR is not shown on volcano plot due to it's Kaplan-Meier \textit{P} value $>0.05$)}
     \label{fig:signature4}
 \end{figure}
 

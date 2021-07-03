@@ -472,8 +472,9 @@ The workflow, shown in Figure \ref{fig:figure1}, scanned 20,500 human protein-co
 \bcaption{A workflow of \acrshort{hnscc} biomarker discovery}
 {The workflow includes data retrieval from TCGA GDC data portal, data process with merging and cleaning, then performing the survival analyses (within \textcolor{yellow}{yellow} square). The Cutoff engine (in R script: cutofFinder\_func.HNSCC.R, a serial cut for grouping patients with \textcolor{asparagus}{low} or \textcolor{red}{high} expression of a specific gene, to yield a collection of \textit{P} values; please see Materials and Methods section for details) might calculate all possible Kaplan-Meier \textit{P} values (corrected by \acrlong{fdr}, FDR, method) to find the optimal cutoff value of gene expression for subsequent Cox modeling.
 The candidate selection performs (1) dissecting and selection of candidate genes by further Bonferroni adjusted \textit{P} values as well as a hazard ratio of Cox model, based on the results from the survival analyses;
-(2) survival analyses of the other HNSCC dataset (GSE65858) using Kaplan-Meier estimate (KM, with FDR correction) and Cox modeling (CoxHR).\\
-The selected genes were validated by third HNSCC cohort (GSE2837).\\
+(2) survival analyses of the other HNSCC dataset (GSE65858) using Kaplan-Meier estimate (with FDR correction) and Cox modeling.\\
+The biomarker candidates were a consensus result of TCGA and GSE65858. 
+%The selected genes were validated by third HNSCC cohort (GSE2837).\\
 (HNSCC: head and neck squamous cell carcinoma; TCGA: the Cancer Genome Atlas; RNA-Seq: RNA sequencing; GDC: Genomic Data Commons.)}
 \label{fig:figure1}
 % Description:1) FDR correction of Kaplan-Meier \textit{P} values during Cutoff finding; and 2) Bonferroni correction of Kaplan-Meier \textit{P} values after Cox modeling for candidate selection.
@@ -526,7 +527,7 @@ The plot reveals that the top 20 genes (Bonferroni-adjusted \textit{P} $< 0.05$)
 % [2021/06/13-17] GSE65858
 %CAMK2N1, IL19, and FCGBP is validated by
 %candidate_fdr100
-%PvalueTex consensus with GSE2837 to yield 3 candidates
+%PvalueTex consensus with (x) GSE2837 to yield 3 candidates
 In the study of GSE65858 cohort with median cutoffs, CAMK2N1, CALML5, and FCGBP (3 out of those 20 genes discovered in the TCGA cohort), keep ahead of the curve by their FDR-corrected \textit{P} value ($< 0.05$), and Cox's HR ($> 1.8$ or $<0.6$) (please see Table \ref{tab:table_top3_GSE65858}).
 % (ok) (FDR KM \textit{P} value) <= # only MSMB KM FDR-adjusted P value = 0.002
 % Consensus 3 genes in Kaplan-Meier survival and Cox's model (dataset: GSE65858)
@@ -540,7 +541,7 @@ However, the significance of the other 17 genes are replaced by genes such as DU
 %This GSE65858 cohort has been applied for selection to generate our candidate genes: \textcolor{red}{CAMK2N1}, \textcolor{red}{IL19} (two probes), and , \textcolor{red}{FCGBP}.
 Conversly, there are 22 genes, which have greater hazard ratio ($> 1.8$ or $< 0.6$) in GSE65858 cohort (Figure \ref{fig:hazards534}), drop their hazard ratio between 0.6 and 1.5 in the study of TCGA HNSCC (Figure \ref{fig:hazards3}).
 Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, CALML5, and FCGBP are significant candidates for the HNSCC biomarker.
-Finally, these 3 candidates have also been confirmed by a HNSCC study using the GSE2837 dataset. Please see the Kaplan-Meier plots in Supplementary Figure S2.%\ref{fig:fig_GSE2837}.
+%Finally, these 3 candidates have also been confirmed by a HNSCC study using the GSE2837 dataset. Please see the Kaplan-Meier plots in Supplementary Figure S2.%\ref{fig:fig_GSE2837}.
 \end{MyColorPar} % end red
 
 
@@ -602,7 +603,7 @@ Gene Symbol &
   \hline
 CAMK2N1 & \num{2.97e-7} & \num{6.87e-3} & \num{1.63e-5} & 0.038 & 2.101 & 1.814 \\
 CALML5    & \num{5.87e-6}  & \num{4.75e-3}          & \num{1.97e-4}          & 0.035 & 0.493   & 0.541  \\
-IL19    & \num{3.73e-7} & \num{2.69e-3} & \num{6.54e-6} & 0.031 & 0.472 & 0.630  \\
+%IL19    & \num{3.73e-7} & \num{2.69e-3} & \num{6.54e-6} & 0.031 & 0.472 & 0.630  \\
 FCGBP   & \num{1.21e-6} & 0.01          & \num{4.83e-5} & 0.039 & 0.484 & 0.573\\
 \hline
 %  \multicolumn{7}{l}{(IL19 has two probes in RNA-Seq experiment of GSE65858)}\\
@@ -1027,8 +1028,8 @@ It shows that the number of genes with unadjusted \textit{P} value $< 0.05$, whi
 The sliding-window cutoff method could catch more potential candidates, which have \textit{P} values far less than $0.001$, for subsequent Cox's modeling.
 That is because of the properly selected cutoff improving the statistical significance.
 To find a smaller \textit{P} value might predict large effect size (HR) associated biomarkers.
-Then, these preliminary candidates will have an opportunity to be carefully selected by using Bonferroni correction, their effect size (Cox's HR), and the other independent cohorts (GSE65858, GSE2837) to prevent the false discovery.
-
+Then, these preliminary candidates will have an opportunity to be carefully selected by using Bonferroni correction, their effect size (Cox's HR), and the other independent cohort (GSE65858) to prevent the false discovery.
+% no more GSE2837
 %small effect size could be double-checked by GSE65858.
 %差別很大，張大網
 %([2021/06/27] run code: if median cut for TCGA KM Cox by *** pvalueTex code)
@@ -1043,8 +1044,8 @@ scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "
 %Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in supplementary figure S1).
 %After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures, scientific-notation=true]{0.0001074233}.
 % the effect size
-However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65858 and HR = 1.42 in GSE2837) less than 1.8.
-%%%
+However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65858) less than 1.8.
+%%%  and HR = 1.42 in GSE2837
 
 The other example is IL19. It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-adjusted \textit{P} value has large difference between 50\% quantile cutoff (FDR 0.115) and optimal 48\% quantile cutoff (FDR \num{6.54e-6}). This optimal cutoff method could boost it's statistic significance to pass the correction by both FDR and Bonferroni methods. However, IL19 has competed as a candidate by its effect size (HR = 0.472 in TCGA cohort), but failed by the validation with GSE65858 cohort (HR = 0.630 and FDR-KM \textit{P} = 0.031).
 
@@ -1120,7 +1121,7 @@ It might be due to skewed distribution of the expression value or even random er
 %\subsubsection{HPA} %still TCGA's RNA-Seq
 The Human Protein Atlas project (HPA) has proteomics analysis based on 26,941 antibodies targeting 17,165 unique proteins. The HPA's Pathology Atlas analyzes each protein in patients, using \acrshort{ihc} analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
 All transcriptomic data were retrieved from the TCGA, and all proteomics were generated in-house using the same antibodies.
-The genes (e.g. CAMK2N1, and NDFIP1) are also on the list of unfavorable prognostic genes for HNSCC from \acrshort{hpa} (available at https://www.proteinatlas.org/humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020-11-19). 
+The genes (e.g. CAMK2N1, and NDFIP1) are also on the list of unfavorable prognostic genes for HNSCC from \acrshort{hpa} (available at https://www.proteinatlas.org/\\humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020-11-19). 
 FCGBP is on the list of favorable prognostic genes as well.
 % DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, and DKC1
 % ZNF557, ZNF266, and FCGBP
@@ -1463,9 +1464,7 @@ GSE65858 is a dataset for helping of candidate selection in our workflow.
 We have also performed Kaplan-Meier and Cox survival analyses under the cutoff of each gene expression at their median value.
 \end{MyColorPar} % red
 
-Since high correlation between RNA-Seq and microarray results using TCGA data\cite{Guo2013}\cite{Chen2017c},
-GSE2837 HNSCC dataset (microarray gene expression by Affymetrix X3P chips U133\_X3P) has 28 participants and RFS information. 
-Using PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/PrognoScan/)\cite{Mizuno2009a} for the validation of our candidates.
+%Since high correlation between RNA-Seq and microarray results using TCGA data\cite{Guo2013}\cite{Chen2017c}, GSE2837 HNSCC dataset (microarray gene expression by Affymetrix X3P chips U133\_X3P) has 28 participants and RFS information. Using PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/PrognoScan/)\cite{Mizuno2009a} for the validation of our candidates.
 %??MD Anderson (40 cases) SurvNet: https://bioinformatics.mdanderson.org/SurvNet/
 %https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2837 \cite{Chung2006}
 %The GSE2837 carries out % VUMC, VAMC, UTMDACC (1992-2005).
@@ -1512,12 +1511,13 @@ Since mindfulness meditation will be helpful in cancer healthcare, we continuall
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% optional
-%% optional: The data presented in this study are available in supplementary material.
+%% optional: The data presented in this study are available in supplementary material. Supplementary_figures.tex
 \supplementary{The following are available online at \linksupplementary{Supplementary_figures.pdf}, 
 	Figure S1: \textit{P} value plot of the gene NDFIP1,
-	Figure S2: GSE2837 analysis by PrognoScan,  
-	Table S1: The GSE2837 query results from PrognoScan,
-	Table S2: 10 good guys, % ? don't keep it
+%	Figure S2: GSE2837 analysis by PrognoScan,  
+%	Table S1: The GSE2837 query results from PrognoScan,
+	Table S1: 10 bad guys, % ? don't keep it
+	Table S2: 10 good guys, % 要加入 CALML5
 	Video S1: title. A supporting video article is available at doi: link} 
 
 
