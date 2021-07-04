@@ -79,25 +79,28 @@
 }{%
 }%
 
+\usepackage{xr-hyper}
 \usepackage{hyperref}
-\usepackage{xr}
+%\newcommand{\R}[1]{\label{#1}\linelabel{#1}} % for \label page and line
+\newcommand{\R}[1]{\linelabel{#1}} % for \label page and line
+%\newcommand{\lr}[1]{page~\pageref{#1} (line~\lineref{#1})} % for \ref page and line
 % for xr in your preamble
 % https://www.overleaf.com/learn/how-to/Cross_referencing_with_the_xr_package_in_Overleaf
-\makeatletter
-\newcommand*{\addFileDependency}[1]{% argument=file name and extension
-  \typeout{(#1)}
-  \@addtofilelist{#1}
-  \IfFileExists{#1}{}{\typeout{No file #1.}}
-}
-\makeatother
+%\makeatletter
+%\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+%  \typeout{(#1)}
+%  \@addtofilelist{#1}
+%  \IfFileExists{#1}{}{\typeout{No file #1.}}
+%}
+%\makeatother
 
-\newcommand*{\myexternaldocument}[1]{%
-    \externaldocument{#1}%
-    \addFileDependency{#1.tex}%
-    \addFileDependency{#1.aux}%
-}
+%\newcommand*{\myexternaldocument}[1]{%
+%    \externaldocument{#1}%
+%    \addFileDependency{#1.tex}%
+%    \addFileDependency{#1.aux}%
+%}
 % my external document I would like to reference the labels of. 
-\myexternaldocument{Supplementary_figures} %.tex .aux
+%\myexternaldocument{Supplementary_figures} %.tex .aux
 
 \usepackage{array}
 \usepackage{ragged2e}
@@ -304,9 +307,9 @@ No.172-1, Sec. 2, Keelung Rd.\unskip, Taipei 106\unskip, Taiwan\\
 %%%%%%%%%%
 % Abstract (Do not insert blank lines, i.e. \\) 
 \abstract{The survival analysis of the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover the gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by the patients' dichotomization for the continuous gene expression in survival analysis. There is some optimization software for cutoff determination. However, the software's predetermined cutoffs are usually set at the median or quantiles of RNA sequencing value to perform the survival analyses. There are few clinicopathological features available on their pre-processed data sets.
-We developed a workflow that includes data retrieving and pre-processing, feature selection, sliding-window cutoff mining, Kaplan-Meier survival analysis, Cox proportional hazard modeling, and biomarker discovery.
-Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes. After adjustment with confounders, we found that the clinical tumor stage and the surgical margin involvement are independent risk factors in patient survival. According to the resulting tables with Bonferroni adjusted P-value under the optimal cutoff and the hazard ratio, three biomarker candidates, CAMK2N1, CALML5, and FCGBP, are significantly associated with the patients' overall survival. The other independent HNSCC data were also used to validate this discovery.
-We suggest the transcriptomic analysis could help for biomarker discovery.}
+We applied a in-house workflow, which includes data retrieving and pre-processing, feature selection, sliding-window cutoff selection, Kaplan-Meier survival analysis, and Cox proportional hazard modeling, for biomarker discovery.
+Using this workflow on the TCGA HNSCC cohort, we scanned human protein-coding genes. After adjustment with confounders, we found that the clinical tumor stage and the surgical margin involvement are independent risk factors in patient survival. According to the resulting tables with Bonferroni adjusted P-value under the optimal cutoff and the hazard ratio, three biomarker candidates, CAMK2N1, CALML5, and FCGBP, are significantly associated with the patients' overall survival. We validated this discovery by using the other independent HNSCC dataset (GSE65858).
+Thus, we suggest the transcriptomic analysis could help for biomarker discovery.}
 
 % Keywords
 \keyword{Head and Neck Squamous Cell Carcinoma (HNSCC);
@@ -412,8 +415,8 @@ Some researchers\cite{Loraine2015a}\cite{Tonella2017a}\cite{Zhao2018}\cite{Li201
 Gene expression data was downloaded from the TCGA or Gene Expression Omnibus (GEO) database (e.g., GSE117973\cite{Schmitt2019}, HIPO-HNC cohort has n = 87).
 % IRB: Patient samples were obtained under the protocol S-206/2011, approved by the Ethics Committee of Heidelberg University, with written informed consent from all participants.
 %e.g., GSE30784: 167 HNSCC samples and 45 normal controls). 
-They employed the Database for Annotation, Visualization, and Integrated Discovery (DAVID, available at https://david.ncifcrf.gov/) to obtain information for Gene Ontology (GO), including biological processes, the cellular component, and molecular function. 
-The Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway analysis was also used to annotate the potential functions.
+They used the Database for Annotation, Visualization, and Integrated Discovery (DAVID, available at https://david.ncifcrf.gov/) to obtain information for Gene Ontology (GO), including biological processes, the cellular component, and molecular function. 
+The Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway analysis was also used to annotate their potential function.
 %Subsequently, comprehensive bioinformatics analysis incorporating gene ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG),
 The protein-protein interaction (PPI) network was conducted by STRING (available at https://string-db.org).
 The pathway enrichment analysis of \acrshort{degs} was also performed by DAVID, String, or Cytoscape software programs\cite{Huang2019}\cite{Shen2019}.
@@ -424,12 +427,12 @@ Li\cite{Li2018a} and his colleagues made an R package (GDCRNATool) for the imple
 Xu and his colleagues\cite{Xu2021a} also used Kaplan–Meier survival curves with a log-rank test, and univariate Cox regression to screen prognostic factors.
 The gene expression was used to select the preliminary biomarkers with a significant impact on patients' overall survival (\textit{P} value $< 0.01$).
 %By integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software.
-The candidate genes were validated via the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
+The candidate genes were validated by using the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
 %, datasets from projects of the TCGA and the Genotype-Tissue Expression, GTEx
 ), GEPIA2021\cite{Li2021} (available at http://gepia2021.cancer-pku.cn/), or the Human Protein Atlas (HPA) website.
 % GTEx https://gtexportal.org/home/; non-disease 54 tissues/organs
 % GEPIA1/2 contact us: tangzefang@pku.edu.cn
-Finally, the gene expression profile from the GEO and HNSCC cell lines and tissues were used to verify these biomarkers.\\
+Finally, these biomarkers were verified by using the gene expression profile from the GEO, HNSCC cell lines and tissues.\\
 \end{MyColorPar} % red
 
 %A brief overview of steps:
@@ -515,7 +518,7 @@ After stringent criteria by Bonferroni-adjusted \textit{P} value, and the Cox's 
 %The ten genes, named DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, are significantly associated with the poor prognosis of overall survival (OS). 
 %The other ten genes are over-expressed in the better survival group (with hazard ratio $<=0.6$), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
 %em dash ---
-These CAMK2N1, CALML5, FCGBP and the other 17 genes (DKK1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, ZNF557, ZNF266, MYO1H, LOC148709, EVPLL, PNMA5, IQCN---previous name as KIAA1683, and NPB) have significant FDR-adjusted \textit{P} values ($< 0.0003$) in Kaplan-Meier estimate, and greater hazard ratio (HR) ($> 1.8$ or $< 0.6$) in Cox's model (please see Figure \ref{fig:hazards3}; $log_{10}(0.0003) = -3.5$).
+These CAMK2N1, CALML5, FCGBP and the other 17 genes (DKK1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, ZNF557, ZNF266, IL19, MYO1H, EVPLL, PNMA5, IQCN, and NPB) have significant FDR-adjusted \textit{P} values ($< 0.0003$) in Kaplan-Meier estimate, and greater hazard ratio (HR) ($> 1.8$ or $< 0.6$) in Cox's model (please see Figure \ref{fig:hazards3}; $log_{10}(0.0003) = -3.5$).
 %These genes have also passed a stringent criteria (Bonferroni \textit{P} value correction less than 0.05).
 The plot reveals that the top 20 genes (Bonferroni-adjusted \textit{P} $< 0.05$) are located on the peaks. At the same time, Cox's HR separates them on the two-side with significant prognostic impact.
 %During our exploration phase with TCGA cohort, the 20 genes, listed
@@ -1222,10 +1225,15 @@ The other \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evalua
 In line with tumor-agnostic research, we plan to explore common biomarkers crossing TCGA diseases. However, the \acrshort{gdc} provided standardized data frames that could not directly fit our workflow's scope. Before the global genes scanning process, it is necessary to re-format, transpose and, merge the 528 patients' clinical datasets and correlated 20,500 expressions of bio-specimen. This process should be carefully curated to confirm the data integrity within the correct definition\cite{Rendleman2019}. We also plan to upgrade our R script of the cutoff engine to the C++ language and source it in the Rstudio server. The high performance of C++ could speed up the critical steps in this workflow involving heavy computation of matrix data\cite{Woodward2020}. Moreover, it is possible to introduce the Rstudio Shiny app (https://shiny.rstudio.com) as a web-based tool (named "pvalueTex" ) packaged with our workflow in the future.
 
 
-
-
+% in coverletter
+% line \ref{line_fr:answer1-2} ~ \ref{line_to:answer1-2} of page %\pageref{page_fr:answer1-2}, \pageref{page_to:answer1-2}
+% in main.tex
+% %\label{page_fr:answer1-2}, \label{page_to:answer1-2}
+% \linelabel{line_fr:answer1-2} , \linelabel{line_to:answer1-2}
 %****************%
 \subsubsection{Holistic Cancer Care} 
+\R{from:answer1-2}
+%\linelabel{line_fr:answer1-2}
 
 \begin{MyColorPar}{red}
 There are 81 physical, pathological and social conditions derived from participants available for survival modeling in the TCGA, % since it has comprehensive clinical features, 
@@ -1240,6 +1248,10 @@ Thus, the healing resilience of patients will be induced by unconditional positi
 The patients will trust those who take care of them and have the confidence to increase the capacity to recover from diseases through a mind-brain-body connection manner (see Figure \ref{fig:figure5}).
 \end{MyColorPar} % red
 
+\R{to:answer1-2}
+%\label{page_to:answer1-2} % page number
+%\linelabel{line_to:answer1-2} % line number
+% \label{line_to:answer1-2} % section number
 
 %*** make Figure 5 holistic: Figure_5_holisticCare.pdf
 \begin{figure}[hbt!]
@@ -1402,7 +1414,8 @@ We dichotomized the clinicopathological features, which includes gender (male/ f
 \begin{MyColorPar}{red}
 %The Cox proportional-hazards regression model\cite{Cox1972}\cite{Andersen1982} is commonly used for modeling survival analysis data. It allows analyzing survival for one or more predictor variables and to provides the effect size (coefficients) for them\cite{Bradburn2003b}. % Classification trees and artificial neural networks in survival analysis
 The Cox model is also accounting for confounding factors\cite{Magen2019}.
-It is expressed by the hazard function denoted by h(t). Briefly, the hazard function can be interpreted as the risk of a specific event (e.g., death) at time t. It can be estimated as follow:
+It is expressed by the hazard function denoted by h(t). 
+The hazard function represents the risk of a specific event (e.g., death) at time t. It can be estimated as follow:
 
 %Highlights
 % https://quicklatex.com
@@ -1416,9 +1429,9 @@ $h(t) = h_0(t) \times exp(\beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_
 where,\\
 \begin{outline} % for highlight
 \1 t represents the survival time;
-\1 $h(t)$ is the hazard function determined by a set of n covariates ($X_1...X_n$, e.g., clinicopathological features: such as age, gender, gene expression, cancer stage, smoking, alcohol, or even spiritual, emotional, and social status);
-\1 The coefficients ($\beta_1...\beta_n$) measure the impact (i.e., the effect size) of covariates;
-\1 The term $h_0$ is called the baseline hazard. It corresponds to the hazard value if all the $X_i$ are equal to zero (the quantity exp(0) equals 1). The "t" in $h(t)$ indicates the hazard may vary over time.
+\1 $h(t)$ is the hazard function determined by a set of n covariates ($X_1...X_n$, e.g., clinicopathological features, including age, gender, gene expression, cancer stage, smoking, alcohol, spiritual, emotional, and social status;
+\1 The coefficients ($\beta_1...\beta_n$) measure the impact---the effect size of covariates;
+\1 The term $h_0$ is called the baseline hazard. It corresponds to the hazard value if all the $X_i$ are equal to zero. The "t" in $h(t)$ indicates the hazard may vary over time.
 \end{outline}
 
 Thus, the biomarker discovery strategy is survival modeling through a collection of $X_1...X_n$ features from cancer datasets.%\\[1cm]
@@ -1452,7 +1465,7 @@ Bonferroni adjusted (Kaplan-Meier) \textit{P} value was used to make a ranking o
 
 \begin{MyColorPar}{red}
 GSE65858 is a dataset for candidate selection in our workflow.
-The Gene Expression Omnibus (GEO) database\cite{Chung2006},, founded by \acrfull{ncbi}, is a public repository supporting MIAME-compliant data submissions of microarray and sequence-based experiments.
+The Gene Expression Omnibus (GEO) database\cite{Chung2006},, founded by \acrfull{ncbi}, is a public repository supporting MIAME-compliant data,  including microarray and sequence-based experiments.
 R package of GEOquery\cite{Sean2007} was used to
 download RNA-Seq dataset (in SOFT or MINiML format) of a HNSCC cohort, GSE65858, from the GEO database (available at https://www.ncbi.nlm.nih.gov/geo/geo2r/?\\acc=GSE65858). 
 GSE65858\cite{Wichmann2015} has OS event, RFS event, and survival time.
