@@ -824,13 +824,22 @@ Thus, there is a consensus between the TCGA and GSE65858 cohorts that CAMK2N1, C
 
 
 \textcolor{blue}{In the Discussions section}\\
+% %\subsection{The Purpose of a Sliding-window Cutoff Selection}
 %[more in the discussion section]
-"  % (ok)
+  % (ok)
+"
+%%% Statistical significance (\textit{P} value) is affected by both sample size, error, effect size (substantive significance)\cite{Sullivan2012}\cite{Thiese2016}, and cutoff.
+%\subsection{The Purpose of a Sliding-window Cutoff Selection}
+% risk of *** Answer 2-3 併入此
+%Second, t
 Trying to find an optimal cutpoint of that \acrshort{rna} expression data to maximize candidate mining coverage, this strategy could identify more but sometimes weak "biomarkers".
+%We have checked this issue in detail (in the Discussions section).
+%Thus, the false positives and adjustment of multiple comparisons should be corrected by \acrfull{fdr}.
 Thus, we should try our best to handle the effect size from Cox's modeling.
 And validation of those candidates is required by using other independent dataset.
-%%% Statistical significance (\textit{P} value) is affected by both sample size, error, effect size (substantive significance)\cite{Sullivan2012}\cite{Thiese2016}, and cutoff.
-%\subsection{The Purpose of a Sliding-window Cutoff Method}
+% in larger patient populations.% in larger patient
+%warrant.
+
 Statistical significance (\textit{P} value) is affected by both sample size, error, effect size (substantive significance)\cite{Sullivan2012}\cite{Thiese2016}, and cutoff. 
 The effect size is the magnitude of the difference (e.g., \acrlong{hr}) among comparing groups.
 %A \textit{P} value is a tool to help interpret findings from biomedical research.
@@ -843,7 +852,7 @@ The effect size is independent of the sample size\cite{Sullivan2012}.
 %When we increase the sample size, the standard error decrease
 %, or increase the difference between the sample statistic and hypothesized parameter, the p value decreases, thus making it more likely that we reject the null hypothesis.
 In a study with large sample size, the difference could be noticed easily (i.e., \textit{P} value $< 0.05$) due to a decreased standard error\cite{Sullivan2012}.
-However, the small effect size (non-zero) is often meaningless or substantive insignificance.
+However, the small effect size (non-zero) is often meaningless or substantive insignificance (e.g., hazard ratio between 0.8 and 1.2).
 %With a sufficiently large sample, a statistical test will always reveal a significant difference, unless the effect size is exactly zero.
 %, that is, when the effect size is exactly zero; 
 %yet very small differences, even if significant, are often meaningless. 
@@ -891,7 +900,7 @@ If a skewed cutoff that split, for example, 425 versus 75 between the two groups
 % The effect size is the main finding of a quantitative study.
 There is a benefit for using sliding-window cutoff method (between $30\% - 70\%$ quantile) in Kaplan-Meier analysis of TCGA HNSCC cohort at the beginning.
 We compared the results of cutoff at optimal \textit{P} value by sliding window or just at the median of gene expression.
-It shows that the number of genes with unadjusted \textit{P} value $< 0.05$, which is 6284 versus 3118, respectively. After FDR correction, it becomes 967 versus 209, respectively.
+It shows that the number of genes (with unadjusted \textit{P} value $< 0.05$)  is 6284 versus 3118, respectively. After FDR correction, it becomes 967 versus 209, respectively.
 % HNSCC_OS_marginS_THREE_pvalue005_noCancerGene
 %Result by optimal cutoff: total 9416 plots,
 %6284 are raw KM P value < 0.05
@@ -903,8 +912,8 @@ It shows that the number of genes with unadjusted \textit{P} value $< 0.05$, whi
 The sliding-window cutoff method could catch more potential candidates, which have \textit{P} values far less than $0.001$, for subsequent Cox's modeling.
 That is because of the properly selected cutoff improving the statistical significance.
 To find a smaller \textit{P} value might predict large effect size (HR) associated biomarkers.
-Then, these preliminary candidates will have an opportunity to be carefully selected by using Bonferroni correction, their effect size (Cox's HR), and the other independent cohort (GSE65858) to prevent the false discovery.
-
+Then, these preliminary candidates will have an opportunity to be carefully selected by using FDR then stringent Bonferroni correction, their effect size (Cox's HR), and the other independent cohort (GSE65858) to prevent the false discovery.
+% no more GSE2837
 %small effect size could be double-checked by GSE65858.
 %差別很大，張大網
 %([2021/06/27] run code: if median cut for TCGA KM Cox by *** pvalueTex code)
@@ -915,31 +924,14 @@ We explain aforementioned situation by examples.
 Reviewing the special case of genes, such as NDFIP1, DKC1, PNMA5, and NPB,
 we noticed that NDFIP1, with a \textit{P} value of 0.05 at 50\% quantile (median) cutoff, could achieve a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff.
 NDFIP1 has the FDR-adjusted \textit{P} value as \num[round-precision=3, round-mode=figures,
-scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "S"- or "W"-shaped \textit{P} value plot). % it is \ref{fig:pvaluePlot_NDFIP1
+scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "S"- or "W"-shaped acute-bending on the \textit{P} value plot). % it is \ref{fig:pvaluePlot_NDFIP1
 %Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in supplementary figure S1).
 %After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures, scientific-notation=true]{0.0001074233}.
 % the effect size
 However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65858) less than 1.8.
-%%%
+%%%  and HR = 1.42 in GSE2837
 
-
-%compared with one (HR = 2.027) in TCGA cohort%.
-% (ok) Answer 2-1 加入 discussion
-%According to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 4": top 3 candidate biomarkers, CAMK2N1, IL19, and FCGBP).
-
-%Rplot_pvaluePlot_NDFIP1.pdf
-%  to find cases_OS outside of range 180-220 (== cutoff not at median)
-%# pvalue plot as 倒V字形 "^" or W p_OS pvalues plots (with local minials)
-% # 99 genes have one p_OS >= 0.05, in OS_pvalueTex005
-%# 3641 genes have one p_OS >= 0.02, in OS_pvalueTex002
-%# special case: HNSCC_survivalAnalysis_marginS_NDFIP1.xlsx
-%# NDFIP1 (within our 20 preliminary candidates), 
-%In those \textit{P}-value plots, we could see that the sliding-window selection of cutoff finding might collect more potential candidates (\textit{P} values far less than $0.001$) for further Cox's modeling.
-%Some useful biomarkers might be kick-out prematurely in "median cutoff" of survival analysis.
-%Indeed, it needs to be validated by the other independent cohort (e.x. GSE65858).
-
-% x****** IL19 必須要靠 pvalueTex 才能發現
-The other example is IL19. It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-adjusted \textit{P} value has large difference between 50\% quantile cutoff (FDR 0.115) and optimal 48\% quantile cutoff (FDR \num{6.54e-6}). This optimal cutoff method could boost it's statistic significance to pass the correction by both FDR and Bonferroni methods. However, IL19 has competed as a candidate by its effect size (HR = 0.472 in TCGA cohort), but failed by the validation with GSE65858 cohort (HR = 0.630 and FDR-KM \textit{P} = 0.031).
+The other example is IL19. It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-adjusted \textit{P} value has large difference between 50\% quantile cutoff (FDR 0.115) and optimal 48\% quantile cutoff (FDR \num{6.54e-6}). This optimal cutoff method could boost it's statistic significance to pass the correction by both FDR and Bonferroni methods. Even IL19 has competed as a candidate by its effect size (HR = 0.472 in TCGA cohort), but failed by the validation with GSE65858 cohort (HR = 0.630 and FDR-KM \textit{P} = 0.031).
 "
 %*** IL19 is excluded by this way :-) (special S-curve P value plot)
 %> gene_labeled_golden[!gene_labeled_golden %in% fdr100_KMsurvival$Gene.Symbol[fdr100_KMsurvival$FDR.Pvalue<0.05]]

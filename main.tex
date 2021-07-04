@@ -427,12 +427,12 @@ Li\cite{Li2018a} and his colleagues made an R package (GDCRNATool) for the imple
 Xu and his colleagues\cite{Xu2021a} also used Kaplan–Meier survival curves with a log-rank test, and univariate Cox regression to screen prognostic factors.
 The gene expression was used to select the preliminary biomarkers with a significant impact on patients' overall survival (\textit{P} value $< 0.01$).
 %By integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software.
-The candidate genes were validated by using the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
+They validated their candidate genes by using the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
 %, datasets from projects of the TCGA and the Genotype-Tissue Expression, GTEx
-), GEPIA2021\cite{Li2021} (available at http://gepia2021.cancer-pku.cn/), or the Human Protein Atlas (HPA) website.
+), GEPIA2021\cite{Li2021} (available at http://gepia2021.cancer-pku.cn/), and the web-tools: Human protein atlas (HPA)\cite{Uhlen2017} (please also see the Discussions section "Validation by Web-based Tools" in this article).
 % GTEx https://gtexportal.org/home/; non-disease 54 tissues/organs
 % GEPIA1/2 contact us: tangzefang@pku.edu.cn
-Finally, these biomarkers were verified by using the gene expression profile from the GEO, HNSCC cell lines and tissues.\\
+Finally, their biomarkers were verified by using the gene expression profile from the GEO, HNSCC cell lines and tissues.\\
 \end{MyColorPar} % red
 
 %A brief overview of steps:
@@ -448,7 +448,7 @@ The other investigators should get the rationale or revelation of the genes of i
 SurvivaX.jsp\cite{Aguirre-Gamboa2013}, which has been lost since Oct/2019 and currently out of funds), and analyze the cohort (e.g., \acrshort{tcga}). After downloading the survival results, they could curate plots and tables carefully.
 It is not possible to scan the whole human protein-coding genome in this way.
 The web-based tools might set a cutoff at the median, 1/4 quantile, or 3/4 quantile for subsequent analyses. There are several visualization software or R packages which deal with cutoff determination\cite{Abel1984}, %CRITLEVEL
-such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, Human protein atlas\cite{Uhlen2017}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/cutpointr), and cutoffR (available at https://cran.r-project.org/web/
+such as Prognoscan\cite{Mizuno2009a}, Cutoff Finder\cite{Budczies2012}, Findcut\cite{Chang2017a}, OptimalCutpoints\cite{Cristina2019},  cutpointr (available at https://github.com/thie1e/cutpointr), and cutoffR (available at https://cran.r-project.org/web/
 packages/cutoffR). 
 However, non of them could perform jointly predictive of survival times and cutoff selection within subgroups of gene expression.
 %  %combine the scanning of the protein-coding genes and cutoff optimization programmatically.
@@ -456,9 +456,9 @@ However, non of them could perform jointly predictive of survival times and cuto
 
 %%% ***
 In summary, identifying predictive biomarkers for selecting standard-of-care or advanced systemic therapy\cite{Cristina2019} in \acrshort{hnscc} is crucial.
-Our approach describes a workflow implemented in the R script, which runs on the Rstudio server.
+Our approach describes an in-house workflow implemented in the R script, which runs on the Rstudio server.
 Its function includes data retrieving and pre-processing, feature selection, sliding-window cutoff mining, Kaplan-Meier survival analysis, Cox proportional hazard modeling, and biomarker discovery.
-The independent HNSCC datasets were used to validate this strategy.
+The independent HNSCC dataset (GSE65858) was used to validate this strategy.
 The workflow, shown in Figure \ref{fig:figure1}, scanned 20,500 human protein-coding genes of the \acrshort{tcga} \acrshort{hnscc} cohort to yield a model with biomarker estimate.
 
 %We found that the surgical margin status and tobacco exposure are independent risk factors of patient survival. 
@@ -971,7 +971,7 @@ The effect size is independent of the sample size\cite{Sullivan2012}.
 %When we increase the sample size, the standard error decrease
 %, or increase the difference between the sample statistic and hypothesized parameter, the p value decreases, thus making it more likely that we reject the null hypothesis.
 In a study with large sample size, the difference could be noticed easily (i.e., \textit{P} value $< 0.05$) due to a decreased standard error\cite{Sullivan2012}.
-However, the small effect size (non-zero) is often meaningless or substantive insignificance.
+However, the small effect size (non-zero) is often meaningless or substantive insignificance (e.g., hazard ratio between 0.8 and 1.2).
 %With a sufficiently large sample, a statistical test will always reveal a significant difference, unless the effect size is exactly zero.
 %, that is, when the effect size is exactly zero; 
 %yet very small differences, even if significant, are often meaningless. 
@@ -1019,7 +1019,7 @@ If a skewed cutoff that split, for example, 425 versus 75 between the two groups
 % The effect size is the main finding of a quantitative study.
 There is a benefit for using sliding-window cutoff method (between $30\% - 70\%$ quantile) in Kaplan-Meier analysis of TCGA HNSCC cohort at the beginning.
 We compared the results of cutoff at optimal \textit{P} value by sliding window or just at the median of gene expression.
-It shows that the number of genes with unadjusted \textit{P} value $< 0.05$, which is 6284 versus 3118, respectively. After FDR correction, it becomes 967 versus 209, respectively.
+It shows that the number of genes (with unadjusted \textit{P} value $< 0.05$)  is 6284 versus 3118, respectively. After FDR correction, it becomes 967 versus 209, respectively.
 % HNSCC_OS_marginS_THREE_pvalue005_noCancerGene
 %Result by optimal cutoff: total 9416 plots,
 %6284 are raw KM P value < 0.05
@@ -1031,7 +1031,7 @@ It shows that the number of genes with unadjusted \textit{P} value $< 0.05$, whi
 The sliding-window cutoff method could catch more potential candidates, which have \textit{P} values far less than $0.001$, for subsequent Cox's modeling.
 That is because of the properly selected cutoff improving the statistical significance.
 To find a smaller \textit{P} value might predict large effect size (HR) associated biomarkers.
-Then, these preliminary candidates will have an opportunity to be carefully selected by using Bonferroni correction, their effect size (Cox's HR), and the other independent cohort (GSE65858) to prevent the false discovery.
+Then, these preliminary candidates will have an opportunity to be carefully selected by using FDR then stringent Bonferroni correction, their effect size (Cox's HR), and the other independent cohort (GSE65858) to prevent the false discovery.
 % no more GSE2837
 %small effect size could be double-checked by GSE65858.
 %差別很大，張大網
@@ -1050,7 +1050,7 @@ scientific-notation=true]{0.0001074233} (please see supplementary figure S1, a "
 However, it was excluded as a candidate by small effect size (HR = 1.33 in GSE65858) less than 1.8.
 %%%  and HR = 1.42 in GSE2837
 
-The other example is IL19. It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-adjusted \textit{P} value has large difference between 50\% quantile cutoff (FDR 0.115) and optimal 48\% quantile cutoff (FDR \num{6.54e-6}). This optimal cutoff method could boost it's statistic significance to pass the correction by both FDR and Bonferroni methods. However, IL19 has competed as a candidate by its effect size (HR = 0.472 in TCGA cohort), but failed by the validation with GSE65858 cohort (HR = 0.630 and FDR-KM \textit{P} = 0.031).
+The other example is IL19. It has a \textit{P} value plot with acute S-curve bending at the median zone, that lets the FDR-adjusted \textit{P} value has large difference between 50\% quantile cutoff (FDR 0.115) and optimal 48\% quantile cutoff (FDR \num{6.54e-6}). This optimal cutoff method could boost it's statistic significance to pass the correction by both FDR and Bonferroni methods. Even IL19 has competed as a candidate by its effect size (HR = 0.472 in TCGA cohort), but failed by the validation with GSE65858 cohort (HR = 0.630 and FDR-KM \textit{P} = 0.031).
 
 \end{MyColorPar} % red
 
@@ -1124,8 +1124,8 @@ It might be due to skewed distribution of the expression value or even random er
 %\subsubsection{HPA} %still TCGA's RNA-Seq
 The Human Protein Atlas project (HPA) has proteomics analysis based on 26,941 antibodies targeting 17,165 unique proteins. The HPA's Pathology Atlas analyzes each protein in patients, using \acrshort{ihc} analysis based on tissue microarrays (TMAs) adopted from TCGA. Kaplan-Meier survival analyses are based on RNA-Seq expression levels of human genes in HNSCC tissue and the clinical outcome.
 All transcriptomic data were retrieved from the TCGA, and all proteomics were generated in-house using the same antibodies.
-The genes (e.g. CAMK2N1, and NDFIP1) are also on the list of unfavorable prognostic genes for HNSCC from \acrshort{hpa} (available at https://www.proteinatlas.org/\\humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020-11-19). 
-FCGBP is on the list of favorable prognostic genes as well.
+The our candidate, CAMK2N1, is also on the list of unfavorable prognostic genes for HNSCC from \acrshort{hpa} (available at https://www.proteinatlas.org/\\humanproteome/pathology/head+and+neck+cancer, Version: 20.0 updated: 2020-11-19). 
+CALML5 and FCGBP are on the list of favorable prognostic genes as well.
 % DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, STIP1, and DKC1
 % ZNF557, ZNF266, and FCGBP
 %Moreover, overexpression of ubiquitin-specific peptidase 10 (USP10), one of the autophagy-related genes, has a poor prognostic impact on HNSCC, which has been proved at mRNA and protein level (HPA database, available at https://www.proteinatlas.org/ENSG00000103194-USP10/pathology/head+and+neck+cancer)\cite{Ren2020}.
@@ -1232,7 +1232,7 @@ In line with tumor-agnostic research, we plan to explore common biomarkers cross
 % \linelabel{line_fr:answer1-2} , \linelabel{line_to:answer1-2}
 %****************%
 \subsubsection{Holistic Cancer Care} 
-\R{from:answer1-2}
+%\R{from:answer1-2}
 %\linelabel{line_fr:answer1-2}
 
 \begin{MyColorPar}{red}
@@ -1248,7 +1248,7 @@ Thus, the healing resilience of patients will be induced by unconditional positi
 The patients will trust those who take care of them and have the confidence to increase the capacity to recover from diseases through a mind-brain-body connection manner (see Figure \ref{fig:figure5}).
 \end{MyColorPar} % red
 
-\R{to:answer1-2}
+%\R{to:answer1-2}
 %\label{page_to:answer1-2} % page number
 %\linelabel{line_to:answer1-2} % line number
 % \label{line_to:answer1-2} % section number
@@ -1429,7 +1429,7 @@ $h(t) = h_0(t) \times exp(\beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_
 where,\\
 \begin{outline} % for highlight
 \1 t represents the survival time;
-\1 $h(t)$ is the hazard function determined by a set of n covariates ($X_1...X_n$, e.g., clinicopathological features, including age, gender, gene expression, cancer stage, smoking, alcohol, spiritual, emotional, and social status;
+\1 $h(t)$ is the hazard function determined by a set of n covariates ($X_1...X_n$, e.g., clinicopathological features, including age, gender, gene expression, cancer stage (tumor size, nodal metastasis, distant metastasis), surgical margin, smoking, and alcohol; unfortunately, spiritual, emotional, and social status are not available in TCGA database;
 \1 The coefficients ($\beta_1...\beta_n$) measure the impact---the effect size of covariates;
 \1 The term $h_0$ is called the baseline hazard. It corresponds to the hazard value if all the $X_i$ are equal to zero. The "t" in $h(t)$ indicates the hazard may vary over time.
 \end{outline}
@@ -1474,7 +1474,7 @@ There are 270 HNSCC participants involved in this cohort.
 %n=270 n= 273 = ?? + 168(alive) + 88(dead) = 256
 The expression data was generated using the platform GPL10558 (Illumina HumanHT-12 v4.0 Expression BeadChip), which targets on more than 30,330 annotated genes (47,000 probes, derived from the \acrshort{ncbi} Reference Sequence, release 38 on 7 November, 2009). % (RefSeq) 
 GSE65858 is a dataset for helping of candidate selection in our workflow.
-We have also performed Kaplan-Meier and Cox survival analyses under the cutoff of each gene expression at their median value.
+We have also performed Kaplan-Meier (with FDR-correction of \textit{P} value) and Cox survival analyses under the cutoff of each gene expression at their median value.
 \end{MyColorPar} % red
 
 %Since high correlation between RNA-Seq and microarray results using TCGA data\cite{Guo2013}\cite{Chen2017c}, GSE2837 HNSCC dataset (microarray gene expression by Affymetrix X3P chips U133\_X3P) has 28 participants and RFS information. Using PrognoScan (availalbe at http://dna00.bio.kyutech.ac.jp/PrognoScan/)\cite{Mizuno2009a} for the validation of our candidates.
