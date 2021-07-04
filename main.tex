@@ -424,10 +424,11 @@ Li\cite{Li2018a} and his colleagues made an R package (GDCRNATool) for the imple
 %The DEmRNAs were enrolled in a protein-protein interaction (PPI) network through the STRING database (https://string-db.org/) with a confidence score $> 0.9$, and the PPI network was visualized in Cytoscape (Version 3.7.1) software. Moreover, genes with degree $>= 25$ were selected as hub genes. Subsequently, module analysis (16) of the PPI network was performed using the Molecular Complex Detection (MCODE) tool of Cytoscape software, and GO and KEGG analysis of the modules was carried out using the DAVID database.
 %a validation set and
 %Then, Kaplan–Meier survival curves along with a log-rank test were applied to select candidates\cite{Xu2021a}.
-Xu and his colleagues\cite{Xu2021a} also used Kaplan–Meier survival curves with a log-rank test, and univariate Cox regression to screen prognostic factors.
-The gene expression was used to select the preliminary biomarkers with a significant impact on patients' overall survival (\textit{P} value $< 0.01$).
+Xu and his colleagues\cite{Xu2021a} also identified their biomarkers by analysis of differentially-expressed genes (DEGs).
+The gene expression was used to select the preliminary biomarkers.
+The significant impact on patients' overall survival was evaluated by Kaplan–Meier survival curves with a log-rank test (\textit{P} value $< 0.01$), and univariate Cox regression.
 %By integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software.
-They validated their candidate genes by using the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
+They validated the candidate genes by using the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
 %, datasets from projects of the TCGA and the Genotype-Tissue Expression, GTEx
 ), GEPIA2021\cite{Li2021} (available at http://gepia2021.cancer-pku.cn/), and the web-tools: Human protein atlas (HPA)\cite{Uhlen2017} (please also see the Discussions section "Validation by Web-based Tools" in this article).
 % GTEx https://gtexportal.org/home/; non-disease 54 tissues/organs
@@ -459,7 +460,7 @@ In summary, identifying predictive biomarkers for selecting standard-of-care or 
 Our approach describes an in-house workflow implemented in the R script, which runs on the Rstudio server.
 Its function includes data retrieving and pre-processing, feature selection, sliding-window cutoff mining, Kaplan-Meier survival analysis, Cox proportional hazard modeling, and biomarker discovery.
 The independent HNSCC dataset (GSE65858) was used to validate this strategy.
-The workflow, shown in Figure \ref{fig:figure1}, scanned 20,500 human protein-coding genes of the \acrshort{tcga} \acrshort{hnscc} cohort to yield a model with biomarker estimate.
+The workflow, shown in Figure \ref{fig:figure1}, scanned 20,500 human protein-coding genes of the \acrshort{tcga} \acrshort{hnscc} cohort to yield a model with biomarker estimate by gene-expression based survival analysis.
 
 %We found that the surgical margin status and tobacco exposure are independent risk factors of patient survival. 
 %Our findings also suggested several candidate biomarkers are associated with the prognosis of overall survival (OS) under optimal cutoff point with significant P-value. Those genes may be potential therapeutic targets of HNSCC.
