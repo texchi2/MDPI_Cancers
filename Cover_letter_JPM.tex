@@ -174,7 +174,7 @@
 \begin{document}
 
 \section*{Cover letter for the re-submission (jpm-1174473)} 
-% 2021/04/25
+% 2021/04/25 to 2021/07/05
 % 直接 online 填寫即可
 %Please provide a cover letter to explain point-by-point the details of the revisions [changes 摘要即可 from the rebuttal]  in the manuscript
  
@@ -187,7 +187,7 @@
 %Email: sonia.sun@mdpi.com
 Assistant Editor of JPM%\newline
 
-June 30, 2021
+July 05, 2021
 
 Dear Ms. Sonia Sun:
 
@@ -197,16 +197,33 @@ We have since revised the manuscript accordingly to address their critical comme
 
 
 %{% A SUMMARY
-Reviewer 1: % {2-4}
-%"Please shortly explain the TCGA database in the Introduction and summarize the advantages of its use."\\
-We re-wrote the Introduction in detail according to the suggestion by reviewer \#2.
-added new supplementary Figure S1, S2, and S3
-Reviewer 2: % {3-1}
+%=A summary modified/answers in cover letter (finish the first page) {
+We re-wrote the Introduction with the studies of TCGA database according to the suggestion by reviewer\#2.
+%[introduction] ok
+%Answer 2-6 minor2 (how to study TCGA)
+We introduced an independent HNSCC dataset (GSE65858) to provide more cases and evidence for supporting our biomarker candidates. The Results, Materials and Methods have included this information.
+%[results] ok Answer 2-3 (GSE65858 then final 3 candidates)
+We modified the Discussions about sample size, sliding window method, removal of "unclean data" statement according to the suggestion by reviewer\#2.
+%[discussions] ok
+%Answer 2-3 (sample size, effect size, pvalueTex cutoff of NDFIP1,  and P value)
+%purpose of sliding window (ok 提 一下at  2-6 minor3)
+%Answer 2-6 minor3 (In line 154 paragraph, what does "unclean data")
+And the 'holistic cancer care" was also modified according to the suggestion by reviewer\#1.
+%Answer 1-2 (holistic) figure 5
+We added the description of FDR correction and Cox modeling in the Materials and Methods according to the suggestion by reviewer\#2.
+%[materials and methods] ok
+%Answer 2-1 (cutoff finding), replaced a new Figure 5 %(Figure_4_CAMK2N1_IL19_FCGBP.pdf)
+%Answer 2-4 (Cox regression)
+%Answer 2-3 (GSE65858)
+%}
+We modified Figure 1 and 2 according to the suggestion by reviewer\#2.
+And new Figure 3, 4, 5 ,Table 1 and 2 was made for the updated results from GSE65858.
+We also added new supplementary Figure S1.
 %"Are the conclusions supported by the results?
-We provide more evidence by additional analysis of TCGA and GEO databases. Moreover, we reviewed literature that supports the prognostic impact of these candidate genes.
+%We provide more evidence by additional analysis of TCGA and GEO databases. %Moreover, we reviewed literature that supports the prognostic impact of these candidate genes.
 %, S2, S3, and Table S2. We also replaced Figure 3D and 4A with high magnitude images from the same slides. We transferred the original Figure 2 into supplementary Figure S1 
 %to provide more evidence from the significant literature review.
-%}
+And all our responses to reviewers' comments are in the following pages.
 
 %According to the editor's comments, we have the manuscript checked for English grammar. %
 We wish our revised manuscript could be satisfied and accepted for publication in Journal of Personalized Medicine. 
@@ -445,7 +462,7 @@ We also think that the sliding-window selection of cutoffs would capture more ge
 %[1] "HNSCC_OS_marginS_pvalueBonferroni_sorted"   
 %[2] "HNSCC_OS_marginFree_pvalueBonferroni_sorted"
 %[3] "HNSCC_OS_marginPlus_pvalueBonferroni_sorted"
-However, according to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 5": top 3 candidate biomarkers, CAMK2N1, CALML5, and FCGBP).
+However, according to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 5" for top 3 candidate biomarkers, CAMK2N1, CALML5, and FCGBP).
 Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
 supplementary figure S1). After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures,
 scientific-notation=true]{0.0001074233}.
