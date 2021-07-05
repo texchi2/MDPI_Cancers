@@ -173,7 +173,7 @@
 %==================
 \begin{document}
 
-\section*{Cover letter for the re-submission (jpm-1174473)} 
+%\section*{Cover letter for the re-submission (jpm-1174473)} 
 % 2021/04/25 to 2021/07/05
 % 直接 online 填寫即可
 %Please provide a cover letter to explain point-by-point the details of the revisions [changes 摘要即可 from the rebuttal]  in the manuscript
@@ -339,7 +339,7 @@ Please remember my opinion does not intend to insult your religion because I am 
 Answer\\
 %(OK)
 After morning meditation in a wonderful day of February 2021,, the first author (Dr. Chi) has raised this idea then wrote it in discussion section with comprehensive references. Dr. Chi want to express that "Stress should also be a kind of biomarker included in the future HNSCC study".
-We appreciate the reviewer for the agreement about mindfulness meditation and holistic cancer care. We will brief this issue and move rest of it in the other manuscript.
+We appreciate the reviewer for the agreement about mindfulness meditation and holistic cancer care. We briefed this section (and Figure 6), then will submit rest of it in the other manuscript.
 
 % modify on main.tex, marked with
 %\begin{MyColorPar}{red}
@@ -460,7 +460,10 @@ We also think that the sliding-window selection of cutoffs would capture more ge
 %[1] "HNSCC_OS_marginS_pvalueBonferroni_sorted"   
 %[2] "HNSCC_OS_marginFree_pvalueBonferroni_sorted"
 %[3] "HNSCC_OS_marginPlus_pvalueBonferroni_sorted"
-However, according to the results of sliding-window cutoff finding, the preliminary biomarkers have FDR-corrected \textit{P} values from \num{1e-4} to 0.04 which have been grouped by cutoffs between 50\% and 70\% quantile (Please see Figure \ref{fig:figure4}; it is also shown in manuscript as updated "Figure 5" for top 3 candidate biomarkers, CAMK2N1, CALML5, and FCGBP).
+Since we reviewed the results of sliding-window cutoff finding (from 50\% to 70\% quantile), the 20 preliminary candidates have FDR-corrected \textit{P} values from 1e-4 to 0.04 (or 0.001) (*** see a table?).
+The top 3 the 3 biomarker candidates, CAMK2N1, CALML5, and FCGBP, have FDR-corrected \textit{P} values from \num{1.63e-5} to \num{1.97e-4} (please see Figure \ref{fig:figure4}, 
+%which have been grouped by cutoffs between; 
+it is also shown in manuscript as updated "Figure 5").
 Moreover, the gene NDFIP1, one of our 20 preliminary candidates, has a \textit{P} value (around $0.05$) at 50\% quantile cutoff, achieving a \textit{P} value of \num{2.62e-6} at 70\% quantile cutoff (please see Figure \ref{fig:pvaluePlot_NDFIP1}, and also in 
 supplementary figure S1). After the FDR correction, NDFIP1 still has \textit{P} value of \num[round-precision=3, round-mode=figures,
 scientific-notation=true]{0.0001074233}.
@@ -473,7 +476,7 @@ scientific-notation=true]{0.0001074233}.
 %# NDFIP1 (within our 20 preliminary candidates), 
 In those \textit{P}-value plots, we could see that the sliding-window selection of cutoff finding might collect more potential candidates (\textit{P} values far less than $0.001$) for further Cox's modeling.
 %Some useful biomarkers might be kick-out prematurely in "median cutoff" of survival analysis.
-Indeed, it needs to be validated by the other independent cohort.
+Indeed, it needs to determine its effect size (hazard ratio) then to be validated by the other independent cohort.
 
 
 % and a new Figure 4
