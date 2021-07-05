@@ -765,16 +765,16 @@ Also, it is shown here in the following paragraph.
 %RefSeq Release 38 (November 7, 2009)  GSE65858
 %[Dataset]
 "
-The Gene Expression Omnibus (GEO) database, founded by \acrfull{ncbi}, is a public repository supporting MIAME-compliant data submissions of microarray and sequence-based experiments.
-R package of \\GEOquery\cite{Sean2007} was used to
-download RNA-Seq dataset (in SOFT or MINiML format) of a HNSCC cohort, GSE65858, from the GEO database (available at https://www.ncbi.nlm.nih.gov/geo/\\geo2r/?\\acc=GSE65858). 
-GSE65858\cite{Wichmann2015} has OS event, RFS event, and survival time.
+GSE65858\cite{Wichmann2015} is a dataset for helping of candidate selection in our workflow.
+The Gene Expression Omnibus (GEO) database\cite{Chung2006}, founded by \acrfull{ncbi}, is a public repository supporting MIAME-compliant data,  including microarray and sequence-based experiments.
+R package of GEOquery\cite{Sean2007} was used to
+download RNA-Seq dataset (in SOFT or MINiML format) of a HNSCC cohort, GSE65858, from the GEO database (available at https://www.ncbi.nlm.nih.gov/geo/geo2r/?\\acc=GSE65858). 
+GSE65858 has OS event, RFS event, and survival time.
 There are 270 HNSCC participants involved in this cohort.
 %The number of genes (or probes of RNA-Seq in platform GPL10558, Illumina HumanHT-12 V4.0 expression beadchip) is 30,330.
 %n=270 n= 273 = ?? + 168(alive) + 88(dead) = 256
-The expression data was generated using the platform GPL10558 (Illumina HumanHT-12 v4.0 Expression BeadChip), which targets on more than 30,330 annotated genes (47,000 probes, derived from the \acrshort{ncbi} Reference Sequence, release 38 on Nov 7, 2009). % (RefSeq) 
-GSE65858 is a dataset for candidate selection in our workflow.
-We have also performed Kaplan-Meier and Cox survival analyses under the cutoff of each gene expression at their median value.\\
+The expression data was generated using the platform GPL10558 (Illumina HumanHT-12 v4.0 Expression BeadChip), which targets on more than 30,330 annotated genes (47,000 probes, derived from the \acrshort{ncbi} Reference Sequence, release 38 on 7 November, 2009). % (RefSeq) 
+We have performed Kaplan-Meier (with FDR-correction of \textit{P} value) and Cox survival analyses under the cutoff of each gene expression at their median value. The biomarker candidates were a consensus result of TCGA and GSE65858 analyses.\\
 "
 
 \textcolor{blue}{In the section of Results}\\
@@ -1439,7 +1439,7 @@ The paragraphs marked in \textcolor{red}{Red} on page 11 (line 282 to line 310) 
 "
 There are two essential points of biomarker discovery from survival analysis of the TCGA HNSCC dataset.
 
-First, although \acrshort{tcga} genomics data were harmonized, 
+First, since \acrshort{tcga} genomics data were harmonized, 
 % three things were found during our investigating and data cleaning:
 the pre-processing of TCGA RNA-Seq in our workflow has been done as follows: 
 \begin{outline}
@@ -1496,7 +1496,7 @@ These include:
 \1 0.78\% has unknown reason (so those 159 genes has been excluded in our workflow).
 \end{outline}
 These technical problems could not be detected prior to program running.
-It might be due to skewed distribution of the expression value or even random error in 20500 RNA-Seq data. % heterogeneity
+It might be due to skewed distribution of the expression value or even random error derived during the RNA sequencing procedure. % heterogeneity
 "
 
 %# deal with return(1), return(2) and return(3) errors, try to solve it
