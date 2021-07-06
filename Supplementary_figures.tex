@@ -24,6 +24,8 @@
 
 % mark in blue or red
 \usepackage{xcolor}
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
 %\usepackage[table,xcdraw]{xcolor}
 %\newenvironment{MyColorPar}[1]{%
 %    \leavevmode\color{#1}\ignorespaces%
@@ -171,44 +173,44 @@ Overexpression of 10 genes with Cox's hazard ratio $< 0.6$. \\
 \centering
 \caption{ The top 10 genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by adjusted \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
-\resizebox{\linewidth}{!}{
+\resizebox{\linewidth}{!}{%
 %\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
-\begin{tabularx}{\textwidth}{|l|p{3.5cm}|l|l|l|l|l|l|c|} % *** capital X or p{2cm}
+\begin{tabularx}{\textwidth}{|l|p{3.5cm}|l|l|l|l|l|l|} % *** capital X or p{2cm}
 % p{2cm}
-\hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}}     & \multicolumn{2}{c|}{Kaplan-Meier survival}                                                                                   & \multicolumn{2}{c|}{Univariate~}                                                        & \multicolumn{2}{c|}{Multivariate}                                                       & \multirow{2}{*}{Remark}                     \\ 
+\cline{1-8}
+\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}}     & \multicolumn{2}{c|}{Kaplan-Meier survival}                                                                                   & \multicolumn{2}{c|}{Univariate~}                                                        & \multicolumn{2}{c|}{Multivariate} \\
 \cline{3-8}
-\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                      & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}FDR \\\textit{P} value\end{tabular}}               & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Bonferroni \\\textit{P} value\end{tabular}} & \multicolumn{1}{c|}{HR*}                   & 95\% CI                                    & HR*                                        & 95\% CI                                    &                                             \\ 
-\hline
-DKK1                                           & dickkopf WNT signaling pathway inhibitor 1                 & \num{8.9e-8}                               & 0.001                                                                           & 2.266                                      & 1.666-3.082                                & 2.135                                      & 1.559-2.924                                &                                           \\ 
-\hline
-CAMK2N1                                        & calcium/calmodulin-dependent protein kinase II inhibitor 1 & \num{2.9e-7}                               & 0.002                                                                           & 2.101                                      & 1.572-2.809                                & 2.007                                      & 1.490-2.704                                &                                           \\ %\checkmark
-\hline
-STC2                                           & stanniocalcin 2                                            & \num{6.5e-7}                               & 0.004                                                                           & 2.147                                      & 1.578-2.921                                & 2.075                                      & 1.515-2.843                                &                                           \\ 
-\hline
-PGK1                                           & phosphoglycerate kinase 1                                  & \num{9.1e-7}                               & 0.006                                                                           & 2.127                                      & 1.563-2.895                                & 2.046                                      & 1.498-2.795                                &                                           \\ %\checkmark
-\hline
-SURF4                                          & surfeit 4                                                  & \num{9.6e-7}                               & 0.006                                                                           & 2.055                                      & 1.531-2.757                                & 2.089                                      & 1.543-2.829                                &                                          \\ %\checkmark  
-\hline
-USP10                                          & ubiquitin specific peptidase 10                            & \num{1.7e-6}                               & 0.012                                                                           & 2.083                                      & 1.532-2.834                                & 2.119                                      & 1.551-2.895                                &                                          \\ %\checkmark
-\hline
-NDFIP1                                         & Nedd4 family interacting protein 1                         & \num{2.6e-6}                               & 0.017                                                                           & 2.031                                      & 1.502-2.746                                & 2.027                                      & 1.483-2.771                                &                                           \\ %\checkmark 
-\hline
-FOXA2                                          & forkhead box A2                                            & \num{2.7e-6}                               & 0.018                                                                           & 1.976                                      & 1.479-2.640                                & 1.914                                      & 1.426-2.569                                &                                         \\ %\checkmark  
-\hline
-STIP1                                          & stress-induced-phosphoprotein 1                            & \num{4.3e-6}                              & 0.029                                                                           & 1.958                                      & 1.463-2.621                                & 1.957                                      & 1.451-2.640                                &                                           \\ 
-\hline
-DKC1                                           & dyskeratosis congenita 1, dyskerin                         & \num{6.3e-6}                               & 0.042                                                                           & 2.046                                      & 1.490-2.808                                & 1.837                                      & 1.332-2.534                                &                                           \\ 
-\hline
-\multicolumn{1}{|l!{\color{black}\vrule}}{}    & \multicolumn{1}{l!{\color{black}\vrule}}{}                 & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}                                      & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}  \\ 
-\arrayrulecolor{black}\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier Bonferroni-adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate$ HR > 1.5$ \end{tabular}}                                                                                                                                                                                                                                                              \\ 
-\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{* Cox's model: \textit{P} $< 0.001$ }                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
-\hline
+\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                      & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}FDR \\ \textit{P} value\end{tabular}}               & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Bonferroni \\\textit{P} value\end{tabular}} & \multicolumn{1}{c|}{HR*}                   & 95\% CI                                    & HR*                                        & 95\% CI   \\\cline{1-8}
+DKK1                                           & dickkopf WNT signaling pathway inhibitor 1                 & \num{3.8e-6}                               & 0.001                                                                           & 2.266                                      & 1.666-3.082                                & 2.135                                      & 1.559-2.924     \\                          % &                                           \\ 
+\cline{1-8}
+CAMK2N1                                        & calcium/calmodulin-dependent protein kinase II inhibitor 1 & \num{1.5e-5}                               & 0.002                                                                           & 2.101                                      & 1.572-2.809                                & 2.007                                      & 1.490-2.704  \\                            % &                                           \\ %\checkmark
+\cline{1-8}
+STC2                                           & stanniocalcin 2                                            & \num{1.5e-5}                               & 0.004                                                                           & 2.147                                      & 1.578-2.921                                & 2.075                                      & 1.515-2.843                             \\%   &                                           \\ 
+\cline{1-8}
+PGK1                                           & phosphoglycerate kinase 1                                  & \num{2.4e-5}                               & 0.006                                                                           & 2.127                                      & 1.563-2.895                                & 2.046                                      & 1.498-2.795                              \\%    &                                           \\ %\checkmark
+\cline{1-8}
+SURF4                                          & surfeit 4                                                  & \num{6.2e-5}                               & 0.006                                                                           & 2.055                                      & 1.531-2.757                                & 2.089                                      & 1.543-2.829                               \\%   &                                          \\ %\checkmark  
+\cline{1-8}
+USP10                                          & ubiquitin specific peptidase 10                            & \num{7.9e-5}                               & 0.012                                                                           & 2.083                                      & 1.532-2.834                                & 2.119                                      & 1.551-2.895                              \\%    &                                          \\ %\checkmark
+\cline{1-8}
+NDFIP1                                         & Nedd4 family interacting protein 1                         & \num{1.1e-4}                               & 0.017                                                                           & 2.031                                      & 1.502-2.746                                & 2.027                                      & 1.483-2.771                               \\%   &                                           \\ %\checkmark 
+\cline{1-8}
+FOXA2                                          & forkhead box A2                                            & \num{1.6e-4}                               & 0.018                                                                           & 1.976                                      & 1.479-2.640                                & 1.914                                      & 1.426-2.569                               \\%   &                                         \\ %\checkmark  
+\cline{1-8}
+STIP1                                          & stress-induced-phosphoprotein 1                            & \num{1.8e-4}                              & 0.029                                                                           & 1.958                                      & 1.463-2.621                                & 1.957                                      & 1.451-2.640                               \\%   &                                           \\ 
+\cline{1-8}
+DKC1                                           & dyskeratosis congenita 1, dyskerin                         & \num{2.8e-4}                               & 0.042                                                                           & 2.046                                      & 1.490-2.808                                & 1.837                                      & 1.332-2.534                               \\%   &                                          \\ 
+\cline{1-8}
+%\multicolumn{1}{|l!{\color{black}\vrule}}{}    & \multicolumn{1}{l!{\color{black}\vrule}}{}                 & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}                                      & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}  \\ 
+%\arrayrulecolor{black}\hline
+
+\multicolumn{8}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier Bonferroni-adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate $HR > 1.5$~\\~(* Cox's model: \textit{P} $< 0.001$)\\ \end{tabular}}   \\ 
+%\cline{1-8}
+%\multicolumn{8}{|l|}{Selection criteria:~\\~Kaplan-Meier Bonferroni-adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate $HR > 1.5$~\\~* Cox's model: \textit{P} $< 0.001$}   \\ 
+\cline{1-8}
 %\multicolumn{9}{|l!{\color{black}\vrule}}{Remark: \checkmark validated by GSE2837}                i                                                                                                                                                                                                                                                                                                                                             \\
 %\hline
-\end{tabularx}
+\end{tabularx}%
 } % resizebox end
 \arrayrulecolor{black}
 \label{table:table1}
@@ -224,31 +226,31 @@ DKC1                                           & dyskeratosis congenita 1, dyske
 \caption{The other top 10 genes overexpressed with better prognosis in \acrshort{hnscc} (ranked by adjusted \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
 \resizebox{\linewidth}{!}{%
-\begin{tabular}{|l|l|l|l|l|l|l|l|c|} 
-\hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}} & \multicolumn{2}{l|}{Kaplan-Meier survival}                                                                                                                                                & \multicolumn{2}{c|}{Univariate~}                                                                        & \multicolumn{2}{c|}{Multivariate}                                                                       & \multicolumn{1}{l|}{\multirow{2}{*}{Remark}}  \\ 
+\begin{tabular}{|l|l|l|l|l|l|l|l|} 
+\cline{1-8}
+\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}} & \multicolumn{2}{l|}{Kaplan-Meier survival}                                                                                                                                                & \multicolumn{2}{c|}{Univariate~}                                                                        & \multicolumn{2}{c|}{Multivariate}                                                                    \\%   & \multicolumn{1}{l|}{\multirow{2}{*}{Remark}}  \\ 
 \cline{3-8}
-\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}FDR\\~\textit{P} value\end{tabular}}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}Bonferroni\\~\textit{P} value\end{tabular}} & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{l|}{}                         \\ 
-\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
-ZNF557                                         & zinc finger protein 557                                & \multicolumn{1}{l!{\color{black}\vrule}}{\num{8.6e-8}} & \multicolumn{1}{l!{\color{black}\vrule}}{0.001}                                                      & \multicolumn{1}{l!{\color{black}\vrule}}{0.465} & \multicolumn{1}{l!{\color{black}\vrule}}{0.348-0.619} & \multicolumn{1}{l!{\color{black}\vrule}}{0.499} & \multicolumn{1}{l!{\color{black}\vrule}}{0.372-0.669} &                                              \\ 
-\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
-ZNF266                                         & zinc finger protein 266                                & \num{2.2e-7}                                           & 0.001                                                                                                & 0.474                                           & 0.355-0.632                                           & 0.453                                           & 0.338-0.607                                           &                                              \\ 
+\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}FDR\\~\textit{P} value\end{tabular}}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}Bonferroni\\~\textit{P} value\end{tabular}} & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}    \\%   & \multicolumn{1}{l|}{}                         \\ 
+\cline{1-2}\arrayrulecolor{black}\cline{3-8}%\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
+ZNF557                                         & zinc finger protein 557                                & \multicolumn{1}{l!{\color{black}\vrule}}{\num{4.7e-6}} & \multicolumn{1}{l!{\color{black}\vrule}}{0.001}                                                      & \multicolumn{1}{l!{\color{black}\vrule}}{0.465} & \multicolumn{1}{l!{\color{black}\vrule}}{0.348-0.619} & \multicolumn{1}{l!{\color{black}\vrule}}{0.499} & \multicolumn{1}{l!{\color{black}\vrule}}{0.372-0.669}                                              \\ 
+\cline{1-2}\arrayrulecolor{black}\cline{3-8}%\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
+ZNF266                                         & zinc finger protein 266                                & \num{5.2e-6}                                           & 0.001                                                                                                & 0.474                                           & 0.355-0.632                                           & 0.453                                           & 0.338-0.607                                                                                       \\ 
 \hline
-IL19                                           & interleukin 19                                         & \num{3.7e-7}               & 0.002                                                                                                & 0.472                                           & 0.351-0.635                                           & 0.459                                           & 0.340-0.619                                           &                                             \\ %\checkmark
+IL19                                           & interleukin 19                                         & \num{6.5e-6}               & 0.002                                                                                                & 0.472                                           & 0.351-0.635                                           & 0.459                                           & 0.340-0.619                                          \\%   &                                             \\ %\checkmark
 \hline
-MYO1H                                          & myosin 1H                                              & \num{3.8e-7}               & 0.003                                                                                                & 0.468                                           & 0.347-0.632                                           & 0.467                                           & 0.344-0.634                                           &                                              \\ 
+MYO1H                                          & myosin 1H                                              & \num{1.4e-5}               & 0.003                                                                                                & 0.468                                           & 0.347-0.632                                           & 0.467                                           & 0.344-0.634                                          \\%   &                                              \\ 
 \hline
-FCGBP                                          & Fc fragment of IgG binding protein                     & \num{1.2e-6}               & 0.008                                                                                                & 0.484                                           & 0.359-0.653                                           & 0.496                                           & 0.366-0.674                                           &                                             \\ %\checkmark
+FCGBP                                          & Fc fragment of IgG binding protein                     & \num{4.8e-5}               & 0.008                                                                                                & 0.484                                           & 0.359-0.653                                           & 0.496                                           & 0.366-0.674                                        \\%     &                                             \\ %\checkmark
 \hline
 %LOC148709                                      & LncRNA LOC148709                                       & \textcolor[rgb]{0,0,0.471}{\num{1.5e-6}}                                           & 0.010                                                                                                & 0.499                                           & 0.374-0.666                                           & 0.485                                           & 0.361-0.652                                           &                                              \\ 
 %\hline
-EVPLL                                          & envoplakin-like protein                                & \num{2.0e-6}                                           & 0.013                                                                                                & 0.490                                           & 0.363-0.661                                           & 0.494                                           & 0.364-0.672                                           &                                              \\ 
+EVPLL                                          & envoplakin-like protein                                & \num{7.5e-5}                                           & 0.013                                                                                                & 0.490                                           & 0.363-0.661                                           & 0.494                                           & 0.364-0.672                                            \\% &                                              \\ 
 \hline
-PNMA5                                          & paraneoplastic antigen like 5                          & \num{2.6e-6}                                           & 0.017                                                                                                & 0.499                                           & 0.371-0.671                                           & 0.481                                           & 0.357-0.650                                           &                                              \\ 
+PNMA5                                          & paraneoplastic antigen like 5                          & \num{3.0e-4}                                           & 0.017                                                                                                & 0.499                                           & 0.371-0.671                                           & 0.481                                           & 0.357-0.650                                            \\% &                                              \\ 
 \hline
-IQCN            & IQ motif containing N               & \num{3.1e-6}                                           & 0.020                                                                                                & 0.500                                           & 0.371-0.673                                           & 0.483                                           & 0.356-0.654                                           &                                              \\ %\checkmark
+IQCN            & IQ motif containing N               & \num{1.5e-4}                                           & 0.020                                                                                                & 0.500                                           & 0.371-0.673                                           & 0.483                                           & 0.356-0.654                  \\%                           &                                              \\ %\checkmark
 \hline
-NPB                                            & neuropeptide B                                         & \num{4.0e-6}                                           & 0.027                                                                                                & 0.460                                           & 0.328-0.646                                           & 0.457                                           & 0.324-0.646                                           &                                              \\ %\checkmark
+NPB                                            & neuropeptide B                                         & \num{2.6e-4}                                           & 0.027                                                                                                & 0.460                                           & 0.328-0.646                                           & 0.457                                           & 0.324-0.646                                            \\% &                                              \\ %\checkmark
 \hline
 CALML5 &
 \acrlong{CALML5} &
@@ -257,17 +259,15 @@ CALML5 &
    0.510 &
    0.379-0.686 &
    0.493 &
-   0.364-0.667 &  \\  % \checkmark \multicolumn{2}{l|} {
+   0.364-0.667  \\%  &  \\  % \checkmark \multicolumn{2}{l|} {
 \hline
-\multicolumn{9}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier Bonferroni-adjusted \textit{P} value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textless{} 0.6\\
+\multicolumn{8}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier Bonferroni-adjusted \textit{P} value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textless{} 0.6\\
 %\hline
 %\multicolumn{9}{|l!{\color{black}\vrule}}{
-* Cox's model: \textit{P} $< 0.001$ \\
-%}                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
-%\hline
+(* Cox's model: \textit{P} $< 0.001$) \\
+%}                                                                              
 %lncRNA: Long non-coding RNA\\%Remark: \checkmark Validated by GSE2837
-~\end{tabular}}                                                                                                                                                                                                                 \\
-\hline
+\end{tabular}}                                                                   \\ \hline
 \end{tabular}
 }
 \arrayrulecolor{black}
