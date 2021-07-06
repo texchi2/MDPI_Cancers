@@ -87,7 +87,7 @@
 %\makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
 \newacronym{ncbi}{NCBI}{National Center for Biotechnology Information}
 \newacronym{degs}{DEGs}{differentially expressed genes}
-
+\newacronym{ihc}{IHC}{immunohistochemistry}
 \newacronym{fdr}{FDR}{false discovery rate}
 \newacronym{hpa}{HPA}{the Human Protein Atlas}
 \newacronym{hnscc}{HNSCC}{head and neck squamous cell carcinoma}
@@ -205,7 +205,7 @@
 %Email: sonia.sun@mdpi.com
 Assistant Editor of JPM%\newline
 
-July 05, 2021
+July 06, 2021
 
 Dear Ms. Sonia Sun:\\[0.3cm]
 
@@ -244,7 +244,8 @@ We also added new supplementary Figure S1.
 And all our responses to reviewers' comments are in the following pages.
 
 %According to the editor's comments, we have the manuscript checked for English grammar. %
-We wish our revised manuscript could be satisfied and accepted for publication in Journal of Personalized Medicine. 
+We wish our revised manuscript could be satisfied and accepted for publication in Journal of Personalized Medicine.
+We are updating very much from this major revision.
 Thank you very much for the kind helps and the reviewers' critical comments.\\[0.3cm]
 
 Kind regards,\\[0.1cm]
@@ -358,8 +359,8 @@ Please remember my opinion does not intend to insult your religion because I am 
 Answer\\
 %(OK)
 
-After morning meditation in a wonderful day of February 2021,, the first author (Dr. Chi) has raised this idea then wrote it in discussion section with comprehensive references. Dr. Chi want to express that "Stress should also be a kind of biomarker included in the future HNSCC study".
-We appreciate the reviewer for the agreement about mindfulness meditation and holistic cancer care. We briefed this section (and Figure 6), then will submit rest of it in the other manuscript.
+After morning meditation in a wonderful day of February 2021, the first author (Dr. Chi) has raised this idea then wrote it in discussion section with comprehensive references. Dr. Chi wants to express that "stress should also be a kind of biomarker, which includes into the HNSCC study in the future".
+We appreciate the reviewer for the agreement about mindfulness meditation and holistic cancer care. We briefed this section (and Figure 6), then will submit rest of it in the other manuscript (study of electronic health record in survival analysis).
 
 % modify on main.tex, marked with
 %\begin{MyColorPar}{red}
@@ -1304,8 +1305,10 @@ The model training has been performed under 10-fold cross-validation.
 %#code inside: fit.lasso <- cv.glmnet(x.train, y.train, family="gaussian", alpha=1) # L1-regularization, LASSO
 %Rplot_GSE65858_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
 % Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
-%cv.mod.candidate has 62 genes 
-The results shows that the model-selected features (62 genes) distribute within the region of small effect size (HR) on our previous volcano plots (please see Figure \ref{fig:Bayes62}; comparing with Figure \ref{fig:hazards3} and Figure \ref{fig:hazards534}), if see them individually.
+%cv.mod.candidate has 62 genes
+% lasso 就是要找出 coefficient of regression non-zero 的基因: selected features
+LASSO calculate the (non-zero) coefficients of features to hit the minimum of cross-validation error.
+The results shows that the model-selected features (62 genes) distribute within the region of small effect size (HR from 0.6 to 1.7) on our previous volcano plots (please see Figure \ref{fig:Bayes62}; comparing with Figure \ref{fig:hazards3} and Figure \ref{fig:hazards534}), if see them individually.
 
 
 \begin{figure}[!tbp]
@@ -1332,13 +1335,11 @@ The results shows that the model-selected features (62 genes) distribute within 
 % Y-axis of the cross-validation error curve (red dotted line) (partial likelihood deviance)
 %the left vertical line in the plot shows us where the cross-validation error curve hits its minimum.
 %The final gene signature has been selected, including 4 genes, named HK1, EZR, RRAGA, and DUSP16 .; fentastic4
-% lasso 就是要找出 coefficient of regression non-zero 的基因: selected features
-LASSO calculate the (non-zero) coefficients of features, while the 62 genes hit the minimum of cross-validation error.
 % in lambda 1se
 %cv.mod$glmnetRes$lambda.1se
 We further limited gene selection (13 out of 62) by the most regularized model under cross-validation error within 1 standard deviation of the minimum.
 According to their \textit{P} values (please see Table \ref{tab:signature4}), 
-we found a gene signature, HK1, EZR, RRAGA, and DUSP16 to predict their survival impact on TCGA HNSCC cohort (please see Figure \ref{fig:signature4}).
+we found a gene signature, HK1, EZR, RRAGA, and DUSP16, which will has survival impact on TCGA HNSCC cohort (please see Figure \ref{fig:signature4}).
 DUSP16 has negative coefficient in the LASSO regression model, compatible with HR less than 1.0 on the volcano plot of TCGA HNSCC.
 
 % Please add the following required packages to your document preamble:
@@ -1390,10 +1391,10 @@ DUSP16 has negative coefficient in the LASSO regression model, compatible with H
   \end{subfigure}
 %However, # 4 gene signature: #### 
 %# "EZR" has \textit{P} value $>0.05$
-  \caption{(a) Overall survival in TCGA HNSCC for a gene signature including HK1, EZR, RRAGA, and DUSP16 (Kaplan-Meier \textit{P} value = \num{1.31e-6}); (b) Those genes (listed on the right side) have not significant hazard ratio (HR) if calculated individually (EZR is not shown on volcano plot due to it's Kaplan-Meier \textit{P} value $>0.05$)}
+  \caption{The LASSO-Cox regression model predict a set of gene signature. (a) Overall survival in TCGA HNSCC for the gene signature including HK1, EZR, RRAGA, and DUSP16 (Kaplan-Meier \textit{P} value = \num{1.31e-6}); (b) HK1, RRAGA, and DUSP16 have small effect size---hazard ratio within 0.6-1.7, if calculated individually. And EZR has Kaplan-Meier \textit{P} value $>0.05$. (\textcolor{red}{Red}-squared genes are the biomarker candidates found by sliding-window cutoff survival analysis)}
     \label{fig:signature4}
 \end{figure}
-
+%(listed on the right side)
 
 
 In conclusion, we might build a logistic regression model with LASSO $L_{1}$-regularization to maximize the use of continuous gene expression values (without cutoff).
@@ -1523,45 +1524,33 @@ The paragraphs marked in \textcolor{red}{Red} on page 3 (line 98 to line 123) ar
 %\subsubsection{from TCGA to expression biomarkers} 
 %%% how other researchers used TCGA to find expression biomarkers
 Usually, researchers developed an in-house workflow of gene expression analysis of TCGA data to find HNSCC biomarkers.
-%Workflow of GDCRNATool
-% reference https://www.biostars.org/p/153013/
-%Tutorial: Survival analysis of TCGA patients
-%integrating gene expression (RNASeq) data.
-%Why would you want to do survival analysis based on gene expression data? Well, let's say you
-% **** DEGs is a different concept with cutoff finding survival analysis of individual gene expression
-They have several genes that are differentially expressed between tumor and normal samples.
+%They have several genes that are differentially expressed---\acrfull{degs} between tumor and normal samples.
 It would be helpful to show that alteration in gene expression correlates with phenotypes of HNSCC.
-%%% https://www.biostars.org/p/153013/
-%% download data with offline analysis
-%Usually, investigators could download the TCGA data in order to analyze and find expression biomarkers.
-% https://groups.google.com/forum/m/#!msg/ucsc-cancer-genomics-browser/YvKnWZSsw1Q/3IAkkEMyFa4J
-% from Mary Goldman and Jing Zhu, UCSC Cancer Browser
-% https://genome-cancer.ucsc.edu/
-%Here are the summarized techniques currently used: from 2000 to 2017\cite{Tonella2017a}
-%Gene expression profiling is applied for HNSCC to help in early diagnosis, prediction of recurrence or metastasis, prediction of prognosis or response to some therapies.
 % Rstudio\cite{Loraine2015a}
-Some researchers\cite{Loraine2015a}\cite{Tonella2017a}\cite{Zhao2018}\cite{Li2018a}\cite{Huang2019}\cite{Shen2019}\cite{Schmitt2019}\cite{Xu2021a} tried to find \acrfull{degs} of the HNSCC samples at both genotypic and phenotypic levels (without survival information) for biomarker discovery.
-Gene expression data was downloaded from the TCGA or Gene Expression Omnibus (GEO) database (e.x. GSE117973\cite{Schmitt2019}, HIPO-HNC cohort has n = 87).
+Some researchers\cite{Loraine2015a}\cite{Tonella2017a}\cite{Zhao2018}\cite{Li2018a}\\\cite{Huang2019}\cite{Shen2019}\cite{Schmitt2019} tried to find \acrfull{degs} of the HNSCC samples at both genotypic and phenotypic levels (without survival information) for biomarker discovery.
+Gene expression data were downloaded from the TCGA or Gene Expression Omnibus (GEO) databases (e.g., GSE117973\cite{Schmitt2019}, HIPO-HNC cohort has n = 87).
 % IRB: Patient samples were obtained under the protocol S-206/2011, approved by the Ethics Committee of Heidelberg University, with written informed consent from all participants.
-%e.x. GSE30784: 167 HNSCC samples and 45 normal controls). 
-They employed the Database for Annotation, Visualization, and Integrated Discovery (DAVID, available at https://david.ncifcrf.gov/) to obtain information for Gene Ontology (GO), including biological processes, the cellular component, and molecular function. 
-The Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway analysis was also used to annotate the potential functions.
+%e.g., GSE30784: 167 HNSCC samples and 45 normal controls). 
+They used the Database for Annotation, Visualization, and Integrated Discovery---DAVID (available at https://david.ncifcrf.gov/) to obtain information for Gene Ontology (GO), including biological processes, the cellular component, and molecular function. 
+The Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway analysis was also used to annotate the potential functions of their biomarker candidates.
 %Subsequently, comprehensive bioinformatics analysis incorporating gene ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG),
-The protein-protein interaction (PPI) network was conducted by STRING (available at https://string-db.org).
-The pathway enrichment analysis of \acrshort{degs} was also performed by DAVID, String, or Cytoscape software programs\cite{Huang2019}\cite{Shen2019}.
-Li\cite{Li2018a} and his colleagues made an R package (GDCRNATool) for the implementation of those workflows on gene expression analyses of the TCGA.
+%The protein-protein interaction (PPI) network was conducted by STRING (available at https://string-db.org).
+The pathway enrichment analysis of \acrshort{degs} was also performed by DAVID, STRING (available at https://string-db.org), or Cytoscape software\cite{Huang2019}\cite{Shen2019}.
+Li\cite{Li2018a} and his colleagues made an R package (GDCRNATool) for the implementation of those workflows for gene expression analyses of the TCGA.
 %The DEmRNAs were enrolled in a protein-protein interaction (PPI) network through the STRING database (https://string-db.org/) with a confidence score $> 0.9$, and the PPI network was visualized in Cytoscape (Version 3.7.1) software. Moreover, genes with degree $>= 25$ were selected as hub genes. Subsequently, module analysis (16) of the PPI network was performed using the Molecular Complex Detection (MCODE) tool of Cytoscape software, and GO and KEGG analysis of the modules was carried out using the DAVID database.
 %a validation set and
 %Then, Kaplan–Meier survival curves along with a log-rank test were applied to select candidates\cite{Xu2021a}.
-Xu and his colleagues\cite{Xu2021a} also used Kaplan–Meier survival curves with a log-rank test, and univariate Cox regression to screen prognostic factors.
-The gene expression was used to select the preliminary biomarkers with a significant impact on patients' overall survival (\textit{P} value $< 0.01$).
+Xu and his colleagues\cite{Xu2021a} also identified their biomarkers by  \acrshort{degs} analysis.
+%The differential expression of gene was used to select the preliminary biomarkers.
+The significant impact of genes on patients' overall survival was evaluated by Kaplan–Meier survival curves with a log-rank test (\textit{P} value $< 0.01$), and univariate Cox regression.
 %By integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software.
-The candidate genes were validated via the Gene Expression Profiling Interactive Analysis tool (GEPIA1/2 database using TCGA datasets, developed by Zefang Tang and his colleagues\cite{Tang2017a}\cite{Tang2019}
+They validated the candidate genes by using the web-based tools of Gene Expression Profiling Interactive Analysis tool---GEPIA and Human protein atlas (HPA) databases.
+GEPIA was developed, using TCGA datasets, by Zefang Tang and his colleagues (version 1\cite{Tang2017a}, version 2\cite{Tang2019}, and GEPIA2021\cite{Li2021}, available at http://gepia2021.cancer-pku.cn/).
 %, datasets from projects of the TCGA and the Genotype-Tissue Expression, GTEx
-), GEPIA2021\cite{Li2021} (available at http://\\gepia2021.cancer-pku.cn/), or the Human Protein Atlas (HPA) website.
+HPA\cite{Uhlen2017} applied \acrfull{ihc} for the TCGA database (please see details in the Discussions section "Validation by Web-based Tools").
 % GTEx https://gtexportal.org/home/; non-disease 54 tissues/organs
 % GEPIA1/2 contact us: tangzefang@pku.edu.cn
-Finally, the gene expression profile from the GEO and HNSCC cell lines and tissues were used to verify these biomarkers.
+Finally, their biomarkers were verified by using the gene expression profile from the GEO, HNSCC cell lines and tissues.\\
 "
 %DEGs to hub: The 230 differentially expressed genes and 12 hub genes were subjected to functional and pathway enrichment analyses. Then hub genes for survival analyses.
 
@@ -1598,15 +1587,20 @@ The three challenges are not "challenges" at all. The authors exaggerated the di
 Answer
 
 % 不要誇大說明 謙虛道歉
-We apologize for exaggerating the difficulties of our workflow.
+We apologize for exaggerating the difficulties in our work.
 % ok
-The paragraphs marked in \textcolor{red}{Red} on page 11 (line 286) to page 12 (line 314) are the part of the manuscript that has been revised. Also, it is shown here in the following two paragraphs.
-
+The paragraphs marked in \textcolor{red}{Red} on page 11 (line 286) to page 12 (line 314) are the part of the manuscript that has been revised. 
+We want to share the experience for this HNSCC data pre-processes in detail to help further survival analysis in other TCGA cohorts.
+We added a paragraph of "Technical Consideration".
+Also, it is shown here in the following two paragraphs.\\
+We are improving very much from this major revision.
+Thanks for the reviewers' kind help again.
 
 \begin{MyIndent}
 \begin{MyColorPar}{red}
 %%%
 "
+3.3 Technical Consideration\\[0.2cm]
 There are two essential points of biomarker discovery from survival analysis of the TCGA HNSCC dataset.
 
 First, since \acrshort{tcga} genomics data were harmonized, 
@@ -1625,10 +1619,10 @@ The expression file of SLC35E2 has almost double in size than those of SLC35E1 o
 %[line 1654]
 %for gene correction (20499 to 20500) from SLC35E2 to 2 genes:
 %NCBI Reference Sequences (RefSeq) National Center for Biotechnology Information Reference Sequence (NCBI) RefSeq Release 38 (November 7, 2009) 
-According to the Human Gene Database (available at https://www.genecards.org/Search/Keyword?\\queryString=SLC35E2), SLC35E2A (Gene ID: 9906) and SLC35E2B (Gene ID: 728661) should be the correct entities for the TCGA HNSCC dataset.
+According to the Human Gene Database (available at https://www.genecards.org/Search/Keyword?queryString=\\SLC35E2), SLC35E2A (Gene ID: 9906) and SLC35E2B (Gene ID: 728661) should be the correct entities for the TCGA HNSCC dataset.
 % https://www.ncbi.nlm.nih.gov/gene/?term=(SLC35E2)+AND+%22Homo+sapiens%22
 % keyword: (SLC35E2) AND "Homo sapiens" 
-SLC35E2 is the previous symbol of SLC35E2A (reference at https://www.genenames.org/data/gene-symbol-report/\\\#!/hgnc\_id/HGNC:20863).
+SLC35E2 is the previous symbol of SLC35E2A (reference at https://www.genenames.org/data/gene-symbol-report/\#!/\\hgnc\_id/HGNC:20863).
 Thus, we made reassignment of the expression value of SLC35E2A and SLC35E2B and updated the number of protein-coding genes in this TCGA HNSCC dataset from 20499 to 20500.
 % updated on 18-May-2021 then 01 July 2021
 
@@ -1646,11 +1640,11 @@ Thus, we made reassignment of the expression value of SLC35E2A and SLC35E2B and 
 % dissection
 %ZSWIM2\_archive.Rda % 其實最困難的在於 unknown error (ZSWIM2) 
 Second, we analyzed the error log during the cutoff finding and Cox modeling, 
-the result shows that program running could be halted by several technical problems.
+the result shows that program running could be halted under several technical situation.
 These include:
 \begin{outline}
 
-\1 32.2\% event has "one group" issue in confusion matrix of Chi-square test in Cox regression;
+\1 32.2\% event has "one group" issue in confusion matrix of Chi-square test in Cox regression (coxph), due to zero in M (distant metastasis) patient subgroup;
 \1 21.05\% error occurs by "one group" issue in log-rank test (survdiff or survdiff.fit function in R package "survival") in Kaplan-Meier estimate;
 %1) ok [1] "[ 4 / 20083 ] Generating median-cut KM plot of A1BG"
 %Error in survdiff.fit(y, groups, strata.keep, rho) : at A1CF

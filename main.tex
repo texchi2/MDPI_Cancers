@@ -428,7 +428,7 @@ Xu and his colleagues\cite{Xu2021a} also identified their biomarkers by  \acrsho
 %The differential expression of gene was used to select the preliminary biomarkers.
 The significant impact of genes on patients' overall survival was evaluated by Kaplan–Meier survival curves with a log-rank test (\textit{P} value $< 0.01$), and univariate Cox regression.
 %By integrated bioinformatics analysis, including protein_protein interaction (PPI) network, Gene Ontology (GO) enrichment, and Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analyses. The PPI network was established using the Search Tool for the Retrieval of Interacting Genes (STRING) and Cytoscape software.
-They validated the candidate genes by using the web-based Tools of Gene Expression Profiling Interactive Analysis tool---GEPIA and Human protein atlas (HPA) databases.
+They validated the candidate genes by using the web-based tools of Gene Expression Profiling Interactive Analysis tool---GEPIA and Human protein atlas (HPA) databases.
 GEPIA was developed, using TCGA datasets, by Zefang Tang and his colleagues (version 1\cite{Tang2017a}, version 2\cite{Tang2019}, and GEPIA2021\cite{Li2021}, available at http://gepia2021.cancer-pku.cn/).
 %, datasets from projects of the TCGA and the Genotype-Tissue Expression, GTEx
 HPA\cite{Uhlen2017} applied \acrfull{ihc} for the TCGA database (please see details in the Discussions section "Validation by Web-based Tools").
@@ -1095,11 +1095,11 @@ Thus, we made reassignment of the expression value of SLC35E2A and SLC35E2B and 
 % dissection
 %ZSWIM2\_archive.Rda % 其實最困難的在於 unknown error (ZSWIM2) 
 Second, we analyzed the error log during the cutoff finding and Cox modeling, 
-the result shows that program running could be halted by several technical problems.
+the result shows that program running could be halted under several technical situation.
 These include:
 \begin{outline}
 
-\1 32.2\% event has "one group" issue in confusion matrix of Chi-square test in Cox regression;
+\1 32.2\% event has "one group" issue in confusion matrix of Chi-square test in Cox regression (coxph), due to zero in M (distant metastasis) patient subgroup;
 \1 21.05\% error occurs by "one group" issue in log-rank test (survdiff or survdiff.fit function in R package "survival") in Kaplan-Meier estimate;
 %1) ok [1] "[ 4 / 20083 ] Generating median-cut KM plot of A1BG"
 %Error in survdiff.fit(y, groups, strata.keep, rho) : at A1CF
