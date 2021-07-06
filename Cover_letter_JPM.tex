@@ -294,6 +294,7 @@ First of all, please describe the difference between the two manuscripts.
 \begin{MyColorPar}{blue}
 Answer\\
 %(OK)
+
 We appreciate the reviewer for the critical comments and thanks for the agreement with our analysis using the TCGA cohort.
 
 The manuscript posted in the preprint server, ResearchSqaure, is our first version (2020/09/28) of current manuscript. 
@@ -356,6 +357,7 @@ Please remember my opinion does not intend to insult your religion because I am 
 \begin{MyColorPar}{blue}
 Answer\\
 %(OK)
+
 After morning meditation in a wonderful day of February 2021,, the first author (Dr. Chi) has raised this idea then wrote it in discussion section with comprehensive references. Dr. Chi want to express that "Stress should also be a kind of biomarker included in the future HNSCC study".
 We appreciate the reviewer for the agreement about mindfulness meditation and holistic cancer care. We briefed this section (and Figure 6), then will submit rest of it in the other manuscript.
 
@@ -496,7 +498,7 @@ scientific-notation=true]{0.0001074233}.
 %# 3641 genes have one p_OS >= 0.02, in OS_pvalueTex002
 %# special case: HNSCC_survivalAnalysis_marginS_NDFIP1.xlsx
 %# NDFIP1 (within our 20 preliminary candidates), 
-In those \textit{P}-value plots, we could see that the sliding-window selection of cutoff finding might collect more candidates (\textit{P} values far less than $0.001$) for further Cox's modeling.
+In those \textit{P}-value plots, we could see that the sliding-window selection of cutoff finding might collect more candidates (\textit{P} values far less than $0.0003$) for further Cox's modeling.
 %Some useful biomarkers might be kick-out prematurely in "median cutoff" of survival analysis.
 Indeed, it needs to determine its effect size (hazard ratio) then to be validated by the other independent cohort.
 
@@ -516,9 +518,9 @@ Indeed, it needs to determine its effect size (hazard ratio) then to be validate
 \raggedright
 \caption{ The top 10 genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by adjusted \textit{P} value) }
 \arrayrulecolor[rgb]{0.255,0.255,0.255}
-\resizebox{0.6\linewidth}{!}{%
+\resizebox{0.65\linewidth}{!}{%
 %\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
-\begin{tabularx}{\textwidth}{|l|p{6.0cm}|l|l|l|l|l|l|} % *** capital X or p{2cm}
+\begin{tabularx}{\textwidth}{|l|p{6.5cm}|l|l|l|l|l|l|} % *** capital X or p{2cm}
 % p{2cm}
 \cline{1-8}
 \multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}}     & \multicolumn{2}{c|}{Kaplan-Meier survival}                                                                                   & \multicolumn{2}{c|}{Univariate~}                                                        & \multicolumn{2}{c|}{Multivariate} \\
@@ -617,7 +619,7 @@ CALML5 &
 \label{table:table3}
 \end{table}
 
-\clearpage
+%\clearpage
 
 
 %%%%
@@ -668,7 +670,7 @@ shows that over 50\% of those unadjusted \textit{P} values are below 0.001 deriv
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{Rplot_pvaluePlot_NDFIP1.pdf}
-    \caption{Under cutoff-finding procedure of Kaplan-Meier analysis, the \textit{P}-value plot of gene "NDFIP1" shows: 1) 70\% of \textit{P} values is $<0.05$; 2) the median-cut zone (zoom-in and revealed in inset box) has a "W"-like distribution; 3) sliding-window cutoff selection could find it's optimized \textit{P} values (far less than 0.001) while a median cut might yield \textit{P} value $>=0.05$.\\
+    \caption{Under cutoff-finding procedure of Kaplan-Meier analysis, the \textit{P}-value plot of gene "NDFIP1" shows: (1) 70\% of \textit{P} values is $< 0.05$; (2) the median-cut zone (zoom-in and revealed in inset box) has a "W"-like distribution; (3) sliding-window cutoff selection could find it's optimized \textit{P} values (far less than 0.001) while a median cut might yield \textit{P} value $>= 0.05$.\\
     (x-axis: grouping by person number; y-axis: \textit{P} value in log10 transformed)}
     \label{fig:pvaluePlot_NDFIP1}
 \end{figure}
@@ -727,6 +729,7 @@ I recommend the authors weaken their statement of the workflow but focus on the 
 \begin{MyColorPar}{blue}
 Answer
 %(OK)
+
 We appreciate the reviewer for the critical comment.
 We changed title, "Transcriptomic Analysis for Prognostic Value in Head and Neck Squamous Cell Carcinoma", and abstract; we also changed the tone in our manuscript to focus on the identified biomarkers in the head and neck squamous cell carcinoma.
 There is more evidence to validate them (please see Answer 2-3).
@@ -780,7 +783,7 @@ During our exploration phase with TCGA cohort, the 20 genes, listed
 %six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are bad guy;
 %four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are good guy.
 %}
-in Figure \ref{fig:hazards3}, have FDR-adjusted \textit{P} values ($<0.001$) in Kaplan-Meier estimate, and survival impact on HR ($> 1.8$ or $< 0.6$) in Cox's model.
+in Figure \ref{fig:hazards3}, have FDR-adjusted \textit{P} values ($< \num{3.0e-4}$) in Kaplan-Meier estimate, and survival impact on HR ($> 1.8$ or $< 0.6$) in Cox's model.
 %
 % [2021/06/13-17]
 %CAMK2N1, IL19, and FCGBP is validated by
@@ -796,8 +799,8 @@ In the study of GSE65858 cohort, CAMK2N1, CALML5, and FCGBP, keep ahead of the c
 %IL19    0.00269  0.03068073 0.630  6.543871e-06
 %candidate_fdr100
 and also see Figure \ref{fig:hazards534}).
-However, the "top rank" of the other 17 genes is replaced by genes such as DUSP6, MSMB, and RBM11 (please see Figure \ref{fig:hazards534}).
-There is consensus between the TCGA and GSE65858 cohorts that CAMK2N1, CALML5, and FCGBP are significant candidates for the biomarker.
+However, the other 17 genes (discovered in TCGA) are replaced by genes such as DUSP6, MSMB, and RBM11 (please see Figure \ref{fig:hazards534}).
+Thus, there is consensus between the TCGA and GSE65858 cohorts that CAMK2N1, CALML5, and FCGBP are significant candidates for the biomarker.
 %In the consensus of TCGA and GSE65858 cohorts, 
 
 %Rplot_GSE65858_CoxHR_CAMK2N1_top3FDRKM.pdf % FDR KM p value of hazards534
@@ -908,7 +911,7 @@ We also described "the \textit{P} values are affected by the sample size" in the
 % ok
 The paragraphs in "Materials and Methods" marked in \textcolor{red}{Red} on page 18 (line 567 to line 580),
 % results ok
-the paragraphs in "Results" marked in \textcolor{red}{Red} from page 5 (line 154) to page 6 (line 169) , and
+the paragraphs in "Results" marked in \textcolor{red}{Red} from page 5 (line 147) to page 6 (line 169) , and
 % ok
 the paragraphs in "Discussions" marked in \textcolor{red}{Red} from page 10 (line 233) to page 11 (line 284)
 are the part of the manuscript that has been revised. 
@@ -943,8 +946,9 @@ We have performed Kaplan-Meier (with FDR-correction of \textit{P} value) and Cox
 TCGA HNSCC cohort was applied for exploration of the biomarker candidate.
 A total of 9416 Kaplan-Meier plots (under sliding-window cutoff selection) with associated Cox's univariate and multivariate tables were generated by Cox modeling (see Figure \ref{fig:figure1}) and justified by the ranking of hazard ratios.
 %The ten genes, named DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, 
-The 967 out of 9416 genes were kept by criteria of Kaplan-Meier \textit{P} value ($< 0.05$) and \acrfull{hr} derived from Cox's model (please see Figure 2(a), (b), initial trial).
-In the next step, a Bonferroni P-value correction was used to yield 20 genes, under the stringent criteria (see Figure 2(c), (d)).
+The 967 out of 9416 genes were kept by criteria of \acrshort{fdr}-adjusted Kaplan-Meier \textit{P} value ($< 0.05$) and \acrfull{hr} derived from Cox's model (please see Figure 2(a), (b), initial trial).
+In the next step, a stringent Bonferroni P-value correction was used to yield 20 genes (please see Figure 2(c), (d)).
+%, under the stringent criteria 
 %em dash ---
 These CAMK2N1, CALML5, FCGBP and the other 17 genes (DKK1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1, ZNF557, ZNF266, MYO1H, EVPLL, PNMA5, IQCN, NPB, and CALML5) have significant FDR-adjusted \textit{P} values ($< 0.0003$) in Kaplan-Meier estimate, and greater hazard ratio (HR) ($> 1.8$ or $< 0.6$) in Cox's model (please see Figure \ref{fig:hazards3}; $log_{10}(0.0003) = -3.5$).
 %These genes have also passed a stringent criteria (Bonferroni \textit{P} value correction less than 0.05).
@@ -1209,11 +1213,11 @@ Here is another suggestion. To maximize the use of continuous expression values,
 Answer
 
 We appreciate the reviewer for the critical comments.
-Since we have tried to integrate multiple genes in survival analysis, a group of co-regulated genes that are preferable to be taken into consideration in a gene signature.
+We tried to integrate multiple genes in survival analysis, using a group of co-regulated genes that are preferable to be taken into consideration in a gene signature.
 Searching about the data science literature, feature selection has been usually applied for a group of genes which are contributing as independent variables for building model such as logistic regression. %The dependent variables are the survival data.
 %Scientists are often interested in selecting certain genes that are related to a categorical response variable, such as the onset or progression of cancer. These genes are known as signatures in the life sciences literature; for the purposes of our paper, we will call them features.
 %Least Absolute Shrinkage and Selection Operation (LASSO):
-Branders and his colleagues\cite{Branders2014} have suggested that regularization of regression model should be applied on analysis of the high-dimensional data, i.e. twenty thousands of features (genes) and only hundreds of sample size.
+Branders and his colleagues\cite{Branders2014} suggested that regularization of regression model should be applied on analysis of the high-dimensional data, e.g., twenty thousands of features (genes) and only hundreds of sample size.
 The $L_{1}$-regularized path algorithm by Least Absolute Shrinkage and Selection Operation (LASSO) regression could perform feature selection (a subset of gene).
 LASSO is suitable at picking up a small signal (gene signature) through lots of noise (twenty thousands of protein-coding genes).
 % R code by https://www4.stat.ncsu.edu/~post/josh/LASSO_Ridge_Elastic_Net_-_Examples.html
@@ -1221,10 +1225,10 @@ Our approach is to build a logistic regression model for the prediction of patie
 % over-fitting causes problem
 % During fitting of logistic model, 
 Beside feature selection,
-it is also necessary to add that small amount of bias (lambda, $\lambda$) for getting a significant drop in the variance to prevent over-fitting of the model.
+it is also necessary to add that small amount of bias---lambda ($\lambda$) for getting a significant drop in the variance to prevent over-fitting of the model.
 $\lambda$ could control the amount of bias dealing with over-fitting.
 %(over-fitting is called high-variance)
-In such a case, over-fitted model will only perfectly match every individual cases, and has higher variability to predict what it never see.
+In such a case, over-fitted model will only perfectly match every single case, and has higher variability to predict what it never see.
 Over-fitting will limit usefulness of the model in it's generalization, and could be controlled well by using both LASSO $L_{1}$-regularization and cross validation.
 % feature selection by lasso (L1 regularization)
 % LASSO, shrinkage coefficients to zero, for selection the features
@@ -1238,13 +1242,14 @@ the important features that contribute much to the model will be selected under 
 
 % multinomial
 %RLassoCox\\
-We have utilized the RLassoCox\cite{Simon2011}\cite{Liu2021} (RLasso-Cox model, implemented in a bioconductor package, available at https://github.com/weiliu123/\\RLassoCox) for training the Cox proportional hazard regression and logistic regression models in gene expression analysis to identify a group of genes that contribute to survival outcome of HNSCC patient. 
+We utilized the RLassoCox\cite{Simon2011}\cite{Liu2021} (RLasso-Cox model, implemented in a bioconductor package, available at https://github.com/weiliu123/\\RLassoCox) to find the gene signature.
+%for training both Cox proportional hazard regression and logistic regression models to identify a group of genes that contribute to survival outcome of HNSCC patient. 
 % RLassoCox includes gene signature that are related to a grouping structures with similar biological functions tend to have similar expressions. 
 % gene interaction networks (The KEGG network\cite{Simon2011}).
 % data(dGMMirGraph) # The KEGG network constructed by the R package iSubpathwayMiner.
 % based on gene expression profiles,
 %The Cox and logistic regression are standard models for their respective tasks: either fitting survival times or classifying samples.
-The RLassoCox make use of both Cox and LASSO logistic regression for gene-expression based survival analysis.
+The RLassoCox makes use of both Cox and LASSO logistic regression for gene-expression based survival analysis of HNSCC.
 The model training has been performed under 10-fold cross-validation.
 % medium: https://towardsdatascience.com/regularization-machine-learning-891e9a62c58d
 
@@ -1300,7 +1305,7 @@ The model training has been performed under 10-fold cross-validation.
 %Rplot_GSE65858_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
 % Rplot_TCGA_HNSCC_CoxHR_CAMK2N1_Bayes62_FDRKM.pdf
 %cv.mod.candidate has 62 genes 
-The results shows the selected features (62 genes) distributing on our previous volcano plots (please see Figure \ref{fig:Bayes62}; comparing with Figure \ref{fig:hazards3} and Figure \ref{fig:hazards534}).
+The results shows that the model-selected features (62 genes) distribute within the region of small effect size (HR) on our previous volcano plots (please see Figure \ref{fig:Bayes62}; comparing with Figure \ref{fig:hazards3} and Figure \ref{fig:hazards534}), if see them individually.
 
 
 \begin{figure}[!tbp]
@@ -1331,10 +1336,10 @@ The results shows the selected features (62 genes) distributing on our previous 
 LASSO calculate the (non-zero) coefficients of features, while the 62 genes hit the minimum of cross-validation error.
 % in lambda 1se
 %cv.mod$glmnetRes$lambda.1se
-We have further limited gene selection (13 out of 62) by the most regularized model under cross-validation error within 1 standard deviation of the minimum.
+We further limited gene selection (13 out of 62) by the most regularized model under cross-validation error within 1 standard deviation of the minimum.
 According to their \textit{P} values (please see Table \ref{tab:signature4}), 
 we found a gene signature, HK1, EZR, RRAGA, and DUSP16 to predict their survival impact on TCGA HNSCC cohort (please see Figure \ref{fig:signature4}).
-DUSP16 has negative coefficient in the LASSO regression model, compatible with HR less than 1 in volcano plot of TCGA HNSCC.
+DUSP16 has negative coefficient in the LASSO regression model, compatible with HR less than 1.0 on the volcano plot of TCGA HNSCC.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
@@ -1345,9 +1350,11 @@ DUSP16 has negative coefficient in the LASSO regression model, compatible with H
 
 \begin{table}[ht]
 \centering
-\caption{The most LASSO regularized logistic model under cross-validation. Genes with positive coefficient will increase the patient's risk, while negative reduce it.\\
+\caption{The most LASSO regularized logistic model (under cross-validation error within 1 standard deviation of the minimum). Genes with positive coefficient will increase the patient's risk, while negative reduce it.\\
     (\textcolor{red}{red}-marked logistic \textit{P} value $< 0.05$)}
 \label{tab:signature4}
+
+\resizebox{0.4\linewidth}{!}{%
 \begin{tabular}{lrr}
 \textbf{Gene Symbol} & \textbf{Coefficients} &  \textbf{\textit{P} value} \\ \hline
 \textbf{POLR2C}      & 0.870                 & 0.150                              \\
@@ -1364,6 +1371,8 @@ DUSP16 has negative coefficient in the LASSO regression model, compatible with H
 \textbf{DUSP16}      & -0.745                & \textcolor{red}{0.035}       \\
 \textbf{SH3BP2}      & -0.606                & 0.107                             
 \end{tabular}
+
+} % end resizebox
 \end{table}
 
 %%%
@@ -1387,7 +1396,7 @@ DUSP16 has negative coefficient in the LASSO regression model, compatible with H
 
 
 
-In conclusion, we might build a Lasso regression model with LASSO regularization to maximize the use of continuous gene expression values (without the need of a cutoff).
+In conclusion, we might build a logistic regression model with LASSO $L_{1}$-regularization to maximize the use of continuous gene expression values (without cutoff).
 The gene signature integrating multiple genes is also a good approach for biomarker discovery.
 However, the resulting candidates could be influenced by proper "gene interaction network" applied for model building.
 % gene signature
